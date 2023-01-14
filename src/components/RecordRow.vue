@@ -18,10 +18,12 @@
       <div>By {{ record.level.author }}</div>
     </div>
     <div>
-      <div>{{ record.time }}</div>
+      <div>{{ record.time.toFixed(4) }}</div>
       <div v-if="record.isBest || record.isWorldRecord" class="record-badges">
-        <span v-if="record.isWorldRecord">WR</span>
-        <span v-if="record.isBest">PB</span>
+        <span v-if="record.isWorldRecord" class="wr" title="World Record"
+          >WR</span
+        >
+        <span v-if="record.isBest" class="pb" title="Personal Best">PB</span>
       </div>
     </div>
     <div>
@@ -33,9 +35,8 @@
 
 <style scoped lang="less">
   .record {
-    max-width: 50%;
     display: grid;
-    grid-template-columns: 80px 2fr 1fr 80px;
+    grid-template-columns: 80px 2fr repeat(2, 80px);
     grid-template-rows: 50px;
     gap: 1rem;
     align-items: center;
@@ -55,7 +56,11 @@
         padding: 0 0.25rem;
         font-size: 0.75rem;
 
-        &~span {
+        &.wr {
+          border: 1px solid var(--color-button-hover);
+        }
+
+        & ~ span {
           margin-left: 0.25rem;
         }
       }

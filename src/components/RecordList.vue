@@ -4,7 +4,8 @@
   import RecordRow from '@/components/RecordRow.vue'
   import type { RecordRecord } from '@/models/record'
 
-  const { records } = defineProps<{
+  const { header = 'Records', records } = defineProps<{
+    header: string
     records: RecordRecord[]
   }>()
 </script>
@@ -12,7 +13,7 @@
 <template>
   <div class="records">
     <div class="records-header">
-      <h2>Recent Records</h2>
+      <h2>{{ header }}</h2>
     </div>
     <record-row
       v-for="record in records"

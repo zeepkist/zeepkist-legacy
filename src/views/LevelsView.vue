@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { ref } from 'vue'
 
+  import DebugCode from '@/components/DebugCode.vue'
   import { getRecords } from '@/services/records'
 
   const recordData = ref(await getRecords())
@@ -10,9 +11,7 @@
   <div class="about">
     <h1>This is a levels page</h1>
     <p>{{ recordData.totalAmount }} levels</p>
-    <code v-for="record in recordData.records" :key="record.screenshotUrl">
-      {{ record }}
-    </code>
+    <debug-code :data="recordData.records" />
   </div>
 </template>
 
@@ -21,16 +20,6 @@
     .about {
       display: flex;
       flex-direction: column;
-    }
-
-    code {
-      white-space: pre;
-      padding: 1rem 0;
-    }
-
-    code:nth-of-type(even) {
-      background: var(--color-text);
-      color: var(--color-text-inverted);
     }
   }
 </style>

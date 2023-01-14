@@ -2,6 +2,7 @@
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
+  import DebugCode from '@/components/DebugCode.vue'
   import { getRecords } from '@/services/records'
 
   const route = useRoute()
@@ -14,9 +15,7 @@
   <div class="about">
     <h1>This is a level page</h1>
     <p>{{ recordData.totalAmount }} levels</p>
-    <code v-for="record in recordData.records" :key="record.screenshotUrl">
-      {{ record }}
-    </code>
+    <debug-code :data="recordData.records" />
   </div>
 </template>
 
@@ -25,16 +24,6 @@
     .about {
       display: flex;
       flex-direction: column;
-    }
-
-    code {
-      white-space: pre;
-      padding: 1rem 0;
-    }
-
-    code:nth-of-type(even) {
-      background: var(--color-text);
-      color: var(--color-text-inverted);
     }
   }
 </style>
