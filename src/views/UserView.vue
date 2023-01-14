@@ -3,12 +3,10 @@
   import { useRoute } from 'vue-router'
 
   import { getRecords } from '@/services/records'
-  import { getUser } from '@/services/users'
 
   const route = useRoute()
   const steamId = route.params.steamId as string
 
-  const userData = ref(await getUser({ steamId }))
   const recordData = ref(
     await getRecords({ UserSteamId: steamId, BestOnly: true })
   )
@@ -19,10 +17,10 @@
 
 <template>
   <div class="about">
-    <h1>{{ userData.steamId }}'s Profile</h1>
+    <h1>{{ steamId }}'s Profile</h1>
     <p>
-      {{ userData.steamId }} has set times on {{ recordData.totalAmount }} levels
-      over {{ recordData.totalAmount + recordDataNotBest.totalAmount }} runs
+      {{ steamId }} has set times on {{ recordData.totalAmount }} levels over
+      {{ recordData.totalAmount + recordDataNotBest.totalAmount }} runs
     </p>
     <code v-for="record in recordData.records" :key="record.screenshotUrl">
       {{ record }}
