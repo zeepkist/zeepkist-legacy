@@ -10,6 +10,8 @@ interface GetRecordsParameters {
   UserSteamId?: number | string
   UserId?: number | string
   BestOnly?: boolean
+  ValidOnly?: boolean
+  WorldRecordOnly?: boolean
   Limit?: number
   Offset?: number
 }
@@ -21,6 +23,8 @@ export const getRecords = async ({
   UserSteamId,
   UserId,
   BestOnly,
+  ValidOnly = true,
+  WorldRecordOnly,
   Limit,
   Offset
 }: GetRecordsParameters = {}) => {
@@ -32,6 +36,8 @@ export const getRecords = async ({
       UserSteamId,
       UserId,
       BestOnly,
+      ValidOnly,
+      WorldRecordOnly,
       Limit,
       Offset
     }

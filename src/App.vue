@@ -44,6 +44,7 @@
   /* semantic color variables for this project */
   :root {
     --color-background: var(--zeepkist-papaya);
+    --color-background-mute: var(--white-mute);
     --color-background-page: var(--zeepkist-yellow);
 
     --color-navigation: var(--white);
@@ -67,8 +68,9 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --color-background-page: var(--black-mute);
       --color-background: var(--black);
+      --color-background-mute: var(--black-mute);
+      --color-background-page: var(--black-mute);
 
       --color-navigation: var(--black);
 

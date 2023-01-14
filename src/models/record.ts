@@ -9,6 +9,7 @@ export interface RecordRecord {
   ghostUrl: string
   screenshotUrl: string
   isBest: boolean
+  isWorldRecord: boolean
   gameVersion: string
   user: User
   level: Level
