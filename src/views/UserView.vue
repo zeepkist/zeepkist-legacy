@@ -19,7 +19,7 @@
     await getRecords({ UserSteamId: steamId, WorldRecordOnly: true, Limit: 0 })
   )
   const recordDataRecent = ref(
-    await getRecords({ UserSteamId: steamId, Limit: 10 })
+    await getRecords({ UserSteamId: steamId, Limit: 20 })
   )
 </script>
 
