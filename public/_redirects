@@ -1,0 +1,3 @@
+/*                      /index.html                   200
+# Redirect default Netlify subdomain to primary domain
+https://zeepkist.netlify.com/* https://zeepkist.wopian.me/:splat 301!
