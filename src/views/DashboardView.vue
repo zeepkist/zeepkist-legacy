@@ -3,14 +3,15 @@
 
   import { getRecords } from '@/services/records'
 
-  const data = ref(await getRecords())
+  const recordData = ref(await getRecords())
 </script>
 
 <template>
   <div class="about">
     <h1>This is a dashboard page</h1>
+    <p>{{ recordData.totalAmount }} levels</p>
     <code>
-      {{ data }}
+      {{ recordData }}
     </code>
   </div>
 </template>

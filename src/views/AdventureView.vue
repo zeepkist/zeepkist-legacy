@@ -3,14 +3,15 @@
 
   import { getRecords } from '@/services/records'
 
-  const data = ref(await getRecords())
+  const levelData = ref(await getRecords())
 </script>
 
 <template>
   <div class="about">
     <h1>This is an adventure mode levels page</h1>
-    <code>
-      {{ data }}
+    <p>{{ levelData.totalAmount }} levels</p>
+    <code v-for="record in levelData.records" :key="record.screenshotUrl">
+      {{ record }}
     </code>
   </div>
 </template>
@@ -24,6 +25,12 @@
 
     code {
       white-space: pre;
+      padding: 1rem 0;
+    }
+
+    code:nth-of-type(even) {
+      background: var(--color-text);
+      color: var(--color-text-inverted);
     }
   }
 </style>

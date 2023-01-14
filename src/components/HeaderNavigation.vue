@@ -1,5 +1,11 @@
 <script setup lang="ts">
   import { RouterLink } from 'vue-router'
+
+  import { useSteamStore } from '@/stores/steam'
+
+  import SteamOpenIdLogin from './SteamOpenIdLogin.vue'
+
+  const steamStore = useSteamStore()
 </script>
 
 <template>
@@ -17,19 +23,20 @@
         <router-link :to="{ name: 'levels' }">Levels</router-link>
         <router-link :to="{ name: 'users' }">Users</router-link>
       </nav>
+
+      <nav class="login">
+        <steam-open-id-login v-if="!steamStore.steamId" />
+        <router-link
+          v-else
+          :to="{ name: 'user', params: { steamId: steamStore.steamId } }">
+          Your Profile
+        </router-link>
+      </nav>
     </div>
   </header>
 </template>
 
 <style scoped lang="less">
-  header,
-  .wrapper,
-  img,
-  nav,
-  a {
-    //border: 1px solid var(--color-border);
-  }
-
   header {
     background-color: var(--color-navigation);
     padding: 0.75rem 0;
@@ -53,13 +60,17 @@
     margin-right: 1rem;
   }
 
-  nav a:not(:last-of-type) {
-    margin-right: 0.5rem;
+  nav {
+    flex: 1;
   }
 
-  nav {
-    justify-content: flex-start;
-    flex: 1;
+  nav.login {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  nav a:not(:last-of-type) {
+    margin-right: 0.5rem;
   }
 
   nav a.router-link-exact-active {
@@ -78,17 +89,4 @@
     border-radius: var(--border-radius);
     font-weight: 600;
   }
-
-  /*
-  @media (min-width: 1024px) {
-    nav {
-      text-align: left;
-      margin-left: -1rem;
-      font-size: 1rem;
-
-      padding: 1rem 0;
-      margin-top: 1rem;
-    }
-  }
-  */
 </style>

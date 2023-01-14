@@ -1,16 +1,31 @@
 <script setup lang="ts">
   import { ref } from 'vue'
+  import { useRoute } from 'vue-router'
 
+  import { getRecords } from '@/services/records'
   import { getUser } from '@/services/users'
 
-  const data = ref(await getUser({ id: 1 }))
+  const route = useRoute()
+  const steamId = route.params.steamId as string
+
+  const userData = ref(await getUser({ steamId }))
+  const recordData = ref(
+    await getRecords({ UserSteamId: steamId, BestOnly: true })
+  )
+  const recordDataNotBest = ref(
+    await getRecords({ UserSteamId: steamId, BestOnly: false, Limit: 0 })
+  )
 </script>
 
 <template>
   <div class="about">
-    <h1>This is a user page</h1>
-    <code>
-      {{ data }}
+    <h1>{{ userData.steamId }}'s Profile</h1>
+    <p>
+      {{ userData.steamId }} has set times on {{ recordData.totalAmount }} levels
+      over {{ recordData.totalAmount + recordDataNotBest.totalAmount }} runs
+    </p>
+    <code v-for="record in recordData.records" :key="record.screenshotUrl">
+      {{ record }}
     </code>
   </div>
 </template>
@@ -24,6 +39,12 @@
 
     code {
       white-space: pre;
+      padding: 1rem 0;
+    }
+
+    code:nth-of-type(even) {
+      background: var(--color-text);
+      color: var(--color-text-inverted);
     }
   }
 </style>

@@ -21,7 +21,7 @@ const router = createRouter({
       component: () => import('@/views/LevelsView.vue')
     },
     {
-      path: '/level/:id',
+      path: '/level/:levelId',
       name: 'level',
       component: () => import('@/views/LevelView.vue')
     },
@@ -31,9 +31,14 @@ const router = createRouter({
       component: () => import('@/views/UsersView.vue')
     },
     {
-      path: '/user/:id',
+      path: '/user/:steamId',
       name: 'user',
       component: () => import('@/views/UserView.vue')
+    },
+    {
+      path: '/auth',
+      name: 'auth',
+      component: () => import('@/views/AuthView.vue')
     }
   ]
 })

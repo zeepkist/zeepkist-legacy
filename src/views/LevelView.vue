@@ -1,16 +1,21 @@
 <script setup lang="ts">
   import { ref } from 'vue'
+  import { useRoute } from 'vue-router'
 
-  import { getRecord } from '@/services/records'
+  import { getRecords } from '@/services/records'
 
-  const data = ref(await getRecord({ id: 1 }))
+  const route = useRoute()
+  const levelId = route.params.levelId as string
+
+  const recordData = ref(await getRecords({ LevelId: levelId }))
 </script>
 
 <template>
   <div class="about">
     <h1>This is a level page</h1>
-    <code>
-      {{ data }}
+    <p>{{ recordData.totalAmount }} levels</p>
+    <code v-for="record in recordData.records" :key="record.screenshotUrl">
+      {{ record }}
     </code>
   </div>
 </template>
@@ -24,6 +29,12 @@
 
     code {
       white-space: pre;
+      padding: 1rem 0;
+    }
+
+    code:nth-of-type(even) {
+      background: var(--color-text);
+      color: var(--color-text-inverted);
     }
   }
 </style>

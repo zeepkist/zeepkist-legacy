@@ -4,12 +4,15 @@ import type { User } from '@/models/user'
 import { api } from '@/services/api'
 
 interface GetUserParameters {
-  id: number
+  id?: number
+  steamId?: string
 }
 
-export const getUser = async ({ id }: GetUserParameters) => {
+export const getUser = async ({ id, steamId }: GetUserParameters) => {
   try {
-    const response = await api.get('user', { params: { id } })
+    const response = await (id
+      ? api.get('user/id', { params: { id } })
+      : api.get('user/steamid', { params: { steamId } }))
 
     if (response.status === 200) return response.data as User
     else {

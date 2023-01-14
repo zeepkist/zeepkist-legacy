@@ -3,26 +3,39 @@ import type { AxiosError } from 'axios'
 import type { Record } from '@/models/record'
 import { api } from '@/services/api'
 
-export const getRecords = async () => {
-  try {
-    const response = await api.get('record')
+interface GetRecordsParameters {
+  LevelId?: number | string
+  LevelUid?: string
+  LevelWorkshopId?: number | string
+  UserSteamId?: number | string
+  UserId?: number | string
+  BestOnly?: boolean
+  Limit?: number
+  Offset?: number
+}
 
-    if (response.status === 200) return response.data as Record
-    else {
-      throw new Error(response.data.error)
+export const getRecords = async ({
+  LevelId,
+  LevelUid,
+  LevelWorkshopId,
+  UserSteamId,
+  UserId,
+  BestOnly,
+  Limit,
+  Offset
+}: GetRecordsParameters = {}) => {
+  try {
+    const query = {
+      LevelId,
+      LevelUid,
+      LevelWorkshopId,
+      UserSteamId,
+      UserId,
+      BestOnly,
+      Limit,
+      Offset
     }
-  } catch (error: AxiosError | any) {
-    throw new Error(error)
-  }
-}
-
-interface GetRecordParameters {
-  id: number
-}
-
-export const getRecord = async ({ id }: GetRecordParameters) => {
-  try {
-    const response = await api.get('record', { params: { id } })
+    const response = await api.get('record', { params: query })
 
     if (response.status === 200) return response.data as Record
     else {
