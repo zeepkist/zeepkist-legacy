@@ -35,15 +35,22 @@
   </p>
   <column-layout>
     <template #left>
-      <record-list header="Best Times" :records="recordDataBest.records" />
+      <record-list
+        header="Best Times"
+        :records="recordDataBest.records"
+        show-user />
     </template>
     <template #right>
-      <record-list header="Recent Times" :records="recordDataRecent.records" />
+      <record-list
+        header="Recent Times"
+        :records="recordDataRecent.records"
+        show-user />
       <record-list
         header="Any% Times"
         :records="
           recordDataAnyPercent.records.filter(record => !record.isValid)
-        " />
+        "
+        show-user />
     </template>
   </column-layout>
   <debug-code :data="recordDataRecent.records" />
