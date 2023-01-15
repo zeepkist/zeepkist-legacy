@@ -2,6 +2,7 @@
   import { RouterLink } from 'vue-router'
 
   import type { LevelRecord } from '@/models/record'
+  import { formatDate, formatRelativeDate } from '@/utils'
 
   const { record, showUser = false } = defineProps<{
     record: LevelRecord
@@ -10,7 +11,7 @@
 </script>
 
 <template>
-  <div class="record" :class="{ 'with-user': showUser }">
+  <div class="record">
     <img
       :src="record.level.thumbnailUrl"
       :alt="`Thumbnail of ${record.level.name}`" />
@@ -20,11 +21,15 @@
       </router-link>
       <div>By {{ record.level.author }}</div>
     </div>
-    <div v-if="showUser">
+    <div>
       <router-link
+        v-if="showUser"
         :to="{ name: 'user', params: { steamId: record.user.steamId } }">
         {{ record.user.steamName }}
       </router-link>
+      <div :title="formatDate(record.dateCreated)">
+        {{ formatRelativeDate(record.dateCreated) }}
+      </div>
     </div>
     <div>
       <div>{{ record.time.toFixed(4) }}</div>
@@ -50,14 +55,10 @@
 <style scoped lang="less">
   .record {
     display: grid;
-    grid-template-columns: 80px 2fr repeat(2, 80px);
+    grid-template-columns: 80px 2fr 1fr repeat(2, 80px);
     grid-template-rows: 50px;
     gap: 1rem;
     align-items: center;
-
-    &.with-user {
-      grid-template-columns: 80px 2fr 1fr repeat(2, 80px);
-    }
 
     &:nth-of-type(even) {
       background: var(--color-background-mute);

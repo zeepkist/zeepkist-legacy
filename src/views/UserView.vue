@@ -48,7 +48,8 @@
     {{ userData.steamName }} has set times on
     {{ recordDataBest.totalAmount }} levels over
     {{ recordDataBest.totalAmount + recordDataNotBest.totalAmount }} runs. They
-    currently hold <icon-trophy class="inline-svg" /> {{ recordDataWRs.totalAmount }} world records.
+    currently hold <icon-trophy class="inline-svg" />
+    {{ recordDataWRs.totalAmount }} world records.
   </p>
   <column-layout>
     <template #left>
