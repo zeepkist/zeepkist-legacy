@@ -2,7 +2,7 @@
   import { RouterLink } from 'vue-router'
 
   import type { LevelRecord } from '@/models/record'
-  import { formatDate, formatRelativeDate } from '@/utils'
+  import { formatDate, formatRelativeDate, formatResultTime } from '@/utils'
 
   const {
     record,
@@ -38,7 +38,7 @@
       </div>
     </div>
     <div>
-      <div>{{ record.time.toFixed(4) }}</div>
+      <div>{{ formatResultTime(record.time) }}</div>
       <div
         v-if="record.isBest || record.isWorldRecord || !record.isValid"
         class="record-badges">
