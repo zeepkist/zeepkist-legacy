@@ -5,11 +5,13 @@
   const {
     header = 'Records',
     records,
-    showUser
+    showUser,
+    hideTrackInfo
   } = defineProps<{
     header: string
     records: LevelRecord[]
     showUser?: boolean
+    hideTrackInfo?: boolean
   }>()
 </script>
 
@@ -20,7 +22,8 @@
       v-for="record in records"
       :key="record.screenshotUrl"
       :record="record"
-      :show-user="showUser" />
+      :show-user="showUser"
+      :hide-track-info="hideTrackInfo" />
   </div>
 </template>
 

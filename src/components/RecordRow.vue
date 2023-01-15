@@ -4,18 +4,24 @@
   import type { LevelRecord } from '@/models/record'
   import { formatDate, formatRelativeDate } from '@/utils'
 
-  const { record, showUser = false } = defineProps<{
+  const {
+    record,
+    showUser = false,
+    hideTrackInfo = false
+  } = defineProps<{
     record: LevelRecord
     showUser?: boolean
+    hideTrackInfo?: boolean
   }>()
 </script>
 
 <template>
-  <div class="record">
+  <div class="record" :class="{ 'hide-track-info': hideTrackInfo }">
     <img
+      v-if="!hideTrackInfo"
       :src="record.level.thumbnailUrl"
       :alt="`Thumbnail of ${record.level.name}`" />
-    <div>
+    <div v-if="!hideTrackInfo">
       <router-link :to="{ name: 'level', params: { id: record.level.id } }">
         {{ record.level.name }}
       </router-link>
@@ -59,6 +65,10 @@
     grid-template-rows: 50px;
     gap: 1rem;
     align-items: center;
+
+    &.hide-track-info {
+      grid-template-columns: 2fr repeat(2, 80px);
+    }
 
     &:nth-of-type(even) {
       background: var(--color-background-mute);

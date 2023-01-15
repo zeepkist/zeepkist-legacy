@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { computed, ref } from 'vue'
   import { useRoute } from 'vue-router'
 
   import ColumnLayout from '@/components/ColumnLayout.vue'
@@ -17,16 +17,27 @@
   const recordDataAnyPercent = ref(
     await getRecords({ LevelId: id, ValidOnly: false, Limit: 15 })
   )
+
+  const unknownLevel = {
+    name: 'Unknown',
+    thumbnailUrl: '',
+    author: 'Bouwerman'
+  }
+
+  const levelData = computed(
+    () =>
+      recordDataRecent.value?.records[0]?.level ??
+      recordDataAnyPercent.value?.records[0]?.level ??
+      unknownLevel
+  )
 </script>
 
 <template>
   <div class="header">
-    <img :src="recordDataRecent.records[0].level.thumbnailUrl" alt="" />
+    <img :src="levelData.thumbnailUrl" alt="" />
     <div class="header-title">
-      <h1>{{ recordDataRecent.records[0].level.name }}</h1>
-      <span class="author"
-        >By {{ recordDataRecent.records[0].level.author }}</span
-      >
+      <h1>{{ levelData.name }}</h1>
+      <span class="author">By {{ levelData.author }}</span>
     </div>
   </div>
   <p>
@@ -38,19 +49,24 @@
       <record-list
         header="Best Times"
         :records="recordDataBest.records"
-        show-user />
+        show-user
+        hide-track-info />
     </template>
-    <template #right>
+    <template #center>
       <record-list
         header="Recent Times"
         :records="recordDataRecent.records"
-        show-user />
+        show-user
+        hide-track-info />
+    </template>
+    <template #right>
       <record-list
         header="Any% Times"
         :records="
           recordDataAnyPercent.records.filter(record => !record.isValid)
         "
-        show-user />
+        show-user
+        hide-track-info />
     </template>
   </column-layout>
   <debug-code :data="recordDataRecent.records" />
@@ -66,6 +82,7 @@
 
     img {
       max-height: 100px;
+      margin-right: 1rem;
     }
 
     .header-title {

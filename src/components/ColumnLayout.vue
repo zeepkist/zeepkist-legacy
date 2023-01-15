@@ -1,7 +1,10 @@
 <template>
-  <div class="columns">
+  <div class="columns" :class="{ 'with-center': $slots.center }">
     <div class="column">
       <slot name="left" />
+    </div>
+    <div v-if="$slots.center" class="column">
+      <slot name="center" />
     </div>
     <div class="column">
       <slot name="right" />
@@ -24,6 +27,10 @@
   @media (min-width: 1024px) {
     .columns {
       grid-template-columns: 1fr 1fr;
+
+      &.with-center {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
     }
   }
 </style>
