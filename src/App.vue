@@ -56,6 +56,8 @@
     --color-text: var(--black);
     --color-text-inverted: var(--white);
 
+    --color-disabled: var(--dark-mute);
+
     --color-link: var(--zeepkist-orange);
     --color-hover: var(--zeepkist-orange-2);
 
@@ -77,6 +79,8 @@
       --color-heading: var(--white-soft);
       --color-text: var(--white);
       --color-text-inverted: var(--black);
+
+      --color-disabled: var(--white-mute);
     }
   }
 
@@ -131,6 +135,12 @@
 
   h2 {
     font-size: 1.75rem;
+  }
+
+  svg.inline-svg {
+    height: 2ch;
+    width: 2ch;
+    margin-bottom: -1px;
   }
 
   .app-content {

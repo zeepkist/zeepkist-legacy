@@ -11,11 +11,13 @@
 <template>
   <header>
     <div class="wrapper">
-      <img
-        alt="Zeepkist logo"
-        class="logo"
-        src="@/assets/zeepkist-logo.webp"
-        height="32" />
+      <router-link :to="{ name: 'dashboard' }"
+        ><img
+          alt="Zeepkist logo"
+          class="logo"
+          src="@/assets/zeepkist-logo.webp"
+          height="32"
+      /></router-link>
 
       <nav>
         <router-link :to="{ name: 'dashboard' }">Dashboard</router-link>

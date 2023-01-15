@@ -1,6 +1,6 @@
 import type { AxiosError } from 'axios'
 
-import type { User } from '@/models/user'
+import type { UserResponse } from '@/models/user'
 import { api } from '@/services/api'
 
 interface GetUserParameters {
@@ -14,7 +14,7 @@ export const getUser = async ({ id, steamId }: GetUserParameters) => {
       ? api.get('user/id', { params: { id } })
       : api.get('user/steamid', { params: { SteamId: steamId } }))
 
-    if (response.status === 200) return response.data as User
+    if (response.status === 200) return response.data as UserResponse
     else {
       throw new Error(response.data.error)
     }

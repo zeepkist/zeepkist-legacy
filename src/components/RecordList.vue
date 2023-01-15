@@ -1,24 +1,26 @@
 <script setup lang="ts">
-  import { defineProps } from 'vue'
-
   import RecordRow from '@/components/RecordRow.vue'
-  import type { RecordRecord } from '@/models/record'
+  import type { LevelRecord } from '@/models/record'
 
-  const { header = 'Records', records } = defineProps<{
+  const {
+    header = 'Records',
+    records,
+    showUser
+  } = defineProps<{
     header: string
-    records: RecordRecord[]
+    records: LevelRecord[]
+    showUser?: boolean
   }>()
 </script>
 
 <template>
   <div class="records">
-    <div class="records-header">
-      <h2>{{ header }}</h2>
-    </div>
+    <h2>{{ header }}</h2>
     <record-row
       v-for="record in records"
       :key="record.screenshotUrl"
-      :record="record" />
+      :record="record"
+      :show-user="showUser" />
   </div>
 </template>
 

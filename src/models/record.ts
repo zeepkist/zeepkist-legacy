@@ -1,7 +1,7 @@
 import type { Level } from '@/models/level'
 import type { User } from '@/models/user'
 
-export interface RecordRecord {
+export interface LevelRecord {
   id: number
   dateCreated: string
   time: number
@@ -9,13 +9,14 @@ export interface RecordRecord {
   ghostUrl: string
   screenshotUrl: string
   isBest: boolean
+  isValid: boolean
   isWorldRecord: boolean
   gameVersion: string
   user: User
   level: Level
 }
 
-export interface Record {
+export interface RecordResponse {
   totalAmount: number
-  records: RecordRecord[]
+  records: LevelRecord[]
 }

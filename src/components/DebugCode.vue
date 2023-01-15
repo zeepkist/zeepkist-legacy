@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  import { defineProps } from 'vue'
-
   import { IS_DEV } from '@/configs'
 
   const { data } = defineProps<{

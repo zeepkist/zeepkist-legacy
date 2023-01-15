@@ -1,4 +1,7 @@
 export interface User {
   id: number
-  steamId: number
+  steamId: string
+  steamName: string
 }
+
+export interface UserResponse extends User {}

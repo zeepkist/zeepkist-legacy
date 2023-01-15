@@ -21,7 +21,7 @@ const router = createRouter({
       component: () => import('@/views/LevelsView.vue')
     },
     {
-      path: '/level/:levelId',
+      path: '/level/:id',
       name: 'level',
       component: () => import('@/views/LevelView.vue')
     },

@@ -1,6 +1,6 @@
 import type { AxiosError } from 'axios'
 
-import type { Record } from '@/models/record'
+import type { RecordResponse } from '@/models/record'
 import { api } from '@/services/api'
 
 interface GetRecordsParameters {
@@ -23,7 +23,7 @@ export const getRecords = async ({
   UserSteamId,
   UserId,
   BestOnly,
-  ValidOnly = true,
+  ValidOnly,
   WorldRecordOnly,
   Limit,
   Offset
@@ -43,7 +43,7 @@ export const getRecords = async ({
     }
     const response = await api.get('record', { params: query })
 
-    if (response.status === 200) return response.data as Record
+    if (response.status === 200) return response.data as RecordResponse
     else {
       throw new Error(response.data.error)
     }

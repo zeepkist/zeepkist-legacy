@@ -1,7 +1,7 @@
 export interface Level {
   id: number
   uniqueId: string
-  workshopId: number
+  workshopId: string
   name: string
   author: string
   timeAuthor: number
@@ -9,4 +9,9 @@ export interface Level {
   timeSilver: number
   timeBronze: number
   thumbnailUrl: string
+}
+
+export interface LevelResponse {
+  totalAmount: number
+  levels: Level[]
 }
