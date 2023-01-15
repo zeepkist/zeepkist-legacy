@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { RouterView } from 'vue-router'
 
+  import FooterNavigation from '@/components/FooterNavigation.vue'
   import HeaderNavigation from '@/components/HeaderNavigation.vue'
 </script>
 
@@ -11,6 +12,7 @@
       <router-view />
     </suspense>
   </section>
+  <footer-navigation />
 </template>
 
 <style lang="less">
