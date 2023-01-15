@@ -2,16 +2,18 @@
   import { ref } from 'vue'
 
   import DebugCode from '@/components/DebugCode.vue'
-  import { getRecords } from '@/services/records'
+  import LevelList from '@/components/LevelList.vue'
+  import { getLevels } from '@/services/levels'
 
-  const levelData = ref(await getRecords())
+  const levels = ref(await getLevels({ WorkshopId: 0 }))
 </script>
 
 <template>
   <div class="about">
-    <h1>This is an adventure mode levels page</h1>
-    <p>{{ levelData.totalAmount }} levels</p>
-    <debug-code :data="levelData" />
+    <h1>Adventure Mode Levels</h1>
+    <p>{{ levels.totalAmount }} levels</p>
+    <level-list header="Recent Levels" :levels="levels.levels" />
+    <debug-code :data="levels" />
   </div>
 </template>
 

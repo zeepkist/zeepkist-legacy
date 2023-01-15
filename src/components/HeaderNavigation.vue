@@ -24,15 +24,18 @@
         <router-link :to="{ name: 'adventure' }">Adventure Levels</router-link>
         <router-link :to="{ name: 'levels' }">Levels</router-link>
         <router-link :to="{ name: 'users' }">Users</router-link>
+        <router-link :to="{ name: 'super-league' }">Super League</router-link>
       </nav>
 
       <nav class="login">
         <steam-open-id-login v-if="!steamStore.steamId" />
-        <router-link
-          v-else
-          :to="{ name: 'user', params: { steamId: steamStore.steamId } }">
-          Your Profile
-        </router-link>
+        <div v-else>
+          <router-link :to="{ name: 'settings' }">Settings</router-link>
+          <router-link
+            :to="{ name: 'user', params: { steamId: steamStore.steamId } }">
+            Your Profile
+          </router-link>
+        </div>
       </nav>
     </div>
   </header>

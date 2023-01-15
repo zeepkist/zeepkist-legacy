@@ -13,20 +13,20 @@
   const steamId = route.params.steamId as string
   const limit = 15
 
-  const userData = ref(await getUser({ steamId }))
+  const user = ref(await getUser({ steamId }))
 
-  const recordDataBest = ref(
+  const bestRecords = ref(
     await getRecords({ UserSteamId: steamId, BestOnly: true })
   )
-  const recordDataNotBest = ref(
+  const validRecords = ref(
     await getRecords({
       UserSteamId: steamId,
       BestOnly: false,
       ValidOnly: true,
-      Limit: limit
+      Limit: 0
     })
   )
-  const recordDataWRs = ref(
+  const worldRecords = ref(
     await getRecords({
       UserSteamId: steamId,
       ValidOnly: true,
@@ -34,36 +34,34 @@
       Limit: limit
     })
   )
-  const recordDataRecent = ref(
+  const recentRecords = ref(
     await getRecords({ UserSteamId: steamId, Limit: limit })
   )
-  const recordDataAnyPercent = ref(
+  const invalidRecords = ref(
     await getRecords({ UserSteamId: steamId, ValidOnly: false, Limit: limit })
   )
 </script>
 
 <template>
-  <h1>{{ userData.steamName }}</h1>
+  <h1>{{ user.steamName }}</h1>
   <p>
-    {{ userData.steamName }} has set times on
-    {{ recordDataBest.totalAmount }} levels over
-    {{ recordDataBest.totalAmount + recordDataNotBest.totalAmount }} runs. They
-    currently hold <icon-trophy class="inline-svg" />
-    {{ recordDataWRs.totalAmount }} world records.
+    {{ user.steamName }} has set times on {{ bestRecords.totalAmount }} levels
+    over {{ validRecords.totalAmount }} runs. They currently hold
+    <icon-trophy class="inline-svg" /> {{ worldRecords.totalAmount }} world
+    records and have done
+    {{ invalidRecords.totalAmount - validRecords.totalAmount }} any% attempts.
   </p>
   <column-layout>
     <template #left>
-      <record-list header="World Records" :records="recordDataWRs.records" />
-      <record-list header="Best Times" :records="recordDataBest.records" />
+      <record-list header="World Records" :records="worldRecords.records" />
+      <record-list header="Best Times" :records="bestRecords.records" />
     </template>
     <template #right>
-      <record-list header="Recent Times" :records="recordDataRecent.records" />
+      <record-list header="Recent Times" :records="recentRecords.records" />
       <record-list
         header="Any% Times"
-        :records="
-          recordDataAnyPercent.records.filter(record => !record.isValid)
-        " />
+        :records="invalidRecords.records.filter(record => !record.isValid)" />
     </template>
   </column-layout>
-  <debug-code :data="recordDataRecent.records" />
+  <debug-code :data="recentRecords.records" />
 </template>

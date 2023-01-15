@@ -2,24 +2,15 @@
   import { ref } from 'vue'
 
   import DebugCode from '@/components/DebugCode.vue'
-  import { getRecords } from '@/services/records'
+  import LevelList from '@/components/LevelList.vue'
+  import { getLevels } from '@/services/levels'
 
-  const recordData = ref(await getRecords())
+  const levels = ref(await getLevels({ Limit: 50 }))
 </script>
 
 <template>
-  <div class="about">
-    <h1>This is a levels page</h1>
-    <p>{{ recordData.totalAmount }} levels</p>
-    <debug-code :data="recordData.records" />
-  </div>
+  <h1>Workshop Levels</h1>
+  <p>{{ levels.totalAmount }} levels</p>
+  <level-list header="Recent Levels" :levels="levels.levels" />
+  <debug-code :data="levels" />
 </template>
-
-<style scoped lang="less">
-  @media (min-width: 1024px) {
-    .about {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-</style>

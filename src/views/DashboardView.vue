@@ -10,37 +10,35 @@
 
   const limit = 15
 
-  const recordDataRecent = ref(
-    await getRecords({ Limit: limit, BestOnly: false })
-  )
-  const recordDataWRs = ref(
+  const recentRecords = ref(await getRecords({ Limit: limit, BestOnly: false }))
+  const worldRecords = ref(
     await getRecords({ Limit: limit, WorldRecordOnly: true })
   )
-  const levelData = ref(await getLevels({ Limit: limit }))
+  const levels = ref(await getLevels({ Limit: limit }))
 </script>
 
 <template>
   <h1>Zeepkist Records</h1>
   <p>
-    There are currently {{ recordDataRecent.totalAmount }} records on
-    {{ levelData.totalAmount }} levels.
+    There are currently {{ recentRecords.totalAmount }} records on
+    {{ levels.totalAmount }} levels.
   </p>
   <column-layout>
     <template #left>
       <record-list
         header="World Records"
-        :records="recordDataWRs.records"
+        :records="worldRecords.records"
         show-user />
     </template>
     <template #right>
       <record-list
         header="Recent Times"
-        :records="recordDataRecent.records"
+        :records="recentRecords.records"
         show-user />
     </template>
   </column-layout>
-  <level-list header="Recent Levels" :levels="levelData.levels" />
-  <debug-code :data="recordDataRecent" />
-  <debug-code :data="recordDataWRs" />
-  <debug-code :data="levelData" />
+  <level-list header="Recent Levels" :levels="levels.levels" />
+  <debug-code :data="recentRecords" />
+  <debug-code :data="worldRecords" />
+  <debug-code :data="levels" />
 </template>

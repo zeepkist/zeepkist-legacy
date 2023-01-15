@@ -10,11 +10,11 @@
   const route = useRoute()
   const id = route.params.id as string
 
-  const recordDataRecent = ref(await getRecords({ LevelId: id, Limit: 15 }))
-  const recordDataBest = ref(
+  const recentRecords = ref(await getRecords({ LevelId: id, Limit: 15 }))
+  const bestRecords = ref(
     await getRecords({ LevelId: id, BestOnly: true, Limit: 15 })
   )
-  const recordDataAnyPercent = ref(
+  const invalidRecords = ref(
     await getRecords({ LevelId: id, ValidOnly: false, Limit: 15 })
   )
 
@@ -26,8 +26,8 @@
 
   const levelData = computed(
     () =>
-      recordDataRecent.value?.records[0]?.level ??
-      recordDataAnyPercent.value?.records[0]?.level ??
+      recentRecords.value?.records[0]?.level ??
+      invalidRecords.value?.records[0]?.level ??
       unknownLevel
   )
 </script>
@@ -41,37 +41,35 @@
     </div>
   </div>
   <p>
-    This level has been played {{ recordDataRecent.totalAmount }} times by
-    {{ recordDataBest.totalAmount }} players.
+    This level has been played {{ recentRecords.totalAmount }} times by
+    {{ bestRecords.totalAmount }} players.
   </p>
   <column-layout>
     <template #left>
       <record-list
         header="Best Times"
-        :records="recordDataBest.records"
+        :records="bestRecords.records"
         show-user
         hide-track-info />
     </template>
     <template #center>
       <record-list
         header="Recent Times"
-        :records="recordDataRecent.records"
+        :records="recentRecords.records"
         show-user
         hide-track-info />
     </template>
     <template #right>
       <record-list
         header="Any% Times"
-        :records="
-          recordDataAnyPercent.records.filter(record => !record.isValid)
-        "
+        :records="invalidRecords.records.filter(record => !record.isValid)"
         show-user
         hide-track-info />
     </template>
   </column-layout>
-  <debug-code :data="recordDataRecent.records" />
-  <debug-code :data="recordDataBest.records" />
-  <debug-code :data="recordDataAnyPercent.records" />
+  <debug-code :data="recentRecords.records" />
+  <debug-code :data="bestRecords.records" />
+  <debug-code :data="invalidRecords.records" />
 </template>
 
 <style scoped lang="less">

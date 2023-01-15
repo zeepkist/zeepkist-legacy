@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { RouterLink } from 'vue-router'
 
-  import { WORKSHOP_URL } from '@/configs'
+  import { PLAY_URL, WORKSHOP_URL } from '@/configs'
   import type { Level } from '@/models/level'
   import { formatResultTime } from '@/utils'
 
@@ -12,7 +12,7 @@
 
 <template>
   <div class="level">
-    <img :src="level.thumbnailUrl" :alt="`Thumbnail of ${level.name}`" />
+    <img :src="level.thumbnailUrl" alt="" />
     <div>
       <router-link :to="{ name: 'level', params: { id: level.id } }">
         {{ level.name }}
@@ -40,11 +40,11 @@
     </div>
     <div>
       <a
-        :href="`${WORKSHOP_URL}?id=${level.workshopId}`"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Subscribe</a
-      >
+        v-if="level.workshopId > 0"
+        :href="`${WORKSHOP_URL}${level.workshopId}`">
+        Subscribe
+      </a>
+      <a v-else :href="PLAY_URL"> Play</a>
     </div>
   </div>
 </template>
@@ -53,9 +53,11 @@
   .level {
     display: grid;
     grid-template-columns: 80px 2fr repeat(5, 1fr) 80px;
-    grid-template-rows: 50px;
+    grid-auto-rows: 50px;
     gap: 1rem;
     align-items: center;
+    padding: 0.25rem;
+    padding-left: 0;
 
     &:nth-of-type(even) {
       background: var(--color-background-mute);

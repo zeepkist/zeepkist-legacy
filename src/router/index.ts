@@ -36,6 +36,21 @@ const router = createRouter({
       component: () => import('@/views/UserView.vue')
     },
     {
+      path: '/super-league',
+      name: 'super-league',
+      component: () => import('@/views/SuperLeagueView.vue')
+    },
+    {
+      path: '/super-league/:year/:month',
+      name: 'super-league-event',
+      component: () => import('@/views/SuperLeagueEventView.vue')
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('@/views/SettingsView.vue')
+    },
+    {
       path: '/auth',
       name: 'auth',
       component: () => import('@/views/AuthView.vue')
