@@ -40,7 +40,7 @@
     </div>
     <div>
       <a
-        v-if="level.workshopId > 0"
+        v-if="level.workshopId !== '0'"
         :href="`${WORKSHOP_URL}${level.workshopId}`">
         Subscribe
       </a>
