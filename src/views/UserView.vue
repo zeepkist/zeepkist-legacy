@@ -16,13 +16,19 @@
   const user = ref(await getUser({ steamId }))
 
   const bestRecords = ref(
-    await getRecords({ UserSteamId: steamId, BestOnly: true })
+    await getRecords({
+      UserSteamId: steamId,
+      BestOnly: true,
+      Sort: '-id',
+      Limit: limit
+    })
   )
   const validRecords = ref(
     await getRecords({
       UserSteamId: steamId,
       BestOnly: false,
       ValidOnly: true,
+      Sort: '-id',
       Limit: 0
     })
   )
@@ -31,14 +37,20 @@
       UserSteamId: steamId,
       ValidOnly: true,
       WorldRecordOnly: true,
+      Sort: '-id',
       Limit: limit
     })
   )
   const recentRecords = ref(
-    await getRecords({ UserSteamId: steamId, Limit: limit })
+    await getRecords({ UserSteamId: steamId, Sort: '-id', Limit: limit })
   )
   const invalidRecords = ref(
-    await getRecords({ UserSteamId: steamId, ValidOnly: false, Limit: limit })
+    await getRecords({
+      UserSteamId: steamId,
+      ValidOnly: false,
+      Sort: '-id',
+      Limit: limit
+    })
   )
 </script>
 

@@ -32,7 +32,7 @@ export const getLevels = async ({
       Limit,
       Offset
     }
-    const response = await api.get('level', { params: query })
+    const response = await api.get('levels', { params: query })
 
     if (response.status === 200) return response.data as LevelResponse
     else {

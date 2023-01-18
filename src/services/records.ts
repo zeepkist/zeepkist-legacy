@@ -12,6 +12,8 @@ interface GetRecordsParameters {
   BestOnly?: boolean
   ValidOnly?: boolean
   WorldRecordOnly?: boolean
+  GameVersion?: string
+  Sort?: string
   Limit?: number
   Offset?: number
 }
@@ -25,6 +27,8 @@ export const getRecords = async ({
   BestOnly,
   ValidOnly,
   WorldRecordOnly,
+  GameVersion,
+  Sort,
   Limit,
   Offset
 }: GetRecordsParameters = {}) => {
@@ -38,10 +42,12 @@ export const getRecords = async ({
       BestOnly,
       ValidOnly,
       WorldRecordOnly,
+      GameVersion,
+      Sort,
       Limit,
       Offset
     }
-    const response = await api.get('record', { params: query })
+    const response = await api.get('records', { params: query })
 
     if (response.status === 200) return response.data as RecordResponse
     else {

@@ -10,12 +10,14 @@
   const route = useRoute()
   const id = route.params.id as string
 
-  const recentRecords = ref(await getRecords({ LevelId: id, Limit: 15 }))
+  const recentRecords = ref(
+    await getRecords({ LevelId: id, Sort: '-id', Limit: 15 })
+  )
   const bestRecords = ref(
-    await getRecords({ LevelId: id, BestOnly: true, Limit: 15 })
+    await getRecords({ LevelId: id, BestOnly: true, Sort: '-id', Limit: 15 })
   )
   const invalidRecords = ref(
-    await getRecords({ LevelId: id, ValidOnly: false, Limit: 15 })
+    await getRecords({ LevelId: id, ValidOnly: false, Sort: '-id', Limit: 15 })
   )
 
   const unknownLevel = {

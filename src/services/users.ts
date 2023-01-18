@@ -11,8 +11,8 @@ interface GetUserParameters {
 export const getUser = async ({ id, steamId }: GetUserParameters) => {
   try {
     const response = await (id
-      ? api.get('user/id', { params: { id } })
-      : api.get('user/steamid', { params: { SteamId: steamId } }))
+      ? api.get('users/id', { params: { id } })
+      : api.get('users/steamid', { params: { SteamId: steamId } }))
 
     if (response.status === 200) return response.data as UserResponse
     else {

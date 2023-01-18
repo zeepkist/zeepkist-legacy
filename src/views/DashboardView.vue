@@ -10,9 +10,19 @@
 
   const limit = 15
 
-  const recentRecords = ref(await getRecords({ Limit: limit, BestOnly: false }))
+  const recentRecords = ref(
+    await getRecords({
+      Limit: limit,
+      BestOnly: false,
+      Sort: '-id'
+    })
+  )
   const worldRecords = ref(
-    await getRecords({ Limit: limit, WorldRecordOnly: true })
+    await getRecords({
+      Limit: limit,
+      WorldRecordOnly: true,
+      Sort: '-id'
+    })
   )
   const levels = ref(await getLevels({ Limit: limit }))
 </script>
