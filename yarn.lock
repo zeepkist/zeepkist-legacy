@@ -271,19 +271,17 @@
   resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
   integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
 
-"@tabler/icons-vue@2.0.0-alpha2":
-  version "2.0.0-alpha2"
-  resolved "https://registry.yarnpkg.com/@tabler/icons-vue/-/icons-vue-2.0.0-alpha2.tgz#4a8ccee7c4bb4a63eaac8483d8d09b62e95c51d4"
-  integrity sha512-LtUDIRjHPnSPjRczuImaaIot7+MWd7Nircmtqa+d6Zd5ZN8lMerMVxT5YFAIlXCHeNk2k2QtrRMTzagV1fyM0A==
+"@tabler/icons-vue@2.0.0-beta":
+  version "2.0.0-beta"
+  resolved "https://registry.yarnpkg.com/@tabler/icons-vue/-/icons-vue-2.0.0-beta.tgz#2b2561abb02ce5b262df3a4478ba0d565fe01639"
+  integrity sha512-jiRfWC1D/Y+iJGQHpHECMkZ/P+9u0uwKIp0CKhu+bBwD8LlrO4A6gXq+TgFrS/JHWfJfa7RNRUKc/8P4dNYNLA==
   dependencies:
-    "@tabler/icons" "2.0.0-alpha2"
+    "@tabler/icons" "2.0.0-beta"
 
-"@tabler/icons@2.0.0-alpha2":
-  version "2.0.0-alpha2"
-  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-2.0.0-alpha2.tgz#0445cab4c01f2939b0ccd022c7e49d91e7d57b6d"
-  integrity sha512-oHY1XnZZhRWP1gDrKUXv30GjHuV51cVWseauwaj6dzLUyHlczbHb88je9yEew6CFlycu0AzUB3dBOY4pA80M5A==
-  dependencies:
-    "@tabler/icons" "2.0.0-alpha2"
+"@tabler/icons@2.0.0-beta":
+  version "2.0.0-beta"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-2.0.0-beta.tgz#e61a3c8095be54dc1d417d7e8b7ec950278b6e6c"
+  integrity sha512-XvI7y4SMkd7koZASPz6obXlnEsKBeIvDhR8hPdURQt3uu5CEPG0K6o9qn6Cm7Z0r8pmf9nHjkdouoYGrzDbwxg==
 
 "@types/json-schema@^7.0.9":
   version "7.0.11"
