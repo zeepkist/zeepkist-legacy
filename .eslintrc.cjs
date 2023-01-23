@@ -3,7 +3,7 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
   root: true,
-  plugins: ['@typescript-eslint', 'simple-import-sort', 'import'],
+  plugins: ['simple-import-sort', 'import'],
   extends: [
     'plugin:vue/vue3-recommended',
     'eslint:recommended',

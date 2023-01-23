@@ -1,0 +1,4 @@
+.yarn/ export-ignore
+
+/.yarn/releases/** binary
+/.yarn/plugins/** binary

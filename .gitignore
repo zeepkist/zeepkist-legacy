@@ -26,3 +26,11 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/patches
+!.yarn/versions
+.pnp.cjs
+.pnp.loader.mjs

@@ -1,6 +1,7 @@
 {
   "name": "zeepkist-records",
   "version": "0.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -54,5 +55,6 @@
     "extends": [
       "local>wopian/renovate-config"
     ]
-  }
+  },
+  "packageManager": "yarn@3.3.1"
 }
