@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@tabler/icons-vue": "2.0.0",
-    "axios": "1.2.3",
+    "axios": "1.2.4",
     "date-fns": "2.29.3",
     "pinia": "2.0.29",
     "vue": "3.2.45",
