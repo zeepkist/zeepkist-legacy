@@ -33,6 +33,10 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install --immutable
+          
+      - name: Build SPA
+        if: success() && github.ref == 'refs/heads/master'
+        run: yarn build
 
       - name: Deploy SPA
         if: success() && github.ref == 'refs/heads/master'
