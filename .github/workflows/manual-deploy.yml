@@ -1,0 +1,44 @@
+name: Manual Deployment
+
+on:
+  workflow_dispatch:
+
+env:
+  FORCE_COLOR: true
+  NODE_VERSION: 18
+
+jobs:
+  setup:
+    name: Deploy SPA
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Deploy SPA
+        if: success() && github.ref == 'refs/heads/master'
+        uses: wopian/netlify-actions-colors-fix/cli@1e378c943b20b381c815ca478fef65fe3a30937a
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        with:
+          args: deploy --dir=dist --prod --message='Deployed ${{ github.sha }} via GitHub Actions'
