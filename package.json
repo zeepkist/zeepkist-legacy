@@ -19,7 +19,7 @@
     "@tabler/icons-vue": "2.1.2",
     "axios": "1.3.0",
     "date-fns": "2.29.3",
-    "pinia": "2.0.29",
+    "pinia": "2.0.30",
     "vue": "3.2.45",
     "vue-router": "4.1.6"
   },
