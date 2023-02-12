@@ -4,21 +4,69 @@
 
   import ColumnLayout from '@/components/ColumnLayout.vue'
   import DebugCode from '@/components/DebugCode.vue'
+  import PaginatedComponent from '@/components/PaginatedComponent.vue'
   import RecordList from '@/components/RecordList.vue'
   import { getRecords } from '@/services/records'
 
+  type RecordType = 'recent' | 'best' | 'invalid'
+
   const route = useRoute()
   const id = route.params.id as string
+  const limit = 15
 
-  const recentRecords = ref(
-    await getRecords({ LevelId: id, Sort: '-id', Limit: 15 })
-  )
-  const bestRecords = ref(
-    await getRecords({ LevelId: id, BestOnly: true, Limit: 15 })
-  )
-  const invalidRecords = ref(
-    await getRecords({ LevelId: id, ValidOnly: false, Sort: '-id', Limit: 15 })
-  )
+  const getPaginatedRecords = async (type: RecordType, page = 1) => {
+    switch (type) {
+      case 'recent': {
+        return await getRecords({
+          LevelId: id,
+          Sort: '-id',
+          Limit: limit,
+          Offset: (page - 1) * limit
+        })
+      }
+      case 'best': {
+        return await getRecords({
+          LevelId: id,
+          BestOnly: true,
+          Limit: limit,
+          Offset: (page - 1) * limit
+        })
+      }
+      case 'invalid': {
+        return await getRecords({
+          LevelId: id,
+          InvalidOnly: true,
+          Sort: '-time',
+          Limit: limit,
+          Offset: (page - 1) * limit
+        })
+      }
+    }
+  }
+
+  const handlePageChanged = async (type: RecordType, page: number) => {
+    switch (type) {
+      case 'recent': {
+        pages.value.recent = page
+        recentRecords.value = await getPaginatedRecords('recent', page)
+        break
+      }
+      case 'best': {
+        pages.value.best = page
+        bestRecords.value = await getPaginatedRecords('best', page)
+        break
+      }
+      case 'invalid': {
+        pages.value.invalid = page
+        invalidRecords.value = await getPaginatedRecords('invalid', page)
+        break
+      }
+    }
+  }
+
+  const recentRecords = ref(await getPaginatedRecords('recent'))
+  const bestRecords = ref(await getPaginatedRecords('best'))
+  const invalidRecords = ref(await getPaginatedRecords('invalid'))
 
   const unknownLevel = {
     name: 'Unknown',
@@ -32,6 +80,13 @@
       invalidRecords.value?.records[0]?.level ??
       unknownLevel
   )
+
+  const pages = ref({
+    best: 1,
+    worldRecord: 1,
+    invalid: 1,
+    recent: 1
+  })
 </script>
 
 <template>
@@ -48,25 +103,43 @@
   </p>
   <column-layout>
     <template #left>
-      <record-list
-        header="Best Times"
-        :records="bestRecords.records"
-        show-user
-        hide-track-info />
+      <paginated-component
+        :current-page="pages.best"
+        :items-per-page="limit"
+        :total-items="bestRecords.totalAmount"
+        @page-changed="page => handlePageChanged('best', page)">
+        <record-list
+          header="Best Times"
+          :records="bestRecords.records"
+          show-user
+          hide-track-info />
+      </paginated-component>
     </template>
     <template #center>
-      <record-list
-        header="Recent Times"
-        :records="recentRecords.records"
-        show-user
-        hide-track-info />
+      <paginated-component
+        :current-page="pages.recent"
+        :items-per-page="limit"
+        :total-items="recentRecords.totalAmount"
+        @page-changed="page => handlePageChanged('recent', page)">
+        <record-list
+          header="Recent Times"
+          :records="recentRecords.records"
+          show-user
+          hide-track-info />
+      </paginated-component>
     </template>
     <template #right>
-      <record-list
-        header="Any% Times"
-        :records="invalidRecords.records.filter(record => !record.isValid)"
-        show-user
-        hide-track-info />
+      <paginated-component
+        :current-page="pages.invalid"
+        :items-per-page="limit"
+        :total-items="invalidRecords.totalAmount"
+        @page-changed="page => handlePageChanged('invalid', page)">
+        <record-list
+          header="Any% Times"
+          :records="invalidRecords.records"
+          show-user
+          hide-track-info />
+      </paginated-component>
     </template>
   </column-layout>
   <debug-code :data="recentRecords.records" />
