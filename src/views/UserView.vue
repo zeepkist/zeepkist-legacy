@@ -14,7 +14,7 @@
 
   const route = useRoute()
   const steamId = route.params.steamId as string
-  const limit = 15
+  const limit = 10
 
   const user = ref(await getUser({ steamId }))
 
