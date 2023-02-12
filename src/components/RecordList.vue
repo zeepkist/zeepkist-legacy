@@ -30,6 +30,9 @@
       "
       :show-user="showUser"
       :hide-track-info="hideTrackInfo" />
+    <p v-if="records.length === 0">
+      No records of this type have been recorded yet
+    </p>
   </div>
 </template>
 

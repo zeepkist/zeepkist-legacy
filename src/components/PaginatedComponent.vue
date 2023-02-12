@@ -20,7 +20,7 @@
 
 <template>
   <slot />
-  <div class="pagination">
+  <div v-if="totalItems > itemsPerPage" class="pagination">
     <span>Page {{ currentPage }} of {{ totalPages }}</span>
     <div class="pagination-actions">
       <button :disabled="currentPage == 1" @click="emit('page-changed', 1)">
