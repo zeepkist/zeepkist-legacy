@@ -12,11 +12,11 @@
   const currentPage = ref(1)
 
   const handlePageChanged = async (page: number) => {
-    currentPage.value = page
     levels.value = await getLevels({
       Limit: itemsPerPage,
       Offset: (page - 1) * itemsPerPage
     })
+    currentPage.value = page
   }
 </script>
 

@@ -4,9 +4,15 @@ export interface User {
   steamName: string
 }
 
+export interface UserRanking {
+  user: User
+  amountOfWorldRecords: number
+  position: number
+}
+
 export interface UserResponse extends User {}
 
-export interface UsersResponse {
+export interface UserRankingsResponse {
   totalAmount: number
-  users: User[]
+  rankings: UserRanking[]
 }

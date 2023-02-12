@@ -1,15 +1,20 @@
 <script setup lang="ts">
   import UserRow from '@/components/UserRow.vue'
-  import type { User } from '@/models/user'
+  import type { UserRanking } from '@/models/user'
 
   const { users } = defineProps<{
-    users: User[]
+    users: UserRanking[]
   }>()
 </script>
 
 <template>
   <div class="users">
-    <user-row v-for="user in users" :key="user.steamId" :user="user" />
+    <user-row
+      v-for="rank in users"
+      :key="rank.user.steamId"
+      :user="rank.user"
+      :rank="rank.position"
+      :world-records="rank.amountOfWorldRecords" />
   </div>
 </template>
 

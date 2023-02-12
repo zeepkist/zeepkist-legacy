@@ -47,18 +47,18 @@
   const handlePageChanged = async (type: RecordType, page: number) => {
     switch (type) {
       case 'recent': {
-        pages.value.recent = page
         recentRecords.value = await getPaginatedRecords('recent', page)
+        pages.value.recent = page
         break
       }
       case 'best': {
-        pages.value.best = page
         bestRecords.value = await getPaginatedRecords('best', page)
+        pages.value.best = page
         break
       }
       case 'invalid': {
-        pages.value.invalid = page
         invalidRecords.value = await getPaginatedRecords('invalid', page)
+        pages.value.invalid = page
         break
       }
     }

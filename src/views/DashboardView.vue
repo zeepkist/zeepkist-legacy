@@ -45,18 +45,18 @@
   ) => {
     switch (type) {
       case 'worldRecord': {
-        pages.value.worldRecord = page
         worldRecords.value = await getPaginatedRecords('worldRecord', page)
+        pages.value.worldRecord = page
         break
       }
       case 'recent': {
-        pages.value.best = page
         recentRecords.value = await getPaginatedRecords('recent', page)
+        pages.value.best = page
         break
       }
       case 'level': {
-        pages.value.level = page
         levels.value = await getPaginatedLevels(page)
+        pages.value.level = page
         break
       }
     }

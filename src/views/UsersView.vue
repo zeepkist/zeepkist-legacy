@@ -4,28 +4,32 @@
   import DebugCode from '@/components/DebugCode.vue'
   import PaginatedComponent from '@/components/PaginatedComponent.vue'
   import UserList from '@/components/UserList.vue'
-  import { getUsers } from '@/services/users'
+  import { getUserRankings } from '@/services/users'
 
-  const itemsPerPage = 15
+  const itemsPerPage = 20
 
-  const users = ref(await getUsers({ Limit: itemsPerPage }))
+  const rankings = ref(await getUserRankings({ Limit: itemsPerPage }))
 
   const handlePageChanged = async (page: number) => {
-    users.value = await getUsers({
+    rankings.value = await getUserRankings({
       Limit: itemsPerPage,
       Offset: (page - 1) * itemsPerPage
     })
+    currentPage.value = page
   }
+
+  const currentPage = ref(1)
 </script>
 
 <template>
   <h1>Users</h1>
-  <p>{{ users.totalAmount }} users</p>
+  <p>{{ rankings.totalAmount }} users</p>
   <paginated-component
+    :current-page="currentPage"
     :items-per-page="itemsPerPage"
-    :total-items="users.totalAmount"
+    :total-items="rankings.totalAmount"
     @page-changed="handlePageChanged">
-    <user-list :users="users.users" />
+    <user-list :users="rankings.rankings" />
   </paginated-component>
-  <debug-code :data="users" />
+  <debug-code :data="rankings" />
 </template>

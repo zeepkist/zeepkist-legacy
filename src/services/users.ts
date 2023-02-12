@@ -1,6 +1,6 @@
 import type { AxiosError } from 'axios'
 
-import type { UserResponse, UsersResponse } from '@/models/user'
+import type { UserRankingsResponse, UserResponse } from '@/models/user'
 import { api } from '@/services/api'
 
 interface GetUserParameters {
@@ -23,20 +23,23 @@ export const getUser = async ({ id, steamId }: GetUserParameters) => {
   }
 }
 
-interface GetUsersParameters {
+interface GetUserRankingsParameters {
   Limit?: number
   Offset?: number
 }
 
-export const getUsers = async ({ Limit, Offset }: GetUsersParameters) => {
+export const getUserRankings = async ({
+  Limit,
+  Offset
+}: GetUserRankingsParameters) => {
   try {
     const query = {
       Limit,
       Offset
     }
-    const response = await api.get('users', { params: query })
+    const response = await api.get('users/rankings', { params: query })
 
-    if (response.status === 200) return response.data as UsersResponse
+    if (response.status === 200) return response.data as UserRankingsResponse
     else {
       throw new Error(response.data.error)
     }
