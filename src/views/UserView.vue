@@ -60,8 +60,7 @@
     {{ user.steamName }} has set times on {{ bestRecords.totalAmount }} levels
     over {{ validRecords.totalAmount }} runs. They currently hold
     <icon-trophy class="inline-svg" /> {{ worldRecords.totalAmount }} world
-    records and have done
-    {{ invalidRecords.totalAmount - validRecords.totalAmount }} any% attempts.
+    records and have done {{ invalidRecords.totalAmount }} any% attempts.
   </p>
   <column-layout>
     <template #left>
