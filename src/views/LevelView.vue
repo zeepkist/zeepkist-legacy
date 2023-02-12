@@ -12,7 +12,7 @@
 
   const route = useRoute()
   const id = route.params.id as string
-  const limit = 15
+  const limit = 10
 
   const getPaginatedRecords = async (type: RecordType, page = 1) => {
     switch (type) {
@@ -111,6 +111,7 @@
         <record-list
           header="Best Times"
           :records="bestRecords.records"
+          :rank-offset="(pages.best - 1) * limit"
           show-user
           hide-track-info />
       </paginated-component>
@@ -137,6 +138,7 @@
         <record-list
           header="Any% Times"
           :records="invalidRecords.records"
+          :rank-offset="(pages.invalid - 1) * limit"
           show-user
           hide-track-info />
       </paginated-component>

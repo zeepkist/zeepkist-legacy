@@ -6,17 +6,25 @@
 
   const {
     record,
+    rank,
     showUser = false,
     hideTrackInfo = false
   } = defineProps<{
     record: LevelRecord
     showUser?: boolean
+    rank?: number
     hideTrackInfo?: boolean
   }>()
 </script>
 
 <template>
-  <div class="record" :class="{ 'hide-track-info': hideTrackInfo }">
+  <div
+    class="record"
+    :class="{
+      'has-no-track': hideTrackInfo,
+      'has-rank': rank
+    }">
+    <div v-if="rank" class="rank">{{ rank }}</div>
     <img
       v-if="!hideTrackInfo"
       :src="record.level.thumbnailUrl"
@@ -66,8 +74,12 @@
     gap: 1rem;
     align-items: center;
 
-    &.hide-track-info {
+    &.has-no-track:not(.has-rank) {
       grid-template-columns: 2fr repeat(1, 80px);
+    }
+
+    &.has-no-track&.has-rank {
+      grid-template-columns: 3ch 2fr repeat(1, 80px);
     }
 
     &:nth-of-type(even) {
@@ -131,6 +143,11 @@
           background: var(--color-hover);
         }
       }
+    }
+
+    .rank {
+      text-align: right;
+      font-family: monospace;
     }
   }
 </style>

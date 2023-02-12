@@ -5,11 +5,14 @@
   const {
     header = 'Records',
     records,
+    rankOffset,
     showUser,
     hideTrackInfo
   } = defineProps<{
     header: string
     records: LevelRecord[]
+    rankOffset?: number
+    showRank?: boolean
     showUser?: boolean
     hideTrackInfo?: boolean
   }>()
@@ -19,9 +22,12 @@
   <div class="records">
     <h2>{{ header }}</h2>
     <record-row
-      v-for="record in records"
+      v-for="(record, index) in records"
       :key="record.screenshotUrl"
       :record="record"
+      :rank="
+        typeof rankOffset === 'number' ? rankOffset + index + 1 : undefined
+      "
       :show-user="showUser"
       :hide-track-info="hideTrackInfo" />
   </div>

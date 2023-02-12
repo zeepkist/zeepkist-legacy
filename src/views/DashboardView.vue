@@ -11,7 +11,7 @@
 
   type RecordType = 'worldRecord' | 'recent'
 
-  const limit = 15
+  const limit = 10
 
   const getPaginatedRecords = async (type: RecordType, page = 1) => {
     switch (type) {
@@ -33,7 +33,16 @@
     }
   }
 
-  const handlePageChanged = async (type: RecordType, page: number) => {
+  const getPaginatedLevels = async (page = 1) =>
+    await getLevels({
+      Limit: limit * 2,
+      Offset: (page - 1) * limit
+    })
+
+  const handlePageChanged = async (
+    type: RecordType | 'level',
+    page: number
+  ) => {
     switch (type) {
       case 'worldRecord': {
         pages.value.worldRecord = page
@@ -45,17 +54,23 @@
         recentRecords.value = await getPaginatedRecords('recent', page)
         break
       }
+      case 'level': {
+        pages.value.level = page
+        levels.value = await getPaginatedLevels(page)
+        break
+      }
     }
   }
 
   const recentRecords = ref(await getPaginatedRecords('recent'))
   const worldRecords = ref(await getPaginatedRecords('worldRecord'))
 
-  const levels = ref(await getLevels({ Limit: limit }))
+  const levels = ref(await getPaginatedLevels())
 
   const pages = ref({
     best: 1,
-    worldRecord: 1
+    worldRecord: 1,
+    level: 1
   })
 </script>
 
@@ -91,7 +106,13 @@
       </paginated-component>
     </template>
   </column-layout>
-  <level-list header="Levels" :levels="levels.levels" />
+  <paginated-component
+    :current-page="pages.level"
+    :items-per-page="limit * 2"
+    :total-items="levels.totalAmount"
+    @page-changed="page => handlePageChanged('level', page)">
+    <level-list header="Levels" :levels="levels.levels" />
+  </paginated-component>
   <debug-code :data="recentRecords" />
   <debug-code :data="worldRecords" />
   <debug-code :data="levels" />
