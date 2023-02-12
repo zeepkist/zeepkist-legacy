@@ -2,12 +2,12 @@
   <footer>
     <p>
       Data provided by
-      <a href="https://zeep.tnrd.net/swagger/index.html">ZeepkistGTR</a>.
+      <a href="https://zeepkist-gtr.com">ZeepkistGTR</a>.
     </p>
 
     <p>
       Developed by
-      <a href="https://github.com/wopian/zeepkist-records">Akane</a>.
+      <a href="https://github.com/zeepkist/zeepkist">Akane</a>.
     </p>
   </footer>
 </template>
