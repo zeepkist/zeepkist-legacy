@@ -38,17 +38,17 @@ jobs:
         run: yarn lint
 
       - name: Create Release
-        if: success() && github.ref == 'refs/heads/master'
+        if: success() && github.ref == 'refs/heads/develop'
         run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          
+
       - name: Build SPA
-        if: success() && github.ref == 'refs/heads/master'
+        if: success() && github.ref == 'refs/heads/develop'
         run: yarn build
 
       - name: Deploy SPA
-        if: success() && github.ref == 'refs/heads/master'
+        if: success() && github.ref == 'refs/heads/develop'
         uses: wopian/netlify-actions-colors-fix/cli@1e378c943b20b381c815ca478fef65fe3a30937a
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
