@@ -21,7 +21,7 @@
       v-if="!hideTrackInfo"
       :src="record.level.thumbnailUrl"
       :alt="`Thumbnail of ${record.level.name}`" />
-    <div v-if="!hideTrackInfo">
+    <div v-if="!hideTrackInfo" class="author">
       <router-link :to="{ name: 'level', params: { id: record.level.id } }">
         {{ record.level.name }}
       </router-link>
@@ -51,9 +51,9 @@
         >
       </div>
     </div>
-    <div>
-      <button>View Ghost</button>
-      <button>Compare</button>
+    <div v-if="false" class="actions">
+      <button disabled>View Ghost</button>
+      <button disabled>Compare</button>
     </div>
   </div>
 </template>
@@ -61,13 +61,13 @@
 <style scoped lang="less">
   .record {
     display: grid;
-    grid-template-columns: 80px 2fr 1fr repeat(2, 80px);
+    grid-template-columns: 80px 2fr 1fr repeat(1, 80px);
     grid-template-rows: 50px;
     gap: 1rem;
     align-items: center;
 
     &.hide-track-info {
-      grid-template-columns: 2fr repeat(2, 80px);
+      grid-template-columns: 2fr repeat(1, 80px);
     }
 
     &:nth-of-type(even) {
@@ -96,6 +96,39 @@
 
         & ~ span {
           margin-left: 0.25rem;
+        }
+      }
+    }
+
+    .author {
+      a,
+      div {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      button {
+        border: none;
+        border-radius: var(--border-radius);
+        background: var(--color-button-hover);
+        color: var(--color-text-inverted);
+        cursor: pointer;
+
+        &:disabled {
+          background: var(--color-background-mute);
+          color: var(--color-text-mute);
+          cursor: not-allowed;
+        }
+
+        &:hover:not(:disabled) {
+          background: var(--color-hover);
         }
       }
     }

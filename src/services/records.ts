@@ -11,6 +11,7 @@ interface GetRecordsParameters {
   UserId?: number | string
   BestOnly?: boolean
   ValidOnly?: boolean
+  InvalidOnly?: boolean
   WorldRecordOnly?: boolean
   GameVersion?: string
   Sort?: string
@@ -26,6 +27,7 @@ export const getRecords = async ({
   UserId,
   BestOnly,
   ValidOnly,
+  InvalidOnly,
   WorldRecordOnly,
   GameVersion,
   Sort,
@@ -41,6 +43,7 @@ export const getRecords = async ({
       UserId,
       BestOnly,
       ValidOnly,
+      InvalidOnly,
       WorldRecordOnly,
       GameVersion,
       Sort,

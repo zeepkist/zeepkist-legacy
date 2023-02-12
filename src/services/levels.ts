@@ -11,6 +11,7 @@ interface GetLevelsParameters {
   WorkshopId?: number | string
   Limit?: number
   Offset?: number
+  Sort?: string
 }
 
 export const getLevels = async ({
@@ -20,7 +21,8 @@ export const getLevels = async ({
   Uid,
   WorkshopId,
   Limit,
-  Offset
+  Offset,
+  Sort
 }: GetLevelsParameters = {}) => {
   try {
     const query = {
@@ -30,7 +32,8 @@ export const getLevels = async ({
       Uid,
       WorkshopId,
       Limit,
-      Offset
+      Offset,
+      Sort
     }
     const response = await api.get('levels', { params: query })
 

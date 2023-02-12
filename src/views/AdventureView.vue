@@ -12,7 +12,8 @@
   <div class="about">
     <h1>Adventure Mode Levels</h1>
     <p>{{ levels.totalAmount }} levels</p>
-    <level-list header="Recent Levels" :levels="levels.levels" />
+    <level-list
+      :levels="levels.levels.sort((a, b) => a.name.localeCompare(b.name))" />
     <debug-code :data="levels" />
   </div>
 </template>

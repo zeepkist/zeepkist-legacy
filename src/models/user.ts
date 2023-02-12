@@ -5,3 +5,8 @@ export interface User {
 }
 
 export interface UserResponse extends User {}
+
+export interface UsersResponse {
+  totalAmount: number
+  users: User[]
+}

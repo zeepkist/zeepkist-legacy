@@ -13,7 +13,7 @@
   const recentRecords = ref(
     await getRecords({
       Limit: limit,
-      BestOnly: false,
+      BestOnly: true,
       Sort: '-id'
     })
   )
@@ -42,12 +42,12 @@
     </template>
     <template #right>
       <record-list
-        header="Recent Times"
+        header="Recent Bests"
         :records="recentRecords.records"
         show-user />
     </template>
   </column-layout>
-  <level-list header="Recent Levels" :levels="levels.levels" />
+  <level-list header="Levels" :levels="levels.levels" />
   <debug-code :data="recentRecords" />
   <debug-code :data="worldRecords" />
   <debug-code :data="levels" />

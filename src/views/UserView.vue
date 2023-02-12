@@ -47,7 +47,7 @@
   const invalidRecords = ref(
     await getRecords({
       UserSteamId: steamId,
-      ValidOnly: false,
+      InvalidOnly: true,
       Sort: '-id',
       Limit: limit
     })
@@ -70,9 +70,7 @@
     </template>
     <template #right>
       <record-list header="Recent Times" :records="recentRecords.records" />
-      <record-list
-        header="Any% Times"
-        :records="invalidRecords.records.filter(record => !record.isValid)" />
+      <record-list header="Any% Times" :records="invalidRecords.records" />
     </template>
   </column-layout>
   <debug-code :data="recentRecords.records" />
