@@ -86,6 +86,62 @@
     }
   }
 
+  @font-face {
+    font-family: 'Shin Go Pr5';
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: url('/fonts/ShinGoPr5v2/ShinGoPr5EL.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Shin Go Pr5';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('/fonts/ShinGoPr5v2/ShinGoPr5L.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Shin Go Pr5';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/ShinGoPr5v2/ShinGoPr5R.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Shin Go Pr5';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/ShinGoPr5v2/ShinGoPr5M.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Shin Go Pr5';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/ShinGoPr5v2/ShinGoPr5B.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Shin Go Pr5';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/ShinGoPr5v2/ShinGoPr5DB.otf') format('opentype');
+  }
+
+  @font-face {
+    font-family: 'Shin Go Pr5';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url('/fonts/ShinGoPr5v2/ShinGoPr5H.otf') format('opentype');
+  }
+
   *,
   *::before,
   *::after {
@@ -101,10 +157,9 @@
     background: var(--color-background-page);
     transition: color 0.5s, background-color 0.5s;
     line-height: 1.6;
-    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    font-size: 15px;
+    font-family: 'Shin Go Pr5';
+    // font-family: 'Shin Go Pr5', Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -113,7 +168,7 @@
   #app {
     width: 100%;
     margin: 0 auto;
-    font-weight: normal;
+    font-weight: 400;
   }
 
   a {
@@ -133,10 +188,17 @@
 
   h1 {
     font-size: 2.5rem;
+    font-weight: 800;
   }
 
   h2 {
     font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
   }
 
   svg.inline-svg {

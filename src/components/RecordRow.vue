@@ -33,7 +33,7 @@
       <router-link :to="{ name: 'level', params: { id: record.level.id } }">
         {{ record.level.name }}
       </router-link>
-      <div>By {{ record.level.author }}</div>
+      <div class="subtext">By {{ record.level.author }}</div>
     </div>
     <div>
       <router-link
@@ -41,7 +41,7 @@
         :to="{ name: 'user', params: { steamId: record.user.steamId } }">
         {{ record.user.steamName }}
       </router-link>
-      <div :title="formatDate(record.dateCreated)">
+      <div class="subtext" :title="formatDate(record.dateCreated)">
         {{ formatRelativeDate(record.dateCreated) }}
       </div>
     </div>
@@ -69,17 +69,17 @@
 <style scoped lang="less">
   .record {
     display: grid;
-    grid-template-columns: 80px 2fr 1fr repeat(1, 80px);
+    grid-template-columns: 80px 2fr 1fr 100px;
     grid-template-rows: 50px;
     gap: 1rem;
     align-items: center;
 
     &.has-no-track:not(.has-rank) {
-      grid-template-columns: 2fr repeat(1, 80px);
+      grid-template-columns: 2fr 100px;
     }
 
     &.has-no-track&.has-rank {
-      grid-template-columns: 3ch 2fr repeat(1, 80px);
+      grid-template-columns: 3ch 2fr 100px;
     }
 
     &:nth-of-type(even) {
@@ -148,6 +148,11 @@
     .rank {
       text-align: right;
       font-family: monospace;
+    }
+
+    .subtext {
+      font-weight: 300;
+      font-size: 0.75rem;
     }
   }
 </style>

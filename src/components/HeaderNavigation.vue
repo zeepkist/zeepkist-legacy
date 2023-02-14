@@ -46,7 +46,7 @@
     background-color: var(--color-navigation);
     padding: 0.75rem 0;
     line-height: 1.5;
-    font-size: 16px;
+    font-size: 0.8rem;
     position: sticky;
     top: 0;
     z-index: 999;
@@ -92,6 +92,6 @@
     display: inline-block;
     padding: 0.25rem 0.75rem;
     border-radius: var(--border-radius);
-    font-weight: 600;
+    font-weight: 500;
   }
 </style>
