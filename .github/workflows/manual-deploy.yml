@@ -33,7 +33,11 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install --immutable
-          
+
+      - name: Update Submodules
+        if: success() && github.ref == 'refs/heads/develop'
+        run: git submodule update --init --remote
+
       - name: Build SPA
         if: success() && github.ref == 'refs/heads/master'
         run: yarn build

@@ -64,7 +64,6 @@
 
   const recentRecords = ref(await getPaginatedRecords('recent'))
   const worldRecords = ref(await getPaginatedRecords('worldRecord'))
-
   const levels = ref(await getPaginatedLevels())
 
   const pages = ref({
