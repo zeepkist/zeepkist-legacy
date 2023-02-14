@@ -17,7 +17,7 @@
       <router-link :to="{ name: 'level', params: { id: level.id } }">
         {{ level.name }}
       </router-link>
-      <div>By {{ level.author }}</div>
+      <div class="subtext">By {{ level.author }}</div>
     </div>
     <div class="medal">
       <img src="@/assets/medal-author.webp" alt="Author Medal" />
@@ -76,6 +76,11 @@
       img {
         max-height: 20px;
       }
+    }
+
+    .subtext {
+      font-weight: 300;
+      font-size: 0.75rem;
     }
   }
 </style>
