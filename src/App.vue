@@ -91,7 +91,7 @@
     font-style: normal;
     font-weight: 200;
     font-display: swap;
-    src: url('/fonts/ShinGoPr5v2/ShinGoPr5EL.otf') format('opentype');
+    src: url('/fonts/ShinGoPr5/ShinGoPr5EL.otf') format('opentype');
   }
 
   @font-face {
@@ -99,7 +99,7 @@
     font-style: normal;
     font-weight: 300;
     font-display: swap;
-    src: url('/fonts/ShinGoPr5v2/ShinGoPr5L.otf') format('opentype');
+    src: url('/fonts/ShinGoPr5/ShinGoPr5L.otf') format('opentype');
   }
 
   @font-face {
@@ -107,7 +107,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('/fonts/ShinGoPr5v2/ShinGoPr5R.otf') format('opentype');
+    src: url('/fonts/ShinGoPr5/ShinGoPr5R.otf') format('opentype');
   }
 
   @font-face {
@@ -115,7 +115,7 @@
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url('/fonts/ShinGoPr5v2/ShinGoPr5M.otf') format('opentype');
+    src: url('/fonts/ShinGoPr5/ShinGoPr5M.otf') format('opentype');
   }
 
   @font-face {
@@ -123,7 +123,7 @@
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url('/fonts/ShinGoPr5v2/ShinGoPr5B.otf') format('opentype');
+    src: url('/fonts/ShinGoPr5/ShinGoPr5B.otf') format('opentype');
   }
 
   @font-face {
@@ -131,7 +131,7 @@
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url('/fonts/ShinGoPr5v2/ShinGoPr5DB.otf') format('opentype');
+    src: url('/fonts/ShinGoPr5/ShinGoPr5DB.otf') format('opentype');
   }
 
   @font-face {
@@ -139,7 +139,7 @@
     font-style: normal;
     font-weight: 800;
     font-display: swap;
-    src: url('/fonts/ShinGoPr5v2/ShinGoPr5H.otf') format('opentype');
+    src: url('/fonts/ShinGoPr5/ShinGoPr5H.otf') format('opentype');
   }
 
   *,
