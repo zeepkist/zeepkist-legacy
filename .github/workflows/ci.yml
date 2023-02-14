@@ -43,6 +43,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
+      - name: Update Submodules
+        if: success() && github.ref == 'refs/heads/develop'
+        run: git submodule update --init --remote
+
       - name: Build SPA
         if: success() && github.ref == 'refs/heads/develop'
         run: yarn build
