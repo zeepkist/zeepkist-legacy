@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { ref } from 'vue'
 
+  import ColumnLayout from '@/components/ColumnLayout.vue'
   import DebugCode from '@/components/DebugCode.vue'
   import PaginatedComponent from '@/components/PaginatedComponent.vue'
   import UserList from '@/components/UserList.vue'
@@ -29,7 +30,14 @@
     :items-per-page="itemsPerPage"
     :total-items="rankings.totalAmount"
     @page-changed="handlePageChanged">
-    <user-list :users="rankings.rankings" />
+    <column-layout>
+      <template #left>
+        <user-list :users="rankings.rankings.slice(0, 10)" />
+      </template>
+      <template #right>
+        <user-list :users="rankings.rankings.slice(10)" />
+      </template>
+    </column-layout>
   </paginated-component>
   <debug-code :data="rankings" />
 </template>
