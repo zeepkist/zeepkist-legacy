@@ -8,7 +8,6 @@
   import { superLeagueApi } from '@/services/api'
 
   interface EventMetadata {
-    theme?: string // Deprecated in favor of name
     name: string
     workshopId: string
   }
@@ -61,7 +60,7 @@
         v-for="[eventName, event] in Object.entries(events)"
         :key="eventName"
         :class="$style.card">
-        <h3>{{ event.name ?? event.theme }}</h3>
+        <h3>{{ event.name }}</h3>
         <router-link
           :to="{
             name: 'super-league-event',
