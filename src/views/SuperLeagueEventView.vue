@@ -4,18 +4,12 @@
 
   import DebugCode from '@/components/DebugCode.vue'
   import StandingsList from '@/components/StandingsList.vue'
-  import type { LeagueEvent } from '@/models/league'
+  import type { LeagueEvent, LeagueEventMetadata } from '@/models/league'
   import { superLeagueApi } from '@/services/api'
   import { formatRelativeDate } from '@/utils'
 
-  interface EventMetadata {
-    theme?: string // Deprecated in favor of name
-    name: string
-    workshopId: string
-  }
-
   interface Metadata {
-    [key: string]: EventMetadata
+    [key: string]: LeagueEventMetadata
   }
 
   const route = useRoute()
@@ -35,7 +29,9 @@
 
   try {
     const response = await superLeagueApi.get(`${season}/${event}.json`)
-    data = response.data
+    if (typeof response.data === 'object' && response.data !== null) {
+      data = response.data
+    }
   } catch (error) {
     if (error instanceof AxiosError && error.response?.status === 404) {
       console.warn(`Event ${event} not found`)
@@ -51,7 +47,7 @@
 <template>
   <h1>
     {{ toTitleCase(season.replace('-', ' ')) }} /
-    {{ metadata[event]?.name ?? metadata[event]?.theme }}
+    {{ metadata[event]?.name }}
   </h1>
   <section>
     <h2>Event Standings</h2>

@@ -4,16 +4,15 @@
 
   import DebugCode from '@/components/DebugCode.vue'
   import StandingsList from '@/components/StandingsList.vue'
-  import type { LeagueStanding, LeagueUser } from '@/models/league'
+  import type {
+    LeagueEventMetadata,
+    LeagueStanding,
+    LeagueUser
+  } from '@/models/league'
   import { superLeagueApi } from '@/services/api'
 
-  interface EventMetadata {
-    name: string
-    workshopId: string
-  }
-
   interface SeasonMetadata {
-    [key: string]: EventMetadata
+    [key: string]: LeagueEventMetadata
   }
 
   type Metadata = [string, SeasonMetadata]
