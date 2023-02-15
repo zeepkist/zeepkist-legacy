@@ -3,14 +3,21 @@
 
   import type { LeagueUser } from '@/models/league'
 
-  const { user, position } = defineProps<{
+  const {
+    user,
+    position,
+    isSeasonStandings = false
+  } = defineProps<{
     user: LeagueUser
     position: number
+    isSeasonStandings?: boolean
   }>()
 
   const steamId = user[0]
   const username = user[1].username
-  const totalPoints = user[1].totalPoints
+  const points = isSeasonStandings
+    ? Math.round(user[1].totalPoints * 100)
+    : user[1].totalPoints
 </script>
 
 <template>
@@ -20,8 +27,8 @@
       username
     }}</router-link>
     <span>
-      {{ totalPoints }}
-      <small>pts</small>
+      <span :class="$style.points">{{ points }}</span>
+      <small :class="$style.pointsLabel">pts</small>
     </span>
   </div>
 </template>
@@ -41,5 +48,13 @@
     span {
       text-align: right;
     }
+  }
+
+  .points {
+    font-weight: 600;
+  }
+
+  .pointsLabel {
+    padding-left: 0.5ch;
   }
 </style>

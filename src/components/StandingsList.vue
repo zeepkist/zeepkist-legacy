@@ -3,8 +3,9 @@
   import StandingsRow from '@/components/StandingsRow.vue'
   import type { LeagueUser } from '@/models/league'
 
-  const { users } = defineProps<{
+  const { users, isSeasonStandings } = defineProps<{
     users: LeagueUser[]
+    isSeasonStandings?: boolean
   }>()
 
   const offset = Math.ceil(users.length / 3)
@@ -25,21 +26,24 @@
         v-for="(user, index) in column1"
         :key="user[0]"
         :user="user"
-        :position="position(index)" />
+        :position="position(index)"
+        :is-season-standings="isSeasonStandings" />
     </template>
     <template #center>
       <standings-row
         v-for="(user, index) in column2"
         :key="user[0]"
         :user="user"
-        :position="position(index, 1)" />
+        :position="position(index, 1)"
+        :is-season-standings="isSeasonStandings" />
     </template>
     <template #right>
       <standings-row
         v-for="(user, index) in column3"
         :key="user[0]"
         :user="user"
-        :position="position(index, 2)" />
+        :position="position(index, 2)"
+        :is-season-standings="isSeasonStandings" />
     </template>
   </column-layout>
 </template>

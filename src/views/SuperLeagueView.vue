@@ -78,7 +78,7 @@
       </div>
     </div>
     <h2>{{ formatTitle(season) }} Standings</h2>
-    <standings-list :users="standings[season]" />
+    <standings-list :users="standings[season]" is-season-standings />
   </section>
   <debug-code :data="data" />
 </template>
