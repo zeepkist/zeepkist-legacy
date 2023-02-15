@@ -35,7 +35,7 @@
       </router-link>
       <div class="subtext">By {{ record.level.author }}</div>
     </div>
-    <div>
+    <div class="author">
       <router-link
         v-if="showUser"
         :to="{ name: 'user', params: { steamId: record.user.steamId } }">

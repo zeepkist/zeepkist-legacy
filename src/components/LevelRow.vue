@@ -5,19 +5,27 @@
   import type { Level } from '@/models/level'
   import { formatResultTime } from '@/utils'
 
-  const { level } = defineProps<{
+  const { level, hideLevelThumbnail = false } = defineProps<{
     level: Level
+    hideLevelThumbnail?: boolean
   }>()
 </script>
 
 <template>
-  <div class="level">
-    <img :src="level.thumbnailUrl" alt="" />
+  <div class="level" :class="{ hideLevelThumbnail }">
+    <img
+      v-if="!hideLevelThumbnail"
+      :src="level.thumbnailUrl"
+      alt=""
+      class="contain" />
     <div class="author">
       <router-link :to="{ name: 'level', params: { id: level.id } }">
         {{ level.name }}
       </router-link>
       <div class="subtext">By {{ level.author }}</div>
+    </div>
+    <div>
+      <div>{World Record Time}</div>
     </div>
     <div class="medal">
       <img src="@/assets/medal-author.webp" alt="Author Medal" />
@@ -34,9 +42,6 @@
     <div class="medal">
       <img src="@/assets/medal-bronze.webp" alt="Bronze Medal" />
       {{ formatResultTime(level.timeBronze) }}
-    </div>
-    <div>
-      <div>{World Record Time}</div>
     </div>
     <div>
       <a
@@ -58,6 +63,10 @@
     align-items: center;
     padding: 0.25rem;
     padding-left: 0;
+
+    &.hideLevelThumbnail {
+      grid-template-columns: 2fr repeat(5, 1fr) 80px;
+    }
 
     &:nth-of-type(even) {
       background: var(--color-background-mute);
@@ -88,6 +97,12 @@
     .subtext {
       font-weight: 300;
       font-size: 0.75rem;
+    }
+
+    .contain {
+      max-width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 </style>
