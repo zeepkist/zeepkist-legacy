@@ -1,3 +1,8 @@
+export interface LeagueEventMetadata {
+  name: string
+  workshopId: string
+}
+
 export interface LeagueStanding {
   username: string
   steamId: string
