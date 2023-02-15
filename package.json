@@ -65,7 +65,10 @@
   "renovate": {
     "extends": [
       "local>wopian/renovate-config"
-    ]
+    ],
+    "git-submodules": {
+      "enabled": true
+    }
   },
   "packageManager": "yarn@3.4.1"
 }
