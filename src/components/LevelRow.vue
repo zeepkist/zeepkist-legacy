@@ -13,7 +13,7 @@
 <template>
   <div class="level">
     <img :src="level.thumbnailUrl" alt="" />
-    <div>
+    <div class="author">
       <router-link :to="{ name: 'level', params: { id: level.id } }">
         {{ level.name }}
       </router-link>
@@ -76,6 +76,13 @@
       img {
         max-height: 20px;
       }
+    }
+
+    .author {
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .subtext {
