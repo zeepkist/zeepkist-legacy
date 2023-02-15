@@ -35,12 +35,14 @@
 
   try {
     const response = await superLeagueApi.get(`${season}/${event}.json`)
-    data = response.data
+    if (response.headers['Content-Type'] === 'application/json') {
+      data = response.data
+    }
   } catch (error) {
     if (error instanceof AxiosError && error.response?.status === 404) {
       console.warn(`Event ${event} not found`)
     } else {
-      throw error
+      console.error(error)
     }
   }
 
