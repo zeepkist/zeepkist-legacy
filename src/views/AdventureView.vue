@@ -13,7 +13,8 @@
     <h1>Adventure Mode Levels</h1>
     <p>{{ levels.totalAmount }} levels</p>
     <level-list
-      :levels="levels.levels.sort((a, b) => a.name.localeCompare(b.name))" />
+      :levels="levels.levels.sort((a, b) => a.name.localeCompare(b.name))"
+      hide-level-thumbnail />
     <debug-code :data="levels" />
   </div>
 </template>
