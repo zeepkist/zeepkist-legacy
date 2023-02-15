@@ -41,6 +41,11 @@ const router = createRouter({
       component: () => import('@/views/SuperLeagueView.vue')
     },
     {
+      path: '/super-league/:season',
+      name: 'super-league-season',
+      component: () => import('@/views/SuperLeagueSeasonView.vue')
+    },
+    {
       path: '/super-league/:season/:event',
       name: 'super-league-event',
       component: () => import('@/views/SuperLeagueEventView.vue')

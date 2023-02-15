@@ -1,3 +1,13 @@
-/*                      /index.html                   200
+/                             /index.html 200
+/adventure                    /index.html 200
+/levels                       /index.html 200
+/level/:id                    /index.html 200
+/users                        /index.html 200
+/user/:steamId                /index.html 200
+/super-league                 /index.html 200
+/super-league/:season         /index.html 200
+/super-league/:season/:event  /index.html 200
+/settings                     /index.html 200
+/auth                         /index.html 200
 # Redirect default Netlify subdomain to primary domain
 https://zeepkist.netlify.com/* https://zeepkist.wopian.me/:splat 301!
