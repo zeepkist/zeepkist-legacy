@@ -19,12 +19,18 @@
           height="32"
       /></router-link>
 
-      <nav>
+      <nav class="navigation">
         <router-link :to="{ name: 'dashboard' }">Dashboard</router-link>
         <router-link :to="{ name: 'adventure' }">Adventure Levels</router-link>
         <router-link :to="{ name: 'levels' }">Levels</router-link>
         <router-link :to="{ name: 'users' }">Users</router-link>
         <router-link :to="{ name: 'super-league' }">Super League</router-link>
+        <a
+          href="https://toolkist.netlify.app/"
+          target="_blank"
+          rel="noopener noreferrer">
+          Toolkist
+        </a>
       </nav>
 
       <nav class="login">
@@ -65,7 +71,7 @@
     margin-right: 1rem;
   }
 
-  nav {
+  nav.navigation {
     flex: 1;
   }
 
