@@ -36,7 +36,7 @@
         return await getRecords({
           LevelId: id,
           InvalidOnly: true,
-          Sort: '-time',
+          Sort: 'time',
           Limit: limit,
           Offset: (page - 1) * limit
         })
