@@ -66,7 +66,7 @@ for (const font of fonts.filter(font => font.isFile())) {
   font-weight: ${fontWeights[fontWeight]};
   font-display: swap;
   src: url('/${subsetPath}') format('woff2');
-  unicode-range: '${subset[1]}';
+  unicode-range: ${subset[1]};
 }`)
 
     await execAsync(
