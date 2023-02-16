@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { useElementVisibility } from '@vueuse/core'
+  import { vIntersectionObserver } from '@vueuse/components'
   import { ref } from 'vue'
   import { RouterLink } from 'vue-router'
 
@@ -14,12 +14,12 @@
     hideLevelThumbnail?: boolean
   }>()
 
-  const target = ref<HTMLElement>()
-  const isTargetVisible = useElementVisibility(target)
   const isWorldRecordLoading = ref(true)
   const worldRecord = ref<LevelRecord>()
 
   const getWorldRecord = async () => {
+    if (!isWorldRecordLoading.value) return
+
     const { records } = await getRecords({
       LevelId: level.id,
       WorldRecordOnly: true,
@@ -28,16 +28,21 @@
     if (records.length > 0) {
       worldRecord.value = records[0]
     }
+
     isWorldRecordLoading.value = false
   }
 
-  if (isTargetVisible && !worldRecord.value) {
-    getWorldRecord()
+  const onIntersectionObserver = ([
+    { isIntersecting }
+  ]: IntersectionObserverEntry[]) => {
+    if (isIntersecting && isWorldRecordLoading.value) {
+      getWorldRecord()
+    }
   }
 </script>
 
 <template>
-  <div ref="target" class="level" :class="{ hideLevelThumbnail }">
+  <div class="level" :class="{ hideLevelThumbnail }">
     <img
       v-if="!hideLevelThumbnail"
       :src="level.thumbnailUrl"
@@ -62,7 +67,12 @@
     <div v-else-if="!worldRecord && !isWorldRecordLoading" class="empty">
       No World Record
     </div>
-    <div v-else></div>
+    <div
+      v-else
+      v-intersection-observer="[
+        onIntersectionObserver,
+        { rootMargin: '25%' }
+      ]"></div>
     <div class="medal">
       <img src="@/assets/medal-author.webp" alt="Author Medal" />
       {{ formatResultTime(level.timeAuthor) }}
