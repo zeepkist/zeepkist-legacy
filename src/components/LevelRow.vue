@@ -43,7 +43,7 @@
       <img src="@/assets/medal-bronze.webp" alt="Bronze Medal" />
       {{ formatResultTime(level.timeBronze) }}
     </div>
-    <div>
+    <div class="actions">
       <a
         v-if="level.workshopId !== '0'"
         :href="`${WORKSHOP_URL}${level.workshopId}`">
@@ -61,8 +61,7 @@
     grid-auto-rows: 50px;
     gap: 1rem;
     align-items: center;
-    padding: 0.25rem;
-    padding-left: 0;
+    padding: 0.25rem 1rem 0.25rem 0;
 
     &.hideLevelThumbnail {
       grid-template-columns: 2fr repeat(5, 1fr) 80px;
@@ -103,6 +102,16 @@
       max-width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      a {
+        display: block;
+        text-align: center;
+        width: 100%;
+      }
     }
   }
 </style>

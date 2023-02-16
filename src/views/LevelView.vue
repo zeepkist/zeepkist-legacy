@@ -19,6 +19,8 @@
       case 'recent': {
         return await getRecords({
           LevelId: id,
+          ValidOnly: false,
+          InvalidOnly: false,
           Sort: '-id',
           Limit: limit,
           Offset: (page - 1) * limit
@@ -126,6 +128,7 @@
           header="Recent Times"
           :records="recentRecords.records"
           show-user
+          show-badges
           hide-track-info />
       </paginated-component>
     </template>
@@ -140,6 +143,7 @@
           :records="invalidRecords.records"
           :rank-offset="(pages.invalid - 1) * limit"
           show-user
+          show-badges
           hide-track-info />
       </paginated-component>
     </template>

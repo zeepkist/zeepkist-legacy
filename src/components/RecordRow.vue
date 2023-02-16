@@ -8,11 +8,13 @@
     record,
     rank,
     showUser = false,
+    showBadges = false,
     hideTrackInfo = false
   } = defineProps<{
     record: LevelRecord
-    showUser?: boolean
     rank?: number
+    showUser?: boolean
+    showBadges?: boolean
     hideTrackInfo?: boolean
   }>()
 </script>
@@ -48,7 +50,10 @@
     <div>
       <div>{{ formatResultTime(record.time) }}</div>
       <div
-        v-if="record.isBest || record.isWorldRecord || !record.isValid"
+        v-if="
+          showBadges &&
+          (record.isBest || record.isWorldRecord || !record.isValid)
+        "
         class="record-badges">
         <span v-if="record.isWorldRecord" class="wr" title="World Record"
           >WR</span
@@ -73,6 +78,7 @@
     grid-template-rows: 50px;
     gap: 1rem;
     align-items: center;
+    padding-left: 0.25rem;
 
     &.has-no-track:not(.has-rank) {
       grid-template-columns: 2fr 100px;
@@ -92,6 +98,8 @@
     }
 
     .record-badges {
+      display: flex;
+      gap: 0.25rem;
       span {
         border: 1px solid var(--color-button-active);
         border-radius: var(--border-radius);
@@ -99,15 +107,13 @@
         font-size: 0.75rem;
 
         &.wr {
-          border: 1px solid var(--color-button-hover);
+          font-weight: 600;
+          color: var(--color-text-inverted);
+          background: var(--color-button-hover);
         }
 
         &.any {
           border: 1px solid var(--color-disabled);
-        }
-
-        & ~ span {
-          margin-left: 0.25rem;
         }
       }
     }
@@ -145,7 +151,6 @@
 
     .rank {
       text-align: right;
-      font-family: monospace;
     }
 
     .subtext {
