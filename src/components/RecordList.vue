@@ -7,13 +7,14 @@
     records,
     rankOffset,
     showUser,
+    showBadges,
     hideTrackInfo
   } = defineProps<{
     header: string
     records: LevelRecord[]
     rankOffset?: number
-    showRank?: boolean
     showUser?: boolean
+    showBadges?: boolean
     hideTrackInfo?: boolean
   }>()
 </script>
@@ -29,6 +30,7 @@
         typeof rankOffset === 'number' ? rankOffset + index + 1 : undefined
       "
       :show-user="showUser"
+      :show-badges="showBadges"
       :hide-track-info="hideTrackInfo" />
     <p v-if="records.length === 0">
       No records of this type have been recorded yet
