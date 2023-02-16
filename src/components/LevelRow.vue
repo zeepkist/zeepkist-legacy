@@ -1,18 +1,43 @@
 <script setup lang="ts">
+  import { useElementVisibility } from '@vueuse/core'
+  import { ref } from 'vue'
   import { RouterLink } from 'vue-router'
 
   import { PLAY_URL, WORKSHOP_URL } from '@/configs'
   import type { Level } from '@/models/level'
+  import type { LevelRecord } from '@/models/record'
+  import { getRecords } from '@/services/records'
   import { formatResultTime } from '@/utils'
 
   const { level, hideLevelThumbnail = false } = defineProps<{
     level: Level
     hideLevelThumbnail?: boolean
   }>()
+
+  const target = ref<HTMLElement>()
+  const isTargetVisible = useElementVisibility(target)
+  const isWorldRecordLoading = ref(true)
+  const worldRecord = ref<LevelRecord>()
+
+  const getWorldRecord = async () => {
+    const { records } = await getRecords({
+      LevelId: level.id,
+      WorldRecordOnly: true,
+      Limit: 1
+    })
+    if (records.length > 0) {
+      worldRecord.value = records[0]
+    }
+    isWorldRecordLoading.value = false
+  }
+
+  if (isTargetVisible && !worldRecord.value) {
+    getWorldRecord()
+  }
 </script>
 
 <template>
-  <div class="level" :class="{ hideLevelThumbnail }">
+  <div ref="target" class="level" :class="{ hideLevelThumbnail }">
     <img
       v-if="!hideLevelThumbnail"
       :src="level.thumbnailUrl"
@@ -24,9 +49,18 @@
       </router-link>
       <div class="subtext">By {{ level.author }}</div>
     </div>
-    <div>
-      <div>{World Record Time}</div>
+    <div v-if="worldRecord" class="author">
+      <div>{{ formatResultTime(worldRecord.time) }}</div>
+      <router-link
+        :to="{ name: 'user', params: { steamId: worldRecord.user.steamId } }"
+        class="subtext"
+        >By {{ worldRecord.user.steamName }}</router-link
+      >
     </div>
+    <div v-else-if="!worldRecord && !isWorldRecordLoading" class="empty">
+      No World Record
+    </div>
+    <div v-else class="empty">Loading World Record</div>
     <div class="medal">
       <img src="@/assets/medal-author.webp" alt="Author Medal" />
       {{ formatResultTime(level.timeAuthor) }}
