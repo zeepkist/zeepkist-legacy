@@ -49,18 +49,20 @@
       </router-link>
       <div class="subtext">By {{ level.author }}</div>
     </div>
-    <div v-if="worldRecord" class="author">
-      <div>{{ formatResultTime(worldRecord.time) }}</div>
-      <router-link
-        :to="{ name: 'user', params: { steamId: worldRecord.user.steamId } }"
-        class="subtext"
-        >By {{ worldRecord.user.steamName }}</router-link
-      >
+    <div v-if="worldRecord" class="author medal">
+      <img src="@/assets/trophy.webp" alt="World Record" />
+      <div class="author">
+        <router-link
+          :to="{ name: 'user', params: { steamId: worldRecord.user.steamId } }">
+          {{ worldRecord.user.steamName }}
+        </router-link>
+        <div class="subtext">{{ formatResultTime(worldRecord.time) }}</div>
+      </div>
     </div>
     <div v-else-if="!worldRecord && !isWorldRecordLoading" class="empty">
       No World Record
     </div>
-    <div v-else class="empty">Loading World Record</div>
+    <div v-else></div>
     <div class="medal">
       <img src="@/assets/medal-author.webp" alt="Author Medal" />
       {{ formatResultTime(level.timeAuthor) }}
