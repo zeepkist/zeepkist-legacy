@@ -1,5 +1,10 @@
+import type { Duration } from 'date-fns'
+
 import type { LevelResponse } from '@/models/level'
 import { api } from '@/services/api'
+import { useCacheStore } from '@/stores/cache'
+
+const cache = useCacheStore()
 
 interface GetLevelsParameters {
   Id?: number | string
@@ -10,6 +15,7 @@ interface GetLevelsParameters {
   Limit?: number
   Offset?: number
   Sort?: string
+  cacheDuration?: Duration
 }
 
 export const getLevels = async ({
@@ -20,7 +26,8 @@ export const getLevels = async ({
   WorkshopId,
   Limit,
   Offset,
-  Sort
+  Sort,
+  cacheDuration
 }: GetLevelsParameters = {}) => {
   const query = {
     Id,
@@ -32,10 +39,21 @@ export const getLevels = async ({
     Offset,
     Sort
   }
+
+  const cacheKey = JSON.stringify(query)
+  const cacheHit = cache.getCache(cacheKey)
+  if (cacheHit) {
+    return cacheHit as LevelResponse
+  }
+
   const response = await api.get('levels', { params: query })
 
-  if (response.status === 200) return response.data as LevelResponse
-  else {
+  if (response.status === 200) {
+    if (cacheDuration) {
+      cache.setCache(cacheKey, response.data, cacheDuration)
+    }
+    return response.data as LevelResponse
+  } else {
     throw new Error(response.data.error)
   }
 }
