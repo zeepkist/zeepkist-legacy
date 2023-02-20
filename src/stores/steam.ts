@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
 
-export const useSteamStore = defineStore('steam', {
+export const useSteamStore = defineStore({
+  id: 'steam',
   state: () => ({
-    steamId: localStorage.getItem('steamId') ?? ''
+    steamId: localStorage.getItem('steamId') || ''
   }),
   actions: {
     setSteamId(steamId: string) {
