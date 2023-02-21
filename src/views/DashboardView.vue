@@ -38,7 +38,8 @@
   const getPaginatedLevels = async (page = 1) =>
     await getLevels({
       Limit: limit * 2,
-      Offset: (page - 1) * limit
+      Offset: (page - 1) * limit,
+      Sort: '-id'
     })
 
   const handlePageChanged = async (
@@ -113,7 +114,7 @@
     :items-per-page="limit * 2"
     :total-items="levels.totalAmount"
     @page-changed="page => handlePageChanged('level', page)">
-    <level-list header="Levels" :levels="levels.levels" />
+    <level-list header="Recent Levels" :levels="levels.levels" />
   </paginated-component>
   <debug-code :data="recentRecords" />
   <debug-code :data="worldRecords" />

@@ -14,7 +14,8 @@
   const handlePageChanged = async (page: number) => {
     levels.value = await getLevels({
       Limit: itemsPerPage,
-      Offset: (page - 1) * itemsPerPage
+      Offset: (page - 1) * itemsPerPage,
+      Sort: '-id'
     })
     currentPage.value = page
   }
