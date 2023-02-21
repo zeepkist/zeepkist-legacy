@@ -4,8 +4,6 @@ import type { UserRankingsResponse, UserResponse } from '@/models/user'
 import { api } from '@/services/api'
 import { useCacheStore } from '@/stores/cache'
 
-const cache = useCacheStore()
-
 interface GetUserParameters {
   id?: number
   steamId?: string
@@ -17,15 +15,16 @@ export const getUser = async ({
   steamId,
   cacheDuration
 }: GetUserParameters) => {
-  const response = await (id
-    ? api.get('users/id', { params: { id } })
-    : api.get('users/steamid', { params: { SteamId: steamId } }))
-
+  const cache = useCacheStore()
   const cacheKey = JSON.stringify({ id, steamId })
   const cacheHit = cache.getCache(cacheKey)
   if (cacheHit) {
     return cacheHit as UserRankingsResponse
   }
+
+  const response = await (id
+    ? api.get('users/id', { params: { id } })
+    : api.get('users/steamid', { params: { SteamId: steamId } }))
 
   if (response.status === 200) {
     if (cacheDuration) {
@@ -53,6 +52,7 @@ export const getUserRankings = async ({
     Offset
   }
 
+  const cache = useCacheStore()
   const cacheKey = JSON.stringify(query)
   const cacheHit = cache.getCache(cacheKey)
   if (cacheHit) {

@@ -4,8 +4,6 @@ import type { RecordResponse } from '@/models/record'
 import { api } from '@/services/api'
 import { useCacheStore } from '@/stores/cache'
 
-const cache = useCacheStore()
-
 interface GetRecordsParameters {
   LevelId?: number | string
   LevelUid?: string
@@ -55,6 +53,7 @@ export const getRecords = async ({
     Offset
   }
 
+  const cache = useCacheStore()
   const cacheKey = JSON.stringify(query)
   const cacheHit = cache.getCache(cacheKey)
   if (cacheHit) {
