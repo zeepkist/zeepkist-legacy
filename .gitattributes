@@ -1,3 +1,5 @@
+* text=auto eol=lf
+
 .yarn/ export-ignore
 
 /.yarn/releases/** binary
