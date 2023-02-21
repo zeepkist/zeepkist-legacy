@@ -23,7 +23,10 @@
     const { records } = await getRecords({
       LevelId: level.id,
       WorldRecordOnly: true,
-      Limit: 1
+      Limit: 1,
+      cacheDuration: {
+        minutes: 10
+      }
     })
     if (records.length > 0) {
       worldRecord.value = records[0]
