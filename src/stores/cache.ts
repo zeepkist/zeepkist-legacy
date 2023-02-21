@@ -6,9 +6,18 @@ interface Cache {
   data: Record<string, any>
 }
 
+const restoreCache = () => {
+  const parsedCache = JSON.parse(localStorage.getItem('cache') || '[]')
+  return new Map<string, Cache>(parsedCache || [])
+}
+
+const persistCache = (cache: Map<string, Cache>) => {
+  localStorage.setItem('cache', JSON.stringify([...cache]))
+}
+
 export const useCacheStore = defineStore('cache', {
   state: () => ({
-    cache: new Map<string, Cache>(JSON.parse(localStorage.myMap))
+    cache: restoreCache()
   }),
   actions: {
     getCache(key: string) {
@@ -25,11 +34,11 @@ export const useCacheStore = defineStore('cache', {
     setCache(key: string, data: Cache, duration: Duration) {
       const expiresAt = add(new Date(), duration).getTime()
       this.cache.set(key, { expiresAt, data })
-      JSON.stringify([...this.cache])
+      persistCache(this.cache)
     },
     deleteCache(key: string) {
       this.cache.delete(key)
-      JSON.stringify([...this.cache])
+      persistCache(this.cache)
     }
   }
 })
