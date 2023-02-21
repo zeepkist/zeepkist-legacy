@@ -19,7 +19,7 @@ export const getUser = async ({
   const cacheKey = JSON.stringify({ id, steamId })
   const cacheHit = cache.getCache(cacheKey)
   if (cacheHit) {
-    return cacheHit as UserRankingsResponse
+    return cacheHit as UserResponse
   }
 
   const response = await (id
