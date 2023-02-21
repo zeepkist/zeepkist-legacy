@@ -4,8 +4,6 @@ import type { LevelResponse } from '@/models/level'
 import { api } from '@/services/api'
 import { useCacheStore } from '@/stores/cache'
 
-const cache = useCacheStore()
-
 interface GetLevelsParameters {
   Id?: number | string
   Author?: string
@@ -40,6 +38,7 @@ export const getLevels = async ({
     Sort
   }
 
+  const cache = useCacheStore()
   const cacheKey = JSON.stringify(query)
   const cacheHit = cache.getCache(cacheKey)
   if (cacheHit) {
