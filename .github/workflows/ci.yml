@@ -53,9 +53,7 @@ jobs:
 
       - name: Deploy SPA
         if: success() && github.ref == 'refs/heads/develop'
-        uses: wopian/netlify-actions-colors-fix/cli@1e378c943b20b381c815ca478fef65fe3a30937a
+        run: yarn netlify deploy --dir=dist --prod --message='Deployed ${{ github.sha }} via GitHub Actions'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        with:
-          args: deploy --dir=dist --prod --message='Deployed ${{ github.sha }} via GitHub Actions'
