@@ -2,6 +2,7 @@ name: CI
 
 on:
   push:
+  merge_group:
 
 env:
   FORCE_COLOR: true
