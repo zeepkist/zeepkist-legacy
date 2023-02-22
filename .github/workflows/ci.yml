@@ -37,6 +37,9 @@ jobs:
       - name: Run Linter
         run: yarn lint
 
+      - name: Build and Typecheck SPA
+        run: yarn build
+
       - name: Create Release
         if: success() && github.ref == 'refs/heads/develop'
         run: yarn semantic-release
@@ -47,13 +50,9 @@ jobs:
         if: success() && github.ref == 'refs/heads/develop'
         run: git submodule update --init --remote
 
-      - name: Build SPA
-        if: success() && github.ref == 'refs/heads/develop'
-        run: yarn build
-
       - name: Deploy SPA
         if: success() && github.ref == 'refs/heads/develop'
-        run: yarn netlify deploy --dir=dist --prod --message='Deployed ${{ github.sha }} via GitHub Actions'
+        run: yarn dlx -p netlify-cli netlify deploy --dir=dist --prod --message='Deployed ${{ github.sha }} via GitHub Actions'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
