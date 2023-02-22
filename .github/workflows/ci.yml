@@ -52,7 +52,7 @@ jobs:
 
       - name: Deploy SPA
         if: success() && github.ref == 'refs/heads/develop'
-        run: yarn dlx -p netlify-cli netlify deploy --dir=dist --prod --message='Deployed ${{ github.sha }} via GitHub Actions'
+        run: yarn dlx -p @netlify/framework-info -p netlify-cli netlify deploy --dir=dist --prod --message='Deployed ${{ github.sha }} via GitHub Actions'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
