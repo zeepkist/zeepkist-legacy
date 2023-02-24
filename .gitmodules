@@ -1,4 +1,4 @@
 [submodule "public/super-league"]
-	path = public/super-league
+	path = public/data/super-league
 	url = https://github.com/zeepkist/super-league
 	branch = data
