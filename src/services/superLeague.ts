@@ -8,7 +8,7 @@ import type {
 } from '@/models/superLeague.js'
 
 const api = ky.create({
-  prefixUrl: '/super-league/'
+  prefixUrl: '/data/super-league/'
 })
 
 export const getSeasons = async () => {
