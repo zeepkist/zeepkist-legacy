@@ -37,6 +37,10 @@ jobs:
       - name: Run Linter
         run: yarn lint
 
+      - name: Update Submodules
+        if: success() && github.ref == 'refs/heads/develop'
+        run: git submodule update --init --remote
+
       - name: Build and Typecheck SPA
         run: yarn build
 
@@ -45,10 +49,6 @@ jobs:
         run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
-      - name: Update Submodules
-        if: success() && github.ref == 'refs/heads/develop'
-        run: git submodule update --init --remote
 
       - name: Deploy SPA
         if: success() && github.ref == 'refs/heads/develop'
