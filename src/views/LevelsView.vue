@@ -1,10 +1,10 @@
 <script setup lang="ts">
+  import { getLevels } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
   import DebugCode from '@/components/DebugCode.vue'
   import LevelList from '@/components/LevelList.vue'
   import PaginatedComponent from '@/components/PaginatedComponent.vue'
-  import { getLevels } from '@/services/levels'
 
   const itemsPerPage = 40
 

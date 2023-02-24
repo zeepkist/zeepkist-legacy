@@ -1,16 +1,13 @@
 <script setup lang="ts">
-  import { AxiosError } from 'axios'
+  import { HTTPError } from 'ky'
+  import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
   import DebugCode from '@/components/DebugCode.vue'
   import StandingsList from '@/components/StandingsList.vue'
-  import type { LeagueEvent, LeagueEventMetadata } from '@/models/league'
-  import { superLeagueApi } from '@/services/api'
+  import type { SeasonEvent } from '@/models/superLeague'
+  import { getEvent } from '@/services/superLeague'
   import { formatRelativeDate } from '@/utils'
-
-  interface Metadata {
-    [key: string]: LeagueEventMetadata
-  }
 
   const route = useRoute()
 
@@ -18,23 +15,13 @@
   const event = route.params.event as string
   const date = `${event}T18:00:00.000Z`
 
-  const { data: metadata }: { data: Metadata } = await superLeagueApi.get(
-    `${season}/metadata.json`
-  )
-
-  let data: LeagueEvent = {
-    users: [],
-    levels: []
-  }
+  const data = ref<SeasonEvent | undefined>()
 
   try {
-    const response = await superLeagueApi.get(`${season}/${event}.json`)
-    if (typeof response.data === 'object' && response.data !== null) {
-      data = response.data
-    }
+    data.value = await getEvent(season, event)
   } catch (error) {
-    if (error instanceof AxiosError && error.response?.status === 404) {
-      console.warn(`Event ${event} not found`)
+    if (error instanceof HTTPError && error.response?.status === 404) {
+      data.value = undefined
     } else {
       console.error(error)
     }
@@ -45,13 +32,12 @@
 </script>
 
 <template>
-  <h1>
-    {{ toTitleCase(season.replace('-', ' ')) }} /
-    {{ metadata[event]?.name }}
-  </h1>
+  <h2>{{ toTitleCase(event) }} Standings</h2>
   <section>
-    <h2>Event Standings</h2>
-    <standings-list v-if="data.users.length > 0" :users="data.users" />
+    <standings-list
+      v-if="data && data.users.length > 0"
+      :key="event"
+      :users="data.users" />
     <p v-else>
       Event starts {{ formatRelativeDate(date) }} ({{
         Intl.DateTimeFormat().format(new Date(date))

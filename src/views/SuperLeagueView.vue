@@ -1,48 +1,10 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
   import { RouterLink } from 'vue-router'
 
   import DebugCode from '@/components/DebugCode.vue'
-  import StandingsList from '@/components/StandingsList.vue'
-  import type {
-    LeagueEventMetadata,
-    LeagueStanding,
-    LeagueUser
-  } from '@/models/league'
-  import { superLeagueApi } from '@/services/api'
+  import { getSeasons } from '@/services/superLeague'
 
-  interface SeasonMetadata {
-    [key: string]: LeagueEventMetadata
-  }
-
-  type Metadata = [string, SeasonMetadata]
-
-  interface LeagueSeasonStanding {
-    [key: string]: LeagueUser[]
-  }
-
-  const { data }: { data: Metadata[] } = await superLeagueApi.get(
-    'metadata.json'
-  )
-
-  const standings = ref<LeagueSeasonStanding>({})
-
-  const getStandings = async (season: string) => {
-    try {
-      const response = await superLeagueApi.get(`${season}/standings.json`)
-      return response.data
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  for (const [season] of data) {
-    const standingsData: LeagueStanding[] = await getStandings(season)
-    standings.value[season] = standingsData.map(standing => {
-      const steamId = standing.steamId
-      return [steamId, standing]
-    })
-  }
+  const seasons = await getSeasons()
 
   const toTitleCase = (string: string) =>
     string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
@@ -52,11 +14,21 @@
 
 <template>
   <h1>Super League</h1>
-  <section v-for="[season, events] in data" :key="season">
-    <h2>{{ formatTitle(season) }} Events</h2>
-    <div :class="$style.cardContainer">
+  <section v-for="[season, events] in seasons" :key="season">
+    <h2>{{ formatTitle(season) }}</h2>
+    <div v-if="events.events" :class="$style.cardContainer">
+      <div :class="$style.card">
+        <h3>Season Standings</h3>
+        <router-link
+          :to="{
+            name: 'super-league-standings',
+            params: { season }
+          }"
+          >View standings</router-link
+        >
+      </div>
       <div
-        v-for="[eventName, event] in Object.entries(events)"
+        v-for="[eventName, event] in Object.entries(events.events)"
         :key="eventName"
         :class="$style.card">
         <h3>{{ event.name }}</h3>
@@ -67,20 +39,10 @@
           }"
           >View event</router-link
         >
-        <!--
-        <a
-          :href="`https://steamcommunity.com/workshop/filedetails/?id=${event.workshopId}`"
-          rel="noopener noreferrer"
-          target="_blank"
-          >Subscribe to levels</a
-        >
-        -->
       </div>
     </div>
-    <h2>{{ formatTitle(season) }} Standings</h2>
-    <standings-list :users="standings[season]" is-season-standings />
   </section>
-  <debug-code :data="data" />
+  <debug-code :data="seasons" />
 </template>
 
 <style module lang="less">

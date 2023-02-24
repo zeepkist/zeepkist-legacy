@@ -1,11 +1,11 @@
 <script setup lang="ts">
+  import { getUserRankings } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
   import ColumnLayout from '@/components/ColumnLayout.vue'
   import DebugCode from '@/components/DebugCode.vue'
   import PaginatedComponent from '@/components/PaginatedComponent.vue'
   import UserList from '@/components/UserList.vue'
-  import { getUserRankings } from '@/services/users'
 
   const itemsPerPage = 20
 

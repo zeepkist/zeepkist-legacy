@@ -1,23 +1,23 @@
 <script setup lang="ts">
   import { RouterLink } from 'vue-router'
 
-  import type { LeagueUser } from '@/models/league'
+  import type { Standing } from '@/models/superLeague'
 
   const {
     user,
     position,
     isSeasonStandings = false
   } = defineProps<{
-    user: LeagueUser
+    user: Standing
     position: number
     isSeasonStandings?: boolean
   }>()
 
-  const steamId = user[0]
-  const username = user[1].username
+  const steamId = user.steamId
+  const username = user.username
   const points = isSeasonStandings
-    ? Math.round(user[1].totalPoints * 100)
-    : user[1].totalPoints
+    ? Math.round(user.totalPoints * 100)
+    : user.totalPoints
 </script>
 
 <template>

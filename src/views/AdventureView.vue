@@ -1,11 +1,11 @@
 <script setup lang="ts">
+  import { getLevels } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
   import DebugCode from '@/components/DebugCode.vue'
   import LevelList from '@/components/LevelList.vue'
-  import { getLevels } from '@/services/levels'
 
-  const levels = ref(await getLevels({ WorkshopId: 0 }))
+  const levels = ref(await getLevels({ WorkshopId: '0' }))
 </script>
 
 <template>

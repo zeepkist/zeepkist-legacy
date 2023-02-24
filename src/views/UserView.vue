@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { IconTrophy } from '@tabler/icons-vue'
+  import { getRecords, getUser } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
@@ -7,8 +8,6 @@
   import DebugCode from '@/components/DebugCode.vue'
   import PaginatedComponent from '@/components/PaginatedComponent.vue'
   import RecordList from '@/components/RecordList.vue'
-  import { getRecords } from '@/services/records'
-  import { getUser } from '@/services/users'
 
   type RecordType = 'worldRecord' | 'best' | 'invalid' | 'recent'
 
@@ -16,7 +15,7 @@
   const steamId = route.params.steamId as string
   const limit = 10
 
-  const user = ref(await getUser({ steamId }))
+  const user = ref(await getUser({ SteamId: steamId }))
 
   const getPaginatedRecords = async (type: RecordType, page = 1) => {
     switch (type) {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { getLevels, getRecords } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
   import ColumnLayout from '@/components/ColumnLayout.vue'
@@ -6,8 +7,6 @@
   import LevelList from '@/components/LevelList.vue'
   import PaginatedComponent from '@/components/PaginatedComponent.vue'
   import RecordList from '@/components/RecordList.vue'
-  import { getLevels } from '@/services/levels'
-  import { getRecords } from '@/services/records'
 
   type RecordType = 'worldRecord' | 'recent'
 
