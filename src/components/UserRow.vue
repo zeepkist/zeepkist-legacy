@@ -1,7 +1,6 @@
 <script setup lang="ts">
+  import type { User } from '@zeepkist/gtr-api'
   import { RouterLink } from 'vue-router'
-
-  import type { User } from '@/models/user'
 
   const { user, rank, worldRecords } = defineProps<{
     user: User

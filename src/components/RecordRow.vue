@@ -1,7 +1,7 @@
 <script setup lang="ts">
+  import type { LevelRecord } from '@zeepkist/gtr-api'
   import { RouterLink } from 'vue-router'
 
-  import type { LevelRecord } from '@/models/record'
   import { formatDate, formatRelativeDate, formatResultTime } from '@/utils'
 
   const {

@@ -31,7 +31,7 @@ export const useCacheStore = defineStore('cache', {
       this.cache.delete(key)
       return
     },
-    setCache(key: string, data: Cache, duration: Duration) {
+    setCache(key: string, data: Cache['data'], duration: Duration) {
       const expiresAt = add(new Date(), duration).getTime()
       this.cache.set(key, { expiresAt, data })
       persistCache(this.cache)

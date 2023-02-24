@@ -43,12 +43,19 @@ const router = createRouter({
     {
       path: '/super-league/:season',
       name: 'super-league-season',
-      component: () => import('@/views/SuperLeagueSeasonView.vue')
-    },
-    {
-      path: '/super-league/:season/:event',
-      name: 'super-league-event',
-      component: () => import('@/views/SuperLeagueEventView.vue')
+      component: () => import('@/views/SuperLeagueSeasonView.vue'),
+      children: [
+        {
+          path: '',
+          name: 'super-league-standings',
+          component: () => import('@/views/SuperLeagueStandingsView.vue')
+        },
+        {
+          path: ':event',
+          name: 'super-league-event',
+          component: () => import('@/views/SuperLeagueEventView.vue')
+        }
+      ]
     },
     {
       path: '/settings',

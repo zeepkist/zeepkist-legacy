@@ -1,9 +1,10 @@
 <script setup lang="ts">
+  import type { UserRankings } from '@zeepkist/gtr-api'
+
   import UserRow from '@/components/UserRow.vue'
-  import type { UserRanking } from '@/models/user'
 
   const { users } = defineProps<{
-    users: UserRanking[]
+    users: UserRankings[]
   }>()
 </script>
 

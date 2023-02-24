@@ -1,12 +1,11 @@
 <script setup lang="ts">
   import { vIntersectionObserver } from '@vueuse/components'
+  import type { Level, LevelRecord } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
   import { RouterLink } from 'vue-router'
 
   import { PLAY_URL, WORKSHOP_URL } from '@/configs'
-  import type { Level } from '@/models/level'
-  import type { LevelRecord } from '@/models/record'
-  import { getRecords } from '@/services/records'
+  import { getCachedRecords } from '@/services/cache'
   import { formatResultTime } from '@/utils'
 
   const { level, hideLevelThumbnail = false } = defineProps<{
@@ -20,14 +19,17 @@
   const getWorldRecord = async () => {
     if (!isWorldRecordLoading.value) return
 
-    const { records } = await getRecords({
-      LevelId: level.id,
-      WorldRecordOnly: true,
-      Limit: 1,
-      cacheDuration: {
+    const { records } = await getCachedRecords(
+      {
+        LevelId: level.id,
+        WorldRecordOnly: true,
+        Limit: 1
+      },
+      {
         minutes: 10
       }
-    })
+    )
+
     if (records.length > 0) {
       worldRecord.value = records[0]
     }

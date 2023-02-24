@@ -1,10 +1,10 @@
 <script setup lang="ts">
   import ColumnLayout from '@/components/ColumnLayout.vue'
   import StandingsRow from '@/components/StandingsRow.vue'
-  import type { LeagueUser } from '@/models/league'
+  import type { Standing } from '@/models/superLeague'
 
   const { users, isSeasonStandings } = defineProps<{
-    users: LeagueUser[]
+    users: Standing[]
     isSeasonStandings?: boolean
   }>()
 
@@ -24,7 +24,7 @@
     <template #left>
       <standings-row
         v-for="(user, index) in column1"
-        :key="user[0]"
+        :key="user.steamId"
         :user="user"
         :position="position(index)"
         :is-season-standings="isSeasonStandings" />
@@ -32,7 +32,7 @@
     <template #center>
       <standings-row
         v-for="(user, index) in column2"
-        :key="user[0]"
+        :key="user.steamId"
         :user="user"
         :position="position(index, 1)"
         :is-season-standings="isSeasonStandings" />
@@ -40,7 +40,7 @@
     <template #right>
       <standings-row
         v-for="(user, index) in column3"
-        :key="user[0]"
+        :key="user.steamId"
         :user="user"
         :position="position(index, 2)"
         :is-season-standings="isSeasonStandings" />
