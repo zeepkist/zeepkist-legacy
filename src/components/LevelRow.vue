@@ -4,10 +4,10 @@
   import { ref } from 'vue'
   import { RouterLink } from 'vue-router'
 
+  import UserBadge from '@/components/UserBadge.vue'
   import { PLAY_URL, WORKSHOP_URL } from '@/configs'
   import { getCachedRecords } from '@/services/cache'
   import { formatResultTime } from '@/utils'
-  import UserBadge from '@/components/UserBadge.vue'
 
   const { level, hideLevelThumbnail = false } = defineProps<{
     level: Level
