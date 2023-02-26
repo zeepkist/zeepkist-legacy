@@ -11,10 +11,12 @@
 
 <template>
   <div :class="$style.container">
-  <div :class="$style.user">
-    <div v-if="formattedUser.team" :class="$style.team">[{{ formattedUser.team }}]</div>
-    <div>{{ formattedUser.username }}</div>
-  </div>
+    <div :class="$style.user">
+      <div v-if="formattedUser.team" :class="$style.team">
+        [{{ formattedUser.team }}]
+      </div>
+      <div>{{ formattedUser.username }}</div>
+    </div>
   </div>
 </template>
 

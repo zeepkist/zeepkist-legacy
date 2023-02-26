@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { RouterLink } from 'vue-router'
 
-  import type { Standing } from '@/models/superLeague'
   import UserBadge from '@/components/UserBadge.vue'
+  import type { Standing } from '@/models/superLeague'
 
   const {
     user,

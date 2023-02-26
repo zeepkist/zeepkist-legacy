@@ -2,8 +2,8 @@
   import type { LevelRecord } from '@zeepkist/gtr-api'
   import { RouterLink } from 'vue-router'
 
-  import { formatDate, formatRelativeDate, formatResultTime } from '@/utils'
   import UserBadge from '@/components/UserBadge.vue'
+  import { formatDate, formatRelativeDate, formatResultTime } from '@/utils'
 
   const {
     record,
@@ -36,7 +36,9 @@
       <router-link :to="{ name: 'level', params: { id: record.level.id } }">
         {{ record.level.name }}
       </router-link>
-      <div class="subtext">By <user-badge :username="record.level.author" /></div>
+      <div class="subtext">
+        By <user-badge :username="record.level.author" />
+      </div>
     </div>
     <div class="author">
       <router-link

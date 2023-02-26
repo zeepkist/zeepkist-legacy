@@ -108,10 +108,12 @@
 </script>
 
 <template>
+  <!-- eslint-disable-next-line vuejs-accessibility/heading-has-content -->
   <h1><user-badge :username="user.steamName" /></h1>
   <p>
-    {{ formatUser(user.steamName).username }} has set times on {{ bestRecords.totalAmount }} levels
-    over {{ validRecords.totalAmount }} runs. They currently hold
+    {{ formatUser(user.steamName).username }} has set times on
+    {{ bestRecords.totalAmount }} levels over
+    {{ validRecords.totalAmount }} runs. They currently hold
     <icon-trophy class="inline-svg" /> {{ worldRecords.totalAmount }} world
     records and have done {{ invalidRecords.totalAmount }} any% attempts.
   </p>
