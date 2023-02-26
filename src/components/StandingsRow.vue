@@ -2,6 +2,7 @@
   import { RouterLink } from 'vue-router'
 
   import type { Standing } from '@/models/superLeague'
+  import UserBadge from '@/components/UserBadge.vue'
 
   const {
     user,
@@ -14,7 +15,6 @@
   }>()
 
   const steamId = user.steamId
-  const username = user.username
   const points = isSeasonStandings
     ? Math.round(user.totalPoints * 100)
     : user.totalPoints
@@ -23,9 +23,9 @@
 <template>
   <div :class="$style.row">
     <span>{{ position }}</span>
-    <router-link :to="{ name: 'user', params: { steamId } }">{{
-      username
-    }}</router-link>
+    <router-link :to="{ name: 'user', params: { steamId } }">
+      <user-badge :username="user.username" :team="user.team" />
+    </router-link>
     <span>
       <span :class="$style.points">{{ points }}</span>
       <small :class="$style.pointsLabel">pts</small>

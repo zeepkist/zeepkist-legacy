@@ -2,6 +2,9 @@
   import type { User } from '@zeepkist/gtr-api'
   import { RouterLink } from 'vue-router'
 
+  import { formatUser } from '@/utils'
+  import UserBadge from '@/components/UserBadge.vue';
+
   const { user, rank, worldRecords } = defineProps<{
     user: User
     rank: number
@@ -14,7 +17,7 @@
     <div v-if="rank" class="rank">{{ rank }}</div>
     <div>
       <router-link :to="{ name: 'user', params: { steamId: user.steamId } }">
-        {{ user.steamName }}
+        <user-badge :username="user.steamName" />
       </router-link>
     </div>
     <div class="records">

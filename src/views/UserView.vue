@@ -8,6 +8,8 @@
   import DebugCode from '@/components/DebugCode.vue'
   import PaginatedComponent from '@/components/PaginatedComponent.vue'
   import RecordList from '@/components/RecordList.vue'
+  import UserBadge from '@/components/UserBadge.vue'
+  import { formatUser } from '@/utils'
 
   type RecordType = 'worldRecord' | 'best' | 'invalid' | 'recent'
 
@@ -106,9 +108,9 @@
 </script>
 
 <template>
-  <h1>{{ user.steamName }}</h1>
+  <h1><user-badge :username="user.steamName" /></h1>
   <p>
-    {{ user.steamName }} has set times on {{ bestRecords.totalAmount }} levels
+    {{ formatUser(user.steamName).username }} has set times on {{ bestRecords.totalAmount }} levels
     over {{ validRecords.totalAmount }} runs. They currently hold
     <icon-trophy class="inline-svg" /> {{ worldRecords.totalAmount }} world
     records and have done {{ invalidRecords.totalAmount }} any% attempts.

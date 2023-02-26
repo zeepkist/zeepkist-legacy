@@ -3,6 +3,7 @@
   import { RouterLink } from 'vue-router'
 
   import { formatDate, formatRelativeDate, formatResultTime } from '@/utils'
+  import UserBadge from '@/components/UserBadge.vue'
 
   const {
     record,
@@ -35,13 +36,13 @@
       <router-link :to="{ name: 'level', params: { id: record.level.id } }">
         {{ record.level.name }}
       </router-link>
-      <div class="subtext">By {{ record.level.author }}</div>
+      <div class="subtext">By <user-badge :username="record.level.author" /></div>
     </div>
     <div class="author">
       <router-link
         v-if="showUser"
         :to="{ name: 'user', params: { steamId: record.user.steamId } }">
-        {{ record.user.steamName }}
+        <user-badge :username="record.user.steamName" />
       </router-link>
       <div class="subtext" :title="formatDate(record.dateCreated)">
         {{ formatRelativeDate(record.dateCreated) }}
