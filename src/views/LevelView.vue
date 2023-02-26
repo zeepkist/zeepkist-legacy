@@ -7,6 +7,7 @@
   import DebugCode from '@/components/DebugCode.vue'
   import PaginatedComponent from '@/components/PaginatedComponent.vue'
   import RecordList from '@/components/RecordList.vue'
+  import UserBadge from '@/components/UserBadge.vue'
 
   type RecordType = 'recent' | 'best' | 'invalid'
 
@@ -96,7 +97,7 @@
     <img :src="levelData.thumbnailUrl" alt="" />
     <div class="header-title">
       <h1>{{ levelData.name }}</h1>
-      <span class="author">By {{ levelData.author }}</span>
+      <span class="author">By <user-badge :username="levelData.author" /></span>
     </div>
   </div>
   <p>

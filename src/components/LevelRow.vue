@@ -7,6 +7,7 @@
   import { PLAY_URL, WORKSHOP_URL } from '@/configs'
   import { getCachedRecords } from '@/services/cache'
   import { formatResultTime } from '@/utils'
+  import UserBadge from '@/components/UserBadge.vue'
 
   const { level, hideLevelThumbnail = false } = defineProps<{
     level: Level
@@ -57,14 +58,14 @@
       <router-link :to="{ name: 'level', params: { id: level.id } }">
         {{ level.name }}
       </router-link>
-      <div class="subtext">By {{ level.author }}</div>
+      <div class="subtext">By <user-badge :username="level.author" /></div>
     </div>
     <div v-if="worldRecord" class="author medal">
       <img src="@/assets/trophy.webp" alt="World Record" />
       <div class="author">
         <router-link
           :to="{ name: 'user', params: { steamId: worldRecord.user.steamId } }">
-          {{ worldRecord.user.steamName }}
+          <user-badge :username="worldRecord.user.steamName" />
         </router-link>
         <div class="subtext">{{ formatResultTime(worldRecord.time) }}</div>
       </div>
