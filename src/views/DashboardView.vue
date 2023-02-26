@@ -37,7 +37,7 @@
   const getPaginatedLevels = async (page = 1) =>
     await getLevels({
       Limit: limit * 2,
-      Offset: (page - 1) * limit,
+      Offset: (page - 1) * limit * 2,
       Sort: '-id'
     })
 

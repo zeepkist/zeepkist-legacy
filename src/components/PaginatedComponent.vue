@@ -4,7 +4,7 @@
   const {
     totalItems,
     currentPage = 1,
-    itemsPerPage = 15
+    itemsPerPage = 10
   } = defineProps<{
     currentPage?: number
     totalItems: number
