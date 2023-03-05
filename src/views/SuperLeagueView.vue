@@ -1,68 +1,14 @@
 <script setup lang="ts">
-  import { RouterLink } from 'vue-router'
-
-  import DebugCode from '@/components/DebugCode.vue'
-  import { getSeasons } from '@/services/superLeague'
-
-  const seasons = await getSeasons()
-
-  const toTitleCase = (string: string) =>
-    string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
-
-  const formatTitle = (string: string) => toTitleCase(string.replace('-', ' '))
+  import SuperLeagueLayout from '@/components/layouts/SuperLeagueLayout.vue'
+  import LoadingIndicator from '@/components/LoadingIndicator.vue'
 </script>
 
 <template>
   <h1>Super League</h1>
-  <section v-for="[season, events] in seasons" :key="season">
-    <h2>{{ formatTitle(season) }}</h2>
-    <div v-if="events.events" :class="$style.cardContainer">
-      <div :class="$style.card">
-        <h3>Season Standings</h3>
-        <router-link
-          :to="{
-            name: 'super-league-standings',
-            params: { season }
-          }"
-          >View standings</router-link
-        >
-      </div>
-      <div
-        v-for="[eventName, event] in Object.entries(events.events)"
-        :key="eventName"
-        :class="$style.card">
-        <h3>{{ event.name }}</h3>
-        <router-link
-          :to="{
-            name: 'super-league-event',
-            params: { season, event: eventName }
-          }"
-          >View event</router-link
-        >
-      </div>
-    </div>
-  </section>
-  <debug-code :data="seasons" />
+  <suspense>
+    <super-league-layout />
+    <template #fallback>
+      <loading-indicator />
+    </template>
+  </suspense>
 </template>
-
-<style module lang="less">
-  .cardContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .card {
-    background-color: var(--color-background-mute);
-    border-radius: 0.5rem;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-
-    a {
-      display: block;
-      margin-top: 0.5rem;
-      padding: 0.5rem 0;
-    }
-  }
-</style>

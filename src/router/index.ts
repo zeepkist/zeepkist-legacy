@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import SuperLeagueEventLayout from '@/components/layouts/SuperLeagueEventLayout.vue'
+import SuperLeagueStandingsLayout from '@/components/layouts/SuperLeagueStandingsLayout.vue'
 import AdventureView from '@/views/AdventureView.vue'
 import AuthView from '@/views/AuthView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import LevelsView from '@/views/LevelsView.vue'
 import LevelView from '@/views/LevelView.vue'
 import SettingsView from '@/views/SettingsView.vue'
-import SuperLeagueEventView from '@/views/SuperLeagueEventView.vue'
 import SuperLeagueSeasonView from '@/views/SuperLeagueSeasonView.vue'
-import SuperLeagueStandingsView from '@/views/SuperLeagueStandingsView.vue'
 import SuperLeagueView from '@/views/SuperLeagueView.vue'
 import UsersView from '@/views/UsersView.vue'
 import UserView from '@/views/UserView.vue'
@@ -59,12 +59,12 @@ const router = createRouter({
         {
           path: '',
           name: 'super-league-standings',
-          component: SuperLeagueStandingsView
+          component: SuperLeagueStandingsLayout
         },
         {
           path: ':event',
           name: 'super-league-event',
-          component: SuperLeagueEventView
+          component: SuperLeagueEventLayout
         }
       ]
     },

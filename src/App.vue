@@ -3,6 +3,7 @@
 
   import FooterNavigation from '@/components/FooterNavigation.vue'
   import HeaderNavigation from '@/components/HeaderNavigation.vue'
+  import LoadingIndicator from '@/components/LoadingIndicator.vue'
 </script>
 
 <template>
@@ -10,6 +11,9 @@
   <section class="app-content">
     <suspense>
       <router-view />
+      <template #fallback>
+        <loading-indicator />
+      </template>
     </suspense>
   </section>
   <footer-navigation />

@@ -17,33 +17,6 @@
   } else {
     router.push({ name: 'dashboard' })
   }
-
-  /*
-  const {
-    'openid.ns': ns,
-    'openid.mode': mode,
-    'openid.op_endpoint': opEndpoint,
-    'openid.claimed_id': claimedId,
-    'openid.identity': identity,
-    'openid.return_to': returnTo,
-    'openid.response_nonce': responseNonce,
-    'openid.assoc_handle': assocHandle,
-    'openid.signed': signed,
-    'openid.sig': sig
-  } = route.query
-
-  console.log(
-    ns,
-    mode,
-    opEndpoint,
-    claimedId,
-    identity,
-    returnTo,
-    responseNonce,
-    assocHandle,
-    signed,
-    sig
-  )*/
 </script>
 
 <template>
