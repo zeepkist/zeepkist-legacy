@@ -3,7 +3,6 @@
   import { ref } from 'vue'
 
   import ColumnLayout from '@/components/ColumnLayout.vue'
-  import DebugCode from '@/components/DebugCode.vue'
   import LevelList from '@/components/LevelList.vue'
   import PaginatedComponent from '@/components/PaginatedComponent.vue'
   import RecordList from '@/components/RecordList.vue'
@@ -114,7 +113,4 @@
     @page-changed="page => handlePageChanged('level', page)">
     <level-list header="Recent Levels" :levels="levels.levels" />
   </paginated-component>
-  <debug-code :data="recentRecords" />
-  <debug-code :data="worldRecords" />
-  <debug-code :data="levels" />
 </template>

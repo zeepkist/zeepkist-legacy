@@ -2,7 +2,6 @@
   import { getLevels } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
-  import DebugCode from '@/components/DebugCode.vue'
   import LevelList from '@/components/LevelList.vue'
   import PaginatedComponent from '@/components/PaginatedComponent.vue'
 
@@ -31,5 +30,4 @@
     <level-list
       :levels="levels.levels.filter(level => level.workshopId !== '0')" />
   </paginated-component>
-  <debug-code :data="levels" />
 </template>
