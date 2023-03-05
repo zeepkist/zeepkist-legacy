@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { getUserRankings } from '@zeepkist/gtr-api'
+  import { getUserRankings, type UserRankingsResponse } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
   import ColumnLayout from '@/components/ColumnLayout.vue'
@@ -8,7 +8,8 @@
 
   const itemsPerPage = 20
 
-  const rankings = ref(await getUserRankings({ Limit: itemsPerPage }))
+  const rankings = ref<UserRankingsResponse>()
+  const currentPage = ref(1)
 
   const handlePageChanged = async (page: number) => {
     rankings.value = await getUserRankings({
@@ -18,23 +19,25 @@
     currentPage.value = page
   }
 
-  const currentPage = ref(1)
+  await handlePageChanged(1)
 </script>
 
 <template>
-  <p>{{ rankings.totalAmount }} users</p>
-  <paginated-component
-    :current-page="currentPage"
-    :items-per-page="itemsPerPage"
-    :total-items="rankings.totalAmount"
-    @page-changed="handlePageChanged">
-    <column-layout>
-      <template #left>
-        <user-list :users="rankings.rankings.slice(0, 10)" />
-      </template>
-      <template #right>
-        <user-list :users="rankings.rankings.slice(10)" />
-      </template>
-    </column-layout>
-  </paginated-component>
+  <template v-if="rankings">
+    <p>{{ rankings.totalAmount }} users</p>
+    <paginated-component
+      :current-page="currentPage"
+      :items-per-page="itemsPerPage"
+      :total-items="rankings.totalAmount"
+      @page-changed="handlePageChanged">
+      <column-layout>
+        <template #left>
+          <user-list :users="rankings.rankings.slice(0, 10)" />
+        </template>
+        <template #right>
+          <user-list :users="rankings.rankings.slice(10)" />
+        </template>
+      </column-layout>
+    </paginated-component>
+  </template>
 </template>
