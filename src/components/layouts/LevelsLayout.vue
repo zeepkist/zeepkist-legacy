@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { getLevels } from '@zeepkist/gtr-api'
+  import { getLevels, type LevelsResponse } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
   import LevelList from '@/components/LevelList.vue'
@@ -7,7 +7,7 @@
 
   const itemsPerPage = 40
 
-  const levels = ref(await getLevels({ Limit: itemsPerPage }))
+  const levels = ref<LevelsResponse>()
   const currentPage = ref(1)
 
   const handlePageChanged = async (page: number) => {
@@ -18,16 +18,20 @@
     })
     currentPage.value = page
   }
+
+  await handlePageChanged(1)
 </script>
 
 <template>
-  <p>{{ levels.totalAmount }} levels</p>
-  <paginated-component
-    :current-page="currentPage"
-    :items-per-page="itemsPerPage"
-    :total-items="levels.totalAmount"
-    @page-changed="handlePageChanged">
-    <level-list
-      :levels="levels.levels.filter(level => level.workshopId !== '0')" />
-  </paginated-component>
+  <template v-if="levels">
+    <p>{{ levels.totalAmount }} levels</p>
+    <paginated-component
+      :current-page="currentPage"
+      :items-per-page="itemsPerPage"
+      :total-items="levels.totalAmount"
+      @page-changed="handlePageChanged">
+      <level-list
+        :levels="levels.levels.filter(level => level.workshopId !== '0')" />
+    </paginated-component>
+  </template>
 </template>
