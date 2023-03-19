@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { useQuery } from '@tanstack/vue-query'
   import { getLevels, getRecords } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
@@ -11,34 +12,46 @@
 
   const limit = 10
 
-  const getPaginatedRecords = async (type: RecordType, page = 1) => {
-    switch (type) {
-      case 'worldRecord': {
-        return await getRecords({
+  const worldRecordsPage = ref(1)
+  const { data: worldRecords, isPreviousData: isPreviousWorldRecordsData } =
+    useQuery({
+      queryKey: ['worldRecords', worldRecordsPage],
+      queryFn: async () =>
+        await getRecords({
           Limit: limit,
           WorldRecordOnly: true,
           Sort: '-id',
-          Offset: (page - 1) * limit
-        })
-      }
-      case 'recent': {
-        return await getRecords({
+          Offset: (worldRecordsPage.value - 1) * limit
+        }),
+      keepPreviousData: true
+    })
+
+  const recentRecordsPage = ref(1)
+  const { data: recentRecords, isPreviousData: isPreviousRecentRecordsData } =
+    useQuery({
+      queryKey: ['recentRecords', recentRecordsPage],
+      queryFn: async () =>
+        await getRecords({
           Limit: limit,
           ValidOnly: false,
           InvalidOnly: false,
           Sort: '-id',
-          Offset: (page - 1) * limit
-        })
-      }
-    }
-  }
-
-  const getPaginatedLevels = async (page = 1) =>
-    await getLevels({
-      Limit: limit * 2,
-      Offset: (page - 1) * limit * 2,
-      Sort: '-id'
+          Offset: (recentRecordsPage.value - 1) * limit
+        }),
+      keepPreviousData: true
     })
+
+  const levelsPage = ref(1)
+  const { data: levels, isPreviousData: isPreviousLevelsData } = useQuery({
+    queryKey: ['levels', levelsPage],
+    queryFn: async () =>
+      await getLevels({
+        Limit: limit * 2,
+        Offset: (levelsPage.value - 1) * limit * 2,
+        Sort: '-id'
+      }),
+    keepPreviousData: true
+  })
 
   const handlePageChanged = async (
     type: RecordType | 'level',
@@ -46,43 +59,37 @@
   ) => {
     switch (type) {
       case 'worldRecord': {
-        worldRecords.value = await getPaginatedRecords('worldRecord', page)
-        pages.value.worldRecord = page
+        if (!isPreviousWorldRecordsData.value) {
+          worldRecordsPage.value = page
+        }
         break
       }
       case 'recent': {
-        recentRecords.value = await getPaginatedRecords('recent', page)
-        pages.value.best = page
+        if (!isPreviousRecentRecordsData.value) {
+          recentRecordsPage.value = page
+        }
         break
       }
       case 'level': {
-        levels.value = await getPaginatedLevels(page)
-        pages.value.level = page
+        if (!isPreviousLevelsData.value) {
+          levelsPage.value = page
+        }
         break
       }
     }
   }
-
-  const recentRecords = ref(await getPaginatedRecords('recent'))
-  const worldRecords = ref(await getPaginatedRecords('worldRecord'))
-  const levels = ref(await getPaginatedLevels())
-
-  const pages = ref({
-    best: 1,
-    worldRecord: 1,
-    level: 1
-  })
 </script>
 
 <template>
   <p>
-    There are currently {{ recentRecords.totalAmount }} records on
-    {{ levels.totalAmount }} levels.
+    There are currently {{ recentRecords?.totalAmount }} records on
+    {{ levels?.totalAmount }} levels.
   </p>
   <column-layout>
     <template #left>
       <paginated-component
-        :current-page="pages.worldRecord"
+        v-if="worldRecords"
+        :current-page="worldRecordsPage"
         :items-per-page="limit"
         :total-items="worldRecords.totalAmount"
         @page-changed="page => handlePageChanged('worldRecord', page)">
@@ -94,7 +101,8 @@
     </template>
     <template #right>
       <paginated-component
-        :current-page="pages.best"
+        v-if="recentRecords"
+        :current-page="recentRecordsPage"
         :items-per-page="limit"
         :total-items="recentRecords.totalAmount"
         @page-changed="page => handlePageChanged('recent', page)">
@@ -107,7 +115,8 @@
     </template>
   </column-layout>
   <paginated-component
-    :current-page="pages.level"
+    v-if="levels"
+    :current-page="levelsPage"
     :items-per-page="limit * 2"
     :total-items="levels.totalAmount"
     @page-changed="page => handlePageChanged('level', page)">
