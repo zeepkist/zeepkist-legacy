@@ -1,3 +1,4 @@
+import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
 import { PiniaSharedState } from 'pinia-shared-state'
 import { createApp } from 'vue'
@@ -16,5 +17,6 @@ pinia.use(
 
 app.use(pinia)
 app.use(router)
+app.use(VueQueryPlugin)
 
 app.mount('#app')

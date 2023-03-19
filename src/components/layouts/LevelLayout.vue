@@ -91,7 +91,8 @@
     </div>
   </div>
   <p>
-    This level has been played {{ recentRecords.totalAmount - invalidRecords.totalAmount }} times by
+    This level has been played
+    {{ recentRecords.totalAmount - invalidRecords.totalAmount }} times by
     {{ bestRecords.totalAmount }} players.
   </p>
   <column-layout>

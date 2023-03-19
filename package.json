@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@tabler/icons-vue": "2.11.0",
+    "@tanstack/vue-query": "4.27.0",
     "@vueuse/components": "9.13.0",
     "@zeepkist/gtr-api": "~2.0.9",
     "date-fns": "2.29.3",
