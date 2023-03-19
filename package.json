@@ -16,7 +16,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@tabler/icons-vue": "2.9.0",
+    "@tabler/icons-vue": "2.11.0",
     "@vueuse/components": "9.13.0",
     "@zeepkist/gtr-api": "~2.0.9",
     "date-fns": "2.29.3",
