@@ -22,7 +22,7 @@
     "@zeepkist/gtr-api": "~2.0.9",
     "date-fns": "2.29.3",
     "ky": "~0.33.2",
-    "pinia": "2.0.33",
+    "pinia": "2.0.34",
     "pinia-shared-state": "0.3.0",
     "vue": "3.2.47",
     "vue-router": "4.1.6"
