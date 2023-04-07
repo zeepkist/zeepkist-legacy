@@ -10,5 +10,7 @@
 /settings                     /index.html 200
 /auth                         /index.html 200
 # Redirect default Netlify subdomain to primary domain
-https://zeepkist.netlify.com/* https://zeepkist.wopian.me/:splat 301!
-https://zeepkist.wopian.me/* https://zeepki.st/:splat 301!
+https://zeepkist.netlify.com   https://zeepki.st        301!
+https://zeepkist.netlify.com/* https://zeepki.st/:splat 301!
+https://zeepkist.wopian.me     https://zeepki.st        301!
+https://zeepkist.wopian.me/*   https://zeepki.st/:splat 301!
