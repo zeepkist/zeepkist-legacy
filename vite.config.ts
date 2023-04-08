@@ -61,7 +61,8 @@ export default defineConfig({
           'dark-link-5': 'rgb(var(--orange-5))',
           'dark-link-6': 'rgb(var(--orange-6))',
 
-          'color-bg-1': '#ffefd9',
+          'color-bg-1': '#ffe7c5',
+          'color-bg-2': '#ffefd9',
 
           'dark-color-bg-1': '#222',
           'dark-color-bg-2': '#181818',

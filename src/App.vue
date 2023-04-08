@@ -35,7 +35,9 @@
 </template>
 
 <style module lang="less">
-  .header {
+@import '@arco-design/web-vue/es/style/theme/global.less';
+
+.header {
     position: sticky;
     top: 0;
   }
@@ -46,6 +48,9 @@
 
     background: var(--color-bg-2);
     padding: 0 1rem 1rem;
+
+    border-radius: var(--border-radius-large);
+    box-shadow: @shadow-special
   }
 </style>
 
