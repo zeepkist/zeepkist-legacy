@@ -2,9 +2,9 @@
   import { getUserRankings, type UserRankingsResponse } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
-  import ColumnLayout from '@/components/ColumnLayout.vue'
-  import PaginatedComponent from '@/components/PaginatedComponent.vue'
-  import UserList from '@/components/UserList.vue'
+  import ColumnLayout from '~/components/ColumnLayout.vue'
+  import PaginatedComponent from '~/components/PaginatedComponent.vue'
+  import UserList from '~/components/UserList.vue'
 
   const itemsPerPage = 20
 

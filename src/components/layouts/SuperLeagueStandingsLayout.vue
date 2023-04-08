@@ -1,9 +1,9 @@
 <script setup lang="ts">
   import { useRoute } from 'vue-router'
 
-  import DebugCode from '@/components/DebugCode.vue'
-  import StandingsList from '@/components/StandingsList.vue'
-  import { getSeasonStandings } from '@/services/superLeague'
+  import DebugCode from '~/components/DebugCode.vue'
+  import StandingsList from '~/components/StandingsList.vue'
+  import { getSeasonStandings } from '~/services/superLeague'
 
   const route = useRoute()
 

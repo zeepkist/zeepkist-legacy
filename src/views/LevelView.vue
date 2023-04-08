@@ -4,9 +4,9 @@
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
-  import ErrorLayout from '@/components/layouts/ErrorLayout.vue'
-  import LevelLayout from '@/components/layouts/LevelLayout.vue'
-  import LoadingIndicator from '@/components/LoadingIndicator.vue'
+  import ErrorLayout from '~/components/layouts/ErrorLayout.vue'
+  import LevelLayout from '~/components/layouts/LevelLayout.vue'
+  import LoadingIndicator from '~/components/LoadingIndicator.vue'
 
   const route = useRoute()
   const id = Number(route.params.id)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import UsersLayout from '@/components/layouts/UsersLayout.vue'
-  import LoadingIndicator from '@/components/LoadingIndicator.vue'
+  import UsersLayout from '~/components/layouts/UsersLayout.vue'
+  import LoadingIndicator from '~/components/LoadingIndicator.vue'
 </script>
 
 <template>

@@ -60,19 +60,18 @@
         font-size: 1rem;
         padding: 0.25rem 0.75rem;
         border: none;
-        border-radius: var(--border-radius);
-        background: var(--color-button-hover);
-        color: var(--color-text-inverted);
+        border-radius: var(--border-radius-medium);
+        background: none;
+        color: rgb(var(--link-6));
         cursor: pointer;
 
         &:disabled {
-          background: var(--color-background-mute);
-          color: var(--color-text-mute);
+          color: var(--color-text-4);
           cursor: not-allowed;
         }
 
         &:hover:not(:disabled) {
-          background: var(--color-hover);
+          color: rgb(var(--link-10));
         }
       }
     }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import DashboardLayout from '@/components/layouts/DashboardLayout.vue'
-  import LoadingIndicator from '@/components/LoadingIndicator.vue'
+  import DashboardLayout from '~/components/layouts/DashboardLayout.vue'
+  import LoadingIndicator from '~/components/LoadingIndicator.vue'
 </script>
 
 <template>

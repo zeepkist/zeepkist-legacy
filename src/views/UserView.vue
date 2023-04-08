@@ -4,9 +4,9 @@
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
-  import ErrorLayout from '@/components/layouts/ErrorLayout.vue'
-  import UserLayout from '@/components/layouts/UserLayout.vue'
-  import LoadingIndicator from '@/components/LoadingIndicator.vue'
+  import ErrorLayout from '~/components/layouts/ErrorLayout.vue'
+  import UserLayout from '~/components/layouts/UserLayout.vue'
+  import LoadingIndicator from '~/components/LoadingIndicator.vue'
 
   const route = useRoute()
   const steamId = route.params.steamId as string

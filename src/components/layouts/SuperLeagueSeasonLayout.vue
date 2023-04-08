@@ -2,8 +2,8 @@
   import { HTTPError } from 'ky'
   import { useRoute, useRouter } from 'vue-router'
 
-  import type { MetadataEvents } from '@/models/superLeague'
-  import { getSeason } from '@/services/superLeague'
+  import type { MetadataEvents } from '~/models/superLeague'
+  import { getSeason } from '~/services/superLeague'
 
   const route = useRoute()
   const router = useRouter()
@@ -50,19 +50,15 @@
 
     a:global {
       padding: 0.25rem 0.5rem;
-      background: var(--color-background-mute);
+      background: var(--color-bg-1);
+      color: rgb(var(--color-text-1));
     }
 
+    a:hover:global,
     a:global.router-link-exact-active {
-      background: var(--color-button-active);
-      color: var(--color-text-inverted);
-      border-radius: var(--border-radius);
-    }
-
-    a:hover:global {
-      background: var(--color-button-hover);
-      color: var(--color-text-inverted);
-      border-radius: var(--border-radius);
+      background: var(--color-bg-1);
+      color: rgb(var(--primary-6));
+      border-radius: var(--border-radius-medium);
     }
   }
 </style>

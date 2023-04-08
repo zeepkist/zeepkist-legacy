@@ -3,10 +3,10 @@
   import { getLevels, getRecords } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
-  import ColumnLayout from '@/components/ColumnLayout.vue'
-  import LevelList from '@/components/LevelList.vue'
-  import PaginatedComponent from '@/components/PaginatedComponent.vue'
-  import RecordList from '@/components/RecordList.vue'
+  import ColumnLayout from '~/components/ColumnLayout.vue'
+  import LevelList from '~/components/LevelList.vue'
+  import PaginatedComponent from '~/components/PaginatedComponent.vue'
+  import RecordList from '~/components/RecordList.vue'
 
   type RecordType = 'worldRecord' | 'recent'
 

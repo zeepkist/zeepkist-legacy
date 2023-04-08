@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { RouterLink } from 'vue-router'
 
-  import { getSeasons } from '@/services/superLeague'
+  import { getSeasons } from '~/services/superLeague'
 
   const seasons = await getSeasons()
 
@@ -51,7 +51,7 @@
   }
 
   .card {
-    background-color: var(--color-background-mute);
+    background: var(--color-bg-1);
     border-radius: 0.5rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
     padding: 1rem;

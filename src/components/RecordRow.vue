@@ -2,8 +2,8 @@
   import type { LevelRecord } from '@zeepkist/gtr-api'
   import { RouterLink } from 'vue-router'
 
-  import UserBadge from '@/components/UserBadge.vue'
-  import { formatDate, formatRelativeDate, formatResultTime } from '@/utils'
+  import UserBadge from '~/components/UserBadge.vue'
+  import { formatDate, formatRelativeDate, formatResultTime } from '~/utils'
 
   const {
     record,
@@ -92,7 +92,7 @@
     }
 
     &:nth-of-type(even) {
-      background: var(--color-background-mute);
+      background: var(--color-bg-1);
     }
 
     img {
@@ -104,19 +104,19 @@
       display: flex;
       gap: 0.25rem;
       span {
-        border: 1px solid var(--color-button-active);
-        border-radius: var(--border-radius);
+        border: 1px solid rgb(var(--primary-6));
+        border-radius: var(--border-radius-medium);
         padding: 0 0.25rem;
         font-size: 0.75rem;
 
         &.wr {
           font-weight: 600;
-          color: var(--color-text-inverted);
-          background: var(--color-button-hover);
+          color: var(--color-bg-1);
+          background: rgb(var(--primary-6));
         }
 
         &.any {
-          border: 1px solid var(--color-disabled);
+          border: 1px solid var(--color-text-4);
         }
       }
     }
@@ -135,14 +135,14 @@
 
       button {
         border: none;
-        border-radius: var(--border-radius);
-        background: var(--color-button-hover);
-        color: var(--color-text-inverted);
+        border-radius: var(--border-radius-medium);
+        color: var(--color-bg-1);
+        background: rgb(var(--primary-6));
         cursor: pointer;
 
         &:disabled {
-          background: var(--color-background-mute);
-          color: var(--color-text-mute);
+          background: var(--color-bg-2);
+          color: var(--color-text-4);
           cursor: not-allowed;
         }
 

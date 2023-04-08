@@ -1,3 +1,6 @@
+import '@arco-design/web-vue/dist/arco.less'
+
+import ArcoVue from '@arco-design/web-vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
 import { PiniaSharedState } from 'pinia-shared-state'
@@ -9,6 +12,17 @@ import router from './router'
 const app = createApp(App)
 const pinia = createPinia()
 
+const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
+
+document.body.setAttribute(
+  'arco-theme',
+  prefersDarkMode.matches ? 'dark' : 'light'
+)
+
+prefersDarkMode.addEventListener('change', event => {
+  document.body.setAttribute('arco-theme', event.matches ? 'dark' : 'light')
+})
+
 pinia.use(
   PiniaSharedState({
     type: 'native'
@@ -18,5 +32,6 @@ pinia.use(
 app.use(pinia)
 app.use(router)
 app.use(VueQueryPlugin)
+app.use(ArcoVue)
 
 app.mount('#app')

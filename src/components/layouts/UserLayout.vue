@@ -3,11 +3,11 @@
   import { getRecords, type User } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
-  import ColumnLayout from '@/components/ColumnLayout.vue'
-  import PaginatedComponent from '@/components/PaginatedComponent.vue'
-  import RecordList from '@/components/RecordList.vue'
-  import UserBadge from '@/components/UserBadge.vue'
-  import { formatUser } from '@/utils'
+  import ColumnLayout from '~/components/ColumnLayout.vue'
+  import PaginatedComponent from '~/components/PaginatedComponent.vue'
+  import RecordList from '~/components/RecordList.vue'
+  import UserBadge from '~/components/UserBadge.vue'
+  import { formatUser } from '~/utils'
 
   type RecordType = 'worldRecord' | 'best' | 'invalid' | 'recent'
 

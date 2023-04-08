@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { RouterLink } from 'vue-router'
 
-  import UserBadge from '@/components/UserBadge.vue'
-  import type { Standing } from '@/models/superLeague'
+  import UserBadge from '~/components/UserBadge.vue'
+  import type { Standing } from '~/models/superLeague'
 
   const {
     user,
@@ -42,7 +42,7 @@
     padding: 0.5rem 1rem 0.5rem 0.25rem;
 
     &:nth-child(even) {
-      background-color: var(--color-background-page);
+      background: var(--color-bg-1);
     }
 
     span {

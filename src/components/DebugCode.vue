@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { IS_DEV } from '@/configs'
+  import { IS_DEV } from '~/configs'
 
   const { data } = defineProps<{
     data: unknown
@@ -25,6 +25,6 @@
   }
 
   code:nth-of-type(even) {
-    color: var(--zeepkist-yellow);
+    color: rgb(var(--primary-6));
   }
 </style>

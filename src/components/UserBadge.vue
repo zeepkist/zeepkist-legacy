@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { formatUser } from '@/utils'
+  import { formatUser } from '~/utils'
 
   const { username, team } = defineProps<{
     username: string
@@ -34,7 +34,7 @@
     font-size: 0.8em;
     font-weight: 800;
     vertical-align: middle;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-medium);
     margin-right: 0.5ch;
   }
 </style>

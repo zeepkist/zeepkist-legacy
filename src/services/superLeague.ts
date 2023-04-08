@@ -5,7 +5,7 @@ import type {
   MetadataEvents,
   SeasonEvent,
   Standing
-} from '@/models/superLeague.js'
+} from '~/models/superLeague.js'
 
 const api = ky.create({
   prefixUrl: '/api/super-league/'
