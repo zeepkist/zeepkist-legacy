@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { useRoute } from 'vue-router'
 
-  import SuperLeagueSeasonLayout from '@/components/layouts/SuperLeagueSeasonLayout.vue'
-  import LoadingIndicator from '@/components/LoadingIndicator.vue'
+  import SuperLeagueSeasonLayout from '~/components/layouts/SuperLeagueSeasonLayout.vue'
+  import LoadingIndicator from '~/components/LoadingIndicator.vue'
 
   const route = useRoute()
 

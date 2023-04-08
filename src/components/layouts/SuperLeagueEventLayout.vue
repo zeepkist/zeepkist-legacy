@@ -3,11 +3,11 @@
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
-  import DebugCode from '@/components/DebugCode.vue'
-  import StandingsList from '@/components/StandingsList.vue'
-  import type { SeasonEvent } from '@/models/superLeague'
-  import { getEvent } from '@/services/superLeague'
-  import { formatRelativeDate } from '@/utils'
+  import DebugCode from '~/components/DebugCode.vue'
+  import StandingsList from '~/components/StandingsList.vue'
+  import type { SeasonEvent } from '~/models/superLeague'
+  import { getEvent } from '~/services/superLeague'
+  import { formatRelativeDate } from '~/utils'
 
   const route = useRoute()
 

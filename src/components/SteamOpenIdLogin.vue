@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import LoginWithSteamLogo from '~/assets/login-with-steam.png?inline'
+
   const realm = import.meta.env.PROD
     ? 'https://zeepkist.wopian.me'
     : 'http://localhost:5173'
@@ -25,7 +27,7 @@
     <input type="hidden" name="openid.realm" :value="realm" />
     <input type="hidden" name="openid.return_to" :value="returnTo" />
     <button type="submit">
-      <img src="@/assets/login-with-steam.png" alt="Login with Steam" />
+      <img :src="LoginWithSteamLogo" alt="Login with Steam" />
     </button>
   </form>
 </template>

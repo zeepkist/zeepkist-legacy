@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { useRoute, useRouter } from 'vue-router'
 
-  import { useSteamStore } from '@/stores/steam'
+  import { useSteamStore } from '~/stores/steam'
 
   const route = useRoute()
   const router = useRouter()

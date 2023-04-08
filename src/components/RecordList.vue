@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import type { LevelRecord } from '@zeepkist/gtr-api'
 
-  import RecordRow from '@/components/RecordRow.vue'
+  import RecordRow from '~/components/RecordRow.vue'
 
   const {
     header = 'Records',

@@ -4,10 +4,15 @@
   import { ref } from 'vue'
   import { RouterLink } from 'vue-router'
 
-  import UserBadge from '@/components/UserBadge.vue'
-  import { PLAY_URL, WORKSHOP_URL } from '@/configs'
-  import { getCachedRecords } from '@/services/cache'
-  import { formatResultTime } from '@/utils'
+  import IconMedalAuthor from '~/assets/medal-author.webp?inline'
+  import IconMedalBronze from '~/assets/medal-bronze.webp?inline'
+  import IconMedalGold from '~/assets/medal-gold.webp?inline'
+  import IconMedalSilver from '~/assets/medal-silver.webp?inline'
+  import IconTrophy from '~/assets/trophy.webp?inline'
+  import UserBadge from '~/components/UserBadge.vue'
+  import { PLAY_URL, WORKSHOP_URL } from '~/configs'
+  import { getCachedRecords } from '~/services/cache'
+  import { formatResultTime } from '~/utils'
 
   const { level, hideLevelThumbnail = false } = defineProps<{
     level: Level
@@ -61,7 +66,7 @@
       <div class="subtext">By <user-badge :username="level.author" /></div>
     </div>
     <div v-if="worldRecord" class="author medal">
-      <img src="@/assets/trophy.webp" alt="World Record" />
+      <img :src="IconTrophy" alt="World Record" />
       <div class="author">
         <router-link
           :to="{ name: 'user', params: { steamId: worldRecord.user.steamId } }">
@@ -80,19 +85,19 @@
         { rootMargin: '25%' }
       ]"></div>
     <div class="medal">
-      <img src="@/assets/medal-author.webp" alt="Author Medal" />
+      <img :src="IconMedalAuthor" alt="Author Medal" />
       {{ formatResultTime(level.timeAuthor) }}
     </div>
     <div class="medal">
-      <img src="@/assets/medal-gold.webp" alt="Gold Medal" />
+      <img :src="IconMedalGold" alt="Gold Medal" />
       {{ formatResultTime(level.timeGold) }}
     </div>
     <div class="medal">
-      <img src="@/assets/medal-silver.webp" alt="Silver Medal" />
+      <img :src="IconMedalSilver" alt="Silver Medal" />
       {{ formatResultTime(level.timeSilver) }}
     </div>
     <div class="medal">
-      <img src="@/assets/medal-bronze.webp" alt="Bronze Medal" />
+      <img :src="IconMedalBronze" alt="Bronze Medal" />
       {{ formatResultTime(level.timeBronze) }}
     </div>
     <div class="actions">
@@ -120,7 +125,7 @@
     }
 
     &:nth-of-type(even) {
-      background: var(--color-background-mute);
+      background: var(--color-bg-1);
     }
 
     img {

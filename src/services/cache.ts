@@ -5,7 +5,7 @@ import {
 } from '@zeepkist/gtr-api'
 import type { Duration } from 'date-fns'
 
-import { useCacheStore } from '@/stores/cache'
+import { useCacheStore } from '~/stores/cache'
 
 export const getCachedRecords = async (
   parameters: RecordsParameters,

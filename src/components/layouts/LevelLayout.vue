@@ -3,10 +3,10 @@
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
-  import ColumnLayout from '@/components/ColumnLayout.vue'
-  import PaginatedComponent from '@/components/PaginatedComponent.vue'
-  import RecordList from '@/components/RecordList.vue'
-  import UserBadge from '@/components/UserBadge.vue'
+  import ColumnLayout from '~/components/ColumnLayout.vue'
+  import PaginatedComponent from '~/components/PaginatedComponent.vue'
+  import RecordList from '~/components/RecordList.vue'
+  import UserBadge from '~/components/UserBadge.vue'
 
   type RecordType = 'recent' | 'best' | 'invalid'
 

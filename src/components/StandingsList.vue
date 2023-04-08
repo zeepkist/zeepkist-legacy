@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import ColumnLayout from '@/components/ColumnLayout.vue'
-  import StandingsRow from '@/components/StandingsRow.vue'
-  import type { Standing } from '@/models/superLeague'
+  import ColumnLayout from '~/components/ColumnLayout.vue'
+  import StandingsRow from '~/components/StandingsRow.vue'
+  import type { Standing } from '~/models/superLeague'
 
   const { users, isSeasonStandings } = defineProps<{
     users: Standing[]

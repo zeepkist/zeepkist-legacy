@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import type { Level } from '@zeepkist/gtr-api'
 
-  import LevelRow from '@/components/LevelRow.vue'
+  import LevelRow from '~/components/LevelRow.vue'
 
   const { header, levels, hideLevelThumbnail } = defineProps<{
     header?: string

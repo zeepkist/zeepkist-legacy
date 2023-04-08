@@ -2,7 +2,7 @@
   import type { User } from '@zeepkist/gtr-api'
   import { RouterLink } from 'vue-router'
 
-  import UserBadge from '@/components/UserBadge.vue'
+  import UserBadge from '~/components/UserBadge.vue'
 
   const { user, rank, worldRecords } = defineProps<{
     user: User
@@ -35,7 +35,7 @@
     padding: 0.25rem 1.25rem 0.25rem 0;
 
     &:nth-of-type(even) {
-      background: var(--color-background-mute);
+      background: var(--color-bg-1);
     }
 
     .rank {

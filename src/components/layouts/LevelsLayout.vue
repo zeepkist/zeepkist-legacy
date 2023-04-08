@@ -2,8 +2,8 @@
   import { getLevels, type LevelsResponse } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
-  import LevelList from '@/components/LevelList.vue'
-  import PaginatedComponent from '@/components/PaginatedComponent.vue'
+  import LevelList from '~/components/LevelList.vue'
+  import PaginatedComponent from '~/components/PaginatedComponent.vue'
 
   const itemsPerPage = 40
 

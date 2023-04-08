@@ -2,7 +2,7 @@
   import { getLevels } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
-  import LevelList from '@/components/LevelList.vue'
+  import LevelList from '~/components/LevelList.vue'
 
   const levels = ref(await getLevels({ WorkshopId: '0' }))
 </script>

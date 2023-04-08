@@ -18,7 +18,7 @@ import './commands'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 // Import global styles
-import '@/assets/main.css'
+import '~/assets/main.css'
 
 import { mount } from 'cypress/vue'
 

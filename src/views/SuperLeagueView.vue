@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import SuperLeagueLayout from '@/components/layouts/SuperLeagueLayout.vue'
-  import LoadingIndicator from '@/components/LoadingIndicator.vue'
+  import SuperLeagueLayout from '~/components/layouts/SuperLeagueLayout.vue'
+  import LoadingIndicator from '~/components/LoadingIndicator.vue'
 </script>
 
 <template>
