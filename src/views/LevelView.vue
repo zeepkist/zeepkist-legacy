@@ -7,6 +7,7 @@
   import ErrorLayout from '~/components/layouts/ErrorLayout.vue'
   import LevelLayout from '~/components/layouts/LevelLayout.vue'
   import LoadingIndicator from '~/components/LoadingIndicator.vue'
+  import ContentSheet from '~/components/sheets/ContentSheet.vue'
 
   const route = useRoute()
   const id = Number(route.params.id)
@@ -28,13 +29,15 @@
 </script>
 
 <template>
-  <suspense>
-    <level-layout v-if="level" :level="level" />
-    <error-layout
-      v-else
-      message="Level not found. It may not have been played by a user with Zeepkist GTR installed yet!" />
-    <template #fallback>
-      <loading-indicator />
-    </template>
-  </suspense>
+  <content-sheet>
+    <suspense>
+      <level-layout v-if="level" :level="level" />
+      <error-layout
+        v-else
+        message="Level not found. It may not have been played by a user with Zeepkist GTR installed yet!" />
+      <template #fallback>
+        <loading-indicator />
+      </template>
+    </suspense>
+  </content-sheet>
 </template>

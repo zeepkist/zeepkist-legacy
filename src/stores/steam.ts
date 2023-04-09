@@ -9,6 +9,10 @@ export const useSteamStore = defineStore({
     setSteamId(steamId: string) {
       this.steamId = steamId
       localStorage.setItem('steamId', steamId)
+    },
+    logout() {
+      this.steamId = ''
+      localStorage.removeItem('steamId')
     }
   }
 })

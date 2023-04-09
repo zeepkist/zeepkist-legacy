@@ -3,6 +3,7 @@
 
   import SuperLeagueSeasonLayout from '~/components/layouts/SuperLeagueSeasonLayout.vue'
   import LoadingIndicator from '~/components/LoadingIndicator.vue'
+  import ContentSheet from '~/components/sheets/ContentSheet.vue'
 
   const route = useRoute()
 
@@ -15,16 +16,18 @@
 </script>
 
 <template>
-  <div>
-    <h1>Super League: {{ formatTitle(season) }}</h1>
-    <router-link :to="{ name: 'super-league' }"
-      >Back to Super League</router-link
-    >
-  </div>
-  <suspense>
-    <super-league-season-layout />
-    <template #fallback>
-      <loading-indicator />
-    </template>
-  </suspense>
+  <content-sheet>
+    <div>
+      <h1>Super League: {{ formatTitle(season) }}</h1>
+      <router-link :to="{ name: 'super-league' }"
+        >Back to Super League</router-link
+      >
+    </div>
+    <suspense>
+      <super-league-season-layout />
+      <template #fallback>
+        <loading-indicator />
+      </template>
+    </suspense>
+  </content-sheet>
 </template>

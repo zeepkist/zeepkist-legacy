@@ -7,6 +7,7 @@
   import ErrorLayout from '~/components/layouts/ErrorLayout.vue'
   import UserLayout from '~/components/layouts/UserLayout.vue'
   import LoadingIndicator from '~/components/LoadingIndicator.vue'
+  import ContentSheet from '~/components/sheets/ContentSheet.vue'
 
   const route = useRoute()
   const steamId = route.params.steamId as string
@@ -25,13 +26,15 @@
 </script>
 
 <template>
-  <suspense>
-    <user-layout v-if="user" :user="user" />
-    <error-layout
-      v-else
-      message="User not found. They may not have the Zeepkist GTR mod installed!" />
-    <template #fallback>
-      <loading-indicator />
-    </template>
-  </suspense>
+  <content-sheet>
+    <suspense>
+      <user-layout v-if="user" :user="user" />
+      <error-layout
+        v-else
+        message="User not found. They may not have the Zeepkist GTR mod installed!" />
+      <template #fallback>
+        <loading-indicator />
+      </template>
+    </suspense>
+  </content-sheet>
 </template>

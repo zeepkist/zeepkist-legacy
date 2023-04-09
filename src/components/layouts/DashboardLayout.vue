@@ -7,9 +7,14 @@
   import LevelList from '~/components/LevelList.vue'
   import PaginatedComponent from '~/components/PaginatedComponent.vue'
   import RecordList from '~/components/RecordList.vue'
+  import ContentSheet from '~/components/sheets/ContentSheet.vue'
+  import DashboardStatsSheet from '~/components/sheets/DashboardStatsSheet.vue'
+  import ZeepkistDiscordSheet from '~/components/sheets/ZeepkistDiscordSheet.vue'
+  import { useSteamStore } from '~/stores/steam'
 
   type RecordType = 'worldRecord' | 'recent'
 
+  const steamStore = useSteamStore()
   const limit = 10
 
   const worldRecordsPage = ref(1)
@@ -81,45 +86,66 @@
 </script>
 
 <template>
-  <p>
-    There are currently {{ recentRecords?.totalAmount }} records on
-    {{ levels?.totalAmount }} levels.
-  </p>
-  <column-layout>
+  <column-layout v-if="!steamStore.steamId">
     <template #left>
-      <paginated-component
-        v-if="worldRecords"
-        :current-page="worldRecordsPage"
-        :items-per-page="limit"
-        :total-items="worldRecords.totalAmount"
-        @page-changed="page => handlePageChanged('worldRecord', page)">
-        <record-list
-          header="World Records"
-          :records="worldRecords.records"
-          show-user />
-      </paginated-component>
+      <dashboard-stats-sheet
+        :levels="levels?.totalAmount"
+        :records="recentRecords?.totalAmount"
+        :world-records="worldRecords?.totalAmount" />
     </template>
     <template #right>
-      <paginated-component
-        v-if="recentRecords"
-        :current-page="recentRecordsPage"
-        :items-per-page="limit"
-        :total-items="recentRecords.totalAmount"
-        @page-changed="page => handlePageChanged('recent', page)">
-        <record-list
-          header="Recent Times"
-          :records="recentRecords.records"
-          show-user
-          show-badges />
-      </paginated-component>
+      <zeepkist-discord-sheet />
     </template>
   </column-layout>
-  <paginated-component
-    v-if="levels"
-    :current-page="levelsPage"
-    :items-per-page="limit * 2"
-    :total-items="levels.totalAmount"
-    @page-changed="page => handlePageChanged('level', page)">
-    <level-list header="Recent Levels" :levels="levels.levels" />
-  </paginated-component>
+
+  <dashboard-stats-sheet
+    v-if="steamStore.steamId"
+    :levels="levels?.totalAmount"
+    :records="recentRecords?.totalAmount"
+    :world-records="worldRecords?.totalAmount" />
+
+  <column-layout>
+    <template #left>
+      <content-sheet>
+        <paginated-component
+          v-if="worldRecords"
+          :current-page="worldRecordsPage"
+          :items-per-page="limit"
+          :total-items="worldRecords.totalAmount"
+          @page-changed="page => handlePageChanged('worldRecord', page)">
+          <record-list
+            header="World Records"
+            :records="worldRecords.records"
+            show-user />
+        </paginated-component>
+      </content-sheet>
+    </template>
+    <template #right>
+      <content-sheet>
+        <paginated-component
+          v-if="recentRecords"
+          :current-page="recentRecordsPage"
+          :items-per-page="limit"
+          :total-items="recentRecords.totalAmount"
+          @page-changed="page => handlePageChanged('recent', page)">
+          <record-list
+            header="Recent Times"
+            :records="recentRecords.records"
+            show-user
+            show-badges />
+        </paginated-component>
+      </content-sheet>
+    </template>
+  </column-layout>
+
+  <content-sheet>
+    <paginated-component
+      v-if="levels"
+      :current-page="levelsPage"
+      :items-per-page="limit * 2"
+      :total-items="levels.totalAmount"
+      @page-changed="page => handlePageChanged('level', page)">
+      <level-list header="Recent Levels" :levels="levels.levels" />
+    </paginated-component>
+  </content-sheet>
 </template>
