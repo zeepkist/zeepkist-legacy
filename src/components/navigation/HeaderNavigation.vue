@@ -83,11 +83,11 @@
 </script>
 
 <template>
-  <div v-if="isMobile" :class="$style.logoMobile">
+  <div v-if="isMobile" :class="$style.mobileHeader">
     <img
       :src="ZeepkistIcon"
       alt=""
-      :class="[$style.logo, $style.logoVertical]" />
+      :class="[$style.logo, $style.mobileLogo]" />
     Zeepkist
   </div>
   <button v-if="isMobile" :class="$style.toggleMenu" @click="handleToggleMenu">
@@ -103,12 +103,12 @@
         : [$style.header, { [$style.largeHeader]: isLargeHeader }]
     "
     :mode="isMobile ? 'vertical' : 'horizontal'">
-    <a-menu-item v-if="!isMobile" key="1">
+    <a-menu-item v-if="!isMobile" key="1" :class="$style.logoContainer">
       <router-link :to="{ name: 'dashboard' }">
         <img
           :src="ZeepkistIcon"
           alt=""
-          :class="[$style.logo, isMobile && $style.logoVertical]" />
+          :class="[$style.logo, isMobile && $style.mobileLogo]" />
       </router-link>
     </a-menu-item>
     <a-menu-item
@@ -157,8 +157,14 @@
 </template>
 
 <style module lang="less">
-  .logoMobile {
+  .mobileHeader,
+  .toggleMenu,
+  .header,
+  .verticalHeader {
     position: absolute;
+  }
+
+  .mobileHeader {
     padding: 0.5rem 0 0.5rem 1rem;
     left: 0;
     right: 0;
@@ -172,7 +178,7 @@
     background: var(--color-bg-2);
   }
 
-  .logoVertical {
+  .mobileLogo {
     max-height: 50px;
   }
 
@@ -187,7 +193,6 @@
     background: none;
     border: none;
     color: var(--color-text-1);
-    position: absolute;
     top: 1.375rem;
     right: 1rem;
     z-index: 999;
@@ -196,7 +201,6 @@
 
   .verticalHeader,
   .header {
-    position: absolute;
 
     :global(.arco-menu-item) {
       color: var(--color-text-1);
@@ -219,6 +223,10 @@
     max-width: 1300px;
     margin: 0 auto;
     padding: 0;
+
+    .logoContainer {
+      padding: 0 1rem 0 0;
+    }
 
     :global(.arco-menu-overflow-wrap) {
       display: flex;
