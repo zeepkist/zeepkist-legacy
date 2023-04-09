@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <content-sheet style="height: calc(100% - 2rem); text-align: center">
+  <content-sheet :class="$style.content">
     <h2>Stats</h2>
     <a-space size="large">
       <a-statistic
@@ -30,3 +30,10 @@
     </a-space>
   </content-sheet>
 </template>
+
+<style module lang="less">
+  .content {
+    height: calc(100% - 2rem);
+    text-align: center;
+  }
+</style>
