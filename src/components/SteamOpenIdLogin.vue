@@ -37,6 +37,7 @@
     border: none;
     background: none;
     display: flex;
+    margin: 0 auto;
 
     img {
       cursor: pointer;

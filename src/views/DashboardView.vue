@@ -1,10 +1,11 @@
 <script setup lang="ts">
   import DashboardLayout from '~/components/layouts/DashboardLayout.vue'
   import LoadingIndicator from '~/components/LoadingIndicator.vue'
+  import DownloadLoginSheet from '~/components/sheets/DownloadLoginSheet.vue'
 </script>
 
 <template>
-  <h1>Zeepkist Records</h1>
+  <download-login-sheet />
   <suspense>
     <dashboard-layout />
     <template #fallback>

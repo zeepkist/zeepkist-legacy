@@ -61,8 +61,7 @@ export default defineConfig({
           'dark-link-5': 'rgb(var(--orange-5))',
           'dark-link-6': 'rgb(var(--orange-6))',
 
-          'color-bg-1': '#ffe7c5',
-          'color-bg-2': '#ffefd9',
+          'color-bg-1': '#fff7ec',
 
           'dark-color-bg-1': '#222',
           'dark-color-bg-2': '#181818',
@@ -72,6 +71,8 @@ export default defineConfig({
           'dark-color-bg-6': '#181818',
 
           'color-menu-dark-bg': '#181818',
+
+          'dark-color-secondary': '#222',
 
           // Zeepkist Orange
           'orange-1': '#FFF9E8',
