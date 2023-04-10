@@ -947,19 +947,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:4.27.0":
-  version: 4.27.0
-  resolution: "@tanstack/query-core@npm:4.27.0"
-  checksum: 914b4f01ac75632f4603b650e9105f64c739b79250baf76aad16cee216f7bad6060c04eda0c70838fe61a5f6c17883e19fcc3075b2433a906539da95ce785796
+"@tanstack/query-core@npm:4.29.1":
+  version: 4.29.1
+  resolution: "@tanstack/query-core@npm:4.29.1"
+  checksum: e7a5a73e5e743411e39348bee3ded4b6c5dd3a70009e72e067e257d5f3d612bfe8df0998cddff6ad7a078e0bcf7a3c92ded669758ca697055472ce910e23a368
   languageName: node
   linkType: hard
 
-"@tanstack/vue-query@npm:4.27.0":
-  version: 4.27.0
-  resolution: "@tanstack/vue-query@npm:4.27.0"
+"@tanstack/vue-query@npm:4.29.1":
+  version: 4.29.1
+  resolution: "@tanstack/vue-query@npm:4.29.1"
   dependencies:
     "@tanstack/match-sorter-utils": ^8.1.1
-    "@tanstack/query-core": 4.27.0
+    "@tanstack/query-core": 4.29.1
     "@vue/devtools-api": ^6.4.2
     vue-demi: ^0.13.11
   peerDependencies:
@@ -968,7 +968,7 @@ __metadata:
   peerDependenciesMeta:
     "@vue/composition-api":
       optional: true
-  checksum: 7beb2996195496f7244892ec6329f32fd4b8e7fa614a6268cd735199685c3991c26a0282ab66f9698b8c5d536a2a9a1ff39a0de8c0424b02a91f222ba999b59d
+  checksum: 0e544f4dd449146070ea4b04670388e2503508b6a5997162464f20ba50fb6601fa0961b60f30975cf8d4910bac6dae0c7035470d2d74f499e417a9bb458ee531
   languageName: node
   linkType: hard
 
@@ -9073,7 +9073,7 @@ __metadata:
     "@semantic-release/github": 8.0.7
     "@semantic-release/release-notes-generator": 10.0.3
     "@tabler/icons-vue": 2.15.0
-    "@tanstack/vue-query": 4.27.0
+    "@tanstack/vue-query": 4.29.1
     "@types/node": 18.15.11
     "@vitejs/plugin-vue": 4.1.0
     "@vue/eslint-config-prettier": 7.1.0
