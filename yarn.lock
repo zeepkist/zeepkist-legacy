@@ -920,21 +920,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tabler/icons-vue@npm:2.14.0":
-  version: 2.14.0
-  resolution: "@tabler/icons-vue@npm:2.14.0"
+"@tabler/icons-vue@npm:2.15.0":
+  version: 2.15.0
+  resolution: "@tabler/icons-vue@npm:2.15.0"
   dependencies:
-    "@tabler/icons": 2.14.0
+    "@tabler/icons": 2.15.0
   peerDependencies:
     vue: ">=3.0.1"
-  checksum: 3d7e5d4568779030d4b2a930642134f9cfafeb8c8291dc12fe87253f340f8bfed7b112466ccaf9b0fbfbafbca31c0ea158ff2df1ba920883b75fb0d39dc269ff
+  checksum: 07244a9e3970647c4430feaeb65f484cb608d52ad5a16242c3c83980a7f1afcbf87770243512ef5e508dff3201da16cc25f68797e2cdc0d7fb484c8bc646f245
   languageName: node
   linkType: hard
 
-"@tabler/icons@npm:2.14.0":
-  version: 2.14.0
-  resolution: "@tabler/icons@npm:2.14.0"
-  checksum: 9d29f46ddc618c136b070ea33f75ce2c99c3544ea3598be0d33f579013601fc22cc1416894e5de1bb68551cc1422226fb97d96c2cd97e363b21587d57fec331c
+"@tabler/icons@npm:2.15.0":
+  version: 2.15.0
+  resolution: "@tabler/icons@npm:2.15.0"
+  checksum: c1dd12540578afb139bbe68f4b6eae08a76322d9e7ac2cd36f102b0e5216ca397aa03c9d3e42eb19c1f1539ff16eaa5d8580699486c43bc9207a3a21a743aff4
   languageName: node
   linkType: hard
 
@@ -9072,7 +9072,7 @@ __metadata:
     "@semantic-release/commit-analyzer": 9.0.2
     "@semantic-release/github": 8.0.7
     "@semantic-release/release-notes-generator": 10.0.3
-    "@tabler/icons-vue": 2.14.0
+    "@tabler/icons-vue": 2.15.0
     "@tanstack/vue-query": 4.27.0
     "@types/node": 18.15.11
     "@vitejs/plugin-vue": 4.1.0
