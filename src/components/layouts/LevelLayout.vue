@@ -6,6 +6,7 @@
   import ColumnLayout from '~/components/ColumnLayout.vue'
   import PaginatedComponent from '~/components/PaginatedComponent.vue'
   import RecordList from '~/components/RecordList.vue'
+  import ContentSheet from '~/components/sheets/ContentSheet.vue'
   import UserBadge from '~/components/UserBadge.vue'
 
   type RecordType = 'recent' | 'best' | 'invalid'
@@ -83,82 +84,160 @@
 </script>
 
 <template>
-  <div class="header">
+  <div :class="$style.coverImageContainer">
+    <div
+      :style="{ '--thumbnailUrl': `url(${level.thumbnailUrl})` }"
+      :class="$style.coverImage" />
+  </div>
+  <div :class="$style.header">
     <img :src="level.thumbnailUrl" alt="" />
-    <div class="header-title">
+    <div :class="$style.headerTitle">
       <h1>{{ level.name }}</h1>
-      <span class="author">By <user-badge :username="level.author" /></span>
+      <span :class="$style.headerAuthor"
+        >By <user-badge :username="level.author"
+      /></span>
+      <div :class="$style.headerExtra">
+        <span
+          v-if="recentRecords.totalAmount - invalidRecords.totalAmount > 250"
+          :class="$style.badge"
+          >POPULAR</span
+        >
+        <span
+          >{{ recentRecords.totalAmount - invalidRecords.totalAmount }} valid
+          runs</span
+        >
+        <span>{{ bestRecords.totalAmount }} players</span>
+      </div>
     </div>
   </div>
-  <p>
-    This level has been played
-    {{ recentRecords.totalAmount - invalidRecords.totalAmount }} times by
-    {{ bestRecords.totalAmount }} players.
-  </p>
   <column-layout>
     <template #left>
-      <paginated-component
-        :current-page="pages.best"
-        :items-per-page="limit"
-        :total-items="bestRecords.totalAmount"
-        @page-changed="page => handlePageChanged('best', page)">
-        <record-list
-          header="Best Times"
-          :records="bestRecords.records"
-          :rank-offset="(pages.best - 1) * limit"
-          show-user
-          hide-track-info />
-      </paginated-component>
+      <content-sheet>
+        <paginated-component
+          :current-page="pages.best"
+          :items-per-page="limit"
+          :total-items="bestRecords.totalAmount"
+          @page-changed="page => handlePageChanged('best', page)">
+          <record-list
+            header="Best Times"
+            :records="bestRecords.records"
+            :rank-offset="(pages.best - 1) * limit"
+            show-user
+            hide-track-info />
+        </paginated-component>
+      </content-sheet>
     </template>
     <template #center>
-      <paginated-component
-        :current-page="pages.recent"
-        :items-per-page="limit"
-        :total-items="recentRecords.totalAmount"
-        @page-changed="page => handlePageChanged('recent', page)">
-        <record-list
-          header="Recent Times"
-          :records="recentRecords.records"
-          show-user
-          show-badges
-          hide-track-info />
-      </paginated-component>
+      <content-sheet>
+        <paginated-component
+          :current-page="pages.recent"
+          :items-per-page="limit"
+          :total-items="recentRecords.totalAmount"
+          @page-changed="page => handlePageChanged('recent', page)">
+          <record-list
+            header="Recent Times"
+            :records="recentRecords.records"
+            show-user
+            show-badges
+            hide-track-info />
+        </paginated-component>
+      </content-sheet>
     </template>
     <template #right>
-      <paginated-component
-        :current-page="pages.invalid"
-        :items-per-page="limit"
-        :total-items="invalidRecords.totalAmount"
-        @page-changed="page => handlePageChanged('invalid', page)">
-        <record-list
-          header="Any% Times"
-          :records="invalidRecords.records"
-          :rank-offset="(pages.invalid - 1) * limit"
-          show-user
-          show-badges
-          hide-track-info />
-      </paginated-component>
+      <content-sheet>
+        <paginated-component
+          :current-page="pages.invalid"
+          :items-per-page="limit"
+          :total-items="invalidRecords.totalAmount"
+          @page-changed="page => handlePageChanged('invalid', page)">
+          <record-list
+            header="Any% Times"
+            :records="invalidRecords.records"
+            :rank-offset="(pages.invalid - 1) * limit"
+            show-user
+            show-badges
+            hide-track-info />
+        </paginated-component>
+      </content-sheet>
     </template>
   </column-layout>
 </template>
 
-<style scoped lang="less">
+<style module lang="less">
+  .coverImageContainer {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 25rem;
+    overflow: hidden;
+  }
+
+  .coverImage {
+    z-index: -2;
+    height: calc(100% + 1rem);
+    width: calc(100% + 2rem);
+    margin: -1rem -1rem 0;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(
+        to top,
+        var(--color-bg-1),
+        rgba(#222, 0.6)
+      ),
+      var(--thumbnailUrl);
+    // background-image: var(--thumbnailUrl);
+    background-size: cover;
+    background-position-y: 50%;
+    filter: blur(0.5rem) grayscale(0.4);
+    overflow: hidden;
+  }
+
   .header {
     display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
+    align-items: flex-start;
+    margin: 1rem 0;
+    height: 100px;
+    max-height: 100px;
 
     img {
       max-height: 100px;
       margin-right: 1rem;
+      border-radius: var(--border-radius-large);
     }
 
-    .header-title {
+    .headerTitle {
       flex: 1;
+      margin-top: 0.5rem;
+      line-height: 1ex;
+      height: calc(100px - 0.5rem);
+      max-height: calc(100px - 0.5rem);
+
+      display: flex;
+      flex-direction: column;
     }
 
-    .author {
-      font-size: 1.5rem;
+    .headerAuthor {
+      line-height: 1ex;
+      font-size: 1rem;
+    }
+
+    .headerExtra {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+
+      span {
+        padding: 0.25rem 0.5rem;
+      }
+    }
+
+    .badge {
+      border: 1px solid rgb(var(--primary-6));
+      border-radius: 0.25rem;
+      font-size: 0.675rem;
     }
   }
 </style>

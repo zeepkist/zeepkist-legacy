@@ -11,6 +11,7 @@
     background: var(--color-bg-2);
     padding: 1rem;
     border-radius: var(--border-radius-large);
+    border: 1px solid var(--color-bg-2);
     box-shadow: @shadow-special;
   }
 </style>

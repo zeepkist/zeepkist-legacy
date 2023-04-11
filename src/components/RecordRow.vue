@@ -81,7 +81,8 @@
     grid-template-rows: 50px;
     gap: 1rem;
     align-items: center;
-    padding-left: 0.25rem;
+    padding: 0 1rem;
+    margin: 0 -1rem;
 
     &.has-no-track:not(.has-rank) {
       grid-template-columns: 2fr 100px;
