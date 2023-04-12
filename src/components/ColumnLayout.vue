@@ -18,19 +18,17 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     gap: 1rem;
-    .columns {
-      display: flex;
-      flex-direction: column;
-    }
-  }
 
-  @media (min-width: 1024px) {
-    .columns {
+    @media (min-width: 1024px) {
       grid-template-columns: 1fr 1fr;
-
       &.with-center {
         grid-template-columns: 1fr 1fr 1fr;
       }
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
     }
   }
 </style>
