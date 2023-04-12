@@ -4,17 +4,20 @@
   import { useRoute } from 'vue-router'
 
   import ColumnLayout from '~/components/ColumnLayout.vue'
+  import FullWidthHeader from '~/components/headers/FullWidthHeader.vue'
   import PaginatedComponent from '~/components/PaginatedComponent.vue'
   import RecordList from '~/components/RecordList.vue'
   import ContentSheet from '~/components/sheets/ContentSheet.vue'
-  import UserBadge from '~/components/UserBadge.vue'
+  import MedalTimesSheet from '~/components/sheets/MedalTimesSheet.vue'
+  import { useSteamStore } from '~/stores/steam'
 
-  type RecordType = 'recent' | 'best' | 'invalid'
+  type RecordType = 'recent' | 'best' | 'invalid' | 'yourBest'
 
   const { level } = defineProps<{
     level: Level
   }>()
 
+  const steamStore = useSteamStore()
   const route = useRoute()
   const id = Number(route.params.id)
   const limit = 10
@@ -48,6 +51,15 @@
           Offset: (page - 1) * limit
         })
       }
+      case 'yourBest': {
+        return await getRecords({
+          LevelId: id,
+          ValidOnly: true,
+          UserSteamId: steamStore.steamId,
+          Limit: 4,
+          Offset: 0
+        })
+      }
     }
   }
 
@@ -74,6 +86,7 @@
   const recentRecords = ref(await getPaginatedRecords('recent'))
   const bestRecords = ref(await getPaginatedRecords('best'))
   const invalidRecords = ref(await getPaginatedRecords('invalid'))
+  const yourBestRecords = ref(await getPaginatedRecords('yourBest'))
 
   const pages = ref({
     best: 1,
@@ -84,32 +97,40 @@
 </script>
 
 <template>
-  <div :class="$style.coverImageContainer">
-    <div
-      :style="{ '--thumbnailUrl': `url(${level.thumbnailUrl})` }"
-      :class="$style.coverImage" />
-  </div>
-  <div :class="$style.header">
-    <img :src="level.thumbnailUrl" alt="" />
-    <div :class="$style.headerTitle">
-      <h1>{{ level.name }}</h1>
-      <span :class="$style.headerAuthor"
-        >By <user-badge :username="level.author"
-      /></span>
-      <div :class="$style.headerExtra">
-        <span
-          v-if="recentRecords.totalAmount - invalidRecords.totalAmount > 250"
-          :class="$style.badge"
-          >POPULAR</span
-        >
-        <span
-          >{{ recentRecords.totalAmount - invalidRecords.totalAmount }} valid
-          runs</span
-        >
-        <span>{{ bestRecords.totalAmount }} players</span>
-      </div>
-    </div>
-  </div>
+  <full-width-header
+    :thumbnail-url="level.thumbnailUrl"
+    :title="level.name"
+    :author="level.author">
+    <span
+      v-if="recentRecords.totalAmount - invalidRecords.totalAmount > 250"
+      :class="$style.badge"
+      >POPULAR</span
+    >
+    <span
+      >{{ recentRecords.totalAmount - invalidRecords.totalAmount }} valid
+      runs</span
+    >
+    <span>{{ bestRecords.totalAmount }} players</span>
+  </full-width-header>
+
+  <medal-times-sheet v-if="!steamStore.steamId" :level="level" />
+  <column-layout v-else>
+    <template #left>
+      <medal-times-sheet :level="level" />
+    </template>
+    <template #right>
+      <content-sheet>
+        <record-list
+          header="Your Bests"
+          :records="yourBestRecords.records"
+          :rank-offset="0"
+          show-user
+          show-badges
+          hide-track-info />
+      </content-sheet>
+    </template>
+  </column-layout>
+
   <column-layout>
     <template #left>
       <content-sheet>
@@ -164,80 +185,10 @@
 </template>
 
 <style module lang="less">
-  .coverImageContainer {
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 25rem;
-    overflow: hidden;
-  }
-
-  .coverImage {
-    z-index: -2;
-    height: calc(100% + 1rem);
-    width: calc(100% + 2rem);
-    margin: -1rem -1rem 0;
-    background-repeat: no-repeat;
-    background-image: linear-gradient(
-        to top,
-        var(--color-bg-1),
-        rgba(#222, 0.6)
-      ),
-      var(--thumbnailUrl);
-    // background-image: var(--thumbnailUrl);
-    background-size: cover;
-    background-position-y: 50%;
-    filter: blur(0.5rem) grayscale(0.4);
-    overflow: hidden;
-  }
-
-  .header {
-    display: flex;
-    align-items: flex-start;
-    margin: 1rem 0;
-    height: 100px;
-    max-height: 100px;
-
-    img {
-      max-height: 100px;
-      margin-right: 1rem;
-      border-radius: var(--border-radius-large);
-    }
-
-    .headerTitle {
-      flex: 1;
-      margin-top: 0.5rem;
-      line-height: 1ex;
-      height: calc(100px - 0.5rem);
-      max-height: calc(100px - 0.5rem);
-
-      display: flex;
-      flex-direction: column;
-    }
-
-    .headerAuthor {
-      line-height: 1ex;
-      font-size: 1rem;
-    }
-
-    .headerExtra {
-      flex: 1;
-      display: flex;
-      align-items: flex-end;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-
-      span {
-        padding: 0.25rem 0.5rem;
-      }
-    }
-
-    .badge {
-      border: 1px solid rgb(var(--primary-6));
-      border-radius: 0.25rem;
-      font-size: 0.675rem;
-    }
+  span.badge {
+    border: 1px solid rgb(var(--primary-6));
+    border-radius: 0.25rem;
+    font-size: 0.675rem;
+    padding: 0.25rem 0.5rem !important;
   }
 </style>

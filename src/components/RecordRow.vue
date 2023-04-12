@@ -154,7 +154,7 @@
     }
 
     .rank {
-      text-align: right;
+      text-align: center;
     }
 
     .subtext {

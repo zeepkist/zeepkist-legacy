@@ -13,5 +13,6 @@
     border-radius: var(--border-radius-large);
     border: 1px solid var(--color-bg-2);
     box-shadow: @shadow-special;
+    height: 100%;
   }
 </style>
