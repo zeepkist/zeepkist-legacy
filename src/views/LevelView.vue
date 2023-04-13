@@ -1,7 +1,8 @@
 <script setup lang="ts">
   import { useQuery, useQueryClient } from '@tanstack/vue-query'
+  import { useSeoMeta } from '@vueuse/head'
   import { getLevels, type Level } from '@zeepkist/gtr-api'
-  import { ref } from 'vue'
+  import { addHours } from 'date-fns'
   import { useRoute } from 'vue-router'
 
   import ErrorLayout from '~/components/layouts/ErrorLayout.vue'
@@ -11,22 +12,44 @@
   const route = useRoute()
   const queryClient = useQueryClient()
   const id = Number(route.params.id)
-  const level = ref<Level>(queryClient.getQueryData(['level', id]) as Level)
 
-  const { isLoading } = useQuery({
-    queryKey: ['level', route.params.id || 'test'],
+  const { data: level, isLoading } = useQuery({
+    queryKey: ['level', route.params.id],
     queryFn: async () => {
       const response = await getLevels({ Id: id })
       if (response.levels.length === 1) {
-        level.value = response.levels[0]
         return response.levels[0]
       } else {
         throw new Error('Level not found')
       }
     },
     keepPreviousData: true,
-    enabled: !!id
+    initialData: queryClient.getQueryData(['level', id]) as Level,
+    enabled: !!id,
+    cacheTime: addHours(new Date(), 24).getTime(),
+    staleTime: addHours(new Date(), 1).getTime()
   })
+
+  if (level) {
+    const title = level.value.name
+    const description = `Check out ${level.value.name} by ${level.value.author} on Zeepkist Records, the ultimate platform for Zeepkist racing fans!
+
+Play it and see how you stack up against other players!`
+    const url = window.location.href.split('?')[0]
+
+    useSeoMeta({
+      title,
+      description,
+      ogTitle: title,
+      ogDescription: description,
+      ogImage: level.value.thumbnailUrl,
+      ogUrl: url,
+      twitterTitle: title,
+      twitterDescription: description,
+      twitterImage: level.value.thumbnailUrl,
+      twitterCard: 'summary_large_image'
+    })
+  }
 </script>
 
 <template>
