@@ -2,10 +2,10 @@
   import LoginWithSteamLogo from '~/assets/login-with-steam.png?inline'
 
   const realm = import.meta.env.PROD
-    ? 'https://zeepkist.wopian.me'
+    ? 'https://zeepki.st'
     : 'http://localhost:5173'
   const returnTo = import.meta.env.PROD
-    ? 'https://zeepkist.wopian.me/auth'
+    ? 'https://zeepki.st/auth'
     : 'http://localhost:5173/auth'
 </script>
 
