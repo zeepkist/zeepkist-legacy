@@ -30,7 +30,10 @@
     staleTime: addHours(new Date(), 1).getTime()
   })
 
+  console.log('level', JSON.stringify(level, undefined, 2))
+
   if (level.value) {
+    console.log('Adding SEO meta tags for level', level.value.name)
     const title = level.value.name
     const description = `Check out ${level.value.name} by ${level.value.author} on Zeepkist Records, the ultimate platform for Zeepkist racing fans!
 
