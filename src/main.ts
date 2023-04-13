@@ -2,6 +2,7 @@ import '@arco-design/web-vue/dist/arco.less'
 
 import ArcoVue from '@arco-design/web-vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
+import { createHead } from '@vueuse/head'
 import { createPinia } from 'pinia'
 import { PiniaSharedState } from 'pinia-shared-state'
 import { createApp } from 'vue'
@@ -11,6 +12,7 @@ import router from './router'
 
 const app = createApp(App)
 const pinia = createPinia()
+const head = createHead()
 
 const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)')
 
@@ -31,6 +33,7 @@ pinia.use(
 
 app.use(pinia)
 app.use(router)
+app.use(head)
 app.use(VueQueryPlugin)
 app.use(ArcoVue)
 
