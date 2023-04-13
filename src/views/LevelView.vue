@@ -14,7 +14,7 @@
   const id = Number(route.params.id)
 
   const { data: level, isLoading } = useQuery({
-    queryKey: ['level', route.params.id],
+    queryKey: ['level', id],
     queryFn: async () => {
       const response = await getLevels({ Id: id })
       if (response.levels.length === 1) {
@@ -30,23 +30,24 @@
     staleTime: addHours(new Date(), 1).getTime()
   })
 
-  if (level) {
+  if (level.value) {
     const title = level.value.name
     const description = `Check out ${level.value.name} by ${level.value.author} on Zeepkist Records, the ultimate platform for Zeepkist racing fans!
 
 Play it and see how you stack up against other players!`
     const url = window.location.href.split('?')[0]
+    const image = level.value.thumbnailUrl
 
     useSeoMeta({
       title,
       description,
       ogTitle: title,
       ogDescription: description,
-      ogImage: level.value.thumbnailUrl,
+      ogImage: image,
       ogUrl: url,
       twitterTitle: title,
       twitterDescription: description,
-      twitterImage: level.value.thumbnailUrl,
+      twitterImage: image,
       twitterCard: 'summary_large_image'
     })
   }
