@@ -3,6 +3,8 @@
   import { useSeoMeta } from '@vueuse/head'
   import { getLevels, type Level } from '@zeepkist/gtr-api'
   import { addHours } from 'date-fns'
+  import { HTTPError } from 'ky'
+  import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
   import ErrorLayout from '~/components/layouts/ErrorLayout.vue'
@@ -12,28 +14,42 @@
   const route = useRoute()
   const queryClient = useQueryClient()
   const id = Number(route.params.id)
+  const errorMessage = ref<string>()
 
-  const { data: level, isLoading } = useQuery({
+  const {
+    data: level,
+    isSuccess,
+    suspense
+  } = useQuery({
     queryKey: ['level', id],
     queryFn: async () => {
-      const response = await getLevels({ Id: id })
-      if (response.levels.length === 1) {
-        return response.levels[0]
-      } else {
-        throw new Error('Level not found')
+      try {
+        const { levels } = await getLevels({ Id: id })
+
+        if (levels.length === 0) throw new Error('Level not found')
+
+        return levels[0]
+      } catch (error) {
+        if (error instanceof Error && error.message === 'Level not found') {
+          errorMessage.value =
+            'Level not found. It may not have been played by a user with Zeepkist GTR installed yet!'
+        }
+
+        // eslint-disable-next-line unicorn/no-null
+        return null
       }
     },
+    retry: false,
     keepPreviousData: true,
-    initialData: queryClient.getQueryData(['level', id]) as Level,
+    placeholderData: queryClient.getQueryData(['level', id]) as Level,
     enabled: !!id,
-    cacheTime: addHours(new Date(), 24).getTime(),
     staleTime: addHours(new Date(), 1).getTime()
   })
 
-  console.log('level', JSON.stringify(level, undefined, 2))
+  // Wait for the query to finish before rendering the view
+  await suspense()
 
-  if (level.value) {
-    console.log('Adding SEO meta tags for level', level.value.name)
+  if (isSuccess && level.value) {
     const title = level.value.name
     const description = `Check out ${level.value.name} by ${level.value.author} on Zeepkist Records, the ultimate platform for Zeepkist racing fans!
 
@@ -42,7 +58,7 @@ Play it and see how you stack up against other players!`
     const image = level.value.thumbnailUrl
 
     useSeoMeta({
-      title,
+      title: `${title}・Zeepkist Records`,
       description,
       ogTitle: title,
       ogDescription: description,
@@ -57,12 +73,14 @@ Play it and see how you stack up against other players!`
 </script>
 
 <template>
-  <loading-indicator v-if="isLoading" />
-  <suspense v-else>
+  <suspense>
     <level-layout v-if="level" :level="level" />
     <error-layout
       v-else
-      message="Level not found. It may not have been played by a user with Zeepkist GTR installed yet!" />
+      :message="
+        errorMessage ??
+        'An error occurred while fetching the level. Please try again later.'
+      " />
     <template #fallback>
       <loading-indicator />
     </template>
