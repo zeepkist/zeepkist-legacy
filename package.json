@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@arco-design/color": "0.4.0",
-    "@arco-design/web-vue": "2.45.0",
+    "@arco-design/web-vue": "2.45.1",
     "@tabler/icons-vue": "2.15.0",
     "@tanstack/vue-query": "4.29.1",
     "@vueuse/components": "9.13.0",
