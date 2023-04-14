@@ -13,7 +13,12 @@
   const queryClient = useQueryClient()
   const id = Number(route.params.id)
 
-  const { data: level, isLoading } = useQuery({
+  const {
+    data: level,
+    isLoading,
+    isSuccess,
+    suspense
+  } = useQuery({
     queryKey: ['level', id],
     queryFn: async () => {
       const response = await getLevels({ Id: id })
@@ -24,16 +29,15 @@
       }
     },
     keepPreviousData: true,
-    initialData: queryClient.getQueryData(['level', id]) as Level,
+    placeholderData: queryClient.getQueryData(['level', id]) as Level,
     enabled: !!id,
-    cacheTime: addHours(new Date(), 24).getTime(),
     staleTime: addHours(new Date(), 1).getTime()
   })
 
-  console.log('level', JSON.stringify(level, undefined, 2))
+  // Wait for the query to finish before rendering the view
+  await suspense()
 
-  if (level.value) {
-    console.log('Adding SEO meta tags for level', level.value.name)
+  if (isSuccess && level.value) {
     const title = level.value.name
     const description = `Check out ${level.value.name} by ${level.value.author} on Zeepkist Records, the ultimate platform for Zeepkist racing fans!
 
@@ -42,7 +46,7 @@ Play it and see how you stack up against other players!`
     const image = level.value.thumbnailUrl
 
     useSeoMeta({
-      title,
+      title: `${title}・Zeepkist Records`,
       description,
       ogTitle: title,
       ogDescription: description,
