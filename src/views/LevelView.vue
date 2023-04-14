@@ -24,14 +24,13 @@
     queryKey: ['level', id],
     queryFn: async () => {
       try {
-        const response = await getLevels({ Id: id })
-        if (response.levels.length === 1) {
-          return response.levels[0]
-        } else {
-          throw new Error('Level not found')
-        }
+        const { levels } = await getLevels({ Id: id })
+
+        if (levels.length === 0) throw new Error('Level not found')
+
+        return levels[0]
       } catch (error) {
-        if (error instanceof HTTPError && error.response.status === 404) {
+        if (error instanceof Error && error.message === 'Level not found') {
           errorMessage.value =
             'Level not found. It may not have been played by a user with Zeepkist GTR installed yet!'
         }
