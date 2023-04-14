@@ -2,7 +2,6 @@
   import { ref } from 'vue'
   import { RouterView } from 'vue-router'
 
-  import LoadingIndicator from '~/components/LoadingIndicator.vue'
   import FooterNavigation from '~/components/navigation/FooterNavigation.vue'
   import HeaderNavigation from '~/components/navigation/HeaderNavigation.vue'
 
@@ -23,9 +22,6 @@
     <a-layout-content :class="$style.content">
       <suspense>
         <router-view />
-        <template #fallback>
-          <loading-indicator />
-        </template>
       </suspense>
     </a-layout-content>
     <a-layout-footer>

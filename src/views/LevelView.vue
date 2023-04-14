@@ -3,6 +3,8 @@
   import { useSeoMeta } from '@vueuse/head'
   import { getLevels, type Level } from '@zeepkist/gtr-api'
   import { addHours } from 'date-fns'
+  import { HTTPError } from 'ky'
+  import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
   import ErrorLayout from '~/components/layouts/ErrorLayout.vue'
@@ -12,22 +14,33 @@
   const route = useRoute()
   const queryClient = useQueryClient()
   const id = Number(route.params.id)
+  const errorMessage = ref<string>()
 
   const {
     data: level,
-    isLoading,
     isSuccess,
     suspense
   } = useQuery({
     queryKey: ['level', id],
     queryFn: async () => {
-      const response = await getLevels({ Id: id })
-      if (response.levels.length === 1) {
-        return response.levels[0]
-      } else {
-        throw new Error('Level not found')
+      try {
+        const response = await getLevels({ Id: id })
+        if (response.levels.length === 1) {
+          return response.levels[0]
+        } else {
+          throw new Error('Level not found')
+        }
+      } catch (error) {
+        if (error instanceof HTTPError && error.response.status === 404) {
+          errorMessage.value =
+            'Level not found. It may not have been played by a user with Zeepkist GTR installed yet!'
+        }
+
+        // eslint-disable-next-line unicorn/no-null
+        return null
       }
     },
+    retry: false,
     keepPreviousData: true,
     placeholderData: queryClient.getQueryData(['level', id]) as Level,
     enabled: !!id,
@@ -61,12 +74,14 @@ Play it and see how you stack up against other players!`
 </script>
 
 <template>
-  <loading-indicator v-if="isLoading" />
-  <suspense v-else>
+  <suspense>
     <level-layout v-if="level" :level="level" />
     <error-layout
       v-else
-      message="Level not found. It may not have been played by a user with Zeepkist GTR installed yet!" />
+      :message="
+        errorMessage ??
+        'An error occurred while fetching the level. Please try again later.'
+      " />
     <template #fallback>
       <loading-indicator />
     </template>
