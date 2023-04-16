@@ -9,6 +9,7 @@
   import ErrorLayout from '~/components/layouts/ErrorLayout.vue'
   import LevelLayout from '~/components/layouts/LevelLayout.vue'
   import LoadingIndicator from '~/components/LoadingIndicator.vue'
+  import { formatThumbnailEmbed } from '~/utils'
 
   const route = useRoute()
   const queryClient = useQueryClient()
@@ -54,7 +55,7 @@
 
 Play it and see how you stack up against other players!`
     const url = window.location.href.split('?')[0]
-    const image = level.value.thumbnailUrl
+    const image = formatThumbnailEmbed(level.value.thumbnailUrl)
 
     useSeoMeta({
       title: `${title}・Zeepkist Records`,

@@ -1,4 +1,5 @@
 export * from './formatDate'
 export * from './formatRelativeDate'
 export * from './formatResultTime'
+export * from './formatThumbnailEmbed'
 export * from './formatUser'
