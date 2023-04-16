@@ -27,8 +27,6 @@
       case 'recent': {
         return await getRecords({
           LevelId: id,
-          ValidOnly: false,
-          InvalidOnly: false,
           Sort: '-id',
           Limit: limit,
           Offset: (page - 1) * limit
