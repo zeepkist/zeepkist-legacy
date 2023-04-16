@@ -22,7 +22,7 @@
     "@tanstack/vue-query": "4.29.1",
     "@vueuse/components": "10.0.2",
     "@vueuse/head": "1.1.23",
-    "@zeepkist/gtr-api": "2.0.9",
+    "@zeepkist/gtr-api": "3.0.1",
     "date-fns": "2.29.3",
     "ky": "0.33.3",
     "pinia": "2.0.34",

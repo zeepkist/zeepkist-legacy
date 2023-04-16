@@ -1,9 +1,8 @@
 <script setup lang="ts">
   import { useQuery, useQueryClient } from '@tanstack/vue-query'
   import { useSeoMeta } from '@vueuse/head'
-  import { getLevels, type Level } from '@zeepkist/gtr-api'
+  import { getLevel, type Level } from '@zeepkist/gtr-api'
   import { addHours } from 'date-fns'
-  import { HTTPError } from 'ky'
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
@@ -24,11 +23,11 @@
     queryKey: ['level', id],
     queryFn: async () => {
       try {
-        const { levels } = await getLevels({ Id: id })
+        const level = await getLevel(id)
 
-        if (levels.length === 0) throw new Error('Level not found')
+        if (!level) throw new Error('Level not found')
 
-        return levels[0]
+        return level
       } catch (error) {
         if (error instanceof Error && error.message === 'Level not found') {
           errorMessage.value =

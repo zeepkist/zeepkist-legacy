@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { getUser, type User } from '@zeepkist/gtr-api'
+  import { getUserBySteamId, type User } from '@zeepkist/gtr-api'
   import { HTTPError } from 'ky'
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
@@ -15,7 +15,7 @@
   const user = ref<User>()
 
   try {
-    user.value = await getUser({ SteamId: steamId })
+    user.value = await getUserBySteamId(steamId)
   } catch (error) {
     if (error instanceof HTTPError && error.response.status === 404) {
       user.value = undefined
