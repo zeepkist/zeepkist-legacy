@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { useQuery, useQueryClient } from '@tanstack/vue-query'
   import { useSeoMeta } from '@vueuse/head'
+  import { defineWebPage, useSchemaOrg } from '@vueuse/schema-org'
   import { getLevel, type Level } from '@zeepkist/gtr-api'
   import { addHours } from 'date-fns'
   import { ref } from 'vue'
@@ -69,6 +70,25 @@ Play it and see how you stack up against other players!`
       twitterImage: image,
       twitterCard: 'summary_large_image'
     })
+
+    useSchemaOrg(
+      defineWebPage({
+        '@type': 'ItemPage',
+        url,
+        name: title,
+        description,
+        image,
+        publisher: {
+          '@type': 'Organization',
+          name: 'Zeepkist Records',
+          url: 'https://zeepki.st'
+        },
+        author: {
+          '@type': 'Person',
+          name: level.value.author
+        }
+      })
+    )
   }
 </script>
 
