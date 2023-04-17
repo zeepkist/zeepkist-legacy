@@ -4,13 +4,15 @@ interface User {
   steamId: string
 }
 
-export interface MetadataEvent {
-  name?: string
-  workshopId?: string
+export interface MetadataEvent extends Record<string, string> {
+  name: string
+  workshopId: string
 }
 
 export interface MetadataEvents {
-  [key: string]: MetadataEvent
+  [key: string]: {
+    [key: string]: MetadataEvent
+  }
 }
 
 export interface MetadataSeason {

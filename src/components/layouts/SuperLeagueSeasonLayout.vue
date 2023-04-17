@@ -2,7 +2,7 @@
   import { HTTPError } from 'ky'
   import { useRoute, useRouter } from 'vue-router'
 
-  import type { MetadataEvents } from '~/models/superLeague'
+  import type { MetadataEvent, MetadataEvents } from '~/models/superLeague'
   import { getSeason } from '~/services/superLeague'
 
   const route = useRoute()
@@ -21,6 +21,9 @@
       console.error(error)
     }
   }
+
+  const getActiveEventName = (event: string) =>
+    (metadata?.events[event] as unknown as MetadataEvent)?.name
 </script>
 
 <template>
@@ -38,7 +41,9 @@
       >{{ event.name }}</router-link
     >
   </nav>
-  <router-view :key="route.params" />
+  <router-view
+    :key="route.params"
+    :event-name="getActiveEventName(route.params.event as string)" />
 </template>
 
 <style module lang="less">

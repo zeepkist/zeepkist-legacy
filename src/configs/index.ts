@@ -16,3 +16,5 @@ export const INSTALL_URL = `steam://install/${ZEEPKIST_APP_ID}`
 export const PLAY_URL = `steam://run/${ZEEPKIST_APP_ID}`
 export const STORE_URL = `steam://store/${ZEEPKIST_APP_ID}`
 export const HUB_URL = `steam://url/GameHub/${ZEEPKIST_APP_ID}`
+
+export const META_TITLE = '・Zeepkist Records'
