@@ -2,18 +2,14 @@
   import { RouterLink } from 'vue-router'
 
   import { getSeasons } from '~/services/superLeague'
+  import { formatParamToTitleCase } from '~/utils'
 
   const seasons = await getSeasons()
-
-  const toTitleCase = (string: string) =>
-    string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
-
-  const formatTitle = (string: string) => toTitleCase(string.replace('-', ' '))
 </script>
 
 <template>
   <section v-for="[season, events] in seasons" :key="season">
-    <h2>{{ formatTitle(season) }}</h2>
+    <h2>{{ formatParamToTitleCase(season) }}</h2>
     <div v-if="events.events" :class="$style.cardContainer">
       <div :class="$style.card">
         <h3>Season Standings</h3>

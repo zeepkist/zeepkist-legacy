@@ -1,37 +1,55 @@
 <script setup lang="ts">
+  import { useQuery, useQueryClient } from '@tanstack/vue-query'
   import { getLevels, type LevelsResponse } from '@zeepkist/gtr-api'
+  import { addMinutes } from 'date-fns'
   import { ref } from 'vue'
 
   import LevelList from '~/components/LevelList.vue'
   import PaginatedComponent from '~/components/PaginatedComponent.vue'
 
-  const itemsPerPage = 40
+  const queryClient = useQueryClient()
 
-  const levels = ref<LevelsResponse>()
+  const itemsPerPage = 40
   const currentPage = ref(1)
 
+  const { data, suspense } = useQuery({
+    queryKey: ['levels', currentPage],
+    queryFn: async () => {
+      const levels = await getLevels({
+        Limit: itemsPerPage,
+        Offset: (currentPage.value - 1) * itemsPerPage,
+        Sort: '-id'
+      })
+
+      return levels
+    },
+    retry: false,
+    keepPreviousData: true,
+    placeholderData: queryClient.getQueryData([
+      'levels',
+      currentPage.value
+    ]) as LevelsResponse,
+    staleTime: addMinutes(new Date(), 5).getTime()
+  })
+
+  // Wait for the query to finish before rendering the view
+  await suspense()
+
   const handlePageChanged = async (page: number) => {
-    levels.value = await getLevels({
-      Limit: itemsPerPage,
-      Offset: (page - 1) * itemsPerPage,
-      Sort: '-id'
-    })
     currentPage.value = page
   }
-
-  await handlePageChanged(1)
 </script>
 
 <template>
-  <template v-if="levels">
-    <p>{{ levels.totalAmount }} levels</p>
+  <template v-if="data">
+    <p>{{ data.totalAmount }} levels</p>
     <paginated-component
       :current-page="currentPage"
       :items-per-page="itemsPerPage"
-      :total-items="levels.totalAmount"
+      :total-items="data.totalAmount"
       @page-changed="handlePageChanged">
       <level-list
-        :levels="levels.levels.filter(level => level.workshopId !== '0')" />
+        :levels="data.levels.filter(level => level.workshopId !== '0')" />
     </paginated-component>
   </template>
 </template>

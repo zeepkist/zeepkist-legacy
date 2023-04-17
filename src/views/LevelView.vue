@@ -50,7 +50,7 @@
   await suspense()
 
   if (isSuccess && level.value) {
-    const title = level.value.name
+    const title = `${level.value.name}・Zeepkist Records`
     const description = `Check out ${level.value.name} by ${level.value.author} on Zeepkist Records, the ultimate platform for Zeepkist racing fans!
 
 Play it and see how you stack up against other players!`
@@ -58,7 +58,7 @@ Play it and see how you stack up against other players!`
     const image = formatThumbnailEmbed(level.value.thumbnailUrl)
 
     useSeoMeta({
-      title: `${title}・Zeepkist Records`,
+      title,
       description,
       ogTitle: title,
       ogDescription: description,

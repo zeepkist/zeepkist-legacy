@@ -1,15 +1,37 @@
 <script setup lang="ts">
-  import { getLevels } from '@zeepkist/gtr-api'
-  import { ref } from 'vue'
+  import { useQuery, useQueryClient } from '@tanstack/vue-query'
+  import { getLevels, type LevelsResponse } from '@zeepkist/gtr-api'
+  import { addHours } from 'date-fns'
 
   import LevelList from '~/components/LevelList.vue'
 
-  const levels = ref(await getLevels({ WorkshopId: '0' }))
+  const queryClient = useQueryClient()
+
+  const { data, suspense } = useQuery({
+    queryKey: ['adventureLevels'],
+    queryFn: async () => {
+      const levels = await getLevels({ WorkshopId: '0' })
+
+      // Sort levels by name alphabetically
+      levels.levels = levels.levels.sort((a, b) => a.name.localeCompare(b.name))
+
+      return levels
+    },
+    retry: false,
+    keepPreviousData: true,
+    placeholderData: queryClient.getQueryData([
+      'adventureLevels'
+    ]) as LevelsResponse,
+    staleTime: addHours(new Date(), 1).getTime()
+  })
+
+  // Wait for the query to finish before rendering the view
+  await suspense()
 </script>
 
 <template>
-  <p>{{ levels.totalAmount }} levels</p>
-  <level-list
-    :levels="levels.levels.sort((a, b) => a.name.localeCompare(b.name))"
-    hide-level-thumbnail />
+  <template v-if="data">
+    <p>{{ data.totalAmount }} levels</p>
+    <level-list :levels="data.levels" hide-level-thumbnail />
+  </template>
 </template>
