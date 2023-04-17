@@ -8,7 +8,7 @@
  * https://storage.googleapis.com/zeepkist-gtr/thumbnails/28032023-213839968-Happydr-791691801402-543.jpeg
  */
 export const formatThumbnailEmbed = (url: string): string => {
-  if (url.startsWith('https://storage.googleapis.com/zeepkist-gtr/thumbnails/') {
+  if (url.startsWith('https://storage.googleapis.com/zeepkist-gtr/thumbnails/')) {
     return url
   }
 
