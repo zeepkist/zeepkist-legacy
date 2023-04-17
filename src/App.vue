@@ -1,7 +1,13 @@
 <script setup lang="ts">
+  import {
+    defineOrganization,
+    defineWebSite,
+    useSchemaOrg
+  } from '@vueuse/schema-org'
   import { ref } from 'vue'
   import { RouterView } from 'vue-router'
 
+  import zeepkistIconUrl from '~/assets/zeepkist-icon.webp?url'
   import FooterNavigation from '~/components/navigation/FooterNavigation.vue'
   import HeaderNavigation from '~/components/navigation/HeaderNavigation.vue'
 
@@ -12,6 +18,25 @@
   }
 
   window.addEventListener('resize', handleResize)
+
+  const title = 'Zeepkist Records'
+
+  useSchemaOrg([
+    defineOrganization({
+      name: title,
+      logo: zeepkistIconUrl,
+      sameAs: ['https://github.com/zeepkist']
+    }),
+    defineWebSite({
+      name: title,
+      url: 'https://zeepki.st',
+      description: `The ultimate platform for Zeepkist racing fans!
+
+Track records, view player stats, create/join tournaments and view Super League event results!`,
+      logo: zeepkistIconUrl,
+      sameAs: ['']
+    })
+  ])
 </script>
 
 <template>

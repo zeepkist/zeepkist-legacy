@@ -3,6 +3,7 @@ import '@arco-design/web-vue/dist/arco.less'
 import ArcoVue from '@arco-design/web-vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createHead } from '@vueuse/head'
+import { SchemaOrgUnheadPlugin as createSchema } from '@vueuse/schema-org'
 import { createPinia } from 'pinia'
 import { PiniaSharedState } from 'pinia-shared-state'
 import { createApp } from 'vue'
@@ -29,6 +30,21 @@ pinia.use(
   PiniaSharedState({
     type: 'native'
   })
+)
+
+head.use(
+  createSchema(
+    {
+      host: 'https://zeepki.st'
+    },
+    () => {
+      const route = router.currentRoute.value
+      return {
+        path: route.path,
+        ...route.meta
+      }
+    }
+  )
 )
 
 app.use(pinia)
