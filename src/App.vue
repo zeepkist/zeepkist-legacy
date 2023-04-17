@@ -7,7 +7,7 @@
   import { ref } from 'vue'
   import { RouterView } from 'vue-router'
 
-  import zeepkistIconUrl from '~/assets/icons/zeepkist-icon.webp?url'
+  import zeepkistIconUrl from '~/assets/zeepkist-icon.webp?url'
   import FooterNavigation from '~/components/navigation/FooterNavigation.vue'
   import HeaderNavigation from '~/components/navigation/HeaderNavigation.vue'
 
