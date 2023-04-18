@@ -50,12 +50,16 @@
       <template v-else>
         <div v-if="worldRecord" :class="$style.worldRecord">
           <img :src="IconTrophy" alt="" />
-          <div>
+          <router-link
+            :to="{
+              name: 'user',
+              params: { steamId: worldRecord.user.steamId }
+            }">
             <user-badge
               :username="worldRecord.user.steamName"
               :class="$style.worldRecordAuthor" />
             <div>{{ formatResultTime(worldRecord.time) }}</div>
-          </div>
+          </router-link>
         </div>
         <p v-else>
           <img :src="IconMedalAuthor" alt="" />
@@ -183,6 +187,17 @@
       align-items: flex-end;
       place-items: center;
       margin-bottom: -0.25rem;
+
+      a,
+      a:visited {
+        z-index: 1;
+        color: inherit;
+        transition: color 0.25s ease;
+
+        &:hover {
+          color: rgb(var(--primary-6));
+        }
+      }
 
       .worldRecordAuthor {
         font-size: 0.75rem;
