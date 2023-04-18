@@ -24,7 +24,7 @@
     "@tanstack/vue-query": "4.29.1",
     "@unhead/vue": "1.1.26",
     "@vueuse/components": "10.0.2",
-    "@vueuse/head": "1.1.23",
+    "@vueuse/head": "1.1.26",
     "@vueuse/schema-org": "2.1.2",
     "@zeepkist/gtr-api": "3.0.1",
     "date-fns": "2.29.3",
