@@ -32,6 +32,6 @@
 <template>
   <template v-if="data">
     <p>{{ data.totalAmount }} levels</p>
-    <level-list :levels="data.levels" hide-level-thumbnail />
+    <level-list :levels="data.levels" />
   </template>
 </template>
