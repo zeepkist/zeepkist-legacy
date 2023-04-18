@@ -40,27 +40,16 @@ Track records, view player stats, create/join tournaments and view Super League 
 </script>
 
 <template>
-  <a-layout>
-    <a-layout-header :class="$style.header">
-      <header-navigation :is-mobile="isMobile" />
-    </a-layout-header>
-    <a-layout-content :class="$style.content">
-      <suspense>
-        <router-view />
-      </suspense>
-    </a-layout-content>
-    <a-layout-footer>
-      <footer-navigation />
-    </a-layout-footer>
-  </a-layout>
+  <header-navigation :is-mobile="isMobile" />
+  <main :class="$style.content">
+    <suspense>
+      <router-view />
+    </suspense>
+  </main>
+  <footer-navigation />
 </template>
 
 <style module lang="less">
-  .header {
-    z-index: 100;
-    position: sticky;
-    top: 0;
-  }
   .content {
     max-width: 1300px;
     width: calc(100% - 2rem);

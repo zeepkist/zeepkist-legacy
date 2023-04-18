@@ -1,6 +1,3 @@
-import '@arco-design/web-vue/dist/arco.less'
-
-import ArcoVue from '@arco-design/web-vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createHead } from '@vueuse/head'
 import { SchemaOrgUnheadPlugin as createSchema } from '@vueuse/schema-org'
@@ -51,6 +48,5 @@ app.use(pinia)
 app.use(router)
 app.use(head)
 app.use(VueQueryPlugin)
-app.use(ArcoVue)
 
 app.mount('#app')

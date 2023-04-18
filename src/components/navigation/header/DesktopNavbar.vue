@@ -87,7 +87,7 @@
     border-bottom: 1px solid var(--color-border);
     height: 50px;
 
-    transform: translateZ(0);
+    // transform: translateZ(0);
     transition: height 0.3s, background-color 0.3s, line-height 0.3s;
 
     display: flex;

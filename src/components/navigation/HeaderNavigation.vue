@@ -61,10 +61,20 @@
 </script>
 
 <template>
-  <mobile-navbar v-if="isMobile" :menu-items="menuItems" />
-  <desktop-navbar
-    v-else
-    :menu-items="menuItems"
-    :steam-id="steamStore.steamId"
-    :on-logout="steamStore.logout" />
+  <div :class="$style.header">
+    <mobile-navbar v-if="isMobile" :menu-items="menuItems" />
+    <desktop-navbar
+      v-else
+      :menu-items="menuItems"
+      :steam-id="steamStore.steamId"
+      :on-logout="steamStore.logout" />
+  </div>
 </template>
+
+<style module lang="less">
+  .header {
+    z-index: 100;
+    position: sticky;
+    top: 0;
+  }
+</style>
