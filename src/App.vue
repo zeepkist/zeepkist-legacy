@@ -57,6 +57,7 @@ Track records, view player stats, create/join tournaments and view Super League 
 
 <style module lang="less">
   .header {
+    z-index: 100;
     position: sticky;
     top: 0;
   }
