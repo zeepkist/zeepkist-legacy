@@ -9,6 +9,7 @@
   import RecordList from '~/components/RecordList.vue'
   import ContentSheet from '~/components/sheets/ContentSheet.vue'
   import MedalTimesSheet from '~/components/sheets/MedalTimesSheet.vue'
+  import { STEAM_WORKSHOP_URL } from '~/configs/index.js'
   import { useSteamStore } from '~/stores/steam'
 
   type RecordType = 'recent' | 'best' | 'invalid' | 'yourBest'
@@ -109,6 +110,9 @@
       runs</span
     >
     <span>{{ bestRecords.totalAmount }} players</span>
+    <template #actions>
+      <a :href="STEAM_WORKSHOP_URL + level.workshopId">Open in Workshop</a>
+    </template>
   </full-width-header>
 
   <medal-times-sheet v-if="!steamStore.steamId" :level="level" />

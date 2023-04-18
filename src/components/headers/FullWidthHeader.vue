@@ -21,9 +21,12 @@
       <span :class="$style.headerAuthor"
         >By <user-badge :username="author"
       /></span>
-      <div :class="$style.headerExtra">
+      <div v-if="$slots" :class="$style.headerExtra">
         <slot />
       </div>
+    </div>
+    <div v-if="$slots.actions" :class="$style.headerActions">
+      <slot name="actions" />
     </div>
   </div>
 </template>
@@ -109,6 +112,12 @@
       span {
         padding: 0.25rem 0;
       }
+    }
+
+    .headerActions {
+      align-self: flex-end;
+      display: flex;
+      gap: 0.5rem;
     }
   }
 </style>

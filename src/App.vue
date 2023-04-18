@@ -62,8 +62,9 @@ Track records, view player stats, create/join tournaments and view Super League 
   }
   .content {
     max-width: 1300px;
-    width: 100%;
+    width: calc(100% - 2rem);
     margin: 90px auto 0;
+    padding: 0 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;

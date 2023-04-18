@@ -10,7 +10,7 @@
   import IconMedalSilver from '~/assets/medal-silver.webp?inline'
   import IconTrophy from '~/assets/trophy.webp?inline'
   import UserBadge from '~/components/UserBadge.vue'
-  import { PLAY_URL, WORKSHOP_URL } from '~/configs'
+  import { STEAM_WORKSHOP_URL } from '~/configs'
   import { getCachedRecords } from '~/services/cache'
   import { formatResultTime } from '~/utils'
 
@@ -103,10 +103,11 @@
     <div class="actions">
       <a
         v-if="level.workshopId !== '0'"
-        :href="`${WORKSHOP_URL}${level.workshopId}`">
+        :href="`${STEAM_WORKSHOP_URL}${level.workshopId}`"
+        target="_blank"
+        rel="noopener noreferrer">
         Subscribe
       </a>
-      <a v-else :href="PLAY_URL"> Play</a>
     </div>
   </div>
 </template>
@@ -130,7 +131,10 @@
 
     img {
       max-height: 50px;
+      width: 100%;
+      object-fit: cover;
       overflow: hidden;
+      border-radius: 4px;
     }
 
     .medal {
