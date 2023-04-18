@@ -9,7 +9,7 @@
 
   const queryClient = useQueryClient()
 
-  const itemsPerPage = 40
+  const itemsPerPage = 24
   const currentPage = ref(1)
 
   const { data, suspense } = useQuery({
@@ -48,8 +48,7 @@
       :items-per-page="itemsPerPage"
       :total-items="data.totalAmount"
       @page-changed="handlePageChanged">
-      <level-list
-        :levels="data.levels.filter(level => level.workshopId !== '0')" />
+      <level-list :levels="data.levels" />
     </paginated-component>
   </template>
 </template>
