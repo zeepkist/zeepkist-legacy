@@ -51,7 +51,7 @@
     queryKey: ['levels', levelsPage],
     queryFn: async () =>
       await getLevels({
-        Limit: limit * 2,
+        Limit: limit * 3,
         Offset: (levelsPage.value - 1) * limit * 2,
         Sort: '-id'
       }),
