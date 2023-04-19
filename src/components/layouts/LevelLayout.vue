@@ -110,7 +110,7 @@
       runs</span
     >
     <span>{{ bestRecords.totalAmount }} players</span>
-    <template #actions>
+    <template v-if="level.workshopId !== '0'" #actions>
       <a :href="STEAM_WORKSHOP_URL + level.workshopId">Open in Workshop</a>
     </template>
   </full-width-header>
