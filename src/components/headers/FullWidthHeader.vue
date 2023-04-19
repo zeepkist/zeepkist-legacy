@@ -79,6 +79,19 @@
     height: 100px;
     max-height: 100px;
 
+    @media screen and (max-width: 900px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      height: auto;
+      max-height: none;
+      gap: 2rem;
+
+      .headerExtra {
+        margin: 2rem 0 0;
+      }
+    }
+
     img {
       max-height: 100px;
       margin-right: 1rem;
