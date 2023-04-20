@@ -6,6 +6,7 @@ https://zeepkist.wopian.me/*   https://zeepki.st/:splat 301!
 /adventure                    /index.html 200
 /levels                       /index.html 200
 /level/:id                    /index.html 200
+/workshop/:id                 /index.html 200
 /users                        /index.html 200
 /user/:steamId                /index.html 200
 /super-league                 /index.html 200

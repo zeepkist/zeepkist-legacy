@@ -23,7 +23,7 @@
         WorkshopId: workshopId ?? undefined,
         Limit: itemsPerPage,
         Offset: (currentPage.value - 1) * itemsPerPage,
-        Sort: '-id'
+        Sort: workshopId ? 'name' : '-id'
       })
 
       return levels
