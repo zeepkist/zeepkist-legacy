@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { useQuery } from '@tanstack/vue-query'
   import { getLevels, getRecords, type Level } from '@zeepkist/gtr-api'
-  import { addHours } from 'date-fns'
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
@@ -36,10 +35,7 @@
       console.log('count', levels)
 
       return levels.totalAmount ?? 0
-    },
-    retry: false,
-    keepPreviousData: true,
-    staleTime: addHours(new Date(), 1).getTime()
+    }
   })
 
   const getPaginatedRecords = async (type: RecordType, page = 1) => {
