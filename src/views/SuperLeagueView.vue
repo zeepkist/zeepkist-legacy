@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { useSeoMeta } from '@vueuse/head'
+  import { useSeoMeta } from '@unhead/vue'
 
   import SuperLeagueLayout from '~/components/layouts/SuperLeagueLayout.vue'
   import LoadingIndicator from '~/components/LoadingIndicator.vue'

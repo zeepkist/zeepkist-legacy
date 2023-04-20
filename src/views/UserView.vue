@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { useQuery, useQueryClient } from '@tanstack/vue-query'
-  import { useSeoMeta } from '@vueuse/head'
+  import { useSeoMeta } from '@unhead/vue'
   import { getUserBySteamId, type User } from '@zeepkist/gtr-api'
   import { addHours } from 'date-fns'
   import { HTTPError } from 'ky'

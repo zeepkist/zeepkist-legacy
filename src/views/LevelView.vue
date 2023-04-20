@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { useQuery, useQueryClient } from '@tanstack/vue-query'
-  import { useSeoMeta } from '@vueuse/head'
+  import { useSeoMeta } from '@unhead/vue'
   import { defineWebPage, useSchemaOrg } from '@vueuse/schema-org'
   import { getLevel, type Level } from '@zeepkist/gtr-api'
   import { addHours } from 'date-fns'

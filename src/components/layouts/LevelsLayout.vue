@@ -7,15 +7,20 @@
   import LevelList from '~/components/LevelList.vue'
   import PaginatedComponent from '~/components/PaginatedComponent.vue'
 
+  const { workshopId } = defineProps<{
+    workshopId?: string
+  }>()
+
   const queryClient = useQueryClient()
 
   const itemsPerPage = 24
   const currentPage = ref(1)
 
   const { data, suspense } = useQuery({
-    queryKey: ['levels', currentPage],
+    queryKey: ['levels', currentPage, workshopId],
     queryFn: async () => {
       const levels = await getLevels({
+        WorkshopId: workshopId ?? undefined,
         Limit: itemsPerPage,
         Offset: (currentPage.value - 1) * itemsPerPage,
         Sort: '-id'

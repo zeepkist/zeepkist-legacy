@@ -12,6 +12,7 @@ import SuperLeagueSeasonView from '~/views/SuperLeagueSeasonView.vue'
 import SuperLeagueView from '~/views/SuperLeagueView.vue'
 import UsersView from '~/views/UsersView.vue'
 import UserView from '~/views/UserView.vue'
+import WorkshopView from '~/views/WorkshopView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,6 +36,11 @@ const router = createRouter({
       path: '/level/:id',
       name: 'level',
       component: LevelView
+    },
+    {
+      path: '/workshop/:id',
+      name: 'workshop',
+      component: WorkshopView
     },
     {
       path: '/users',

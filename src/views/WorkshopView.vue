@@ -1,13 +1,17 @@
 <script setup lang="ts">
   import { useSeoMeta } from '@unhead/vue'
+  import { useRoute } from 'vue-router'
 
-  import UsersLayout from '~/components/layouts/UsersLayout.vue'
+  import LevelsLayout from '~/components/layouts/LevelsLayout.vue'
   import LoadingIndicator from '~/components/LoadingIndicator.vue'
   import ContentSheet from '~/components/sheets/ContentSheet.vue'
 
-  const title = 'Users・Zeepkist Records'
+  const route = useRoute()
+  const id = String(route.params.id)
+
+  const title = 'Workshop Levels・Zeepkist Records'
   const description =
-    'Discover the players with the most World Records on Zeepkist Records, the ultimate platform for Zeepkist racing fans!'
+    'Check out the levels in this workshop item on Zeepkist Records, the ultimate platform for Zeepkist racing fans!'
   const url = window.location.href.split('?')[0]
 
   useSeoMeta({
@@ -23,9 +27,9 @@
 
 <template>
   <content-sheet>
-    <h1>Users</h1>
+    <h1>Levels in {{ id }}</h1>
     <suspense>
-      <users-layout />
+      <levels-layout :workshop-id="id" />
       <template #fallback>
         <loading-indicator />
       </template>
