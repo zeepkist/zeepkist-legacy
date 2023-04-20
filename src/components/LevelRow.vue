@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { useQuery } from '@tanstack/vue-query'
   import { getRecords, type Level } from '@zeepkist/gtr-api'
-  import { addHours } from 'date-fns'
+  import { addDays } from 'date-fns'
 
   import IconMedalAuthor from '~/assets/medal-author.webp?inline'
   import IconTrophy from '~/assets/trophy.webp?inline'
@@ -32,7 +32,8 @@
           null
     },
     enabled: !!level.id,
-    staleTime: addHours(new Date(), 1).getTime()
+    staleTime: addDays(0, 1).getTime(),
+    cacheTime: addDays(0, 1).getTime()
   })
 </script>
 

@@ -1,9 +1,15 @@
 import '@arco-design/web-vue/dist/arco.less'
 
 import ArcoVue from '@arco-design/web-vue'
-import { VueQueryPlugin } from '@tanstack/vue-query'
+import { persistQueryClient } from '@tanstack/query-persist-client-core'
+import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
+import {
+  VueQueryPlugin as query,
+  type VueQueryPluginOptions
+} from '@tanstack/vue-query'
 import { createHead } from '@unhead/vue'
 import { SchemaOrgUnheadPlugin as createSchema } from '@vueuse/schema-org'
+import { addDays, addMinutes } from 'date-fns'
 import { createPinia } from 'pinia'
 import { PiniaSharedState } from 'pinia-shared-state'
 import { createApp } from 'vue'
@@ -47,10 +53,30 @@ head.use(
   )
 )
 
+const queryOptions: VueQueryPluginOptions = {
+  queryClientConfig: {
+    defaultOptions: {
+      queries: {
+        staleTime: addMinutes(0, 5).getTime(),
+        cacheTime: addDays(0, 1).getTime(),
+        retry: false,
+        keepPreviousData: true
+      }
+    }
+  },
+  clientPersister: queryClient =>
+    persistQueryClient({
+      queryClient,
+      persister: createSyncStoragePersister({
+        storage: localStorage
+      })
+    })
+}
+
 app.use(pinia)
 app.use(router)
 app.use(head)
-app.use(VueQueryPlugin)
+app.use(query, queryOptions)
 app.use(ArcoVue)
 
 app.mount('#app')

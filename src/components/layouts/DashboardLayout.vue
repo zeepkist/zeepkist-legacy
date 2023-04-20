@@ -27,8 +27,7 @@
           WorldRecordOnly: true,
           Sort: '-id',
           Offset: (worldRecordsPage.value - 1) * limit
-        }),
-      keepPreviousData: true
+        })
     })
 
   const recentRecordsPage = ref(1)
@@ -42,8 +41,7 @@
           InvalidOnly: false,
           Sort: '-id',
           Offset: (recentRecordsPage.value - 1) * limit
-        }),
-      keepPreviousData: true
+        })
     })
 
   const levelsPage = ref(1)
@@ -54,8 +52,7 @@
         Limit: limit * 3,
         Offset: (levelsPage.value - 1) * limit * 2,
         Sort: '-id'
-      }),
-    keepPreviousData: true
+      })
   })
 
   const handlePageChanged = async (

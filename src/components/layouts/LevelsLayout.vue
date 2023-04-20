@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { useQuery, useQueryClient } from '@tanstack/vue-query'
   import { getLevels, type LevelsResponse } from '@zeepkist/gtr-api'
-  import { addMinutes } from 'date-fns'
   import { ref } from 'vue'
 
   import LevelList from '~/components/LevelList.vue'
@@ -28,13 +27,10 @@
 
       return levels
     },
-    retry: false,
-    keepPreviousData: true,
     placeholderData: queryClient.getQueryData([
       'levels',
       currentPage.value
-    ]) as LevelsResponse,
-    staleTime: addMinutes(new Date(), 5).getTime()
+    ]) as LevelsResponse
   })
 
   // Wait for the query to finish before rendering the view
