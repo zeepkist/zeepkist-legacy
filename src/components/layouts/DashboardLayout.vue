@@ -1,6 +1,12 @@
 <script setup lang="ts">
   import { useQuery } from '@tanstack/vue-query'
-  import { getLevels, getRecords } from '@zeepkist/gtr-api'
+  import {
+    getHotLevels,
+    getLevels,
+    getPopularLevels,
+    getRecords,
+    type PopularLevel
+  } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
   import ColumnLayout from '~/components/ColumnLayout.vue'
@@ -16,6 +22,12 @@
 
   const steamStore = useSteamStore()
   const limit = 10
+
+  const sortByPopularity = (a: PopularLevel, b: PopularLevel) => {
+    if (a.recordsCount > b.recordsCount) return -1
+    if (a.recordsCount < b.recordsCount) return 1
+    return 0
+  }
 
   const worldRecordsPage = ref(1)
   const { data: worldRecords, isPreviousData: isPreviousWorldRecordsData } =
@@ -44,19 +56,43 @@
         })
     })
 
+  const levelsPerPage = 18
   const levelsPage = ref(1)
   const { data: levels, isPreviousData: isPreviousLevelsData } = useQuery({
     queryKey: ['levels', levelsPage],
     queryFn: async () =>
       await getLevels({
-        Limit: limit * 3,
-        Offset: (levelsPage.value - 1) * limit * 2,
+        Limit: levelsPerPage,
+        Offset: (levelsPage.value - 1) * levelsPerPage * 2,
         Sort: '-id'
       })
   })
 
+  const { data: hotLevels } = useQuery({
+    queryKey: ['hotLevels'],
+    queryFn: async () => {
+      const data = await getHotLevels()
+
+      data.levels = data.levels.sort(sortByPopularity)
+
+      return data
+    }
+  })
+
+  const popularLevelsPage = ref(1)
+  const { data: popularLevels } = useQuery({
+    queryKey: ['popularLevels'],
+    queryFn: async () => {
+      const data = await getPopularLevels()
+
+      data.levels = data.levels.sort(sortByPopularity)
+
+      return data
+    }
+  })
+
   const handlePageChanged = async (
-    type: RecordType | 'level',
+    type: RecordType | 'level' | 'popularLevel',
     page: number
   ) => {
     switch (type) {
@@ -76,6 +112,10 @@
         if (!isPreviousLevelsData.value) {
           levelsPage.value = page
         }
+        break
+      }
+      case 'popularLevel': {
+        popularLevelsPage.value = page
         break
       }
     }
@@ -135,14 +175,37 @@
     </template>
   </column-layout>
 
+  <content-sheet v-if="hotLevels">
+    <level-list
+      header="Trending Today"
+      :levels="hotLevels.levels.slice(0, -1)" />
+  </content-sheet>
+
+  <content-sheet v-if="popularLevels">
+    <paginated-component
+      :current-page="popularLevelsPage"
+      :items-per-page="9"
+      :total-items="popularLevels.levels.length"
+      @page-changed="page => handlePageChanged('popularLevel', page)">
+      <level-list
+        header="Popular This Month"
+        :levels="
+          popularLevels.levels.slice(
+            9 * (popularLevelsPage - 1),
+            9 * popularLevelsPage
+          )
+        " />
+    </paginated-component>
+  </content-sheet>
+
   <content-sheet>
     <paginated-component
       v-if="levels"
       :current-page="levelsPage"
-      :items-per-page="limit * 2"
+      :items-per-page="levelsPerPage"
       :total-items="levels.totalAmount"
       @page-changed="page => handlePageChanged('level', page)">
-      <level-list header="Recent Levels" :levels="levels.levels" />
+      <level-list header="New Levels" :levels="levels.levels" />
     </paginated-component>
   </content-sheet>
 </template>

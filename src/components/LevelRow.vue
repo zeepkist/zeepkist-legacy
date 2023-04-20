@@ -12,6 +12,7 @@
 
   const { level } = defineProps<{
     level: Level
+    recordsCount?: number
   }>()
 
   const { data: worldRecord, isLoading } = useQuery({
@@ -63,6 +64,9 @@
               :class="$style.worldRecordAuthor" />
             <div>{{ formatResultTime(worldRecord.time) }}</div>
           </router-link>
+          <p v-if="recordsCount" :class="$style.recordsCount">
+            {{ recordsCount }} players
+          </p>
         </div>
         <p v-else>
           <img :src="IconMedalAuthor" alt="" />
@@ -99,13 +103,22 @@
 
     &:hover {
       .backgroundCover {
-        filter: blur(1rem) grayscale(0) brightness(1);
-        transform: scale(1.1);
+        filter: blur(0.5rem) grayscale(0);
         opacity: 0.25;
       }
 
+      .thumbnailContainer,
       .thumbnail {
-        transform: scale(1.1);
+        transform: translateX(0.5rem);
+        transform: scale(1.05);
+      }
+
+      .content {
+        transform: translateX(0.5rem);
+      }
+
+      .recordsCount {
+        transform: translateX(-0.75rem);
       }
     }
 
@@ -119,22 +132,32 @@
       height: calc(1rem * 6.5);
       width: calc(1rem * 10);
       min-width: calc(1rem * 10);
+      transform: translateX(0);
+      transition: transform 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
     }
 
     .thumbnailContainer {
       position: relative;
       overflow: hidden;
-      border-radius: 0.5rem;
+      // border-radius: 0.5rem;
+
+      img {
+        clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+        clip-path: polygon(0% 0%, 90% 0%, 80% 100%, 0% 100%);
+      }
+
+      p {
+        text-align: right;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 0.25rem;
+        font-size: 0.75rem;
+      }
     }
 
     .thumbnail {
       object-fit: cover;
-      border-radius: 0.5rem;
-    }
-
-    .thumbnail,
-    .backgroundCover {
-      transition: transform 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
     }
 
     .backgroundCover {
@@ -157,7 +180,11 @@
       display: flex;
       flex-direction: column;
       padding: 1rem 1rem;
+      margin-left: -1rem;
       overflow-x: hidden;
+
+      transform: translateX(0);
+      transition: transform 0.25s ease;
 
       img {
         width: 1.5em;
@@ -190,6 +217,7 @@
       align-items: flex-end;
       place-items: center;
       margin-bottom: -0.25rem;
+      margin-left: -0.5rem;
 
       a,
       a:visited {
@@ -213,6 +241,15 @@
       div {
         top: unset;
       }
+    }
+
+    .recordsCount {
+      flex: 1;
+      font-size: 0.75rem;
+      text-align: right;
+      align-self: flex-end;
+      transform: translateX(0);
+      transition: transform 0.25s ease;
     }
   }
 </style>
