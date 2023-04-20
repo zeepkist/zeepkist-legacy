@@ -1219,7 +1219,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unhead/dom@npm:1.1.26, @unhead/dom@npm:^1.1.26":
+"@unhead/dom@npm:1.1.26":
   version: 1.1.26
   resolution: "@unhead/dom@npm:1.1.26"
   dependencies:
@@ -1238,7 +1238,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unhead/schema@npm:1.1.26, @unhead/schema@npm:^1.1.26":
+"@unhead/schema@npm:1.1.26":
   version: 1.1.26
   resolution: "@unhead/schema@npm:1.1.26"
   dependencies:
@@ -1257,17 +1257,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unhead/ssr@npm:^1.1.26":
-  version: 1.1.26
-  resolution: "@unhead/ssr@npm:1.1.26"
-  dependencies:
-    "@unhead/schema": 1.1.26
-    "@unhead/shared": 1.1.26
-  checksum: 04a79fd0eb4ab552413e7a8b7fc64dccff29ee0f90a36ef8456f4d4c16a4170a27bfd5648d93990bab400eabf691a22357e9e8e81881b92e5ec5ac8ce9c5225e
-  languageName: node
-  linkType: hard
-
-"@unhead/vue@npm:1.1.26, @unhead/vue@npm:^1.1.26":
+"@unhead/vue@npm:1.1.26":
   version: 1.1.26
   resolution: "@unhead/vue@npm:1.1.26"
   dependencies:
@@ -1527,20 +1517,6 @@ __metadata:
     "@vueuse/shared": 10.0.2
     vue-demi: ">=0.14.0"
   checksum: 3ac42789cac0e1610a27706c2a73e8a37a101174dd077fb14fcad50c2d73c3e72ccc95677cebc6415f4bd757562207ed87a210364337826501f75efe60c2b1f8
-  languageName: node
-  linkType: hard
-
-"@vueuse/head@npm:1.1.26":
-  version: 1.1.26
-  resolution: "@vueuse/head@npm:1.1.26"
-  dependencies:
-    "@unhead/dom": ^1.1.26
-    "@unhead/schema": ^1.1.26
-    "@unhead/ssr": ^1.1.26
-    "@unhead/vue": ^1.1.26
-  peerDependencies:
-    vue: ">=2.7 || >=3"
-  checksum: f9c6f71b693bc91a04558477049bb6975e1fe4ab5bf1fd3727977105455566e235a72d8e5e520f2e66ad5b5403cd14dd57d8d37f66560cec403b64dc017cf8d1
   languageName: node
   linkType: hard
 
@@ -9258,7 +9234,6 @@ __metadata:
     "@vue/eslint-config-typescript": 11.0.2
     "@vue/tsconfig": 0.1.3
     "@vueuse/components": 10.0.2
-    "@vueuse/head": 1.1.26
     "@vueuse/schema-org": 2.1.2
     "@zeepkist/gtr-api": 3.0.1
     cypress: 12.10.0

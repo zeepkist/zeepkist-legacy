@@ -2,7 +2,7 @@ import '@arco-design/web-vue/dist/arco.less'
 
 import ArcoVue from '@arco-design/web-vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
-import { createHead } from '@vueuse/head'
+import { createHead } from '@unhead/vue'
 import { SchemaOrgUnheadPlugin as createSchema } from '@vueuse/schema-org'
 import { createPinia } from 'pinia'
 import { PiniaSharedState } from 'pinia-shared-state'

@@ -1,5 +1,7 @@
 <script setup lang="ts">
-  import { getRecords, type Level } from '@zeepkist/gtr-api'
+  import { useQuery } from '@tanstack/vue-query'
+  import { getLevels, getRecords, type Level } from '@zeepkist/gtr-api'
+  import { addHours } from 'date-fns'
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
@@ -22,6 +24,23 @@
   const route = useRoute()
   const id = Number(route.params.id)
   const limit = 10
+
+  const { data: workshopLevelsCount } = useQuery({
+    queryKey: ['workshopLevelsCount', level.workshopId],
+    queryFn: async () => {
+      const levels = await getLevels({
+        WorkshopId: level.workshopId,
+        Limit: 0
+      })
+
+      console.log('count', levels)
+
+      return levels.totalAmount ?? 0
+    },
+    retry: false,
+    keepPreviousData: true,
+    staleTime: addHours(new Date(), 1).getTime()
+  })
 
   const getPaginatedRecords = async (type: RecordType, page = 1) => {
     switch (type) {
@@ -111,6 +130,11 @@
     >
     <span>{{ bestRecords.totalAmount }} players</span>
     <template v-if="level.workshopId !== '0'" #actions>
+      <router-link
+        v-if="workshopLevelsCount && workshopLevelsCount > 1"
+        :to="{ name: 'workshop', params: { id: level.workshopId } }">
+        View level pack
+      </router-link>
       <a :href="STEAM_WORKSHOP_URL + level.workshopId">Open in Workshop</a>
     </template>
   </full-width-header>
