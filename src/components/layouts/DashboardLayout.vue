@@ -56,13 +56,14 @@
         })
     })
 
+  const levelsPerPage = 18
   const levelsPage = ref(1)
   const { data: levels, isPreviousData: isPreviousLevelsData } = useQuery({
     queryKey: ['levels', levelsPage],
     queryFn: async () =>
       await getLevels({
-        Limit: limit * 3,
-        Offset: (levelsPage.value - 1) * limit * 2,
+        Limit: levelsPerPage,
+        Offset: (levelsPage.value - 1) * levelsPerPage * 2,
         Sort: '-id'
       })
   })
@@ -201,7 +202,7 @@
     <paginated-component
       v-if="levels"
       :current-page="levelsPage"
-      :items-per-page="18"
+      :items-per-page="levelsPerPage"
       :total-items="levels.totalAmount"
       @page-changed="page => handlePageChanged('level', page)">
       <level-list header="New Levels" :levels="levels.levels" />

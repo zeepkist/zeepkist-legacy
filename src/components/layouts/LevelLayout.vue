@@ -4,6 +4,7 @@
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
+  import PopularLevelBadge from '~/components/badges/PopularLevelBadge.vue'
   import ColumnLayout from '~/components/ColumnLayout.vue'
   import FullWidthHeader from '~/components/headers/FullWidthHeader.vue'
   import PaginatedComponent from '~/components/PaginatedComponent.vue'
@@ -116,15 +117,14 @@
     :title="level.name"
     :author="level.author">
     <span
-      v-if="recentRecords.totalAmount - invalidRecords.totalAmount > 250"
-      :class="$style.badge"
-      >POPULAR</span
-    >
-    <span
       >{{ recentRecords.totalAmount - invalidRecords.totalAmount }} valid
       runs</span
     >
     <span>{{ bestRecords.totalAmount }} players</span>
+    <template #badges>
+      <popular-level-badge :level-id="level.id" popular />
+      <popular-level-badge :level-id="level.id" />
+    </template>
     <template v-if="level.workshopId !== '0'" #actions>
       <router-link
         v-if="workshopLevelsCount && workshopLevelsCount > 1"
@@ -205,12 +205,3 @@
     </template>
   </column-layout>
 </template>
-
-<style module lang="less">
-  span.badge {
-    border: 1px solid rgb(var(--primary-6));
-    border-radius: 0.25rem;
-    font-size: 0.675rem;
-    padding: 0.25rem 0.5rem !important;
-  }
-</style>

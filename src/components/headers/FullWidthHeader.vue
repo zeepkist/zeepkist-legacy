@@ -21,6 +21,9 @@
       <span :class="$style.headerAuthor"
         >By <user-badge :username="author"
       /></span>
+      <div v-if="$slots.badges" :class="$style.headerExtra">
+        <slot name="badges" />
+      </div>
       <div v-if="$slots" :class="$style.headerExtra">
         <slot />
       </div>
@@ -79,6 +82,13 @@
     height: 100px;
     max-height: 100px;
 
+    img {
+      max-height: 100px;
+      margin-right: 1rem;
+      border-radius: var(--border-radius-large);
+      box-shadow: @shadow-special;
+    }
+
     @media screen and (max-width: 900px) {
       flex-direction: column;
       align-items: center;
@@ -87,16 +97,14 @@
       max-height: none;
       gap: 2rem;
 
-      .headerExtra {
-        margin: 2rem 0 0;
+      img {
+        margin-right: 0;
       }
-    }
 
-    img {
-      max-height: 100px;
-      margin-right: 1rem;
-      border-radius: var(--border-radius-large);
-      box-shadow: @shadow-special;
+      .headerExtra,
+      .headerActions {
+        margin: 2rem auto 0;
+      }
     }
 
     .headerTitle {
@@ -121,6 +129,7 @@
       align-items: flex-end;
       gap: 0.5rem;
       font-size: 0.75rem;
+      text-align: center;
 
       span {
         padding: 0.25rem 0;
