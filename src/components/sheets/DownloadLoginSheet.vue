@@ -37,8 +37,6 @@
 </template>
 
 <style module lang="less">
-  @import '@arco-design/web-vue/es/style/theme/global.less';
-
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -77,7 +75,7 @@
       margin: 2rem auto 0;
       color: var(--zk-text-1);
       background: var(--zk-primary-4);
-      border-radius: var(--border-radius-large);
+      border-radius: var(--zk-border-radius-large);
       padding: 0.5rem 0 0.675rem;
 
       &.buttonOutline {

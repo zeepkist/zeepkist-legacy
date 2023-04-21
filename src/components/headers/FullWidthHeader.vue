@@ -35,8 +35,6 @@
 </template>
 
 <style module lang="less">
-  @import '@arco-design/web-vue/es/style/theme/global.less';
-
   .coverImageContainer {
     z-index: -1;
     position: absolute;
@@ -85,8 +83,8 @@
     img {
       max-height: 100px;
       margin-right: 1rem;
-      border-radius: var(--border-radius-large);
-      box-shadow: @shadow-special;
+      border-radius: var(--zk-border-radius-large);
+      box-shadow: var(--zk-shadow-special);
     }
 
     @media screen and (max-width: 900px) {

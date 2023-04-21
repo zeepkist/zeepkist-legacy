@@ -63,7 +63,7 @@
     a:global.router-link-exact-active {
       background: var(--zk-background-1);
       color: var(--zk-primary-5);
-      border-radius: var(--border-radius-medium);
+      border-radius: var(--zk-border-radius-medium);
     }
   }
 </style>

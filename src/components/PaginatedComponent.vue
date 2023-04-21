@@ -60,7 +60,7 @@
         font-size: 1rem;
         padding: 0.25rem 0.75rem;
         border: none;
-        border-radius: var(--border-radius-medium);
+        border-radius: var(--zk-border-radius-medium);
         background: none;
         color: var(--zk-primary-5);
         cursor: pointer;

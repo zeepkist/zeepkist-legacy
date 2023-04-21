@@ -63,7 +63,7 @@ Track records, view player stats, create/join tournaments and view Super League 
 
 <style lang="less">
   :root {
-    // TODO: border-radius and color-border
+    // TODO: color-border
     --zk-font-size-body-1: 0.75rem;
     --zk-font-size-body-2: 0.875rem;
     --zk-font-size-title-1: 2.5rem;
@@ -72,6 +72,11 @@ Track records, view player stats, create/join tournaments and view Super League 
     --zk-font-size-title-4: 1.25rem;
     --zk-font-size-title-5: var(--font-size-title-4);
     --zk-font-size-title-6: 1rem;
+
+    --zk-shadow-special: 0 0 1px #0000004d;
+
+    --zk-border-radius-medium: 0.25rem;
+    --zk-border-radius-large: 0.5rem;
 
     --zk-light-primary-4: #ffac2e;
     --zk-light-primary-5: #ff9200;
@@ -139,10 +144,20 @@ Track records, view player stats, create/join tournaments and view Super League 
     -moz-osx-font-smoothing: grayscale;
   }
 
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0;
+  }
+
   h1 {
     font-size: var(--zk-font-size-title-1);
     font-weight: 800;
-    margin-top: 0;
   }
 
   h2 {

@@ -109,7 +109,7 @@
       gap: 0.25rem;
       span {
         border: 1px solid var(--zk-primary-5);
-        border-radius: var(--border-radius-medium);
+        border-radius: var(--zk-border-radius-medium);
         padding: 0 0.25rem;
         font-size: 0.75rem;
 
@@ -139,7 +139,7 @@
 
       button {
         border: none;
-        border-radius: var(--border-radius-medium);
+        border-radius: var(--zk-border-radius-medium);
         color: var(--zk-background-1);
         background: var(--zk-primary-5);
         cursor: pointer;
