@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { useQuery, useQueryClient } from '@tanstack/vue-query'
   import { getLevels, type LevelsResponse } from '@zeepkist/gtr-api'
-  import { addHours } from 'date-fns'
 
   import LevelList from '~/components/LevelList.vue'
 
@@ -17,12 +16,9 @@
 
       return levels
     },
-    retry: false,
-    keepPreviousData: true,
     placeholderData: queryClient.getQueryData([
       'adventureLevels'
-    ]) as LevelsResponse,
-    staleTime: addHours(new Date(), 1).getTime()
+    ]) as LevelsResponse
   })
 
   // Wait for the query to finish before rendering the view

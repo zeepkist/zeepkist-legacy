@@ -1,8 +1,7 @@
 <script setup lang="ts">
   import { useQuery, useQueryClient } from '@tanstack/vue-query'
-  import { useSeoMeta } from '@vueuse/head'
+  import { useSeoMeta } from '@unhead/vue'
   import { getUserBySteamId, type User } from '@zeepkist/gtr-api'
-  import { addHours } from 'date-fns'
   import { HTTPError } from 'ky'
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
@@ -44,11 +43,8 @@
         return null
       }
     },
-    retry: false,
-    keepPreviousData: true,
     placeholderData: queryClient.getQueryData(['user', steamId]) as User,
-    enabled: !!steamId,
-    staleTime: addHours(new Date(), 1).getTime()
+    enabled: !!steamId
   })
 
   // Wait for the query to finish before rendering the view

@@ -1,11 +1,14 @@
 <script setup lang="ts">
   import { useQuery, useQueryClient } from '@tanstack/vue-query'
   import { getLevels, type LevelsResponse } from '@zeepkist/gtr-api'
-  import { addMinutes } from 'date-fns'
   import { ref } from 'vue'
 
   import LevelList from '~/components/LevelList.vue'
   import PaginatedComponent from '~/components/PaginatedComponent.vue'
+
+  const { workshopId } = defineProps<{
+    workshopId?: string
+  }>()
 
   const queryClient = useQueryClient()
 
@@ -13,23 +16,21 @@
   const currentPage = ref(1)
 
   const { data, suspense } = useQuery({
-    queryKey: ['levels', currentPage],
+    queryKey: ['levels', currentPage, workshopId],
     queryFn: async () => {
       const levels = await getLevels({
+        WorkshopId: workshopId ?? undefined,
         Limit: itemsPerPage,
         Offset: (currentPage.value - 1) * itemsPerPage,
-        Sort: '-id'
+        Sort: workshopId ? 'name' : '-id'
       })
 
       return levels
     },
-    retry: false,
-    keepPreviousData: true,
     placeholderData: queryClient.getQueryData([
       'levels',
       currentPage.value
-    ]) as LevelsResponse,
-    staleTime: addMinutes(new Date(), 5).getTime()
+    ]) as LevelsResponse
   })
 
   // Wait for the query to finish before rendering the view

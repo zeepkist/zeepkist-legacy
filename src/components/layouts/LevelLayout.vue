@@ -1,8 +1,10 @@
 <script setup lang="ts">
-  import { getRecords, type Level } from '@zeepkist/gtr-api'
+  import { useQuery } from '@tanstack/vue-query'
+  import { getLevels, getRecords, type Level } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
+  import PopularLevelBadge from '~/components/badges/PopularLevelBadge.vue'
   import ColumnLayout from '~/components/ColumnLayout.vue'
   import FullWidthHeader from '~/components/headers/FullWidthHeader.vue'
   import PaginatedComponent from '~/components/PaginatedComponent.vue'
@@ -22,6 +24,20 @@
   const route = useRoute()
   const id = Number(route.params.id)
   const limit = 10
+
+  const { data: workshopLevelsCount } = useQuery({
+    queryKey: ['workshopLevelsCount', level.workshopId],
+    queryFn: async () => {
+      const levels = await getLevels({
+        WorkshopId: level.workshopId,
+        Limit: 0
+      })
+
+      console.log('count', levels)
+
+      return levels.totalAmount ?? 0
+    }
+  })
 
   const getPaginatedRecords = async (type: RecordType, page = 1) => {
     switch (type) {
@@ -101,16 +117,20 @@
     :title="level.name"
     :author="level.author">
     <span
-      v-if="recentRecords.totalAmount - invalidRecords.totalAmount > 250"
-      :class="$style.badge"
-      >POPULAR</span
-    >
-    <span
       >{{ recentRecords.totalAmount - invalidRecords.totalAmount }} valid
       runs</span
     >
     <span>{{ bestRecords.totalAmount }} players</span>
-    <template #actions>
+    <template #badges>
+      <popular-level-badge :level-id="level.id" popular />
+      <popular-level-badge :level-id="level.id" />
+    </template>
+    <template v-if="level.workshopId !== '0'" #actions>
+      <router-link
+        v-if="workshopLevelsCount && workshopLevelsCount > 1"
+        :to="{ name: 'workshop', params: { id: level.workshopId } }">
+        View level pack
+      </router-link>
       <a :href="STEAM_WORKSHOP_URL + level.workshopId">Open in Workshop</a>
     </template>
   </full-width-header>
@@ -185,12 +205,3 @@
     </template>
   </column-layout>
 </template>
-
-<style module lang="less">
-  span.badge {
-    border: 1px solid rgb(var(--primary-6));
-    border-radius: 0.25rem;
-    font-size: 0.675rem;
-    padding: 0.25rem 0.5rem !important;
-  }
-</style>

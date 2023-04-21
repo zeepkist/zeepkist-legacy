@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { useSeoMeta } from '@vueuse/head'
+  import { useSeoMeta } from '@unhead/vue'
   import { HTTPError } from 'ky'
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'

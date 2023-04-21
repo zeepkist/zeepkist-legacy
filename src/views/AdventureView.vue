@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { useSeoMeta } from '@vueuse/head'
+  import { useSeoMeta } from '@unhead/vue'
 
   import AdventureLayout from '~/components/layouts/AdventureLayout.vue'
   import LoadingIndicator from '~/components/LoadingIndicator.vue'

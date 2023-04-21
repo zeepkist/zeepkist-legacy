@@ -1,9 +1,9 @@
 <script setup lang="ts">
   import { useQuery, useQueryClient } from '@tanstack/vue-query'
-  import { useSeoMeta } from '@vueuse/head'
+  import { useSeoMeta } from '@unhead/vue'
   import { defineWebPage, useSchemaOrg } from '@vueuse/schema-org'
   import { getLevel, type Level } from '@zeepkist/gtr-api'
-  import { addHours } from 'date-fns'
+  import { addDays } from 'date-fns'
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
 
@@ -40,11 +40,10 @@
         return null
       }
     },
-    retry: false,
-    keepPreviousData: true,
     placeholderData: queryClient.getQueryData(['level', id]) as Level,
     enabled: !!id,
-    staleTime: addHours(new Date(), 1).getTime()
+    staleTime: addDays(0, 1).getTime(),
+    cacheTime: addDays(0, 1).getTime()
   })
 
   // Wait for the query to finish before rendering the view

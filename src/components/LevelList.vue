@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  import type { Level } from '@zeepkist/gtr-api'
+  import type { Level, PopularLevel } from '@zeepkist/gtr-api'
 
   import LevelRow from '~/components/LevelRow.vue'
 
   const { header, levels } = defineProps<{
     header?: string
-    levels: Level[]
+    levels: Level[] | PopularLevel[]
     hideLevelThumbnail?: boolean
   }>()
 </script>
@@ -14,7 +14,13 @@
   <div :class="$style.levels">
     <h2 v-if="header">{{ header }}</h2>
     <div :class="$style.levelGrid">
-      <level-row v-for="level in levels" :key="level.uniqueId" :level="level" />
+      <level-row
+        v-for="level in levels"
+        :key="'recordsCount' in level ? level.level.uniqueId : level.uniqueId"
+        :level="'recordsCount' in level ? level.level : level"
+        :records-count="
+          'recordsCount' in level ? level.recordsCount : undefined
+        " />
     </div>
   </div>
 </template>

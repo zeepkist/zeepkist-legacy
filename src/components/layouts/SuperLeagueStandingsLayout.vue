@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { useSeoMeta } from '@vueuse/head'
+  import { useSeoMeta } from '@unhead/vue'
   import { useRoute } from 'vue-router'
 
   import DebugCode from '~/components/DebugCode.vue'
