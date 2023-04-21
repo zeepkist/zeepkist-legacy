@@ -1342,9 +1342,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@volar/vue-language-core@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@volar/vue-language-core@npm:1.4.1"
+"@volar/vue-language-core@npm:1.4.2":
+  version: 1.4.2
+  resolution: "@volar/vue-language-core@npm:1.4.2"
   dependencies:
     "@volar/language-core": 1.4.0
     "@volar/source-map": 1.4.0
@@ -1355,17 +1355,17 @@ __metadata:
     minimatch: ^9.0.0
     muggle-string: ^0.2.2
     vue-template-compiler: ^2.7.14
-  checksum: b824529301c79329839a7d6a7c8dfe5cc0f8d8d236a85e9ab8172deaa90102686d5b90ec16d4b2f29670f655c1db33d62f170507a2fca7e996300aeb9233ad26
+  checksum: 02495ec53fe4cf1b2985cc68dfc091a4cffd2e06d0954ab46a8ecf1df60503aa54304765eaffc5653dc317116ddd3b238480c9e0362409916597d54d082e5502
   languageName: node
   linkType: hard
 
-"@volar/vue-typescript@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@volar/vue-typescript@npm:1.4.1"
+"@volar/vue-typescript@npm:1.4.2":
+  version: 1.4.2
+  resolution: "@volar/vue-typescript@npm:1.4.2"
   dependencies:
     "@volar/typescript": 1.4.0
-    "@volar/vue-language-core": 1.4.1
-  checksum: fca7f813a6e9acc39817829b2a0cce61922d9fe2e900d7248bae2df1bc15d30672c998e3fa8f40c62cac1fd0c850085c6caf625ee5ff2332933daf0eb594b260
+    "@volar/vue-language-core": 1.4.2
+  checksum: 620572ca2ccefb75da17eff99b19fdae559049deb55740d7a4aabdc8314a448d39bd3396ae349d14f8efc66f325317477d13d39d6fa22486d0c7137a70339435
   languageName: node
   linkType: hard
 
@@ -8945,18 +8945,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-tsc@npm:1.4.1":
-  version: 1.4.1
-  resolution: "vue-tsc@npm:1.4.1"
+"vue-tsc@npm:1.4.2":
+  version: 1.4.2
+  resolution: "vue-tsc@npm:1.4.2"
   dependencies:
-    "@volar/vue-language-core": 1.4.1
-    "@volar/vue-typescript": 1.4.1
+    "@volar/vue-language-core": 1.4.2
+    "@volar/vue-typescript": 1.4.2
     semver: ^7.3.8
   peerDependencies:
     typescript: "*"
   bin:
     vue-tsc: bin/vue-tsc.js
-  checksum: 02f67e5d9efb898b8bd771817c8482a3155d241f11d25252a0fd6572e69ae4cf65e6a2ea291118df6e76d86c2a112022ae156fc03c69ef67325b81bd2ebd9db4
+  checksum: cd56973503d7e024ea59cd0f583481036d298d13638b63b334ff13be2501b7f4421a228e81cdbd56dfe7bfc8b916c1be4fe1d20ff50063ea96bd1c4d8b528ec5
   languageName: node
   linkType: hard
 
@@ -9292,7 +9292,7 @@ __metadata:
     vite: 4.3.1
     vue: 3.2.47
     vue-router: 4.1.6
-    vue-tsc: 1.4.1
+    vue-tsc: 1.4.2
   dependenciesMeta:
     cypress:
       built: true
