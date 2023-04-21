@@ -17,11 +17,7 @@
   const steamId = route.params.steamId as string
   const errorMessage = ref<string>()
 
-  const {
-    data: user,
-    isSuccess,
-    suspense
-  } = useQuery({
+  const { data: user, isSuccess } = useQuery({
     queryKey: ['user', steamId],
     queryFn: async () => {
       try {
@@ -46,21 +42,6 @@
     placeholderData: queryClient.getQueryData(['user', steamId]) as User,
     enabled: !!steamId
   })
-
-  // Wait for the query to finish before rendering the view
-  await suspense()
-
-  /*
-  try {
-    user.value = await getUserBySteamId(steamId)
-  } catch (error) {
-    if (error instanceof HTTPError && error.response.status === 404) {
-      user.value = undefined
-    } else {
-      console.error(error)
-    }
-  }
-  */
 
   if (isSuccess && user.value) {
     const { username } = formatUser(user.value.steamName)
