@@ -93,7 +93,7 @@
     }
 
     &:nth-of-type(even) {
-      background: var(--color-bg-1);
+      background: var(--zk-background-1);
     }
 
     img {
@@ -108,19 +108,19 @@
       display: flex;
       gap: 0.25rem;
       span {
-        border: 1px solid rgb(var(--primary-6));
+        border: 1px solid var(--zk-primary-5);
         border-radius: var(--border-radius-medium);
         padding: 0 0.25rem;
         font-size: 0.75rem;
 
         &.wr {
           font-weight: 600;
-          color: var(--color-bg-1);
-          background: rgb(var(--primary-6));
+          color: var(--zk-background-1);
+          background: var(--zk-primary-5);
         }
 
         &.any {
-          border: 1px solid var(--color-text-4);
+          border: 1px solid var(--zk-neutral-4);
         }
       }
     }
@@ -140,18 +140,18 @@
       button {
         border: none;
         border-radius: var(--border-radius-medium);
-        color: var(--color-bg-1);
-        background: rgb(var(--primary-6));
+        color: var(--zk-background-1);
+        background: var(--zk-primary-5);
         cursor: pointer;
 
         &:disabled {
-          background: var(--color-bg-2);
-          color: var(--color-text-4);
+          background: var(--zk-background-2);
+          color: var(--zk-neutral-6);
           cursor: not-allowed;
         }
 
         &:hover:not(:disabled) {
-          background: var(--color-hover);
+          background: var(--zk-primary-5);
         }
       }
     }

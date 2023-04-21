@@ -58,11 +58,11 @@
       border: 1px solid transparent;
 
       &:hover {
-        color: var(--color-text-1);
+        color: var(--zk-text-1);
       }
 
       &:first-child:hover {
-        border: 1px solid rgb(var(--primary-6));
+        border: 1px solid var(--zk-primary-5);
       }
 
       &:nth-child(2) {
@@ -75,18 +75,18 @@
       display: block;
       min-width: 50%;
       margin: 2rem auto 0;
-      color: rgb(var(--color-text-1));
-      background: rgb(var(--primary-4));
+      color: var(--zk-text-1);
+      background: var(--zk-primary-4);
       border-radius: var(--border-radius-large);
       padding: 0.5rem 0 0.675rem;
 
       &.buttonOutline {
         background: none;
-        border: 1px solid rgb(var(--primary-6));
+        border: 1px solid var(--zk-primary-5);
 
         &:hover {
-          background: rgb(var(--primary-4));
-          border: 1px solid rgb(var(--primary-4));
+          background: var(--zk-primary-4);
+          border: 1px solid var(--zk-primary-4);
         }
       }
     }

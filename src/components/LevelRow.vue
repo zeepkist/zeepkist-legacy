@@ -226,7 +226,7 @@
         transition: color 0.25s ease;
 
         &:hover {
-          color: rgb(var(--primary-6));
+          color: var(--zk-primary-5);
         }
       }
 

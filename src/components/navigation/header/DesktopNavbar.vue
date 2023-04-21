@@ -83,7 +83,7 @@
   .header {
     margin: 0 auto;
     position: absolute;
-    background: var(--color-bg-2);
+    background: var(--zk-background-2);
     border-bottom: 1px solid var(--color-border);
     height: 50px;
 
@@ -105,7 +105,7 @@
       transition: color 0.3s;
       &:global(.router-link-active),
       &:hover {
-        color: rgb(var(--primary-6));
+        color: var(--zk-primary-5);
       }
     }
 

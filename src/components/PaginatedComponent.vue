@@ -62,16 +62,16 @@
         border: none;
         border-radius: var(--border-radius-medium);
         background: none;
-        color: rgb(var(--link-6));
+        color: var(--zk-primary-5);
         cursor: pointer;
 
         &:disabled {
-          color: var(--color-text-4);
+          color: var(--zk-neutral-6);
           cursor: not-allowed;
         }
 
         &:hover:not(:disabled) {
-          color: rgb(var(--link-10));
+          color: var(--zk-secondary-5);
         }
       }
     }
