@@ -6,7 +6,7 @@
 
   const queryClient = useQueryClient()
 
-  const { data, suspense } = useQuery({
+  const { data } = useQuery({
     queryKey: ['adventureLevels'],
     queryFn: async () => {
       const levels = await getLevels({ WorkshopId: '0' })
@@ -20,9 +20,6 @@
       'adventureLevels'
     ]) as LevelsResponse
   })
-
-  // Wait for the query to finish before rendering the view
-  await suspense()
 </script>
 
 <template>

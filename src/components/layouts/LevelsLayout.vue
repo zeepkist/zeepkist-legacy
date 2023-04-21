@@ -15,7 +15,7 @@
   const itemsPerPage = 24
   const currentPage = ref(1)
 
-  const { data, suspense } = useQuery({
+  const { data } = useQuery({
     queryKey: ['levels', currentPage, workshopId],
     queryFn: async () => {
       const levels = await getLevels({
@@ -32,9 +32,6 @@
       currentPage.value
     ]) as LevelsResponse
   })
-
-  // Wait for the query to finish before rendering the view
-  await suspense()
 
   const handlePageChanged = async (page: number) => {
     currentPage.value = page

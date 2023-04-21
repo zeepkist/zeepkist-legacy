@@ -17,11 +17,7 @@
   const id = Number(route.params.id)
   const errorMessage = ref<string>()
 
-  const {
-    data: level,
-    isSuccess,
-    suspense
-  } = useQuery({
+  const { data: level, isSuccess } = useQuery({
     queryKey: ['level', id],
     queryFn: async () => {
       try {
@@ -45,9 +41,6 @@
     staleTime: addDays(0, 1).getTime(),
     cacheTime: addDays(0, 1).getTime()
   })
-
-  // Wait for the query to finish before rendering the view
-  await suspense()
 
   if (isSuccess && level.value) {
     const title = `${level.value.name}・Zeepkist Records`
