@@ -72,9 +72,7 @@
     queryKey: ['hotLevels'],
     queryFn: async () => {
       const data = await getHotLevels()
-
       data.levels = data.levels.sort(sortByPopularity)
-
       return data
     }
   })
@@ -84,9 +82,7 @@
     queryKey: ['popularLevels'],
     queryFn: async () => {
       const data = await getPopularLevels()
-
       data.levels = data.levels.sort(sortByPopularity)
-
       return data
     }
   })

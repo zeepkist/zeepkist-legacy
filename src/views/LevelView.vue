@@ -40,7 +40,7 @@
         return null
       }
     },
-    placeholderData: queryClient.getQueryData(['level', id]) as Level,
+    initialData: queryClient.getQueryData(['level', id]) as Level,
     enabled: !!id,
     staleTime: addDays(0, 1).getTime(),
     cacheTime: addDays(0, 1).getTime()
