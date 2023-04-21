@@ -1,5 +1,8 @@
 {
-  "extends": "./tsconfig.app.json",
+  "extends": [
+    "./tsconfig.app.json",
+    "@tsconfig/cypress/tsconfig.json"
+  ],
   "include": [
     "env.d.ts",
     "src/**/*",
@@ -7,7 +10,6 @@
     "cypress/support/component.*",
     "cypress/support/commands.ts"
   ],
-  "exclude": [],
   "compilerOptions": {
     "composite": true
   }
