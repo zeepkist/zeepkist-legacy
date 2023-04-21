@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { useQuery } from '@tanstack/vue-query'
+  import { useQuery, useQueryClient } from '@tanstack/vue-query'
   import { getRecords, type Level } from '@zeepkist/gtr-api'
   import { addDays } from 'date-fns'
 
@@ -14,6 +14,8 @@
     level: Level
     recordsCount?: number
   }>()
+
+  const queryClient = useQueryClient()
 
   const { data: worldRecord, isLoading } = useQuery({
     queryKey: ['worldRecord', level.id],
@@ -36,6 +38,8 @@
     staleTime: addDays(0, 1).getTime(),
     cacheTime: addDays(0, 1).getTime()
   })
+
+  queryClient.setQueryData(['level', level.id], level)
 </script>
 
 <template>
