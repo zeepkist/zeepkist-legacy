@@ -17,7 +17,7 @@
   const steamId = route.params.steamId as string
   const errorMessage = ref<string>()
 
-  const { data: user, isSuccess } = useQuery({
+  const { data: user, isSuccess, isInitialLoading } = useQuery({
     queryKey: ['user', steamId],
     queryFn: async () => {
       try {
@@ -39,7 +39,7 @@
         return null
       }
     },
-    placeholderData: queryClient.getQueryData(['user', steamId]) as User,
+    initialData: queryClient.getQueryData(['user', steamId]) as User,
     enabled: !!steamId
   })
 
@@ -64,7 +64,8 @@
 <template>
   <content-sheet>
     <suspense>
-      <user-layout v-if="user" :user="user" />
+      <loading-indicator v-if="isInitialLoading" />
+      <user-layout v-else-if="user" :user="user" />
       <error-layout
         v-else
         :message="

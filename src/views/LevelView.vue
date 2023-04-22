@@ -17,7 +17,7 @@
   const id = Number(route.params.id)
   const errorMessage = ref<string>()
 
-  const { data: level, isSuccess } = useQuery({
+  const { data: level, isSuccess, isInitialLoading } = useQuery({
     queryKey: ['level', id],
     queryFn: async () => {
       try {
@@ -36,6 +36,7 @@
         return null
       }
     },
+    suspense: false,
     initialData: queryClient.getQueryData(['level', id]) as Level,
     enabled: !!id,
     staleTime: addDays(0, 1).getTime(),
@@ -86,13 +87,14 @@ Play it and see how you stack up against other players!`
 
 <template>
   <suspense>
-    <level-layout v-if="level" :level="level" />
-    <error-layout
-      v-else
-      :message="
-        errorMessage ??
-        'An error occurred while fetching the level. Please try again later.'
-      " />
+  <loading-indicator v-if="isInitialLoading" />
+  <level-layout v-else-if="level" :level="level" />
+  <error-layout
+    v-else
+    :message="
+      errorMessage ??
+      'An error occurred while fetching the level. Please try again later.'
+    " />
     <template #fallback>
       <loading-indicator />
     </template>
