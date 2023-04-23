@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { useSeoMeta } from '@unhead/vue'
+  import { zonedTimeToUtc } from 'date-fns-tz'
   import { HTTPError } from 'ky'
   import { ref } from 'vue'
   import { useRoute } from 'vue-router'
@@ -18,7 +19,10 @@
 
   const season = route.params.season as string
   const event = route.params.event as string
-  const date = `${event}T18:00:00.000Z`
+  const date = zonedTimeToUtc(
+    `${event}T18:00:00.000`,
+    'Europe/London'
+  ).getTime()
 
   const data = ref<SeasonEvent | undefined>()
 
@@ -56,8 +60,8 @@
       :key="event"
       :users="data.users" />
     <p v-else>
-      Event starts {{ formatRelativeDate(date) }} ({{
-        Intl.DateTimeFormat().format(new Date(date))
+      Event starts {{ formatRelativeDate(new Date(date).toISOString()) }} ({{
+        Intl.DateTimeFormat().format(date)
       }})
     </p>
   </section>
