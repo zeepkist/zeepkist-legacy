@@ -5,7 +5,7 @@ https://zeepkist.wopian.me/*   https://zeepki.st/:splat 301!
 /                             /index.html 200
 /adventure                    /index.html 200
 /levels                       /index.html 200
-/levels/:id                   /level:id   301!
+/levels/:id                   /level/:id   301!
 /level/:id                    /index.html 200
 /workshop/:id                 /index.html 200
 /users                        /index.html 200
