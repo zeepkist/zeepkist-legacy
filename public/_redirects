@@ -5,9 +5,11 @@ https://zeepkist.wopian.me/*   https://zeepki.st/:splat 301!
 /                             /index.html 200
 /adventure                    /index.html 200
 /levels                       /index.html 200
+/levels/:id                   /level/:id   301!
 /level/:id                    /index.html 200
 /workshop/:id                 /index.html 200
 /users                        /index.html 200
+/users/:steamId               /user/:steamId 301!
 /user/:steamId                /index.html 200
 /super-league                 /index.html 200
 /super-league/:season         /index.html 200

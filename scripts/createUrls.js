@@ -4,6 +4,7 @@ import { getLevels, getUsers } from '@zeepkist/gtr-api'
 
 const userList = []
 const levelList = []
+const workshopList = new Set()
 
 let userPage = 0
 let levelPage = 0
@@ -29,7 +30,7 @@ const fetchUsers = async () => {
     )})`
   )
 
-  return data.users.map(user => `/users/${user.steamId}`)
+  return data.users.map(user => `/user/${user.steamId}`)
 }
 
 const fetchLevels = async () => {
@@ -50,7 +51,10 @@ const fetchLevels = async () => {
     )})`
   )
 
-  return data.levels.map(level => `/levels/${level.id}`)
+  return {
+    levels: data.levels.map(level => `/level/${level.id}`),
+    workshopItems: data.levels.map(item => `/workshop/${item.workshopId}`)
+  }
 }
 
 do {
@@ -58,7 +62,13 @@ do {
 } while (hasMoreUsers)
 
 do {
-  levelList.push(...(await fetchLevels()))
+  const { levels, workshopItems } = await fetchLevels()
+
+  levelList.push(...levels)
+  for (const item of workshopItems) workshopList.add(item)
 } while (hasMoreLevels)
 
-await writeFile('scripts/urls.txt', [...userList, ...levelList].join('\n'))
+await writeFile(
+  'scripts/urls.txt',
+  [...userList, ...levelList, ...workshopList].join('\n')
+)

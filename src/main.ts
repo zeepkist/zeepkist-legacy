@@ -57,7 +57,8 @@ const queryOptions: VueQueryPluginOptions = {
         staleTime: addMinutes(0, 5).getTime(),
         cacheTime: addDays(0, 1).getTime(),
         retry: false,
-        keepPreviousData: true
+        keepPreviousData: true,
+        suspense: true
       }
     }
   },

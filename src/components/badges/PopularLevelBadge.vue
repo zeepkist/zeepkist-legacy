@@ -9,7 +9,7 @@
     popular?: boolean
   }>()
 
-  const { data, suspense } = reactive(
+  const { data } = reactive(
     useQuery({
       queryKey: [popular ? 'popularLevels' : 'hotLevels'],
       queryFn: async () => {
@@ -23,9 +23,6 @@
       staleTime: addHours(0, 1).getTime()
     })
   )
-
-  // Wait for the query to finish before rendering the view
-  await suspense()
 
   const isLevelPopular = computed(() => {
     if (!data) return false

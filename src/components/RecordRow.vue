@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { useQueryClient } from '@tanstack/vue-query'
   import type { LevelRecord } from '@zeepkist/gtr-api'
   import { RouterLink } from 'vue-router'
 
@@ -18,6 +19,12 @@
     showBadges?: boolean
     hideTrackInfo?: boolean
   }>()
+
+  const queryClient = useQueryClient()
+
+  if (showUser) {
+    queryClient.setQueryData(['user', record.user.steamId], record.user)
+  }
 </script>
 
 <template>
