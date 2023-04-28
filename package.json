@@ -44,7 +44,7 @@
     "@semantic-release/release-notes-generator": "10.0.3",
     "@tsconfig/cypress": "1.0.1",
     "@tsconfig/node20": "1.0.0",
-    "@types/node": "18.16.1",
+    "@types/node": "18.16.2",
     "@vitejs/plugin-vue": "4.2.1",
     "@vue/eslint-config-prettier": "7.1.0",
     "@vue/eslint-config-typescript": "11.0.3",
