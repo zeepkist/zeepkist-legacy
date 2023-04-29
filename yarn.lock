@@ -1578,15 +1578,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/schema-org@npm:2.1.2":
-  version: 2.1.2
-  resolution: "@vueuse/schema-org@npm:2.1.2"
+"@vueuse/schema-org@npm:2.1.3":
+  version: 2.1.3
+  resolution: "@vueuse/schema-org@npm:2.1.3"
   dependencies:
     "@unhead/schema-org-vue": ^0.5.0
   peerDependencies:
     "@vueuse/head": ">=1.0.21"
     vue: ">=3.2.0"
-  checksum: 090c38aef3dd82bcf2f91b7192da9a532ece5ef1199e2f800def7b5edbe8c57cae9b9dd5234dc809c4d757ab0a657690d8de78af1aa46771a717a42933b10377
+  checksum: 957ab58823719f40052f09837b4bc486c0d170dbb716f84c72fa280d2be132953d4b12969ba8dc0ac1b0b8d6319c87e87b967ed9079b36a00df09aa5bed69070
   languageName: node
   linkType: hard
 
@@ -9308,7 +9308,7 @@ __metadata:
     "@vue/eslint-config-typescript": 11.0.3
     "@vue/tsconfig": 0.3.2
     "@vueuse/components": 10.1.0
-    "@vueuse/schema-org": 2.1.2
+    "@vueuse/schema-org": 2.1.3
     "@zeepkist/gtr-api": 3.1.5
     cypress: 12.11.0
     date-fns: 2.29.3
