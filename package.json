@@ -65,7 +65,7 @@
     "start-server-and-test": "2.0.0",
     "stream-to-array": "2.3.0",
     "typescript": "5.0.4",
-    "vite": "4.3.4",
+    "vite": "4.3.5",
     "vue-tsc": "1.6.4"
   },
   "dependenciesMeta": {
