@@ -4,31 +4,37 @@
 
   import UserBadge from '~/components/UserBadge.vue'
 
-  const { user, rank, worldRecords } = defineProps<{
+  const { user, rank, score, worldRecords } = defineProps<{
     user: User
     rank: number
+    score: number
     worldRecords: number
   }>()
 </script>
 
 <template>
-  <div class="user">
-    <div v-if="rank" class="rank">{{ rank }}</div>
+  <div :class="$style.user">
+    <div v-if="rank" :class="$style.rank">{{ rank }}</div>
     <div>
       <router-link :to="{ name: 'user', params: { steamId: user.steamId } }">
         <user-badge :username="user.steamName" />
       </router-link>
     </div>
-    <div class="records">
-      <strong>{{ worldRecords }}</strong> World Records
+    <div :class="$style.records">
+      <strong>{{ worldRecords }}</strong>
+      <small>WRs</small>
+    </div>
+    <div :class="$style.score">
+      <strong>{{ Math.floor(score) }}</strong>
+      <small>pts</small>
     </div>
   </div>
 </template>
 
-<style scoped lang="less">
+<style module lang="less">
   .user {
     display: grid;
-    grid-template-columns: 3ch repeat(2, 1fr);
+    grid-template-columns: 3ch repeat(3, 1fr);
     grid-auto-rows: 50px;
     gap: 1rem;
     align-items: center;
@@ -47,8 +53,13 @@
       font-weight: 600;
     }
 
-    .records {
+    .records,
+    .score {
       text-align: right;
+
+      small {
+        padding-left: 0.5ch;
+      }
     }
   }
 </style>
