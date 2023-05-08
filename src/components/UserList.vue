@@ -15,6 +15,7 @@
       :key="rank.user.steamId"
       :user="rank.user"
       :rank="rank.position"
+      :score="rank.score"
       :world-records="rank.amountOfWorldRecords" />
   </div>
 </template>
