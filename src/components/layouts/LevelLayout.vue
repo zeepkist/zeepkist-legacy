@@ -12,7 +12,7 @@
   import ContentSheet from '~/components/sheets/ContentSheet.vue'
   import MedalTimesSheet from '~/components/sheets/MedalTimesSheet.vue'
   import { STEAM_WORKSHOP_URL } from '~/configs/index.js'
-  import { useSteamStore } from '~/stores/steam'
+  import { useAuthenticationStore } from '~/stores/authentication'
 
   type RecordType = 'recent' | 'best' | 'invalid' | 'yourBest'
 
@@ -20,7 +20,7 @@
     level: Level
   }>()
 
-  const steamStore = useSteamStore()
+  const authStore = useAuthenticationStore()
   const route = useRoute()
   const id = Number(route.params.id)
   const limit = 10
@@ -70,7 +70,7 @@
         return await getRecords({
           LevelId: id,
           ValidOnly: true,
-          UserSteamId: steamStore.steamId,
+          UserSteamId: authStore.SteamId,
           Limit: 4,
           Offset: 0
         })
@@ -135,7 +135,7 @@
     </template>
   </full-width-header>
 
-  <medal-times-sheet v-if="!steamStore.steamId" :level="level" />
+  <medal-times-sheet v-if="!authStore.SteamId" :level="level" />
   <column-layout v-else>
     <template #left>
       <medal-times-sheet :level="level" />

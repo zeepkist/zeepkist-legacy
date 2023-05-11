@@ -11,7 +11,7 @@
   import ZeepkistIcon from '~/assets/zeepkist-icon.webp?inline'
   import SteamOpenIdLogin from '~/components/SteamOpenIdLogin.vue'
   import type { MenuItem } from '~/models/ui/navbar'
-  import { useSteamStore } from '~/stores/steam'
+  import { useAuthenticationStore } from '~/stores/authentication'
 
   const { menuItems } = defineProps<{
     menuItems: MenuItem[]
@@ -19,7 +19,7 @@
 
   const route = useRoute()
   const router = useRouter()
-  const steamStore = useSteamStore()
+  const authStore = useAuthenticationStore()
 
   const showMenu = ref(false)
   const defaultSelectedKey = ref(
@@ -84,10 +84,10 @@
         toolkist
       </a>
     </a-menu-item>
-    <a-menu-item v-if="!steamStore.steamId" key="7" :class="$style.steamLogin">
+    <a-menu-item v-if="!authStore.SteamId" key="7" :class="$style.steamLogin">
       <steam-open-id-login />
     </a-menu-item>
-    <div v-if="steamStore.steamId">
+    <div v-if="authStore.SteamId">
       <a-menu-item
         v-for="item in menuItems.slice(-2)"
         :key="item.key"
@@ -96,7 +96,7 @@
           {{ item.label }}
         </router-link>
       </a-menu-item>
-      <a-menu-item v-if="steamStore.steamId" @click="steamStore.logout()"
+      <a-menu-item v-if="authStore.SteamId" @click="authStore.logout()"
         >logout</a-menu-item
       >
     </div>
