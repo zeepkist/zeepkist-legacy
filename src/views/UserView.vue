@@ -17,7 +17,11 @@
   const steamId = route.params.steamId as string
   const errorMessage = ref<string>()
 
-  const { data: user, isSuccess, isInitialLoading } = useQuery({
+  const {
+    data: user,
+    isSuccess,
+    isInitialLoading
+  } = useQuery({
     queryKey: ['user', steamId],
     queryFn: async () => {
       try {
