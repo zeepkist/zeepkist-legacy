@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { isBefore } from 'date-fns'
   import { watch } from 'vue'
 
   import DesktopNavbar from '~/components/navigation/header/DesktopNavbar.vue'
@@ -11,6 +12,15 @@
   }>()
 
   const authStore = useAuthenticationStore()
+
+  const refreshExpiresAt = new Date(authStore.RefreshExpiry)
+  const accessExpiresAt = new Date(authStore.AccessExpiry)
+
+  if (isBefore(refreshExpiresAt, Date.now())) {
+    authStore.logout()
+  } else if (isBefore(accessExpiresAt, Date.now())) {
+    authStore.refresh()
+  }
 
   const menuItems: MenuItem[] = [
     {
