@@ -16,11 +16,11 @@
   import ContentSheet from '~/components/sheets/ContentSheet.vue'
   import DashboardStatsSheet from '~/components/sheets/DashboardStatsSheet.vue'
   import ZeepkistDiscordSheet from '~/components/sheets/ZeepkistDiscordSheet.vue'
-  import { useSteamStore } from '~/stores/steam'
+  import { useAuthenticationStore } from '~/stores/authentication'
 
   type RecordType = 'worldRecord' | 'recent'
 
-  const steamStore = useSteamStore()
+  const authStore = useAuthenticationStore()
   const limit = 10
 
   const sortByPopularity = (a: PopularLevel, b: PopularLevel) => {
@@ -119,7 +119,7 @@
 </script>
 
 <template>
-  <column-layout v-if="!steamStore.steamId">
+  <column-layout v-if="!authStore.SteamId">
     <template #left>
       <dashboard-stats-sheet
         :levels="levels?.totalAmount"
@@ -132,7 +132,7 @@
   </column-layout>
 
   <dashboard-stats-sheet
-    v-if="steamStore.steamId"
+    v-if="authStore.SteamId"
     :levels="levels?.totalAmount"
     :records="recentRecords?.totalAmount"
     :world-records="worldRecords?.totalAmount" />

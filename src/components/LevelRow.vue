@@ -68,7 +68,10 @@
               :class="$style.worldRecordAuthor" />
             <div>{{ formatResultTime(worldRecord.time) }}</div>
           </router-link>
-          <p v-if="recordsCount" :class="$style.recordsCount" :title="`${ recordsCount} total unique play sessions`">
+          <p
+            v-if="recordsCount"
+            :class="$style.recordsCount"
+            :title="`${recordsCount} total unique play sessions`">
             {{ recordsCount }} plays
           </p>
         </div>

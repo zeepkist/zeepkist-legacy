@@ -4,13 +4,13 @@
   import DesktopNavbar from '~/components/navigation/header/DesktopNavbar.vue'
   import MobileNavbar from '~/components/navigation/header/MobileNavbar.vue'
   import type { MenuItem } from '~/models/ui/navbar'
-  import { useSteamStore } from '~/stores/steam'
+  import { useAuthenticationStore } from '~/stores/authentication'
 
   const { isMobile } = defineProps<{
     isMobile: boolean
   }>()
 
-  const steamStore = useSteamStore()
+  const authStore = useAuthenticationStore()
 
   const menuItems: MenuItem[] = [
     {
@@ -41,7 +41,7 @@
     {
       key: '7',
       label: 'profile',
-      to: { name: 'user', params: { steamId: steamStore.steamId } }
+      to: { name: 'user', params: { steamId: authStore.SteamId } }
     },
     {
       key: '8',
@@ -51,11 +51,11 @@
   ]
 
   watch(
-    () => steamStore.steamId,
+    () => authStore.SteamId,
     () => {
       const profile = menuItems.find(item => item.key === '7')
       if (!profile?.to?.params) return
-      profile.to.params.steamId = steamStore.steamId
+      profile.to.params.steamId = authStore.SteamId
     }
   )
 </script>
@@ -65,6 +65,6 @@
   <desktop-navbar
     v-else
     :menu-items="menuItems"
-    :steam-id="steamStore.steamId"
-    :on-logout="steamStore.logout" />
+    :steam-id="authStore.SteamId"
+    :on-logout="authStore.logout" />
 </template>
