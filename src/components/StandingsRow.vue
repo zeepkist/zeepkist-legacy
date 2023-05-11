@@ -42,7 +42,7 @@
     padding: 0.5rem 1rem 0.5rem 0.25rem;
 
     &:nth-child(even) {
-      background: var(--color-bg-1);
+      background: var(--zk-background-1);
     }
 
     span {

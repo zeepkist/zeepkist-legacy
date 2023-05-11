@@ -41,7 +41,7 @@
     padding: 0.25rem 1.25rem 0.25rem 0;
 
     &:nth-of-type(even) {
-      background: var(--color-bg-1);
+      background: var(--zk-background-1);
     }
 
     .rank {

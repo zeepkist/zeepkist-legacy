@@ -39,7 +39,7 @@
 
 <style module lang="less">
   span.badge {
-    border: 1px solid rgb(var(--primary-6));
+    border: 1px solid var(--zk-primary-5);
     border-radius: 0.25rem;
     font-size: 0.675rem;
     margin-bottom: -0.375rem;

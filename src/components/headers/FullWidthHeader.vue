@@ -35,8 +35,6 @@
 </template>
 
 <style module lang="less">
-  @import '@arco-design/web-vue/es/style/theme/global.less';
-
   .coverImageContainer {
     z-index: -1;
     position: absolute;
@@ -55,7 +53,7 @@
     background-repeat: no-repeat;
     background-image: linear-gradient(
         to top,
-        var(--color-bg-1),
+        var(--zk-background-1),
         rgba(#222, 0.6)
       ),
       var(--thumbnailUrl);
@@ -69,7 +67,7 @@
   body[arco-theme='light'] .coverImage {
     background-image: linear-gradient(
         to top,
-        var(--color-bg-1),
+        var(--zk-background-1),
         rgba(#fff7ec, 0.6)
       ),
       var(--thumbnailUrl);
@@ -85,8 +83,8 @@
     img {
       max-height: 100px;
       margin-right: 1rem;
-      border-radius: var(--border-radius-large);
-      box-shadow: @shadow-special;
+      border-radius: var(--zk-border-radius-large);
+      box-shadow: var(--zk-shadow-special);
     }
 
     @media screen and (max-width: 900px) {

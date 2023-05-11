@@ -12,8 +12,6 @@
 </template>
 
 <style module lang="less">
-  @import '@arco-design/web-vue/es/style/theme/global.less';
-
   .content {
     text-align: center;
     height: calc(100% - 2rem);

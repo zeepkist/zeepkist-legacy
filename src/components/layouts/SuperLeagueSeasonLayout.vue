@@ -55,15 +55,15 @@
 
     a:global {
       padding: 0.25rem 0.5rem;
-      background: var(--color-bg-1);
-      color: rgb(var(--color-text-1));
+      background: var(--zk-background-1);
+      color: var(--zk-text-1);
     }
 
     a:hover:global,
     a:global.router-link-exact-active {
-      background: var(--color-bg-1);
-      color: rgb(var(--primary-6));
-      border-radius: var(--border-radius-medium);
+      background: var(--zk-background-1);
+      color: var(--zk-primary-5);
+      border-radius: var(--zk-border-radius-medium);
     }
   }
 </style>

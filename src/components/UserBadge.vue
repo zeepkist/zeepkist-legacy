@@ -34,7 +34,7 @@
     font-size: 0.8em;
     font-weight: 800;
     vertical-align: middle;
-    border-radius: var(--border-radius-medium);
+    border-radius: var(--zk-border-radius-medium);
     margin-right: 0.5ch;
   }
 </style>

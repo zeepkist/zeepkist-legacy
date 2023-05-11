@@ -25,6 +25,6 @@
   }
 
   code:nth-of-type(even) {
-    color: rgb(var(--primary-6));
+    color: var(--zk-primary-5);
   }
 </style>

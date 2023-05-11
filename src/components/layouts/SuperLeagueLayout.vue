@@ -47,7 +47,7 @@
   }
 
   .card {
-    background: var(--color-bg-1);
+    background: var(--zk-background-1);
     border-radius: 0.5rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
     padding: 1rem;

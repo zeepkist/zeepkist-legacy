@@ -133,10 +133,10 @@
     align-items: center;
     gap: 1rem;
     font-size: 1.25rem;
-    color: var(--color-text-1);
+    color: var(--zk-text-1);
     font-weight: 700;
     z-index: 999;
-    background: var(--color-bg-2);
+    background: var(--zk-background-2);
   }
 
   .logo {
@@ -153,7 +153,7 @@
   .toggleMenu {
     background: none;
     border: none;
-    color: var(--color-text-1);
+    color: var(--zk-text-1);
     top: 1.375rem;
     right: 1rem;
     z-index: 999;
@@ -162,14 +162,14 @@
 
   .menu {
     :global(.arco-menu-item) {
-      color: var(--color-text-1);
+      color: var(--zk-text-1);
 
       &:not(:global(.arco-menu-selected)):hover {
-        color: rgb(var(--primary-6));
+        color: var(--zk-primary-5);
       }
 
       &:global(.arco-menu-selected) {
-        color: rgb(var(--primary-6));
+        color: var(--zk-primary-5);
       }
 
       a {

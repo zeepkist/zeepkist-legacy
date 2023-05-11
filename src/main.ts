@@ -1,6 +1,3 @@
-import '@arco-design/web-vue/dist/arco.less'
-
-import ArcoVue from '@arco-design/web-vue'
 import { persistQueryClient } from '@tanstack/query-persist-client-core'
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
 import {
@@ -78,6 +75,5 @@ app.use(pinia)
 app.use(router)
 app.use(head)
 app.use(query, queryOptions)
-app.use(ArcoVue)
 
 app.mount('#app')
