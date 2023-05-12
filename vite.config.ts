@@ -5,6 +5,15 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    proxy: {
+      '/api/auth': {
+        target: 'https://auth.zeepkist-gtr.com',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api\/auth/, '')
+      }
+    }
+  },
   plugins: [
     createVuePlugin({
       reactivityTransform: true
