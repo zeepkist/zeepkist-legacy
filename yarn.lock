@@ -1616,16 +1616,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zeepkist/gtr-api@npm:3.4.0":
-  version: 3.4.0
-  resolution: "@zeepkist/gtr-api@npm:3.4.0"
+"@zeepkist/gtr-api@npm:3.4.1":
+  version: 3.4.1
+  resolution: "@zeepkist/gtr-api@npm:3.4.1"
   dependencies:
     ky: ~0.33.2
     ky-universal: ~0.11.0
   dependenciesMeta:
     esbuild:
       built: true
-  checksum: c049e05bd25fb7e8f5fd8abad2a6120accfceada7d106d25fd3bced86759b9abb141014eada8e7ac705ccbd98da94b3b274a3dc02f6b5dce1a96e7cdcc45113b
+  checksum: 10ad29d7404214ed184184e286532c808e90b3bd65d50a8f0d0cac7e5c642abb71421cfb10260fb651613c8f3c09ee8a3c31cae10ad7b82cbe7658cc7afd84bc
   languageName: node
   linkType: hard
 
@@ -9380,7 +9380,7 @@ __metadata:
     "@vue/tsconfig": 0.4.0
     "@vueuse/components": 10.1.2
     "@vueuse/schema-org": 2.1.3
-    "@zeepkist/gtr-api": 3.4.0
+    "@zeepkist/gtr-api": 3.4.1
     cypress: 12.12.0
     date-fns: 2.30.0
     date-fns-tz: 2.0.0
