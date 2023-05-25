@@ -145,6 +145,7 @@
           :current-page="worldRecordsPage"
           :items-per-page="limit"
           :total-items="worldRecords.totalAmount"
+          :is-loading="isPreviousWorldRecordsData"
           @page-changed="page => handlePageChanged('worldRecord', page)">
           <record-list
             header="World Records"
@@ -160,6 +161,7 @@
           :current-page="recentRecordsPage"
           :items-per-page="limit"
           :total-items="recentRecords.totalAmount"
+          :is-loading="isPreviousRecentRecordsData"
           @page-changed="page => handlePageChanged('recent', page)">
           <record-list
             header="Recent Times"
@@ -200,6 +202,7 @@
       :items-per-page="levelsPerPage"
       :total-items="levels.totalAmount"
       :disabled-pagination="isPreviousLevelsData"
+      :is-loading="isPreviousLevelsData"
       @page-changed="page => handlePageChanged('level', page)">
       <level-list header="New Levels" :levels="levels.levels" />
     </paginated-component>
