@@ -118,7 +118,8 @@
     :title="level.name"
     :author="level.author">
     <span>
-      {{ formatOrdinal(level.rank) }} ・ {{ level.points }} points ・
+      <span v-if="level.rank">{{ formatOrdinal(level.rank) }} ・ </span>
+      <span v-if="level.points">{{ level.points ?? 0 }} points ・ </span>
       {{ recentRecords.totalAmount - invalidRecords.totalAmount }} valid runs ・
       {{ bestRecords.totalAmount }} players
     </span>
@@ -167,6 +168,7 @@
             :records="bestRecords.records"
             :rank-offset="(pages.best - 1) * limit"
             show-user
+            show-points
             hide-track-info />
         </paginated-component>
       </content-sheet>

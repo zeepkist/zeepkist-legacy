@@ -4,19 +4,26 @@
   import { RouterLink } from 'vue-router'
 
   import UserBadge from '~/components/UserBadge.vue'
-  import { formatDate, formatRelativeDate, formatResultTime } from '~/utils'
+  import {
+    calculateRecordPoints,
+    formatDate,
+    formatRelativeDate,
+    formatResultTime
+  } from '~/utils'
 
   const {
     record,
     rank,
     showUser = false,
     showBadges = false,
+    showPoints = false,
     hideTrackInfo = false
   } = defineProps<{
     record: LevelRecord
     rank?: number
     showUser?: boolean
     showBadges?: boolean
+    showPoints?: boolean
     hideTrackInfo?: boolean
   }>()
 
@@ -58,7 +65,7 @@
       </div>
     </div>
     <div>
-      <div>{{ formatResultTime(record.time) }}</div>
+      <div class="right">{{ formatResultTime(record.time) }}</div>
       <div
         v-if="
           showBadges &&
@@ -72,6 +79,9 @@
         <span v-if="!record.isValid" class="any" title="Any Percentage"
           >any%</span
         >
+      </div>
+      <div v-if="rank && showPoints" class="right subtext">
+        {{ calculateRecordPoints(rank, record.level.points) }} pts
       </div>
     </div>
     <div v-if="false" class="actions">
@@ -113,6 +123,7 @@
 
     .record-badges {
       display: flex;
+      justify-content: flex-end;
       gap: 0.25rem;
       span {
         border: 1px solid rgb(var(--primary-6));
@@ -130,6 +141,10 @@
           border: 1px solid var(--color-text-4);
         }
       }
+    }
+
+    .right {
+      text-align: right;
     }
 
     .author {

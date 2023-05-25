@@ -74,11 +74,15 @@
             :title="`${recordsCount} total unique play sessions`">
             {{ recordsCount }} plays
           </p>
+          <p v-else :class="$style.recordsCount">{{ level.points ?? 0 }} pts</p>
         </div>
-        <p v-else>
-          <img :src="IconMedalAuthor" alt="" />
-          {{ formatResultTime(level.timeAuthor) }}
-        </p>
+        <div v-else :class="$style.worldRecord">
+          <p>
+            <img :src="IconMedalAuthor" alt="" />
+            {{ formatResultTime(level.timeAuthor) }}
+          </p>
+          <p :class="$style.recordsCount">No times</p>
+        </div>
       </template>
     </div>
   </router-link>

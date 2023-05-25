@@ -1,3 +1,4 @@
+export * from './calculateRecordPoints'
 export * from './formatDate'
 export * from './formatOrdinal'
 export * from './formatParamToTitleCase'
