@@ -105,6 +105,10 @@
       .headerActions {
         margin: 2rem auto 0;
       }
+
+      h1 {
+        line-height: 1em;
+      }
     }
 
     .headerTitle {

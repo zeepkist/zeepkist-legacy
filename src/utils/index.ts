@@ -1,4 +1,5 @@
 export * from './formatDate'
+export * from './formatOrdinal'
 export * from './formatParamToTitleCase'
 export * from './formatRelativeDate'
 export * from './formatResultTime'

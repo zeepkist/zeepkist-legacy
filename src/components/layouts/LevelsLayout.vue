@@ -6,6 +6,8 @@
   import LevelList from '~/components/LevelList.vue'
   import PaginatedComponent from '~/components/PaginatedComponent.vue'
 
+  type Sort = 'name' | '-name' | '-id' | 'id' | 'rank'
+
   const { workshopId } = defineProps<{
     workshopId?: string
   }>()
@@ -14,23 +16,27 @@
 
   const itemsPerPage = 24
   const currentPage = ref(1)
+  const sort = ref<Sort>(workshopId ? 'name' : '-id')
 
   const { data } = useQuery({
-    queryKey: ['levels', currentPage, workshopId],
+    queryKey: ['levels', currentPage, workshopId, sort],
     queryFn: async () => {
       const levels = await getLevels({
         WorkshopId: workshopId ?? undefined,
         Limit: itemsPerPage,
         Offset: (currentPage.value - 1) * itemsPerPage,
-        Sort: workshopId ? 'name' : '-id'
+        Sort: sort.value
       })
 
       return levels
     },
     placeholderData: queryClient.getQueryData([
       'levels',
-      currentPage.value
-    ]) as LevelsResponse
+      currentPage.value,
+      workshopId,
+      sort
+    ]) as LevelsResponse,
+    keepPreviousData: false
   })
 
   const handlePageChanged = async (page: number) => {
@@ -40,7 +46,36 @@
 
 <template>
   <template v-if="data">
-    <p>{{ data.totalAmount }} levels</p>
+    <div :class="$style.filterContainer">
+      <p>{{ data.totalAmount }} levels</p>
+      <div :class="$style.filter">
+        <button
+          :class="{ [$style.selected]: sort === 'name' }"
+          @click="sort = 'name'">
+          A-Z
+        </button>
+        <button
+          :class="{ [$style.selected]: sort === '-name' }"
+          @click="sort = '-name'">
+          Z-A
+        </button>
+        <button
+          :class="{ [$style.selected]: sort === '-id' }"
+          @click="sort = '-id'">
+          Newest First
+        </button>
+        <button
+          :class="{ [$style.selected]: sort === 'id' }"
+          @click="sort = 'id'">
+          Oldest First
+        </button>
+        <button
+          :class="{ [$style.selected]: sort === 'rank' }"
+          @click="sort = 'rank'">
+          Popularity
+        </button>
+      </div>
+    </div>
     <paginated-component
       :current-page="currentPage"
       :items-per-page="itemsPerPage"
@@ -50,3 +85,31 @@
     </paginated-component>
   </template>
 </template>
+
+<style module lang="less">
+  .filterContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .filter {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    button {
+      height: 2rem;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--color-text-1);
+      border-radius: var(--border-radius-large);
+      cursor: pointer;
+      transition: border 0.2s ease-in-out;
+
+      &.selected,
+      &:hover {
+        border: 1px solid rgba(var(--primary-5));
+      }
+    }
+  }
+</style>

@@ -11,8 +11,9 @@
   import RecordList from '~/components/RecordList.vue'
   import ContentSheet from '~/components/sheets/ContentSheet.vue'
   import MedalTimesSheet from '~/components/sheets/MedalTimesSheet.vue'
-  import { STEAM_WORKSHOP_URL } from '~/configs/index.js'
+  import { STEAM_WORKSHOP_URL } from '~/configs'
   import { useAuthenticationStore } from '~/stores/authentication'
+  import { formatOrdinal } from '~/utils'
 
   type RecordType = 'recent' | 'best' | 'invalid' | 'yourBest'
 
@@ -116,11 +117,11 @@
     :thumbnail-url="level.thumbnailUrl"
     :title="level.name"
     :author="level.author">
-    <span
-      >{{ recentRecords.totalAmount - invalidRecords.totalAmount }} valid
-      runs</span
-    >
-    <span>{{ bestRecords.totalAmount }} players</span>
+    <span>
+      {{ formatOrdinal(level.rank) }} ・ {{ level.points }} points ・
+      {{ recentRecords.totalAmount - invalidRecords.totalAmount }} valid runs ・
+      {{ bestRecords.totalAmount }} players
+    </span>
     <template #badges>
       <popular-level-badge :level-id="level.id" popular />
       <popular-level-badge :level-id="level.id" />
