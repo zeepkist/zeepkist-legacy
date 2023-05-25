@@ -3,6 +3,7 @@
   import { RouterLink } from 'vue-router'
 
   import UserBadge from '~/components/UserBadge.vue'
+  import { useAuthenticationStore } from '~/stores/authentication'
 
   const { user, rank, score, worldRecords } = defineProps<{
     user: User
@@ -10,10 +11,16 @@
     score: number
     worldRecords: number
   }>()
+
+  const authenticationStore = useAuthenticationStore()
 </script>
 
 <template>
-  <div :class="$style.user">
+  <div
+    :class="[
+      $style.user,
+      { [$style.isCurrentUser]: user.steamId === authenticationStore.SteamId }
+    ]">
     <div v-if="rank" :class="$style.rank">{{ rank }}</div>
     <div>
       <router-link :to="{ name: 'user', params: { steamId: user.steamId } }">
@@ -26,7 +33,7 @@
     </div>
     <div :class="$style.score">
       <strong>{{ Math.floor(score) }}</strong>
-      <small>pts</small>
+      <small>➤</small>
     </div>
   </div>
 </template>
@@ -42,6 +49,11 @@
 
     &:nth-of-type(even) {
       background: var(--color-bg-1);
+    }
+
+    &.isCurrentUser {
+      border: 1px solid rgb(var(--link-6));
+      border-radius: var(--border-radius-large);
     }
 
     .rank {

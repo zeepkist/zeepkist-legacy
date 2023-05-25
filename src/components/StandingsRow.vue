@@ -3,6 +3,7 @@
 
   import UserBadge from '~/components/UserBadge.vue'
   import type { Standing } from '~/models/superLeague'
+  import { useAuthenticationStore } from '~/stores/authentication'
 
   const {
     user,
@@ -14,21 +15,28 @@
     isSeasonStandings?: boolean
   }>()
 
+  const authenticationStore = useAuthenticationStore()
+
   const steamId = user.steamId
   const points = isSeasonStandings
-    ? Math.round(user.totalPoints * 100)
+    ? Math.round(user.totalPoints * 10)
     : user.totalPoints
 </script>
 
 <template>
-  <div :class="$style.row">
+  <div
+    :class="[
+      $style.row,
+      { [$style.isCurrentUser]: steamId === authenticationStore.SteamId }
+    ]">
     <span>{{ position }}</span>
     <router-link :to="{ name: 'user', params: { steamId } }">
       <user-badge :username="user.username" :team="user.team" />
     </router-link>
     <span>
-      <span :class="$style.points">{{ points }}</span>
-      <small :class="$style.pointsLabel">pts</small>
+      <span :class="$style.points" :title="`${points} league points`">
+        {{ points }} ✦
+      </span>
     </span>
   </div>
 </template>
@@ -45,6 +53,11 @@
       background: var(--color-bg-1);
     }
 
+    &.isCurrentUser {
+      border: 1px solid rgb(var(--link-6));
+      border-radius: var(--border-radius-large);
+    }
+
     span {
       text-align: right;
     }
@@ -52,9 +65,5 @@
 
   .points {
     font-weight: 600;
-  }
-
-  .pointsLabel {
-    padding-left: 0.5ch;
   }
 </style>

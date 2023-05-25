@@ -46,7 +46,6 @@
   .records {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
 
     h2 {
       margin: 0.5rem 0 1rem;

@@ -80,8 +80,8 @@
           >any%</span
         >
       </div>
-      <div v-if="rank && showPoints" class="right subtext">
-        {{ calculateRecordPoints(rank, record.level.points) }} pts
+      <div v-if="showPoints" class="right subtext">
+        {{ calculateRecordPoints(rank ?? 1, record.level.points) }} ➤
       </div>
     </div>
     <div v-if="false" class="actions">
@@ -98,7 +98,7 @@
     grid-template-rows: 50px;
     gap: 1rem;
     align-items: center;
-    padding: 0 1rem;
+    padding: 0.25rem 1rem;
     margin: 0 -1rem;
 
     &.has-no-track:not(.has-rank) {
@@ -114,7 +114,7 @@
     }
 
     img {
-      max-height: 50px;
+      max-height: 45px;
       width: 100%;
       border-radius: 4px;
       object-fit: cover;

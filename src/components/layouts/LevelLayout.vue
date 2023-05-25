@@ -72,7 +72,7 @@
           LevelId: id,
           ValidOnly: true,
           UserSteamId: authStore.SteamId,
-          Limit: 4,
+          Limit: 5,
           Offset: 0
         })
       }
@@ -119,7 +119,9 @@
     :author="level.author">
     <span>
       <span v-if="level.rank">{{ formatOrdinal(level.rank) }} ・ </span>
-      <span v-if="level.points">{{ level.points ?? 0 }} points ・ </span>
+      <span v-if="level.points" :title="`${level.points ?? 0} points`"
+        >{{ level.points ?? 0 }} ➤ ・
+      </span>
       {{ recentRecords.totalAmount - invalidRecords.totalAmount }} valid runs ・
       {{ bestRecords.totalAmount }} players
     </span>

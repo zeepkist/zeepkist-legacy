@@ -1,13 +1,12 @@
 <script setup lang="ts">
-  import { IconTrophy } from '@tabler/icons-vue'
-  import { getRecords, type User } from '@zeepkist/gtr-api'
+  import { getRecords, getUserRanking, type User } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
   import ColumnLayout from '~/components/ColumnLayout.vue'
   import PaginatedComponent from '~/components/PaginatedComponent.vue'
   import RecordList from '~/components/RecordList.vue'
   import UserBadge from '~/components/UserBadge.vue'
-  import { formatUser } from '~/utils'
+  import { formatOrdinal, formatUser } from '~/utils'
 
   type RecordType = 'worldRecord' | 'best' | 'invalid' | 'recent'
 
@@ -96,6 +95,7 @@
   const worldRecords = ref(await getPaginatedRecords('worldRecord'))
   const recentRecords = ref(await getPaginatedRecords('recent'))
   const invalidRecords = ref(await getPaginatedRecords('invalid'))
+  const userRanking = ref(await getUserRanking(user.id))
 
   const pages = ref({
     best: 1,
@@ -111,9 +111,15 @@
   <p>
     {{ formatUser(user.steamName).username }} has set times on
     {{ bestRecords.totalAmount }} levels over
-    {{ validRecords.totalAmount }} runs. They currently hold
-    <icon-trophy class="inline-svg" /> {{ worldRecords.totalAmount }} world
-    records and have done {{ invalidRecords.totalAmount }} any% attempts.
+    {{ validRecords.totalAmount }} valid runs with
+    {{ invalidRecords.totalAmount }} any% attempts.
+  </p>
+  <p>
+    They are ranked {{ formatOrdinal(userRanking.position) }} with
+    <span :title="`${userRanking.score} points`">
+      {{ userRanking.score }} ➤
+    </span>
+    and hold {{ worldRecords.totalAmount }} world records
   </p>
   <column-layout>
     <template #left>
@@ -122,7 +128,10 @@
         :items-per-page="limit"
         :total-items="worldRecords.totalAmount"
         @page-changed="page => handlePageChanged('worldRecord', page)">
-        <record-list header="World Records" :records="worldRecords.records" />
+        <record-list
+          header="World Records"
+          :records="worldRecords.records"
+          show-points />
       </paginated-component>
       <paginated-component
         :current-page="pages.best"

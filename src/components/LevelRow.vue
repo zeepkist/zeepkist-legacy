@@ -74,7 +74,7 @@
             :title="`${recordsCount} total unique play sessions`">
             {{ recordsCount }} plays
           </p>
-          <p v-else :class="$style.recordsCount">{{ level.points ?? 0 }} pts</p>
+          <p v-else :class="$style.recordsCount">{{ level.points ?? 0 }} ➤</p>
         </div>
         <div v-else :class="$style.worldRecord">
           <p>
