@@ -4,19 +4,26 @@
   import { RouterLink } from 'vue-router'
 
   import UserBadge from '~/components/UserBadge.vue'
-  import { formatDate, formatRelativeDate, formatResultTime } from '~/utils'
+  import {
+    calculateRecordPoints,
+    formatDate,
+    formatRelativeDate,
+    formatResultTime
+  } from '~/utils'
 
   const {
     record,
     rank,
     showUser = false,
     showBadges = false,
+    showPoints = false,
     hideTrackInfo = false
   } = defineProps<{
     record: LevelRecord
     rank?: number
     showUser?: boolean
     showBadges?: boolean
+    showPoints?: boolean
     hideTrackInfo?: boolean
   }>()
 
@@ -58,7 +65,7 @@
       </div>
     </div>
     <div>
-      <div>{{ formatResultTime(record.time) }}</div>
+      <div class="right">{{ formatResultTime(record.time) }}</div>
       <div
         v-if="
           showBadges &&
@@ -72,6 +79,9 @@
         <span v-if="!record.isValid" class="any" title="Any Percentage"
           >any%</span
         >
+      </div>
+      <div v-if="showPoints" class="right subtext">
+        {{ calculateRecordPoints(rank ?? 1, record.level.points) }} ➤
       </div>
     </div>
     <div v-if="false" class="actions">
@@ -88,7 +98,7 @@
     grid-template-rows: 50px;
     gap: 1rem;
     align-items: center;
-    padding: 0 1rem;
+    padding: 0.25rem 1rem;
     margin: 0 -1rem;
 
     &.has-no-track:not(.has-rank) {
@@ -104,7 +114,7 @@
     }
 
     img {
-      max-height: 50px;
+      max-height: 45px;
       width: 100%;
       border-radius: 4px;
       object-fit: cover;
@@ -113,23 +123,26 @@
 
     .record-badges {
       display: flex;
+      justify-content: flex-end;
       gap: 0.25rem;
       span {
-        border: 1px solid rgb(var(--primary-6));
+        color: rgb(var(--success-6));
         border-radius: var(--border-radius-medium);
         padding: 0 0.25rem;
         font-size: 0.75rem;
 
         &.wr {
-          font-weight: 600;
-          color: var(--color-bg-1);
-          background: rgb(var(--primary-6));
+          color: rgb(var(--primary-6));
         }
 
         &.any {
-          border: 1px solid var(--color-text-4);
+          color: rgb(var(--danger-6));
         }
       }
+    }
+
+    .right {
+      text-align: right;
     }
 
     .author {

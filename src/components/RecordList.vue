@@ -9,6 +9,7 @@
     rankOffset,
     showUser,
     showBadges,
+    showPoints,
     hideTrackInfo
   } = defineProps<{
     header: string
@@ -16,6 +17,7 @@
     rankOffset?: number
     showUser?: boolean
     showBadges?: boolean
+    showPoints?: boolean
     hideTrackInfo?: boolean
   }>()
 </script>
@@ -32,6 +34,7 @@
       "
       :show-user="showUser"
       :show-badges="showBadges"
+      :show-points="showPoints"
       :hide-track-info="hideTrackInfo" />
     <p v-if="records.length === 0">
       No records of this type have been recorded yet
@@ -43,7 +46,6 @@
   .records {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
 
     h2 {
       margin: 0.5rem 0 1rem;

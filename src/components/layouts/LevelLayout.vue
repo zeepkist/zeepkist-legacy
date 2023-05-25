@@ -11,8 +11,9 @@
   import RecordList from '~/components/RecordList.vue'
   import ContentSheet from '~/components/sheets/ContentSheet.vue'
   import MedalTimesSheet from '~/components/sheets/MedalTimesSheet.vue'
-  import { STEAM_WORKSHOP_URL } from '~/configs/index.js'
+  import { STEAM_WORKSHOP_URL } from '~/configs'
   import { useAuthenticationStore } from '~/stores/authentication'
+  import { formatOrdinal } from '~/utils'
 
   type RecordType = 'recent' | 'best' | 'invalid' | 'yourBest'
 
@@ -71,7 +72,7 @@
           LevelId: id,
           ValidOnly: true,
           UserSteamId: authStore.SteamId,
-          Limit: 4,
+          Limit: 5,
           Offset: 0
         })
       }
@@ -116,11 +117,14 @@
     :thumbnail-url="level.thumbnailUrl"
     :title="level.name"
     :author="level.author">
-    <span
-      >{{ recentRecords.totalAmount - invalidRecords.totalAmount }} valid
-      runs</span
-    >
-    <span>{{ bestRecords.totalAmount }} players</span>
+    <span>
+      <span v-if="level.rank">{{ formatOrdinal(level.rank) }} ・ </span>
+      <span v-if="level.points" :title="`${level.points ?? 0} points`"
+        >{{ level.points ?? 0 }} ➤ ・
+      </span>
+      {{ recentRecords.totalAmount - invalidRecords.totalAmount }} valid runs ・
+      {{ bestRecords.totalAmount }} players
+    </span>
     <template #badges>
       <popular-level-badge :level-id="level.id" popular />
       <popular-level-badge :level-id="level.id" />
@@ -166,6 +170,7 @@
             :records="bestRecords.records"
             :rank-offset="(pages.best - 1) * limit"
             show-user
+            show-points
             hide-track-info />
         </paginated-component>
       </content-sheet>

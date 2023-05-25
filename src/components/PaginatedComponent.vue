@@ -23,23 +23,29 @@
   <div v-if="totalItems > itemsPerPage" class="pagination">
     <span>Page {{ currentPage }} of {{ totalPages }}</span>
     <div class="pagination-actions">
-      <button :disabled="currentPage == 1" @click="emit('page-changed', 1)">
-        First
+      <button
+        :disabled="currentPage == 1"
+        title="First"
+        @click="emit('page-changed', 1)">
+        ⏮
       </button>
       <button
         :disabled="currentPage === 1"
+        title="Previous"
         @click="emit('page-changed', currentPage - 1)">
-        Previous
+        ⏴
       </button>
       <button
         :disabled="currentPage === totalPages"
+        title="Next"
         @click="emit('page-changed', currentPage + 1)">
-        Next
+        ⏵
       </button>
       <button
         :disabled="currentPage === totalPages"
+        title="Last"
         @click="emit('page-changed', totalPages)">
-        Last
+        ⏭
       </button>
     </div>
   </div>
