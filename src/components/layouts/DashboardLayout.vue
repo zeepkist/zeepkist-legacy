@@ -59,7 +59,7 @@
   const levelsPerPage = 18
   const levelsPage = ref(1)
   const { data: levels, isPreviousData: isPreviousLevelsData } = useQuery({
-    queryKey: ['levels', levelsPage],
+    queryKey: ['recentLevels', levelsPage],
     queryFn: async () =>
       await getLevels({
         Limit: levelsPerPage,
@@ -145,6 +145,7 @@
           :current-page="worldRecordsPage"
           :items-per-page="limit"
           :total-items="worldRecords.totalAmount"
+          :is-loading="isPreviousWorldRecordsData"
           @page-changed="page => handlePageChanged('worldRecord', page)">
           <record-list
             header="World Records"
@@ -160,6 +161,7 @@
           :current-page="recentRecordsPage"
           :items-per-page="limit"
           :total-items="recentRecords.totalAmount"
+          :is-loading="isPreviousRecentRecordsData"
           @page-changed="page => handlePageChanged('recent', page)">
           <record-list
             header="Recent Times"
@@ -194,12 +196,13 @@
     </paginated-component>
   </content-sheet>
 
-  <content-sheet>
+  <content-sheet v-if="levels">
     <paginated-component
-      v-if="levels"
       :current-page="levelsPage"
       :items-per-page="levelsPerPage"
       :total-items="levels.totalAmount"
+      :disabled-pagination="isPreviousLevelsData"
+      :is-loading="isPreviousLevelsData"
       @page-changed="page => handlePageChanged('level', page)">
       <level-list header="New Levels" :levels="levels.levels" />
     </paginated-component>

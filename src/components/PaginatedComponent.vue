@@ -1,14 +1,20 @@
 <script setup lang="ts">
   import { ref } from 'vue'
 
+  import LoadingIndicator from '~/components/LoadingIndicator.vue'
+
   const {
     totalItems,
     currentPage = 1,
-    itemsPerPage = 10
+    itemsPerPage = 10,
+    disabledPagination = false,
+    isLoading = false
   } = defineProps<{
     currentPage?: number
     totalItems: number
     itemsPerPage?: number
+    disabledPagination?: boolean
+    isLoading?: boolean
   }>()
 
   const totalPages = ref(Math.ceil(totalItems / itemsPerPage))
@@ -23,26 +29,27 @@
   <div v-if="totalItems > itemsPerPage" class="pagination">
     <span>Page {{ currentPage }} of {{ totalPages }}</span>
     <div class="pagination-actions">
+      <loading-indicator v-if="isLoading" inline />
       <button
-        :disabled="currentPage == 1"
+        :disabled="disabledPagination || currentPage == 1"
         title="First"
         @click="emit('page-changed', 1)">
         ⏮
       </button>
       <button
-        :disabled="currentPage === 1"
+        :disabled="disabledPagination || currentPage === 1"
         title="Previous"
         @click="emit('page-changed', currentPage - 1)">
         ⏴
       </button>
       <button
-        :disabled="currentPage === totalPages"
+        :disabled="disabledPagination || currentPage === totalPages"
         title="Next"
         @click="emit('page-changed', currentPage + 1)">
         ⏵
       </button>
       <button
-        :disabled="currentPage === totalPages"
+        :disabled="disabledPagination || currentPage === totalPages"
         title="Last"
         @click="emit('page-changed', totalPages)">
         ⏭
