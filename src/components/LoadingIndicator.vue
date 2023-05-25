@@ -1,5 +1,11 @@
+<script setup lang="ts">
+  const { inline = false } = defineProps<{
+    inline?: boolean
+  }>()
+</script>
+
 <template>
-  <div :class="$style.ellipsis">
+  <div :class="[$style.ellipsis, { [$style.inline]: inline }]">
     <div></div>
     <div></div>
     <div></div>
@@ -23,6 +29,15 @@
       border-radius: 50%;
       background: var(--color-text-1);
       animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+    &.inline {
+      height: unset;
+      top: 0.6rem;
+
+      div {
+        top: 0;
+      }
     }
 
     div:nth-child(1) {

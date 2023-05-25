@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { getRecords, getUserRanking, type User } from '@zeepkist/gtr-api'
+  import { getRecords, type User } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
   import ColumnLayout from '~/components/ColumnLayout.vue'
@@ -95,7 +95,6 @@
   const worldRecords = ref(await getPaginatedRecords('worldRecord'))
   const recentRecords = ref(await getPaginatedRecords('recent'))
   const invalidRecords = ref(await getPaginatedRecords('invalid'))
-  const userRanking = ref(await getUserRanking(user.id))
 
   const pages = ref({
     best: 1,
@@ -115,10 +114,8 @@
     {{ invalidRecords.totalAmount }} any% attempts.
   </p>
   <p>
-    They are ranked {{ formatOrdinal(userRanking.position) }} with
-    <span :title="`${userRanking.score} points`">
-      {{ userRanking.score }} ➤
-    </span>
+    They are ranked {{ formatOrdinal(user.position) }} with
+    <span :title="`${user.score} points`"> {{ user.score }} ➤ </span>
     and hold {{ worldRecords.totalAmount }} world records
   </p>
   <column-layout>

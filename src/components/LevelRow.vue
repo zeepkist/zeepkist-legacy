@@ -1,14 +1,11 @@
 <script setup lang="ts">
-  import { useQuery, useQueryClient } from '@tanstack/vue-query'
-  import { getRecords, type Level } from '@zeepkist/gtr-api'
-  import { addDays } from 'date-fns'
+  import { useQueryClient } from '@tanstack/vue-query'
+  import { type Level } from '@zeepkist/gtr-api'
 
   import IconMedalAuthor from '~/assets/medal-author.webp?inline'
   import IconTrophy from '~/assets/trophy.webp?inline'
   import UserBadge from '~/components/UserBadge.vue'
   import { formatResultTime } from '~/utils'
-
-  import LoadingIndicator from './LoadingIndicator.vue'
 
   const { level } = defineProps<{
     level: Level
@@ -16,28 +13,6 @@
   }>()
 
   const queryClient = useQueryClient()
-
-  const { data: worldRecord, isLoading } = useQuery({
-    queryKey: ['worldRecord', level.id],
-    queryFn: async () => {
-      const { records } = await getRecords({
-        LevelId: level.id,
-        Limit: 1,
-        WorldRecordOnly: true
-      })
-      return records.length > 0
-        ? {
-            time: records[0].time,
-            date: records[0].dateCreated,
-            user: records[0].user
-          }
-        : // eslint-disable-next-line unicorn/no-null
-          null
-    },
-    enabled: !!level.id,
-    staleTime: addDays(0, 1).getTime(),
-    cacheTime: addDays(0, 1).getTime()
-  })
 
   queryClient.setQueryData(['level', level.id], level)
 </script>
@@ -54,36 +29,33 @@
     <div :class="$style.content">
       <p :class="$style.levelName">{{ level.name }}</p>
       <p :class="$style.levelAuthor">By {{ level.author }}</p>
-      <p v-if="isLoading"><loading-indicator :class="$style.loading" /></p>
-      <template v-else>
-        <div v-if="worldRecord" :class="$style.worldRecord">
-          <img :src="IconTrophy" alt="" />
-          <router-link
-            :to="{
-              name: 'user',
-              params: { steamId: worldRecord.user.steamId }
-            }">
-            <user-badge
-              :username="worldRecord.user.steamName"
-              :class="$style.worldRecordAuthor" />
-            <div>{{ formatResultTime(worldRecord.time) }}</div>
-          </router-link>
-          <p
-            v-if="recordsCount"
-            :class="$style.recordsCount"
-            :title="`${recordsCount} total unique play sessions`">
-            {{ recordsCount }} plays
-          </p>
-          <p v-else :class="$style.recordsCount">{{ level.points ?? 0 }} ➤</p>
-        </div>
-        <div v-else :class="$style.worldRecord">
-          <p>
-            <img :src="IconMedalAuthor" alt="" />
-            {{ formatResultTime(level.timeAuthor) }}
-          </p>
-          <p :class="$style.recordsCount">No times</p>
-        </div>
-      </template>
+      <div v-if="level.worldRecord" :class="$style.worldRecord">
+        <img :src="IconTrophy" alt="" />
+        <router-link
+          :to="{
+            name: 'user',
+            params: { steamId: level.worldRecord.user.steamId }
+          }">
+          <user-badge
+            :username="level.worldRecord.user.steamName"
+            :class="$style.worldRecordAuthor" />
+          <div>{{ formatResultTime(level.worldRecord.time) }}</div>
+        </router-link>
+        <p
+          v-if="recordsCount"
+          :class="$style.recordsCount"
+          :title="`${recordsCount} total unique play sessions`">
+          {{ recordsCount }} plays
+        </p>
+        <p v-else :class="$style.recordsCount">{{ level.points ?? 0 }} ➤</p>
+      </div>
+      <div v-else :class="$style.worldRecord">
+        <p>
+          <img :src="IconMedalAuthor" alt="" />
+          {{ formatResultTime(level.timeAuthor) }}
+        </p>
+        <p :class="$style.recordsCount">No times</p>
+      </div>
     </div>
   </router-link>
 </template>

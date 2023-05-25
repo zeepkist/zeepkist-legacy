@@ -18,7 +18,7 @@
   const currentPage = ref(1)
   const sort = ref<Sort>(workshopId ? 'name' : '-id')
 
-  const { data } = useQuery({
+  const { data, isPreviousData } = useQuery({
     queryKey: ['levels', currentPage, workshopId, sort],
     queryFn: async () => {
       const levels = await getLevels({
@@ -35,12 +35,16 @@
       currentPage.value,
       workshopId,
       sort
-    ]) as LevelsResponse,
-    keepPreviousData: false
+    ]) as LevelsResponse
   })
 
   const handlePageChanged = async (page: number) => {
     currentPage.value = page
+  }
+
+  const handleSortChanged = (newSort: Sort) => {
+    currentPage.value = 1
+    sort.value = newSort
   }
 </script>
 
@@ -51,27 +55,27 @@
       <div :class="$style.filter">
         <button
           :class="{ [$style.selected]: sort === 'name' }"
-          @click="sort = 'name'">
+          @click="handleSortChanged('name')">
           A-Z
         </button>
         <button
           :class="{ [$style.selected]: sort === '-name' }"
-          @click="sort = '-name'">
+          @click="handleSortChanged('-name')">
           Z-A
         </button>
         <button
           :class="{ [$style.selected]: sort === '-id' }"
-          @click="sort = '-id'">
+          @click="handleSortChanged('-id')">
           Newest First
         </button>
         <button
           :class="{ [$style.selected]: sort === 'id' }"
-          @click="sort = 'id'">
+          @click="handleSortChanged('id')">
           Oldest First
         </button>
         <button
           :class="{ [$style.selected]: sort === 'rank' }"
-          @click="sort = 'rank'">
+          @click="handleSortChanged('rank')">
           Popularity
         </button>
       </div>
@@ -80,6 +84,8 @@
       :current-page="currentPage"
       :items-per-page="itemsPerPage"
       :total-items="data.totalAmount"
+      :disabled-pagination="isPreviousData"
+      :is-loading="isPreviousData"
       @page-changed="handlePageChanged">
       <level-list :levels="data.levels" />
     </paginated-component>
