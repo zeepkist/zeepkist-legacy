@@ -1004,26 +1004,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:4.29.11":
-  version: 4.29.11
-  resolution: "@tanstack/query-core@npm:4.29.11"
-  checksum: 2a17223f34e99e17d564a15206668eb79324da72e630a47cf41690f92fb091a8669bdc89e9ab1b0d8f0e3e8f579529cfb0aa6f10b4fc58ea81cc7e5caede9229
-  languageName: node
-  linkType: hard
-
 "@tanstack/query-core@npm:4.29.14":
   version: 4.29.14
   resolution: "@tanstack/query-core@npm:4.29.14"
   checksum: 3f74b2a02a7ac3b5d5f01507dc5ed15af539257005fc299ae4e4ef578feb347ab737ed5beb542c809c8f2838ae4d8626f6bf5d7d134173e0b8504c0900d0d9f6
-  languageName: node
-  linkType: hard
-
-"@tanstack/query-persist-client-core@npm:4.29.11":
-  version: 4.29.11
-  resolution: "@tanstack/query-persist-client-core@npm:4.29.11"
-  dependencies:
-    "@tanstack/query-core": 4.29.11
-  checksum: b1ea4d56aa211c173f6cee172d09aed573fa16bb15594c120efb6acacc1985c22dddbfbabff87406aa5de2fb5805e872276681e06821f0b1545ea33cf43c4e52
   languageName: node
   linkType: hard
 
@@ -1036,12 +1020,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-sync-storage-persister@npm:4.29.11":
-  version: 4.29.11
-  resolution: "@tanstack/query-sync-storage-persister@npm:4.29.11"
+"@tanstack/query-sync-storage-persister@npm:4.29.14":
+  version: 4.29.14
+  resolution: "@tanstack/query-sync-storage-persister@npm:4.29.14"
   dependencies:
-    "@tanstack/query-persist-client-core": 4.29.11
-  checksum: 532a001ce19c134bfc11c13b4427b9c86bcfc12609c611a8f8e3d852c031849d96d704f9d541f9c6b9bf4cff808d346801caedf53cc551caa699ab1ef3681850
+    "@tanstack/query-persist-client-core": 4.29.14
+  checksum: ba0d3a32688310cbe91cf1157002ec697e0b073d52a6313174c456e02008ac75052ea28111721257a1f29d8701c96bacc6868b543ea8381f99d8943ed1d4e140
   languageName: node
   linkType: hard
 
@@ -9412,7 +9396,7 @@ __metadata:
     "@semantic-release/release-notes-generator": 11.0.3
     "@tabler/icons-vue": 2.22.0
     "@tanstack/query-persist-client-core": 4.29.14
-    "@tanstack/query-sync-storage-persister": 4.29.11
+    "@tanstack/query-sync-storage-persister": 4.29.14
     "@tanstack/vue-query": 4.29.14
     "@tsconfig/cypress": 1.0.1
     "@tsconfig/node20": 1.0.1
