@@ -21,7 +21,7 @@
     "@arco-design/color": "0.4.0",
     "@arco-design/web-vue": "2.46.0",
     "@tabler/icons-vue": "2.22.0",
-    "@tanstack/query-persist-client-core": "4.29.11",
+    "@tanstack/query-persist-client-core": "4.29.14",
     "@tanstack/query-sync-storage-persister": "4.29.11",
     "@tanstack/vue-query": "4.29.13",
     "@unhead/vue": "1.1.27",
