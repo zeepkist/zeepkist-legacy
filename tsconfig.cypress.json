@@ -11,6 +11,7 @@
     "cypress/support/commands.ts"
   ],
   "compilerOptions": {
-    "composite": true
+    "composite": true,
+    "skipLibCheck": true
   }
 }
