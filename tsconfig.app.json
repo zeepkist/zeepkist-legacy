@@ -9,6 +9,7 @@
     "paths": {
       "~/*": ["./src/*"]
     },
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "skipLibCheck": true
   }
 }
