@@ -126,13 +126,12 @@
         const position = points[currentFrame]
           ? (points[currentFrame] as Vector3)
           : (points.at(-3) as Vector3)
+        soapbox.position.copy(position)
 
-        const quaternion = ghost.frames[currentFrame]
+        let quaternion = ghost.frames[currentFrame]
           ? (ghost.frames[currentFrame].quaternion as Quaternion)
           : (ghost.frames.at(-3)?.quaternion as Quaternion)
-
-        soapbox.position.copy(position)
-        soapbox.quaternion.copy(quaternion)
+        if (quaternion) soapbox.quaternion.copy(quaternion)
       }
 
       material.visible = true

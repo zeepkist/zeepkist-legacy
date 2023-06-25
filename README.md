@@ -57,3 +57,7 @@ yarn test:e2e
 ```sh
 yarn lint
 ```
+
+### Exporting STLs
+
+Ensure the coordinate system is set to "-Z Forward" and "Y Up"

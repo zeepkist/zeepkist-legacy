@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { IconGhostFilled } from '@tabler/icons-vue'
   import { useQueryClient } from '@tanstack/vue-query'
   import type { LevelRecord } from '@zeepkist/gtr-api'
   import { RouterLink } from 'vue-router'
@@ -38,71 +39,74 @@
 </script>
 
 <template>
-  <ghost-modal :ghost-urls="ghosts">
-    <div
-      class="record"
-      :class="{
-        'has-no-track': hideTrackInfo,
-        'has-rank': rank
-      }">
-      <div v-if="rank" class="rank">{{ rank }}</div>
+  <div
+    class="record"
+    :class="{
+      'has-no-track': hideTrackInfo,
+      'has-rank': rank
+    }">
+    <div v-if="rank" class="rank">{{ rank }}</div>
+    <router-link
+      v-if="!hideTrackInfo"
+      :to="{ name: 'level', params: { id: record.level.id } }"
+      @click.stop>
       <img
-        v-if="!hideTrackInfo"
         :src="record.level.thumbnailUrl"
         :alt="`Thumbnail of ${record.level.name}`" />
-      <div v-if="!hideTrackInfo" class="author">
-        <router-link
-          :to="{ name: 'level', params: { id: record.level.id } }"
-          @click.stop>
-          {{ record.level.name }}
-        </router-link>
-        <div class="subtext">
-          By <user-badge :username="record.level.author" />
-        </div>
-      </div>
-      <div class="author">
-        <router-link
-          v-if="showUser"
-          :to="{ name: 'user', params: { steamId: record.user.steamId } }"
-          @click.stop>
-          <user-badge :username="record.user.steamName" />
-        </router-link>
-        <div class="subtext" :title="formatDate(record.dateCreated)">
-          {{ formatRelativeDate(record.dateCreated) }}
-        </div>
-      </div>
-      <div>
-        <div class="right">{{ formatResultTime(record.time) }}</div>
-        <div
-          v-if="
-            showBadges &&
-            (record.isBest || record.isWorldRecord || !record.isValid)
-          "
-          class="record-badges">
-          <span v-if="record.isWorldRecord" class="wr" title="World Record"
-            >WR</span
-          >
-          <span v-if="record.isBest" class="pb" title="Personal Best">PB</span>
-          <span v-if="!record.isValid" class="any" title="Any Percentage"
-            >any%</span
-          >
-        </div>
-        <div v-if="showPoints" class="right subtext">
-          {{ calculateRecordPoints(rank ?? 1, record.level.points) }} ➤
-        </div>
-      </div>
-      <div v-if="false" class="actions">
-        <button disabled>View Ghost</button>
-        <button disabled>Compare</button>
+    </router-link>
+    <div v-if="!hideTrackInfo" class="author">
+      <router-link
+        :to="{ name: 'level', params: { id: record.level.id } }"
+        @click.stop>
+        {{ record.level.name }}
+      </router-link>
+      <div class="subtext">
+        By <user-badge :username="record.level.author" />
       </div>
     </div>
-  </ghost-modal>
+    <div class="author">
+      <router-link
+        v-if="showUser"
+        :to="{ name: 'user', params: { steamId: record.user.steamId } }"
+        @click.stop>
+        <user-badge :username="record.user.steamName" />
+      </router-link>
+      <div class="subtext" :title="formatDate(record.dateCreated)">
+        {{ formatRelativeDate(record.dateCreated) }}
+      </div>
+    </div>
+    <div>
+      <div class="right">{{ formatResultTime(record.time) }}</div>
+      <div
+        v-if="
+          showBadges &&
+          (record.isBest || record.isWorldRecord || !record.isValid)
+        "
+        class="record-badges">
+        <span v-if="record.isWorldRecord" class="wr" title="World Record"
+          >WR</span
+        >
+        <span v-if="record.isBest" class="pb" title="Personal Best">PB</span>
+        <span v-if="!record.isValid" class="any" title="Any Percentage"
+          >any%</span
+        >
+      </div>
+      <div v-if="showPoints" class="right subtext">
+        {{ calculateRecordPoints(rank ?? 1, record.level.points) }} ➤
+      </div>
+    </div>
+    <div class="actions">
+      <ghost-modal :ghost-urls="ghosts">
+        <icon-ghost-filled />
+      </ghost-modal>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="less">
   .record {
     display: grid;
-    grid-template-columns: 80px 2fr 1fr 100px;
+    grid-template-columns: 80px 2fr 1fr 100px 20px;
     grid-template-rows: 50px;
     gap: 1rem;
     align-items: center;
@@ -110,11 +114,11 @@
     margin: 0 -1rem;
 
     &.has-no-track:not(.has-rank) {
-      grid-template-columns: 2fr 100px;
+      grid-template-columns: 2fr 100px 20px;
     }
 
     &.has-no-track&.has-rank {
-      grid-template-columns: 3ch 2fr 100px;
+      grid-template-columns: 3ch 2fr 100px 20px;
     }
 
     &:nth-of-type(even) {

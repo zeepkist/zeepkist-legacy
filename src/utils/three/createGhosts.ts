@@ -6,7 +6,6 @@ import {
   LineBasicMaterial,
   Mesh,
   MeshStandardMaterial,
-  Quaternion,
   Scene,
   Vector3
 } from 'three'
@@ -25,7 +24,7 @@ interface GhostInstance {
 }
 
 export const createGhosts = async (scene: Scene, urls: string[]) => {
-  const ghosts: GhostInstance[] = []
+  const ghosts: (GhostInstance | undefined)[] = []
 
   let totalDuration = 0
 
@@ -33,7 +32,13 @@ export const createGhosts = async (scene: Scene, urls: string[]) => {
     const { ghost } = await getGhost(url)
 
     // TODO: Remove this when the parsing API is updated. Positions seem off in version 3 ghosts
-    if (ghost.version < 4) continue
+    if (ghost.version === 3) {
+      console.warn(
+        `Ghost ${index} uses version ${ghost.version}. Not rendering.`
+      )
+      ghosts.push(undefined)
+      continue
+    }
 
     totalDuration = Math.max(totalDuration, ghost.frames.at(-1)?.time ?? 0)
 
@@ -60,8 +65,8 @@ export const createGhosts = async (scene: Scene, urls: string[]) => {
     loader.load(soapboxUrl, geometry => {
       const soapboxMaterial = new MeshStandardMaterial({
         color: material.color,
-        metalness: 0.5,
-        roughness: 0.5
+        metalness: 0.75,
+        roughness: 0.75
       })
 
       const soapbox = new Mesh(geometry, soapboxMaterial)
@@ -74,7 +79,8 @@ export const createGhosts = async (scene: Scene, urls: string[]) => {
 
       scene.add(soapbox)
 
-      ghosts[index].soapbox = soapbox
+      const ghostInstance = ghosts[index]
+      if (ghostInstance) ghostInstance.soapbox = soapbox
     })
 
     scene.add(line)
@@ -90,5 +96,7 @@ export const createGhosts = async (scene: Scene, urls: string[]) => {
     })
   }
 
-  return { ghosts, totalDuration }
+  const filteredGhosts = ghosts.filter(Boolean) as GhostInstance[]
+
+  return { ghosts: filteredGhosts, totalDuration }
 }
