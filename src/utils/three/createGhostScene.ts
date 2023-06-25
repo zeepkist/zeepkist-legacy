@@ -2,12 +2,15 @@ import {
   AmbientLight,
   AxesHelper,
   Clock,
+  DirectionalLight,
+  Fog,
+  GridHelper,
+  Mesh,
+  MeshPhongMaterial,
   PCFSoftShadowMap,
   PerspectiveCamera,
-  Plane,
-  PlaneHelper,
+  PlaneGeometry,
   Scene,
-  Vector3,
   WebGLRenderer
 } from 'three'
 import { MapControls } from 'three/examples/jsm/controls/MapControls.js'
@@ -24,6 +27,26 @@ export const createGhostScene = () => {
   renderer.shadowMap.type = PCFSoftShadowMap
 
   const scene = new Scene()
+
+  const groundSize = 5000
+  const ground = new Mesh(
+    new PlaneGeometry(groundSize, groundSize),
+    new MeshPhongMaterial({ color: 0x11_11_11, depthWrite: false })
+  )
+  ground.rotation.x = -Math.PI / 2
+  ground.material.opacity = 0.2
+  ground.material.transparent = true
+  scene.add(ground)
+
+  const grid = new GridHelper(
+    groundSize,
+    groundSize / 16,
+    0x00_00_00,
+    0x00_00_00
+  )
+  scene.add(grid)
+
+  scene.fog = new Fog(0x15_15_15, groundSize / 2, groundSize)
 
   const camera = new PerspectiveCamera(
     45,
@@ -49,10 +72,23 @@ export const createGhostScene = () => {
     scene.add(axesHelper)
   }
 
-  const plane = new Plane(new Vector3(0, 1, 0), 16)
-  const helper = new PlaneHelper(plane, 10_000, 0x0f_0f_0f)
-  helper.receiveShadow = true
-  scene.add(helper)
+  const directionalLight = new DirectionalLight(0xff_cc_00)
+  directionalLight.castShadow = true
+  directionalLight.shadow.camera.top = 512
+  directionalLight.shadow.camera.bottom = -258
+  directionalLight.shadow.camera.left = -258
+  directionalLight.shadow.camera.right = 258
+  scene.add(directionalLight)
 
-  return { axesHelper, camera, clock, controls, renderer, scene }
+  return {
+    axesHelper,
+    camera,
+    clock,
+    controls,
+    renderer,
+    scene,
+    directionalLight,
+    ground,
+    grid
+  }
 }

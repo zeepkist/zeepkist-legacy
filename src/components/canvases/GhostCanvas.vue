@@ -1,7 +1,9 @@
 <script setup lang="ts">
-  import { AxesHelper, Quaternion, Vector3 } from 'three'
+  import { Quaternion, Vector3 } from 'three'
+  import Stats from 'three/examples/jsm/libs/stats.module.js'
   import { onMounted, onUnmounted, ref } from 'vue'
 
+  import { IS_DEV } from '~/configs/index.js'
   import {
     createGhosts,
     createGhostScene,
@@ -21,8 +23,17 @@
 
   const containerRef = ref()
 
-  const { axesHelper, camera, clock, controls, renderer, scene } =
-    createGhostScene()
+  const {
+    axesHelper,
+    camera,
+    clock,
+    controls,
+    renderer,
+    scene,
+    directionalLight,
+    ground,
+    grid
+  } = createGhostScene()
   const { ghosts, totalDuration } = await createGhosts(scene, ghostUrls)
 
   let longestGhost = ghosts[0]
@@ -35,14 +46,10 @@
   const allPoints = ghosts.flatMap(({ points }) => points)
   const { center } = createSphere(scene, allPoints)
 
-  const cameraOffsets = {
-    x: 1.5,
-    y: 1.5,
-    z: 1.5
-  }
-
   let currentFrame = 0
   let currentTime = ref(0)
+
+  let stats: Stats
 
   onMounted(() => {
     containerRef.value.append(renderer.domElement)
@@ -57,14 +64,31 @@
       containerRef.value.clientWidth / containerRef.value.clientHeight
     camera.aspect = aspectRatio
 
+    camera.zoom = 1.5
+
     camera.position.copy(center)
     axesHelper.position.copy(center)
+
+    directionalLight.position.copy(center)
+    directionalLight.position.y += 50
+
+    ground.position.copy(center)
+    ground.position.y = 0
+
+    grid.position.copy(center)
+    grid.position.y = 0.01
+
+    if (IS_DEV) {
+      stats = new Stats()
+      document.body.append(stats.dom)
+    }
 
     animate()
   })
 
   onUnmounted(() => {
     renderer.domElement.remove()
+    if (IS_DEV) stats.dom.remove()
   })
 
   const animateDrawing = () => {
@@ -82,18 +106,14 @@
 
     const leadingPosition = ghosts[0].points[currentFrame]
     if (leadingPosition) {
-      camera.position.set(
-        leadingPosition.x * cameraOffsets.x,
-        leadingPosition.y * cameraOffsets.y + 10,
-        leadingPosition.z * cameraOffsets.z
+      controls.target.set(
+        leadingPosition.x,
+        leadingPosition.y,
+        leadingPosition.z
       )
     } else {
       const position = ghosts[0].points.at(-1) ?? center
-      camera.position.set(
-        position.x * cameraOffsets.x,
-        position.y * cameraOffsets.y + 10,
-        position.z * cameraOffsets.z
-      )
+      controls.target.set(position.x, position.y, position.z)
     }
 
     for (const { geometry, material, ghost, soapbox, points } of ghosts) {
@@ -132,6 +152,8 @@
     camera.updateProjectionMatrix()
     controls.update()
     renderer.render(scene, camera)
+
+    if (IS_DEV) stats.update()
 
     requestAnimationFrame(animate)
   }

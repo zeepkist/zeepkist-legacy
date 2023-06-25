@@ -67,7 +67,7 @@ export const createGhosts = async (scene: Scene, urls: string[]) => {
       const soapbox = new Mesh(geometry, soapboxMaterial)
       soapbox.position.copy(points[0])
       soapbox.rotation.set(0, -Math.PI / 2, 0)
-      soapbox.scale.set(0.25, 0.25, 0.25)
+      soapbox.scale.set(0.5, 0.5, 0.5)
 
       soapbox.receiveShadow = true
       soapbox.castShadow = true
