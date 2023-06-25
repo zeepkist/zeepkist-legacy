@@ -1,4 +1,10 @@
 <script setup lang="ts">
+  import {
+    IconPlayerSkipBackFilled,
+    IconPlayerSkipForwardFilled,
+    IconPlayerTrackNextFilled,
+    IconPlayerTrackPrevFilled
+  } from '@tabler/icons-vue'
   import { ref } from 'vue'
 
   import LoadingIndicator from '~/components/LoadingIndicator.vue'
@@ -19,6 +25,8 @@
 
   const totalPages = ref(Math.ceil(totalItems / itemsPerPage))
 
+  const iconSize = 16
+
   const emit = defineEmits<{
     (event: 'page-changed', page: number): void
   }>()
@@ -34,25 +42,25 @@
         :disabled="disabledPagination || currentPage == 1"
         title="First"
         @click="emit('page-changed', 1)">
-        ⏮
+        <icon-player-skip-back-filled :size="iconSize" />
       </button>
       <button
         :disabled="disabledPagination || currentPage === 1"
         title="Previous"
         @click="emit('page-changed', currentPage - 1)">
-        ⏴
+        <icon-player-track-prev-filled :size="iconSize" />
       </button>
       <button
         :disabled="disabledPagination || currentPage === totalPages"
         title="Next"
         @click="emit('page-changed', currentPage + 1)">
-        ⏵
+        <icon-player-track-next-filled :size="iconSize" />
       </button>
       <button
         :disabled="disabledPagination || currentPage === totalPages"
         title="Last"
         @click="emit('page-changed', totalPages)">
-        ⏭
+        <icon-player-skip-forward-filled :size="iconSize" />
       </button>
     </div>
   </div>

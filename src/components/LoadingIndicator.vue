@@ -33,7 +33,7 @@
 
     &.inline {
       height: unset;
-      top: 0.6rem;
+      top: 0.4rem;
 
       div {
         top: 0;

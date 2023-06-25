@@ -41,7 +41,7 @@
     margin: 0 -1rem;
 
     &:hover {
-      background: rgb(var(--link-1)) !important;
+      color: rgb(var(--link-5)) !important;
     }
   }
 
@@ -57,6 +57,15 @@
     box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
     border-radius: var(--border-radius-large);
     padding: 1rem;
+
+    @media screen and (max-width: 1200px) {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: unset;
+      height: unset;
+    }
 
     button {
       position: absolute;
