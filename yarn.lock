@@ -998,37 +998,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:4.29.14":
-  version: 4.29.14
-  resolution: "@tanstack/query-core@npm:4.29.14"
-  checksum: 3f74b2a02a7ac3b5d5f01507dc5ed15af539257005fc299ae4e4ef578feb347ab737ed5beb542c809c8f2838ae4d8626f6bf5d7d134173e0b8504c0900d0d9f6
+"@tanstack/query-core@npm:4.29.15":
+  version: 4.29.15
+  resolution: "@tanstack/query-core@npm:4.29.15"
+  checksum: dc99d59a14acf47abdea9c80b038a1ad18531d309b98a91e89f7717f395f5b2ff54f73f6b6dcb3ac66f70f8b410827be5b06eb6f2bceff261287753829e606af
   languageName: node
   linkType: hard
 
-"@tanstack/query-persist-client-core@npm:4.29.14":
-  version: 4.29.14
-  resolution: "@tanstack/query-persist-client-core@npm:4.29.14"
+"@tanstack/query-persist-client-core@npm:4.29.15":
+  version: 4.29.15
+  resolution: "@tanstack/query-persist-client-core@npm:4.29.15"
   dependencies:
-    "@tanstack/query-core": 4.29.14
-  checksum: 34ca10ee241596ec5375590606edba76c15a0333d3545514a9562e2e4c291fd7a7fb8101e66ee794cd31d143e248de3523d3873db484448b782a5b2c7839ba97
+    "@tanstack/query-core": 4.29.15
+  checksum: 2e9f06a381778942fe79b2fe26e7f172c9874d5d9544f929ec02d2942bf7cc247c427fd2633edab7ce07fb5e9f765c590b0c98e83ddd7afd0bca867687ba6e35
   languageName: node
   linkType: hard
 
-"@tanstack/query-sync-storage-persister@npm:4.29.14":
-  version: 4.29.14
-  resolution: "@tanstack/query-sync-storage-persister@npm:4.29.14"
+"@tanstack/query-sync-storage-persister@npm:4.29.15":
+  version: 4.29.15
+  resolution: "@tanstack/query-sync-storage-persister@npm:4.29.15"
   dependencies:
-    "@tanstack/query-persist-client-core": 4.29.14
-  checksum: ba0d3a32688310cbe91cf1157002ec697e0b073d52a6313174c456e02008ac75052ea28111721257a1f29d8701c96bacc6868b543ea8381f99d8943ed1d4e140
+    "@tanstack/query-persist-client-core": 4.29.15
+  checksum: e786cefdf197e7f60503861bd0fe77cdbfc2aa7db36093b89a3fa54fd60e95df344f55f7cdbb897212451de80fe681a6870df7cc71e6d1c0ab949e3349c333b1
   languageName: node
   linkType: hard
 
-"@tanstack/vue-query@npm:4.29.14":
-  version: 4.29.14
-  resolution: "@tanstack/vue-query@npm:4.29.14"
+"@tanstack/vue-query@npm:4.29.15":
+  version: 4.29.15
+  resolution: "@tanstack/vue-query@npm:4.29.15"
   dependencies:
     "@tanstack/match-sorter-utils": ^8.1.1
-    "@tanstack/query-core": 4.29.14
+    "@tanstack/query-core": 4.29.15
     "@vue/devtools-api": ^6.4.2
     vue-demi: ^0.13.11
   peerDependencies:
@@ -1037,7 +1037,7 @@ __metadata:
   peerDependenciesMeta:
     "@vue/composition-api":
       optional: true
-  checksum: 7726d9eef7880092ec0f9be9a9f89de0bd68b14a3a39d32679b83d8137c5fcc4c45162f5cb7bbb7b0638c72c9e1d85340270c5e88f48679a761d59f8ddffbda1
+  checksum: 98e878f4986db11aabbccb75eac0153d7e3275bf22d1747a3eb04d0d1a98f75c9a43aea9c2cb168fbcb19e6d97746230327e71736bec7f75f70c2365116e3b89
   languageName: node
   linkType: hard
 
@@ -2766,9 +2766,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:12.14.0":
-  version: 12.14.0
-  resolution: "cypress@npm:12.14.0"
+"cypress@npm:12.15.0":
+  version: 12.15.0
+  resolution: "cypress@npm:12.15.0"
   dependencies:
     "@cypress/request": ^2.88.10
     "@cypress/xvfb": ^1.2.4
@@ -2814,7 +2814,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: c98d33dc50f5e48a215f41e3a5139514816d2320e433d143a352a460f74941d3106a1f7485f61172f544cf125176c1225ac8edec31645d5a89cd394f72f93588
+  checksum: a1989386bc0843377526c71d60a7c2d64593fbf3209cd5986cb684653d1092007add9d83910906b85e1801637206dd5fa5ce9627c6ada3a20a3a82ec5c2f4d7a
   languageName: node
   linkType: hard
 
@@ -2976,6 +2976,13 @@ __metadata:
   version: 2.0.3
   resolution: "dequal@npm:2.0.3"
   checksum: 8679b850e1a3d0ebbc46ee780d5df7b478c23f335887464023a631d1b9af051ad4a6595a44220f9ff8ff95a8ddccf019b5ad778a976fd7bbf77383d36f412f90
+  languageName: node
+  linkType: hard
+
+"devalue@npm:^4.3.2":
+  version: 4.3.2
+  resolution: "devalue@npm:4.3.2"
+  checksum: 034530e3910a096e528ca6481cd80ab2a21f4a5b813fb896d421eadf52dc969dfbbd5677aa06d28a6448a0f2f7e7d91d9ed88cd9aaa497f4b34e427d80c2a8a5
   languageName: node
   linkType: hard
 
@@ -3445,9 +3452,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vue@npm:9.14.1":
-  version: 9.14.1
-  resolution: "eslint-plugin-vue@npm:9.14.1"
+"eslint-plugin-vue@npm:9.15.1":
+  version: 9.15.1
+  resolution: "eslint-plugin-vue@npm:9.15.1"
   dependencies:
     "@eslint-community/eslint-utils": ^4.3.0
     natural-compare: ^1.4.0
@@ -3458,7 +3465,7 @@ __metadata:
     xml-name-validator: ^4.0.0
   peerDependencies:
     eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
-  checksum: 63a7d90194fe36b605c74fcb43d0f4d41d996b0d8733b89e1979a5fe1d400ee8a6d74d9b5cc9fbdff532f1c0aec93019e93f775a1f1b693d703b97ad1b932543
+  checksum: b1cdb16e43e681938c25f1d3f2d5d0d76a99172efdcfa0fa98cdb21122d520e12ae2f8ff2b40bf47a5b9f476f54199494a2851d99edc5bad0a25156ef38eeac4
   languageName: node
   linkType: hard
 
@@ -4349,15 +4356,15 @@ __metadata:
   linkType: hard
 
 "globby@npm:^13.1.4":
-  version: 13.1.4
-  resolution: "globby@npm:13.1.4"
+  version: 13.2.0
+  resolution: "globby@npm:13.2.0"
   dependencies:
     dir-glob: ^3.0.1
     fast-glob: ^3.2.11
     ignore: ^5.2.0
     merge2: ^1.4.1
     slash: ^4.0.0
-  checksum: e8bc13879972082d590cd1b0e27080d90d2e12fff7eeb2cee9329c29115ace14cc5b9f899e3d6beb136ba826307a727016658919a6f383e1511d698acee81741
+  checksum: 0a3dd786571788adef1c894f22112834cff5bbe061ae6e0a01c5118c39d44b3f1937ef1dae3f8b9bc24756eba84a0923e565b1ad9a4ec52831d7e2a04c035e75
   languageName: node
   linkType: hard
 
@@ -7049,15 +7056,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pinia-shared-state@npm:0.4.2":
-  version: 0.4.2
-  resolution: "pinia-shared-state@npm:0.4.2"
+"pinia-shared-state@npm:0.4.5":
+  version: 0.4.5
+  resolution: "pinia-shared-state@npm:0.4.5"
   dependencies:
     broadcast-channel: ^5.1.0
+    devalue: ^4.3.2
     vue-demi: ^0.14.5
   peerDependencies:
     pinia: ^2
-  checksum: d104b774178237c23d42dd58adb093a1124667ec301b6a28fb95bc26fc1034e98214ad4bf5486d25bba04ed8d28a7ecaace7e2225465d61bd96d8f2ab19f8269
+  checksum: 9cabc1ceb983b29772e8e9902d2e884018ff774691aa6b0b607bcc24b94eb702145f47ff0b9d4f140d143cbca997a68818fcd358cdecd252c4b88dbc1a8c76a7
   languageName: node
   linkType: hard
 
@@ -9224,9 +9232,9 @@ __metadata:
     "@semantic-release/github": 9.0.3
     "@semantic-release/release-notes-generator": 11.0.3
     "@tabler/icons-vue": 2.22.0
-    "@tanstack/query-persist-client-core": 4.29.14
-    "@tanstack/query-sync-storage-persister": 4.29.14
-    "@tanstack/vue-query": 4.29.14
+    "@tanstack/query-persist-client-core": 4.29.15
+    "@tanstack/query-sync-storage-persister": 4.29.15
+    "@tanstack/vue-query": 4.29.15
     "@tsconfig/cypress": 1.0.1
     "@tsconfig/node20": 1.0.1
     "@types/node": 20.3.1
@@ -9239,7 +9247,7 @@ __metadata:
     "@vueuse/components": 10.2.0
     "@vueuse/schema-org": 2.2.0
     "@zeepkist/gtr-api": 3.7.2
-    cypress: 12.14.0
+    cypress: 12.15.0
     date-fns: 2.30.0
     date-fns-tz: 2.0.0
     eslint: 8.43.0
@@ -9247,13 +9255,13 @@ __metadata:
     eslint-plugin-import: 2.27.5
     eslint-plugin-simple-import-sort: 10.0.0
     eslint-plugin-unicorn: 47.0.0
-    eslint-plugin-vue: 9.14.1
+    eslint-plugin-vue: 9.15.1
     eslint-plugin-vuejs-accessibility: 2.1.0
     ky: 0.33.3
     less: 4.1.3
     npm-run-all: 4.1.5
     pinia: 2.1.4
-    pinia-shared-state: 0.4.2
+    pinia-shared-state: 0.4.5
     prettier: 2.8.8
     semantic-release: 21.0.5
     sitemap: 7.1.1
