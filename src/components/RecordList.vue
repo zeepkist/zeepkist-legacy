@@ -29,6 +29,16 @@
       v-for="(record, index) in records"
       :key="record.screenshotUrl"
       :record="record"
+      :ghosts="
+        hideTrackInfo
+          ? [
+              record.ghostUrl,
+              ...records
+                .map(r => r.ghostUrl)
+                .filter(url => url !== record.ghostUrl)
+            ]
+          : [record.ghostUrl]
+      "
       :rank="
         typeof rankOffset === 'number' ? rankOffset + index + 1 : undefined
       "
