@@ -8,7 +8,7 @@ import {
   Vector3,
   WebGLRenderer
 } from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { MapControls } from 'three/examples/jsm/controls/MapControls.js'
 
 export const createGhostScene = () => {
   const renderer = new WebGLRenderer({ alpha: true, antialias: true })
@@ -27,7 +27,7 @@ export const createGhostScene = () => {
   )
   scene.add(camera)
 
-  const controls = new OrbitControls(camera, renderer.domElement)
+  const controls = new MapControls(camera, renderer.domElement)
   controls.enableDamping = true
   controls.dampingFactor = 0.05
   controls.screenSpacePanning = true
