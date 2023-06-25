@@ -1,6 +1,10 @@
 <script setup lang="ts">
   import { useQuery, useQueryClient } from '@tanstack/vue-query'
-  import { getLevels, type LevelsResponse } from '@zeepkist/gtr-api'
+  import {
+    getLevels,
+    type LevelsResponse,
+    searchLevels
+  } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
   import LevelList from '~/components/LevelList.vue'
@@ -8,7 +12,10 @@
 
   type Sort = 'name' | '-name' | '-id' | 'id' | 'rank'
 
-  const { workshopId } = defineProps<{
+  const { workshopId, query } = defineProps<{
+    query?: {
+      query: string
+    }
     workshopId?: string
   }>()
 
@@ -19,14 +26,20 @@
   const sort = ref<Sort>(workshopId ? 'name' : '-id')
 
   const { data, isPreviousData } = useQuery({
-    queryKey: ['levels', currentPage, workshopId, sort],
+    queryKey: ['levels', currentPage, workshopId, query, sort],
     queryFn: async () => {
-      const levels = await getLevels({
-        WorkshopId: workshopId ?? undefined,
-        Limit: itemsPerPage,
-        Offset: (currentPage.value - 1) * itemsPerPage,
-        Sort: sort.value
-      })
+      const levels = query?.query
+        ? await searchLevels({
+            Query: query.query,
+            Limit: itemsPerPage,
+            Offset: (currentPage.value - 1) * itemsPerPage
+          })
+        : await getLevels({
+            WorkshopId: workshopId ?? undefined,
+            Limit: itemsPerPage,
+            Offset: (currentPage.value - 1) * itemsPerPage,
+            Sort: sort.value
+          })
 
       return levels
     },
@@ -34,6 +47,7 @@
       'levels',
       currentPage.value,
       workshopId,
+      query,
       sort
     ]) as LevelsResponse
   })
@@ -52,7 +66,8 @@
   <template v-if="data">
     <div :class="$style.filterContainer">
       <p>{{ data.totalAmount }} levels</p>
-      <div :class="$style.filter">
+      <div
+        :class="[$style.filter, { [$style.filterDisabled]: !!query?.query }]">
         <button
           :class="{ [$style.selected]: sort === 'name' }"
           @click="handleSortChanged('name')">
@@ -81,6 +96,7 @@
       </div>
     </div>
     <paginated-component
+      :key="[currentPage, workshopId, query, sort].join('-')"
       :current-page="currentPage"
       :items-per-page="itemsPerPage"
       :total-items="data.totalAmount"
@@ -115,6 +131,13 @@
       &.selected,
       &:hover {
         border: 1px solid rgba(var(--primary-5));
+      }
+    }
+
+    &.filterDisabled {
+      button {
+        pointer-events: none;
+        opacity: 0.25;
       }
     }
   }
