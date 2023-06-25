@@ -12,10 +12,11 @@
     onLogout: () => void
   }>()
 
-  const isLargeHeader = ref(window.scrollY < 90)
+  const transitionThreshold = 30
+  const isLargeHeader = ref(window.scrollY < transitionThreshold)
 
   const handleScroll = () => {
-    isLargeHeader.value = window.scrollY < 90
+    isLargeHeader.value = window.scrollY < transitionThreshold
   }
 
   window.addEventListener('scroll', handleScroll)

@@ -3,6 +3,7 @@
   import type { LevelRecord } from '@zeepkist/gtr-api'
   import { RouterLink } from 'vue-router'
 
+  import GhostModal from '~/components/modals/GhostModal.vue'
   import UserBadge from '~/components/UserBadge.vue'
   import {
     calculateRecordPoints,
@@ -13,6 +14,7 @@
 
   const {
     record,
+    ghosts = [],
     rank,
     showUser = false,
     showBadges = false,
@@ -20,6 +22,7 @@
     hideTrackInfo = false
   } = defineProps<{
     record: LevelRecord
+    ghosts?: string[]
     rank?: number
     showUser?: boolean
     showBadges?: boolean
@@ -35,60 +38,65 @@
 </script>
 
 <template>
-  <div
-    class="record"
-    :class="{
-      'has-no-track': hideTrackInfo,
-      'has-rank': rank
-    }">
-    <div v-if="rank" class="rank">{{ rank }}</div>
-    <img
-      v-if="!hideTrackInfo"
-      :src="record.level.thumbnailUrl"
-      :alt="`Thumbnail of ${record.level.name}`" />
-    <div v-if="!hideTrackInfo" class="author">
-      <router-link :to="{ name: 'level', params: { id: record.level.id } }">
-        {{ record.level.name }}
-      </router-link>
-      <div class="subtext">
-        By <user-badge :username="record.level.author" />
+  <ghost-modal :ghost-urls="ghosts">
+    <div
+      class="record"
+      :class="{
+        'has-no-track': hideTrackInfo,
+        'has-rank': rank
+      }">
+      <div v-if="rank" class="rank">{{ rank }}</div>
+      <img
+        v-if="!hideTrackInfo"
+        :src="record.level.thumbnailUrl"
+        :alt="`Thumbnail of ${record.level.name}`" />
+      <div v-if="!hideTrackInfo" class="author">
+        <router-link
+          :to="{ name: 'level', params: { id: record.level.id } }"
+          @click.stop>
+          {{ record.level.name }}
+        </router-link>
+        <div class="subtext">
+          By <user-badge :username="record.level.author" />
+        </div>
+      </div>
+      <div class="author">
+        <router-link
+          v-if="showUser"
+          :to="{ name: 'user', params: { steamId: record.user.steamId } }"
+          @click.stop>
+          <user-badge :username="record.user.steamName" />
+        </router-link>
+        <div class="subtext" :title="formatDate(record.dateCreated)">
+          {{ formatRelativeDate(record.dateCreated) }}
+        </div>
+      </div>
+      <div>
+        <div class="right">{{ formatResultTime(record.time) }}</div>
+        <div
+          v-if="
+            showBadges &&
+            (record.isBest || record.isWorldRecord || !record.isValid)
+          "
+          class="record-badges">
+          <span v-if="record.isWorldRecord" class="wr" title="World Record"
+            >WR</span
+          >
+          <span v-if="record.isBest" class="pb" title="Personal Best">PB</span>
+          <span v-if="!record.isValid" class="any" title="Any Percentage"
+            >any%</span
+          >
+        </div>
+        <div v-if="showPoints" class="right subtext">
+          {{ calculateRecordPoints(rank ?? 1, record.level.points) }} ➤
+        </div>
+      </div>
+      <div v-if="false" class="actions">
+        <button disabled>View Ghost</button>
+        <button disabled>Compare</button>
       </div>
     </div>
-    <div class="author">
-      <router-link
-        v-if="showUser"
-        :to="{ name: 'user', params: { steamId: record.user.steamId } }">
-        <user-badge :username="record.user.steamName" />
-      </router-link>
-      <div class="subtext" :title="formatDate(record.dateCreated)">
-        {{ formatRelativeDate(record.dateCreated) }}
-      </div>
-    </div>
-    <div>
-      <div class="right">{{ formatResultTime(record.time) }}</div>
-      <div
-        v-if="
-          showBadges &&
-          (record.isBest || record.isWorldRecord || !record.isValid)
-        "
-        class="record-badges">
-        <span v-if="record.isWorldRecord" class="wr" title="World Record"
-          >WR</span
-        >
-        <span v-if="record.isBest" class="pb" title="Personal Best">PB</span>
-        <span v-if="!record.isValid" class="any" title="Any Percentage"
-          >any%</span
-        >
-      </div>
-      <div v-if="showPoints" class="right subtext">
-        {{ calculateRecordPoints(rank ?? 1, record.level.points) }} ➤
-      </div>
-    </div>
-    <div v-if="false" class="actions">
-      <button disabled>View Ghost</button>
-      <button disabled>Compare</button>
-    </div>
-  </div>
+  </ghost-modal>
 </template>
 
 <style scoped lang="less">

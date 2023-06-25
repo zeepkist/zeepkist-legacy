@@ -29,6 +29,7 @@
       v-for="(record, index) in records"
       :key="record.screenshotUrl"
       :record="record"
+      :ghosts="records.map(r => r.ghostUrl)"
       :rank="
         typeof rankOffset === 'number' ? rankOffset + index + 1 : undefined
       "

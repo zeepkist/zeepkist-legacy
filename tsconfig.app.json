@@ -9,6 +9,8 @@
     "paths": {
       "~/*": ["./src/*"]
     },
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "target": "es2020"
   }
 }
