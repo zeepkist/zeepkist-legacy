@@ -115,17 +115,7 @@
   function animate() {
     const hasNextFrame = currentFrame < longestGhost.ghost.frames.length - 1
 
-    if (hasNextFrame) {
-      animateDrawing()
-    } else {
-      const position = ghosts[0].points.at(-1) ?? center
-
-      camera.position.set(
-        position.x * cameraOffsets.x,
-        position.y * cameraOffsets.y,
-        position.z * cameraOffsets.z
-      )
-    }
+    if (hasNextFrame) animateDrawing()
 
     controls.enableZoom = true
     controls.enableRotate = true

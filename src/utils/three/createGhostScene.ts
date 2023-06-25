@@ -40,7 +40,7 @@ export const createGhostScene = () => {
   const axesHelper = new AxesHelper(50)
   scene.add(axesHelper)
 
-  const plane = new Plane(new Vector3(0, 1, 0), 3)
+  const plane = new Plane(new Vector3(0, 1, 0), 16)
   const helper = new PlaneHelper(plane, 10_000, 0x0f_0f_0f)
   scene.add(helper)
 

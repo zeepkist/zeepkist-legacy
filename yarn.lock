@@ -1657,16 +1657,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zeepkist/gtr-api@npm:3.7.1":
-  version: 3.7.1
-  resolution: "@zeepkist/gtr-api@npm:3.7.1"
+"@zeepkist/gtr-api@npm:3.7.2":
+  version: 3.7.2
+  resolution: "@zeepkist/gtr-api@npm:3.7.2"
   dependencies:
     ky: ~0.33.2
     ky-universal: ~0.11.0
+    pako: ~2.1.0
   dependenciesMeta:
     esbuild:
       built: true
-  checksum: b5a0c6dcacd812576c43109d252e6e37b1be5f2a61d2f073f3c687e17704f6a87cd6a2b70d3061606f42bdafad66a9bdc78e5e906b0b35161e3062df36c79b72
+  checksum: b187299bad4b57ce5f79da8dab6ac91a4b45d43863bc60b39267682b7d42f0640b37668520107b804e8ea9f44d771a2cf5b6fa24385e1e9d23bf679a2b39a8c9
   languageName: node
   linkType: hard
 
@@ -6830,6 +6831,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pako@npm:~2.1.0":
+  version: 2.1.0
+  resolution: "pako@npm:2.1.0"
+  checksum: 71666548644c9a4d056bcaba849ca6fd7242c6cf1af0646d3346f3079a1c7f4a66ffec6f7369ee0dc88f61926c10d6ab05da3e1fca44b83551839e89edd75a3e
+  languageName: node
+  linkType: hard
+
 "parent-module@npm:^1.0.0":
   version: 1.0.1
   resolution: "parent-module@npm:1.0.1"
@@ -9230,7 +9238,7 @@ __metadata:
     "@vue/tsconfig": 0.4.0
     "@vueuse/components": 10.2.0
     "@vueuse/schema-org": 2.2.0
-    "@zeepkist/gtr-api": 3.7.1
+    "@zeepkist/gtr-api": 3.7.2
     cypress: 12.14.0
     date-fns: 2.30.0
     date-fns-tz: 2.0.0

@@ -25,6 +25,9 @@ export const createGhosts = async (scene: Scene, urls: string[]) => {
   for (const [index, url] of urls.entries()) {
     const { ghost } = await getGhost(url)
 
+    // TODO: Remove this when the parsing API is updated. Positions seem off in version 3 ghosts
+    if (ghost.version < 4) continue
+
     totalDuration = Math.max(totalDuration, ghost.frames.at(-1)?.time ?? 0)
 
     const points = ghost.frames.map(
