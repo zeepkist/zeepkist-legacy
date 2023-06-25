@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { AxesHelper, Quaternion, Vector3 } from 'three'
   import { onMounted, onUnmounted, ref } from 'vue'
 
   import {
@@ -14,20 +15,14 @@
     z: number
   }
 
-  export interface Quaternion {
-    x: number
-    y: number
-    z: number
-    w: number
-  }
-
   const { ghostUrls = [] } = defineProps<{
     ghostUrls: string[]
   }>()
 
   const containerRef = ref()
 
-  const { camera, clock, controls, renderer, scene } = createGhostScene()
+  const { axesHelper, camera, clock, controls, renderer, scene } =
+    createGhostScene()
   const { ghosts, totalDuration } = await createGhosts(scene, ghostUrls)
 
   let longestGhost = ghosts[0]
@@ -62,6 +57,9 @@
       containerRef.value.clientWidth / containerRef.value.clientHeight
     camera.aspect = aspectRatio
 
+    camera.position.copy(center)
+    axesHelper.position.copy(center)
+
     animate()
   })
 
@@ -86,26 +84,36 @@
     if (leadingPosition) {
       camera.position.set(
         leadingPosition.x * cameraOffsets.x,
-        leadingPosition.y * cameraOffsets.y,
+        leadingPosition.y * cameraOffsets.y + 10,
         leadingPosition.z * cameraOffsets.z
       )
-      //camera.lookAt(leadingPosition)
     } else {
       const position = ghosts[0].points.at(-1) ?? center
-
       camera.position.set(
         position.x * cameraOffsets.x,
-        position.y * cameraOffsets.y,
+        position.y * cameraOffsets.y + 10,
         position.z * cameraOffsets.z
       )
-      //camera.lookAt(position)
     }
 
-    for (const { geometry, material, ghost } of ghosts) {
+    for (const { geometry, material, ghost, soapbox, points } of ghosts) {
       const visiblePoints = Math.floor(
         (ghost.frameCount / totalDuration) * totalDuration
       )
       const drawRange = Math.min(visiblePoints, currentFrame + 1)
+
+      if (soapbox) {
+        const position = points[currentFrame]
+          ? (points[currentFrame] as Vector3)
+          : (points.at(-3) as Vector3)
+
+        const quaternion = ghost.frames[currentFrame]
+          ? (ghost.frames[currentFrame].quaternion as Quaternion)
+          : (ghost.frames.at(-3)?.quaternion as Quaternion)
+
+        soapbox.position.copy(position)
+        soapbox.quaternion.copy(quaternion)
+      }
 
       material.visible = true
       geometry.setDrawRange(0, drawRange)
