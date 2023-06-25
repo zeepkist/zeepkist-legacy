@@ -87,7 +87,15 @@
     ],
     "git-submodules": {
       "enabled": true
-    }
+    },
+    "packageRules": [
+      {
+        "matchPackagePrefixes": [
+          "@tanstack/"
+        ],
+        "groupName": "tanstack"
+      }
+    ]
   },
   "packageManager": "yarn@3.6.0"
 }
