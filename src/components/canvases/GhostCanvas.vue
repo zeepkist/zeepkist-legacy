@@ -41,7 +41,7 @@
   const { center } = createSphere(scene, allPoints)
 
   const cameraOffsets = {
-    x: 1.1,
+    x: 1.5,
     y: 1.5,
     z: 1.5
   }
