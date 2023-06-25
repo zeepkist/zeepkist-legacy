@@ -10,10 +10,11 @@ import {
   Vector3
 } from 'three'
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js'
+import { type Ref } from 'vue'
 
 import soapboxUrl from '~/assets/models/combined_soapbox.stl?url'
 
-interface GhostInstance {
+export interface GhostInstance {
   ghost: Ghost
   points: Vector3[]
   curve: CatmullRomCurve3
@@ -23,7 +24,11 @@ interface GhostInstance {
   soapbox?: Mesh
 }
 
-export const createGhosts = async (scene: Scene, urls: string[]) => {
+export const createGhosts = async (
+  scene: Scene,
+  urls: string[],
+  loadedGhosts: Ref<number>
+) => {
   const ghosts: (GhostInstance | undefined)[] = []
 
   let totalDuration = 0
@@ -38,6 +43,8 @@ export const createGhosts = async (scene: Scene, urls: string[]) => {
       )
       ghosts.push(undefined)
       continue
+    } else {
+      console.log(`Ghost ${index} uses version ${ghost.version}`)
     }
 
     totalDuration = Math.max(totalDuration, ghost.frames.at(-1)?.time ?? 0)
@@ -84,6 +91,8 @@ export const createGhosts = async (scene: Scene, urls: string[]) => {
     })
 
     scene.add(line)
+
+    loadedGhosts.value++
 
     ghosts.push({
       ghost,

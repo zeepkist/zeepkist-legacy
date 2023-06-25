@@ -34,7 +34,16 @@
     ground,
     grid
   } = createGhostScene()
-  const { ghosts, totalDuration } = await createGhosts(scene, ghostUrls)
+
+  const hasStartedAnimating = ref(false)
+  const hasFinishedAnimating = ref(false)
+  const loadedGhosts = ref(0)
+
+  const { ghosts, totalDuration } = await createGhosts(
+    scene,
+    ghostUrls,
+    loadedGhosts
+  )
 
   let longestGhost = ghosts[0]
   for (const ghost of ghosts) {
@@ -73,17 +82,15 @@
     directionalLight.position.y += 50
 
     ground.position.copy(center)
-    ground.position.y = 0
+    ground.position.y = -4
 
     grid.position.copy(center)
-    grid.position.y = 0.01
+    grid.position.y = -4
 
     if (IS_DEV) {
       stats = new Stats()
       document.body.append(stats.dom)
     }
-
-    animate()
   })
 
   onUnmounted(() => {
@@ -92,10 +99,7 @@
   })
 
   const animateDrawing = () => {
-    const elapsedTime = clock.getElapsedTime()
-    currentTime.value =
-      longestGhost.ghost.frames[0].time +
-      (elapsedTime / totalDuration) * totalDuration
+    currentTime.value = clock.getElapsedTime()
 
     while (
       currentFrame < longestGhost.ghost.frames.length - 1 &&
@@ -143,6 +147,7 @@
     const hasNextFrame = currentFrame < longestGhost.ghost.frames.length - 1
 
     if (hasNextFrame) animateDrawing()
+    else hasFinishedAnimating.value = true
 
     controls.enableZoom = true
     controls.enableRotate = true
@@ -156,16 +161,51 @@
 
     requestAnimationFrame(animate)
   }
+
+  const onStart = () => {
+    if (hasStartedAnimating.value) return
+    hasStartedAnimating.value = true
+
+    animate()
+  }
+
+  const onReplay = () => {
+    clock.startTime = 0
+    clock.elapsedTime = 0
+
+    currentFrame = 0
+    currentTime.value = 0
+
+    for (const { geometry, material } of ghosts) {
+      material.visible = false
+      geometry.setDrawRange(0, 0)
+    }
+
+    onStart()
+  }
 </script>
 
 <template>
   <div>{{ formatResultTime(currentTime) }}</div>
+
+  <div v-if="!ghosts" :class="$style.preloader">
+    Loading {{ loadedGhosts + 1 }} of {{ ghostUrls.length }} ghosts
+  </div>
+  <div v-else-if="!hasStartedAnimating" :class="$style.preloader">
+    <div>{{ ghostUrls.length }} ghosts initialised</div>
+    <div>Following the white soapbox</div>
+    <button @click="onStart">Start Replay</button>
+  </div>
+  <div v-else-if="hasFinishedAnimating" :class="$style.replay">
+    <button @click="onReplay">Replay</button>
+  </div>
+
   <div ref="containerRef" :class="$style.container"></div>
 </template>
 
 <style module lang="less">
+  .preloader,
   .container {
-    z-index: -1;
     width: 100%;
     height: 100%;
 
@@ -174,5 +214,23 @@
     left: 0;
     right: 0;
     bottom: 0;
+  }
+
+  .container {
+    z-index: -1;
+  }
+
+  .preloader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+
+    button {
+      cursor: pointer;
+    }
   }
 </style>

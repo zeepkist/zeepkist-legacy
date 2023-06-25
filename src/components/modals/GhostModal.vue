@@ -25,7 +25,7 @@
   </button>
   <div v-if="isOpen" :class="$style.modal">
     <h1>Ghost Explorer (ALPHA)</h1>
-    <button @click="onClose"><icon-x /></button>
+    <button :class="$style.close" @click="onClose"><icon-x /></button>
     <ghost-canvas :ghost-urls="ghostUrls" />
   </div>
 </template>
@@ -67,7 +67,7 @@
       height: unset;
     }
 
-    button {
+    button.close {
       position: absolute;
       top: 1rem;
       right: 1rem;
