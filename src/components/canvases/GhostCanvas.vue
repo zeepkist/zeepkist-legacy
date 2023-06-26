@@ -37,13 +37,12 @@
 
   const hasStartedAnimating = ref(false)
   const hasFinishedAnimating = ref(false)
-  const loadedGhosts = ref(0)
 
-  const { ghosts, totalDuration } = await createGhosts(
-    scene,
-    ghostUrls,
-    loadedGhosts
-  )
+  const emit = defineEmits<{
+    progress: [number: number]
+  }>()
+
+  const { ghosts, totalDuration } = await createGhosts(scene, ghostUrls, emit)
 
   let longestGhost = ghosts[0]
   for (const ghost of ghosts) {
@@ -55,10 +54,9 @@
   const allPoints = ghosts.flatMap(({ points }) => points)
   const { center } = createSphere(scene, allPoints)
 
-  let currentFrame = 0
-  let currentTime = ref(0)
-
   let stats: Stats
+  let currentFrame = 0
+  const currentTime = ref(0)
 
   onMounted(() => {
     containerRef.value.append(renderer.domElement)
@@ -143,7 +141,7 @@
     }
   }
 
-  function animate() {
+  const animate = () => {
     const hasNextFrame = currentFrame < longestGhost.ghost.frames.length - 1
 
     if (hasNextFrame) animateDrawing()
@@ -188,10 +186,7 @@
 <template>
   <div>{{ formatResultTime(currentTime) }}</div>
 
-  <div v-if="!ghosts" :class="$style.preloader">
-    Loading {{ loadedGhosts + 1 }} of {{ ghostUrls.length }} ghosts
-  </div>
-  <div v-else-if="!hasStartedAnimating" :class="$style.preloader">
+  <div v-if="!hasStartedAnimating" :class="$style.preloader">
     <div>{{ ghostUrls.length }} ghosts initialised</div>
     <div>Following the white soapbox</div>
     <button @click="onStart">Start Replay</button>
