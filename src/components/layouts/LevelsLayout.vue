@@ -32,7 +32,8 @@
         ? await searchLevels({
             Query: query.query,
             Limit: itemsPerPage,
-            Offset: (currentPage.value - 1) * itemsPerPage
+            Offset: (currentPage.value - 1) * itemsPerPage,
+            Sort: sort.value
           })
         : await getLevels({
             WorkshopId: workshopId ?? undefined,
@@ -66,8 +67,7 @@
   <template v-if="data">
     <div :class="$style.filterContainer">
       <p>{{ data.totalAmount }} levels</p>
-      <div
-        :class="[$style.filter, { [$style.filterDisabled]: !!query?.query }]">
+      <div :class="$style.filter">
         <button
           :class="{ [$style.selected]: sort === 'name' }"
           @click="handleSortChanged('name')">
@@ -131,13 +131,6 @@
       &.selected,
       &:hover {
         border: 1px solid rgba(var(--primary-5));
-      }
-    }
-
-    &.filterDisabled {
-      button {
-        pointer-events: none;
-        opacity: 0.25;
       }
     }
   }
