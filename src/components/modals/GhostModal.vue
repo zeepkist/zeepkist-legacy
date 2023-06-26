@@ -4,6 +4,7 @@
   import { ref } from 'vue'
 
   import GhostCanvas from '~/components/canvases/GhostCanvas.vue'
+  import LoadingIndicator from '~/components/LoadingIndicator.vue'
 
   const { ghostUrls = [], level } = defineProps<{
     ghostUrls?: string[]
@@ -52,9 +53,19 @@
   }
 
   const percentageLoaded = ref(0)
+  const loadedGhosts = ref(0)
+  const totalGhosts = ref(0)
 
-  const onProgress = (progress: number) => {
-    percentageLoaded.value = Math.round(progress * 100)
+  interface Progress {
+    progress: number
+    loaded: number
+    total: number
+  }
+
+  const onProgress = (progress: Progress) => {
+    percentageLoaded.value = progress.progress
+    loadedGhosts.value = progress.loaded
+    totalGhosts.value = progress.total
   }
 </script>
 
@@ -65,7 +76,11 @@
   <div v-if="isOpen" :class="$style.modal">
     <h1>Ghost Explorer (ALPHA)</h1>
     <button :class="$style.close" @click="onClose"><icon-x /></button>
-    <div v-if="percentageLoaded < 100">{{ percentageLoaded }}%</div>
+    <div v-if="percentageLoaded < 100" :class="$style.loading">
+      <div>{{ percentageLoaded }}%</div>
+      <div>{{ loadedGhosts }} / {{ totalGhosts }}</div>
+      <loading-indicator />
+    </div>
     <ghost-canvas :ghost-urls="allGhostUrls" @progress="onProgress" />
   </div>
 </template>
@@ -115,10 +130,22 @@
       background: transparent;
       border: none;
       cursor: pointer;
+      z-index: 1001;
 
       &:hover {
         color: rgb(var(--link-5));
       }
+    }
+
+    .loading {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      justify-content: center;
+      place-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
     }
   }
 </style>
