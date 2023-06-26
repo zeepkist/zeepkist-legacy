@@ -20,12 +20,14 @@ export interface GhostInstance {
   material: LineBasicMaterial
   geometry: BufferGeometry
   line: Line
+  colour: number
   soapbox?: Mesh
 }
 
 export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
   const ghosts: (GhostInstance | undefined)[] = []
 
+  let totalGhosts = urls.length
   let loadedGhosts = 0
   let totalDuration = 0
 
@@ -38,10 +40,14 @@ export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
         `Ghost ${index} uses version ${ghost.version}. Not rendering.`
       )
       ghosts.push(undefined)
+      totalGhosts -= 1
       continue
     }
 
     totalDuration = Math.max(totalDuration, ghost.frames.at(-1)?.time ?? 0)
+
+    const colour =
+      index === 0 ? 0xff_ff_ff : Math.floor(Math.random() * 0xaa_55_aa)
 
     const points = ghost.frames.map(
       ({ position }) => new Vector3(position.x, position.y, position.z)
@@ -50,7 +56,7 @@ export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
     const curve = new CatmullRomCurve3(points, false, 'catmullrom', 0)
 
     const material = new LineBasicMaterial({
-      color: index === 0 ? 0xff_ff_ff : Math.floor(Math.random() * 0xaa_55_aa),
+      color: colour,
       linecap: 'round',
       linejoin: 'round',
       visible: false
@@ -88,7 +94,11 @@ export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
 
     loadedGhosts += 1
 
-    emit('progress', loadedGhosts / urls.length)
+    emit('progress', {
+      progress: Math.ceil((loadedGhosts / totalGhosts) * 100),
+      loaded: loadedGhosts,
+      total: totalGhosts
+    })
 
     ghosts.push({
       ghost,
@@ -97,13 +107,18 @@ export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
       material,
       geometry,
       line,
+      colour,
       soapbox: undefined
     })
   }
 
   const filteredGhosts = ghosts.filter(Boolean) as GhostInstance[]
 
-  emit('progress', 1)
+  emit('progress', {
+    progress: 100,
+    loaded: ghosts.length,
+    total: totalGhosts
+  })
 
   return { ghosts: filteredGhosts, totalDuration }
 }

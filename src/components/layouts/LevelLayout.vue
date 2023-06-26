@@ -154,7 +154,7 @@
         :href="STEAM_WORKSHOP_URL + level.workshopId">
         Open in Workshop
       </a>
-      {{ level.workshopId !== '0' || bestRecords.totalAmount > 0 ? '・' : '' }}
+      {{ level.workshopId !== '0' && bestRecords.totalAmount > 0 ? '・' : '' }}
       <ghost-modal :level="level.id">
         <icon-ghost-filled :size="20" />
       </ghost-modal>
