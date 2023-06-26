@@ -9255,7 +9255,7 @@ __metadata:
     "@vue/tsconfig": 0.4.0
     "@vueuse/components": 10.2.0
     "@vueuse/schema-org": 2.2.0
-    "@zeepkist/gtr-api": 3.80
+    "@zeepkist/gtr-api": 3.8.0
     cypress: 12.16.0
     date-fns: 2.30.0
     date-fns-tz: 2.0.0
