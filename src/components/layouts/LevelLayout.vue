@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { IconGhostFilled } from '@tabler/icons-vue'
   import { useQuery } from '@tanstack/vue-query'
   import { getLevels, getRecords, type Level } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
@@ -7,6 +8,7 @@
   import PopularLevelBadge from '~/components/badges/PopularLevelBadge.vue'
   import ColumnLayout from '~/components/ColumnLayout.vue'
   import FullWidthHeader from '~/components/headers/FullWidthHeader.vue'
+  import GhostModal from '~/components/modals/GhostModal.vue'
   import PaginatedComponent from '~/components/PaginatedComponent.vue'
   import RecordList from '~/components/RecordList.vue'
   import ContentSheet from '~/components/sheets/ContentSheet.vue'
@@ -129,13 +131,33 @@
       <popular-level-badge :level-id="level.id" popular />
       <popular-level-badge :level-id="level.id" />
     </template>
-    <template v-if="level.workshopId !== '0'" #actions>
+    <template #actions>
       <router-link
-        v-if="workshopLevelsCount && workshopLevelsCount > 1"
+        v-if="
+          level.workshopId !== '0' &&
+          workshopLevelsCount &&
+          workshopLevelsCount > 1
+        "
         :to="{ name: 'workshop', params: { id: level.workshopId } }">
         View level pack
       </router-link>
-      <a :href="STEAM_WORKSHOP_URL + level.workshopId">Open in Workshop</a>
+      {{
+        level.workshopId !== '0' &&
+        workshopLevelsCount &&
+        workshopLevelsCount > 1 &&
+        (level.workshopId !== '0' || bestRecords.totalAmount > 0)
+          ? '・'
+          : ''
+      }}
+      <a
+        v-if="level.workshopId !== '0'"
+        :href="STEAM_WORKSHOP_URL + level.workshopId">
+        Open in Workshop
+      </a>
+      {{ level.workshopId !== '0' || bestRecords.totalAmount > 0 ? '・' : '' }}
+      <ghost-modal :level="level.id">
+        <icon-ghost-filled :size="20" />
+      </ghost-modal>
     </template>
   </full-width-header>
 

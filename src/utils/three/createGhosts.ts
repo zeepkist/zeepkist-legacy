@@ -10,7 +10,6 @@ import {
   Vector3
 } from 'three'
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js'
-import { type Ref } from 'vue'
 
 import soapboxUrl from '~/assets/models/combined_soapbox.stl?url'
 
@@ -24,27 +23,22 @@ export interface GhostInstance {
   soapbox?: Mesh
 }
 
-export const createGhosts = async (
-  scene: Scene,
-  urls: string[],
-  loadedGhosts: Ref<number>
-) => {
+export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
   const ghosts: (GhostInstance | undefined)[] = []
 
+  let loadedGhosts = 0
   let totalDuration = 0
 
   for (const [index, url] of urls.entries()) {
     const { ghost } = await getGhost(url)
 
     // TODO: Remove this when the parsing API is updated. Positions seem off in version 3 ghosts
-    if (ghost.version === 3) {
+    if (ghost.version < 4) {
       console.warn(
         `Ghost ${index} uses version ${ghost.version}. Not rendering.`
       )
       ghosts.push(undefined)
       continue
-    } else {
-      console.log(`Ghost ${index} uses version ${ghost.version}`)
     }
 
     totalDuration = Math.max(totalDuration, ghost.frames.at(-1)?.time ?? 0)
@@ -92,7 +86,9 @@ export const createGhosts = async (
 
     scene.add(line)
 
-    loadedGhosts.value++
+    loadedGhosts += 1
+
+    emit('progress', loadedGhosts / urls.length)
 
     ghosts.push({
       ghost,
@@ -106,6 +102,8 @@ export const createGhosts = async (
   }
 
   const filteredGhosts = ghosts.filter(Boolean) as GhostInstance[]
+
+  emit('progress', 1)
 
   return { ghosts: filteredGhosts, totalDuration }
 }
