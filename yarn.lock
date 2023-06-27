@@ -1024,9 +1024,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/vue-query@npm:4.29.17":
-  version: 4.29.17
-  resolution: "@tanstack/vue-query@npm:4.29.17"
+"@tanstack/vue-query@npm:4.29.18":
+  version: 4.29.18
+  resolution: "@tanstack/vue-query@npm:4.29.18"
   dependencies:
     "@tanstack/match-sorter-utils": ^8.1.1
     "@tanstack/query-core": 4.29.17
@@ -1038,7 +1038,7 @@ __metadata:
   peerDependenciesMeta:
     "@vue/composition-api":
       optional: true
-  checksum: c74b26a57d4efd2ef8560add53809ddd8a1bbe6b7d27d6df49ffe32592eca5eaec6f492387e79a4d1036ad5edb125d3e46c3d53e91b4ca82e4defeea2ab71fe8
+  checksum: 51e4aa34790496d1b8b33f2b0c93b8f32e4abb7573e9399491b1d34cc4b49e607f34eb87da72f238d36538c4fdd53e4c8cb254430e6ea0f6f5c448ff6139b6d2
   languageName: node
   linkType: hard
 
@@ -9243,7 +9243,7 @@ __metadata:
     "@tabler/icons-vue": 2.23.0
     "@tanstack/query-persist-client-core": 4.29.17
     "@tanstack/query-sync-storage-persister": 4.29.17
-    "@tanstack/vue-query": 4.29.17
+    "@tanstack/vue-query": 4.29.18
     "@tsconfig/cypress": 1.0.1
     "@tsconfig/node20": 1.0.1
     "@types/node": 20.3.2
