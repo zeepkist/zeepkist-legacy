@@ -1056,10 +1056,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsconfig/node20@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@tsconfig/node20@npm:1.0.1"
-  checksum: 7e57e0c9556878db2186e5753668e1d3d95f13d6c978780e05f9b43250b5df9e4bc1e9e85edd9753d526f8fde65f5536ada3ded7a8896d5134034e13712ce5dd
+"@tsconfig/node20@npm:1.0.2":
+  version: 1.0.2
+  resolution: "@tsconfig/node20@npm:1.0.2"
+  checksum: d7424dc94943b5876f00836bc9335f7a2a3a1ab85272a877d9b585c30ac7a9fe94fa947195e0c69207c90c2e8ae8dc4a86939ee8e69975999e3a015d61df3f50
   languageName: node
   linkType: hard
 
@@ -9245,7 +9245,7 @@ __metadata:
     "@tanstack/query-sync-storage-persister": 4.29.19
     "@tanstack/vue-query": 4.29.19
     "@tsconfig/cypress": 1.0.1
-    "@tsconfig/node20": 1.0.1
+    "@tsconfig/node20": 1.0.2
     "@types/node": 20.3.2
     "@types/three": 0.152.1
     "@unhead/vue": 1.1.28
