@@ -2,7 +2,7 @@
 https://zeepkist.netlify.com/* https://zeepki.st/:splat 301!
 https://zeepkist.wopian.me/*   https://zeepki.st/:splat 301!
 # Discord Invites
-/discord                      https://discord.gg/zeepkist 301!
+/discord                      https://discord.gg/kmfaaQg 301!
 /mod-discord                  https://discord.gg/vG3mhxFTBa 301!
 # Handle SPA routing
 /                             /index.html 200
