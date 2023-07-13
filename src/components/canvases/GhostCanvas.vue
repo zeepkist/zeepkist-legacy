@@ -5,7 +5,12 @@
     IconPlayerSkipBackFilled,
     IconPlayerSkipForwardFilled
   } from '@tabler/icons-vue'
-  import { MeshStandardMaterial, Quaternion, Vector3 } from 'three'
+  import { type Ghost } from '@zeepkist/gtr-api'
+  import {
+    MeshStandardMaterial,
+    Quaternion,
+    Vector3
+  } from 'three'
   import Stats from 'three/examples/jsm/libs/stats.module.js'
   import { onMounted, onUnmounted, ref } from 'vue'
 
@@ -14,7 +19,8 @@
     createGhosts,
     createGhostScene,
     createSphere,
-    formatResultTime
+    formatResultTime,
+    type GhostInstance
   } from '~/utils'
 
   export interface Position {
@@ -64,8 +70,9 @@
   }
 
   const allPoints = ghosts.flatMap(({ points }) => points)
-  const { center } = createSphere(scene, allPoints)
+  const { center } = createSphere(allPoints)
 
+  let animationId: number | undefined
   let stats: Stats
   let currentFrame = 0
   const currentTime = ref(0)
@@ -103,21 +110,21 @@
     }
   })
 
+  // TODO: Look into why the canvas is not being cleaned up properly
   onUnmounted(() => {
+    onPause()
+    if (animationId) cancelAnimationFrame(animationId)
     renderer.domElement.remove()
     if (IS_DEV) stats.dom.remove()
   })
 
-  const animateDrawing = () => {
-    currentTime.value = clock.getElapsedTime()
-
-    while (
-      currentFrame < longestGhost.ghost.frames.length - 1 &&
-      longestGhost.ghost.frames[currentFrame + 1].time < currentTime.value
-    ) {
-      currentFrame++
-    }
-
+  // TODO: Properly type arguments instead of using any
+  const updateCameraTarget = (
+    ghosts: GhostInstance[],
+    currentFrame: number,
+    controls: any,
+    center: any
+  ) => {
     const leadingPosition = ghosts[0].points[currentFrame]
     if (leadingPosition) {
       controls.target.set(
@@ -129,6 +136,58 @@
       const position = ghosts[0].points.at(-1) ?? center
       controls.target.set(position.x, position.y, position.z)
     }
+  }
+
+  // TODO: Properly type arguments instead of using any
+  const updateSoapbox = (
+    soapbox: any,
+    points: any[],
+    ghost: Ghost,
+    currentFrame: number,
+    colour: number
+  ) => {
+    const position = points[currentFrame]
+      ? (points[currentFrame] as Vector3)
+      : (points.at(-3) as Vector3)
+
+    let quaternion = ghost.frames[currentFrame]
+      ? (ghost.frames[currentFrame].quaternion as Quaternion)
+      : (ghost.frames.at(-3)?.quaternion as Quaternion)
+
+    const isBraking = ghost.frames[currentFrame]
+      ? ghost.frames[currentFrame].isBraking
+      : ghost.frames.at(-3)?.isBraking
+
+    const isArmsUp = ghost.frames[currentFrame]
+      ? ghost.frames[currentFrame].isArmsUp
+      : ghost.frames.at(-3)?.isArmsUp
+
+    soapbox.position.copy(position)
+
+    if (quaternion) soapbox.quaternion.copy(quaternion)
+
+    if (soapbox.material instanceof MeshStandardMaterial) {
+      soapbox.material.color.set(isBraking ? 0xff_00_00 : colour)
+      soapbox.material.wireframe = !!isArmsUp
+    }
+  }
+
+  // TODO: Properly type arguments instead of using any
+  const updateGeometry = (geometry: any, drawRange: number) => {
+    geometry.setDrawRange(0, drawRange)
+  }
+
+  const animateDrawing = () => {
+    currentTime.value = clock.getElapsedTime()
+
+    while (
+      currentFrame < longestGhost.ghost.frames.length - 1 &&
+      longestGhost.ghost.frames[currentFrame + 1].time < currentTime.value
+    ) {
+      currentFrame++
+    }
+
+    updateCameraTarget(ghosts, currentFrame, controls, center)
 
     for (const {
       geometry,
@@ -141,41 +200,18 @@
       const visiblePoints = Math.floor(
         (ghost.frameCount / totalDuration) * totalDuration
       )
-      const drawRange = Math.min(visiblePoints, currentFrame + 1)
 
       if (soapbox) {
-        const position = points[currentFrame]
-          ? (points[currentFrame] as Vector3)
-          : (points.at(-3) as Vector3)
-
-        let quaternion = ghost.frames[currentFrame]
-          ? (ghost.frames[currentFrame].quaternion as Quaternion)
-          : (ghost.frames.at(-3)?.quaternion as Quaternion)
-
-        const isBraking = ghost.frames[currentFrame]
-          ? ghost.frames[currentFrame].isBraking
-          : ghost.frames.at(-3)?.isBraking
-
-        const isArmsUp = ghost.frames[currentFrame]
-          ? ghost.frames[currentFrame].isArmsUp
-          : ghost.frames.at(-3)?.isArmsUp
-
-        soapbox.position.copy(position)
-
-        if (quaternion) soapbox.quaternion.copy(quaternion)
-
-        if (soapbox.material instanceof MeshStandardMaterial) {
-          soapbox.material.color.set(isBraking ? 0xff_00_00 : colour)
-          soapbox.material.wireframe = !!isArmsUp
-        }
+        updateSoapbox(soapbox, points, ghost, currentFrame, colour)
       }
 
       material.visible = true
-      geometry.setDrawRange(0, drawRange)
+      updateGeometry(geometry, Math.min(visiblePoints, currentFrame + 1))
     }
   }
 
   const animate = () => {
+    animationId = undefined
     const hasNextFrame = currentFrame < longestGhost.ghost.frames.length - 1
 
     if (hasNextFrame) animateDrawing()
@@ -194,7 +230,9 @@
 
     if (IS_DEV) stats.update()
 
-    requestAnimationFrame(animate)
+    if (!animationId) {
+      animationId = requestAnimationFrame(animate)
+    }
   }
 
   const onStart = () => {

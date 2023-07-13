@@ -19,34 +19,30 @@ import { IS_DEV } from '~/configs'
 
 export const createGhostScene = () => {
   const renderer = new WebGLRenderer({ alpha: true, antialias: true })
-  renderer.setClearAlpha(0)
   renderer.setSize(window.innerWidth, window.innerHeight)
   renderer.setPixelRatio(window.devicePixelRatio)
-
   renderer.shadowMap.enabled = true
   renderer.shadowMap.type = PCFSoftShadowMap
 
   const scene = new Scene()
 
-  const groundSize = 5000
+  const size = 5000
   const ground = new Mesh(
-    new PlaneGeometry(groundSize, groundSize),
-    new MeshPhongMaterial({ color: 0x11_11_11, depthWrite: false })
+    new PlaneGeometry(size, size),
+    new MeshPhongMaterial({
+      color: 0x11_11_11,
+      depthWrite: false,
+      transparent: true,
+      opacity: 0.2
+    })
   )
   ground.rotation.x = -Math.PI / 2
-  ground.material.opacity = 0.2
-  ground.material.transparent = true
   scene.add(ground)
 
-  const grid = new GridHelper(
-    groundSize,
-    groundSize / 16,
-    0x00_00_00,
-    0x00_00_00
-  )
+  const grid = new GridHelper(size, size / 16, 0x00_00_00, 0x00_00_00)
   scene.add(grid)
 
-  scene.fog = new Fog(0x15_15_15, groundSize / 2, groundSize)
+  scene.fog = new Fog(0x15_15_15, size / 2, size)
 
   const camera = new PerspectiveCamera(
     45,
