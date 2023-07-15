@@ -14,12 +14,20 @@
   const isOpen = ref(false)
   const hasAllGhosts = ref(false)
 
-  const onClick = () => {
+  // If no level is provided, assume all ghost urls are provided
+  if (!level) hasAllGhosts.value = true
+
+  const onClick = async () => {
     isOpen.value = true
+
+    if (ghostUrls.length === 0 && level) {
+      await getAllRecords()
+    }
   }
 
   const onClose = () => {
     isOpen.value = false
+    hasAllGhosts.value = false
   }
 
   const allGhostUrls = ref<string[]>(ghostUrls)
@@ -42,14 +50,12 @@
       ...records.map(r => r.ghostUrl)
     ]
 
-    if (recordsObtained < totalAmount) getAllRecords(offset + limit)
+    totalGhosts.value += records.length
+
+    if (recordsObtained < totalAmount) await getAllRecords(offset + limit)
     else {
       hasAllGhosts.value = true
     }
-  }
-
-  if (ghostUrls.length === 0 && level) {
-    getAllRecords()
   }
 
   const percentageLoaded = ref(0)
@@ -79,9 +85,11 @@
     <div v-if="percentageLoaded < 100" :class="$style.loading">
       <div>{{ percentageLoaded }}%</div>
       <div>{{ loadedGhosts }} / {{ totalGhosts }}</div>
+      <div v-if="!hasAllGhosts">Gathering ghosts...</div>
+      <div v-else>Parsing ghosts...</div>
       <loading-indicator />
     </div>
-    <ghost-canvas :ghost-urls="allGhostUrls" @progress="onProgress" />
+    <ghost-canvas v-if="hasAllGhosts" :ghost-urls="allGhostUrls" @progress="onProgress" />
   </div>
 </template>
 
