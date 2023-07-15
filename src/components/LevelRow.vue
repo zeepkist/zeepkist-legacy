@@ -54,7 +54,9 @@
           <img :src="IconMedalAuthor" alt="" />
           {{ formatResultTime(level.timeAuthor) }}
         </p>
-        <p :class="$style.recordsCount">No times</p>
+        <p :class="$style.recordsCount">
+          {{ `${recordsCount} plays` || 'No times' }}
+        </p>
       </div>
     </div>
   </router-link>
