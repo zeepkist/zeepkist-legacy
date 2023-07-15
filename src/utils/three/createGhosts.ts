@@ -27,6 +27,17 @@ export interface GhostInstance {
   soapbox?: Mesh
 }
 
+function* chunks(items: string[]) {
+  let index = 0
+  const count = 4
+  for (; index < items.length; index++) {
+    yield items.slice(index, index + count)
+    index += count - 1
+  }
+
+  return []
+}
+
 const soapboxGeometry = await new Promise<BufferGeometry>((resolve, reject) => {
   const loader = new STLLoader()
   loader.load(soapboxUrl, resolve, undefined, reject)
@@ -38,79 +49,85 @@ export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
   let totalGhosts = urls.length
   let loadedGhosts = 0
   let totalDuration = 0
+  let chunkIndex = 0
 
-  for (const [index, url] of urls.entries()) {
-    const { ghost } = await getGhost(url)
+  for (const chunk of chunks(urls)) {
+    chunkIndex += 1
 
-    // TODO: Remove this when the parsing API is updated. Positions seem off in version 3 ghosts
-    if (ghost.version < 4) {
-      console.warn(
-        `Ghost ${index} uses version ${ghost.version}. Not rendering.`
+    await Promise.all(chunk.map(async (url, index) => {
+      const ghostIndex = (chunkIndex - 1) * 4 + index
+      const { ghost } = await getGhost(url)
+
+      // TODO: Remove this when the parsing API is updated. Positions seem off in version 3 ghosts
+      if (ghost.version < 4) {
+        console.warn(
+          `Ghost ${ghostIndex} uses version ${ghost.version}. Not rendering.`
+        )
+        ghosts.push(undefined)
+        totalGhosts -= 1
+        return
+      }
+
+      totalDuration = Math.max(totalDuration, ghost.frames.at(-1)?.time ?? 0)
+
+      const colour =
+        ghostIndex === 0 ? 0xff_ff_ff : Math.floor(Math.random() * 0xaa_55_aa)
+
+      const points = ghost.frames.map(
+        ({ position }) => new Vector3(position.x, position.y, position.z)
       )
-      ghosts.push(undefined)
-      totalGhosts -= 1
-      continue
-    }
 
-    totalDuration = Math.max(totalDuration, ghost.frames.at(-1)?.time ?? 0)
+      const curve = new CatmullRomCurve3(points, false, 'catmullrom', 0)
 
-    const colour =
-      index === 0 ? 0xff_ff_ff : Math.floor(Math.random() * 0xaa_55_aa)
+      const material = new LineBasicMaterial({
+        color: colour,
+        linecap: 'round',
+        linejoin: 'round',
+        visible: false
+      })
 
-    const points = ghost.frames.map(
-      ({ position }) => new Vector3(position.x, position.y, position.z)
-    )
+      const geometry = new BufferGeometry().setFromPoints(
+        curve.getPoints(ghost.frameCount)
+      )
 
-    const curve = new CatmullRomCurve3(points, false, 'catmullrom', 0)
+      const line = new Line(geometry, material)
 
-    const material = new LineBasicMaterial({
-      color: colour,
-      linecap: 'round',
-      linejoin: 'round',
-      visible: false
-    })
+      const soapboxMaterial = new MeshStandardMaterial({
+        color: material.color,
+        metalness: 0.75,
+        roughness: 0.75
+      })
 
-    const geometry = new BufferGeometry().setFromPoints(
-      curve.getPoints(ghost.frameCount)
-    )
-
-    const line = new Line(geometry, material)
-
-    const soapboxMaterial = new MeshStandardMaterial({
-      color: material.color,
-      metalness: 0.75,
-      roughness: 0.75
-    })
-
-    const soapbox = new Mesh(soapboxGeometry, soapboxMaterial)
-    soapbox.rotation.set(0, -Math.PI / 2, 0)
-    soapbox.scale.set(0.5, 0.5, 0.5)
-    soapbox.receiveShadow = true
-    soapbox.castShadow = true
+      const soapbox = new Mesh(soapboxGeometry, soapboxMaterial)
+      soapbox.rotation.set(0, -Math.PI / 2, 0)
+      soapbox.scale.set(0.5, 0.5, 0.5)
+      soapbox.receiveShadow = true
+      soapbox.castShadow = true
 
 
 
-    scene.add(line)
-    scene.add(soapbox)
+      scene.add(line)
+      scene.add(soapbox)
 
-    loadedGhosts += 1
+      loadedGhosts += 1
 
-    emit('progress', {
-      progress: Math.ceil((loadedGhosts / totalGhosts) * 100),
-      loaded: loadedGhosts,
-      total: totalGhosts
-    })
+      emit('progress', {
+        progress: Math.ceil((loadedGhosts / totalGhosts) * 100),
+        loaded: loadedGhosts,
+        total: totalGhosts
+      })
 
-    ghosts.push({
-      ghost,
-      points,
-      curve,
-      material,
-      geometry,
-      line,
-      colour,
-      soapbox
-    })
+      ghosts.push({
+        ghost,
+        points,
+        curve,
+        material,
+        geometry,
+        line,
+        colour,
+        soapbox
+      })
+    }))
   }
 
   const filteredGhosts = ghosts.filter(Boolean) as GhostInstance[]
