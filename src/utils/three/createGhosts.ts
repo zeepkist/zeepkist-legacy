@@ -2,6 +2,9 @@ import { getGhost, type Ghost } from '@zeepkist/gtr-api'
 import {
   BufferGeometry,
   CatmullRomCurve3,
+  InstancedMesh,
+  DynamicDrawUsage,
+  Matrix4,
   Line,
   LineBasicMaterial,
   Mesh,
@@ -23,6 +26,11 @@ export interface GhostInstance {
   colour: number
   soapbox?: Mesh
 }
+
+const soapboxGeometry = await new Promise<BufferGeometry>((resolve, reject) => {
+  const loader = new STLLoader()
+  loader.load(soapboxUrl, resolve, undefined, reject)
+})
 
 export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
   const ghosts: (GhostInstance | undefined)[] = []
@@ -68,29 +76,22 @@ export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
 
     const line = new Line(geometry, material)
 
-    const loader = new STLLoader()
-    loader.load(soapboxUrl, geometry => {
-      const soapboxMaterial = new MeshStandardMaterial({
-        color: material.color,
-        metalness: 0.75,
-        roughness: 0.75
-      })
-
-      const soapbox = new Mesh(geometry, soapboxMaterial)
-      soapbox.position.copy(points[0])
-      soapbox.rotation.set(0, -Math.PI / 2, 0)
-      soapbox.scale.set(0.5, 0.5, 0.5)
-
-      soapbox.receiveShadow = true
-      soapbox.castShadow = true
-
-      scene.add(soapbox)
-
-      const ghostInstance = ghosts[index]
-      if (ghostInstance) ghostInstance.soapbox = soapbox
+    const soapboxMaterial = new MeshStandardMaterial({
+      color: material.color,
+      metalness: 0.75,
+      roughness: 0.75
     })
 
+    const soapbox = new Mesh(soapboxGeometry, soapboxMaterial)
+    soapbox.rotation.set(0, -Math.PI / 2, 0)
+    soapbox.scale.set(0.5, 0.5, 0.5)
+    soapbox.receiveShadow = true
+    soapbox.castShadow = true
+
+
+
     scene.add(line)
+    scene.add(soapbox)
 
     loadedGhosts += 1
 
@@ -108,7 +109,7 @@ export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
       geometry,
       line,
       colour,
-      soapbox: undefined
+      soapbox
     })
   }
 
