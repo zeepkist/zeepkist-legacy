@@ -41,7 +41,7 @@ function* chunks(items: string[]) {
   return []
 }
 
-const soapboxGeometry = await new Promise<BufferGeometry>((resolve, reject) => {
+const soapboxGeometry = new Promise<BufferGeometry>((resolve, reject) => {
   const loader = new STLLoader()
   loader.load(soapboxUrl, resolve, undefined, reject)
 })
@@ -107,7 +107,7 @@ export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
           roughness: 0.75
         })
 
-        const soapbox = new Mesh(soapboxGeometry, soapboxMaterial)
+        const soapbox = new Mesh(await soapboxGeometry, soapboxMaterial)
         soapbox.rotation.set(0, -Math.PI / 2, 0)
         soapbox.scale.set(0.5, 0.5, 0.5)
         soapbox.receiveShadow = true
