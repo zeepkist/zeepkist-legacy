@@ -60,7 +60,20 @@ export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
     await Promise.all(
       chunk.map(async (url, index) => {
         const ghostIndex = (chunkIndex - 1) * 4 + index
-        const { ghost } = await getGhost(url)
+        let ghost: Ghost | undefined
+
+        try {
+          const data = await getGhost(url)
+          ghost = data.ghost
+        } catch (error) {
+          console.warn(`Failed to load ghost ${ghostIndex}.`, error)
+        }
+
+        if (!ghost) {
+          totalGhosts -= 1
+          ghosts.push(undefined)
+          return
+        }
 
         // TODO: Remove this when the parsing API is updated. Positions seem off in version 3 ghosts
         if (ghost.version < 4) {

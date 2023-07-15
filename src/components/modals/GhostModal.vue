@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { IconX } from '@tabler/icons-vue'
-  import { getRecords } from '@zeepkist/gtr-api'
+  import { getRecords, searchLevels } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
   import GhostCanvas from '~/components/canvases/GhostCanvas.vue'
@@ -21,7 +21,12 @@
     isOpen.value = true
 
     if (ghostUrls.length === 0 && level && !hasAllGhosts.value) {
-      await getAllRecords()
+      const levels = await searchLevels({ Query: 'MMM', Limit: 100 })
+      await getAllRecords(
+        0,
+        levels.levels.map(level => level.id)
+      )
+      hasAllGhosts.value = true
     }
   }
 
@@ -34,26 +39,30 @@
   const limit = 50
   let recordsObtained = 0
 
-  const getAllRecords = async (offset = 0) => {
-    const { records, totalAmount } = await getRecords({
-      LevelId: level,
-      BestOnly: true,
-      Limit: limit,
-      Offset: offset
-    })
+  const getAllRecords = async (offset = 0, levelIds: number[]) => {
+    for (const levelId of levelIds) {
+      const { records, totalAmount } = await getRecords({
+        LevelId: levelId,
+        BestOnly: true,
+        Limit: limit,
+        Offset: offset,
+        Sort: '-id'
+      })
 
-    recordsObtained += records.length
+      recordsObtained += records.length
 
-    allGhostUrls.value = [
-      ...allGhostUrls.value,
-      ...records.map(r => r.ghostUrl)
-    ]
+      allGhostUrls.value = [
+        ...allGhostUrls.value,
+        ...records.map(r => r.ghostUrl)
+      ]
 
-    totalGhosts.value += records.length
+      totalGhosts.value += records.length
 
-    if (recordsObtained < totalAmount) await getAllRecords(offset + limit)
-    else {
-      hasAllGhosts.value = true
+      if (recordsObtained < totalAmount) {
+        await getAllRecords(offset + limit, [levelId])
+      } else {
+        // hasAllGhosts.value = true
+      }
     }
   }
 
