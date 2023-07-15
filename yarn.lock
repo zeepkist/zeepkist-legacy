@@ -1093,6 +1093,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/color-hash@npm:1.0.2":
+  version: 1.0.2
+  resolution: "@types/color-hash@npm:1.0.2"
+  checksum: 09c8acbe313ec809922bcc9a957720479874a905fd997ff2628f361eb54e72082973066845b92fc733e069f8314ab509403419332a74ddbdf8bad8bde7d1d32f
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:^7.0.9":
   version: 7.0.12
   resolution: "@types/json-schema@npm:7.0.12"
@@ -2506,6 +2513,13 @@ __metadata:
   dependencies:
     color-name: ~1.1.4
   checksum: 79e6bdb9fd479a205c71d89574fccfb22bd9053bd98c6c4d870d65c132e5e904e6034978e55b43d69fcaa7433af2016ee203ce76eeba9cfa554b373e7f7db336
+  languageName: node
+  linkType: hard
+
+"color-hash@npm:2.0.2":
+  version: 2.0.2
+  resolution: "color-hash@npm:2.0.2"
+  checksum: 0ebc108f5ef215df60f4cd12d3005fa97335a667d00a4c652b966de3fc40556df7264acf594a994dbb71baa676a2d3b0ce6f39a390ff4199301bd44e0500de73
   languageName: node
   linkType: hard
 
@@ -9235,6 +9249,7 @@ __metadata:
     "@tanstack/vue-query": 4.29.23
     "@tsconfig/cypress": 1.0.1
     "@tsconfig/node20": 1.0.2
+    "@types/color-hash": 1.0.2
     "@types/node": 20.4.2
     "@types/three": 0.154.0
     "@unhead/vue": 1.1.30
@@ -9245,6 +9260,7 @@ __metadata:
     "@vueuse/components": 10.2.1
     "@vueuse/schema-org": 2.2.0
     "@zeepkist/gtr-api": 3.8.0
+    color-hash: 2.0.2
     cypress: 12.17.1
     date-fns: 2.30.0
     date-fns-tz: 2.0.0

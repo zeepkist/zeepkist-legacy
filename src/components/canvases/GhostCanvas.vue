@@ -6,11 +6,7 @@
     IconPlayerSkipForwardFilled
   } from '@tabler/icons-vue'
   import { type Ghost } from '@zeepkist/gtr-api'
-  import {
-    MeshStandardMaterial,
-    Quaternion,
-    Vector3
-  } from 'three'
+  import { MeshStandardMaterial, Quaternion, Vector3 } from 'three'
   import Stats from 'three/examples/jsm/libs/stats.module.js'
   import { onMounted, onUnmounted, ref } from 'vue'
 
