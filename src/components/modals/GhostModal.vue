@@ -88,7 +88,10 @@
       <div v-else>Parsing ghosts...</div>
       <loading-indicator />
     </div>
-    <ghost-canvas v-if="hasAllGhosts" :ghost-urls="allGhostUrls" @progress="onProgress" />
+    <ghost-canvas
+      v-if="hasAllGhosts"
+      :ghost-urls="allGhostUrls"
+      @progress="onProgress" />
   </div>
 </template>
 
