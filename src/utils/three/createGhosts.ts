@@ -2,9 +2,6 @@ import { getGhost, type Ghost } from '@zeepkist/gtr-api'
 import {
   BufferGeometry,
   CatmullRomCurve3,
-  InstancedMesh,
-  DynamicDrawUsage,
-  Matrix4,
   Line,
   LineBasicMaterial,
   Mesh,
@@ -13,6 +10,7 @@ import {
   Vector3
 } from 'three'
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js'
+import ColorHash from 'color-hash'
 
 import soapboxUrl from '~/assets/models/combined_soapbox.stl?url'
 
@@ -26,6 +24,11 @@ export interface GhostInstance {
   colour: number
   soapbox?: Mesh
 }
+
+const colourHash = new ColorHash({
+  lightness: [0.35, 0.5, 0.65],
+  saturation: [0.35, 0.5, 0.65]
+})
 
 function* chunks(items: string[]) {
   let index = 0
@@ -70,8 +73,9 @@ export const createGhosts = async (scene: Scene, urls: string[], emit: any) => {
 
       totalDuration = Math.max(totalDuration, ghost.frames.at(-1)?.time ?? 0)
 
+      // TODO: Hash by ghost steamId
       const colour =
-        ghostIndex === 0 ? 0xff_ff_ff : Math.floor(Math.random() * 0xaa_55_aa)
+        ghostIndex === 0 ? 0xff_ff_ff : Number.parseInt(colourHash.hex(ghostIndex.toString()).replace('#', '0x'))
 
       const points = ghost.frames.map(
         ({ position }) => new Vector3(position.x, position.y, position.z)

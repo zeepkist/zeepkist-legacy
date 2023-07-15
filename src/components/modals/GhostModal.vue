@@ -20,14 +20,13 @@
   const onClick = async () => {
     isOpen.value = true
 
-    if (ghostUrls.length === 0 && level) {
+    if (ghostUrls.length === 0 && level && !hasAllGhosts.value) {
       await getAllRecords()
     }
   }
 
   const onClose = () => {
     isOpen.value = false
-    hasAllGhosts.value = false
   }
 
   const allGhostUrls = ref<string[]>(ghostUrls)
