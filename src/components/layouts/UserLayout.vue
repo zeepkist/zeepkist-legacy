@@ -1,20 +1,25 @@
 <script setup lang="ts">
-  import { getRecords, type User } from '@zeepkist/gtr-api'
+  import { getRecords, searchLevels, type User } from '@zeepkist/gtr-api'
   import { ref } from 'vue'
 
   import ColumnLayout from '~/components/ColumnLayout.vue'
+  import LevelList from '~/components/LevelList.vue'
   import PaginatedComponent from '~/components/PaginatedComponent.vue'
   import RecordList from '~/components/RecordList.vue'
   import UserBadge from '~/components/UserBadge.vue'
   import { formatOrdinal, formatUser } from '~/utils'
 
   type RecordType = 'worldRecord' | 'best' | 'invalid' | 'recent'
+  type LevelType = 'popularLevels' | 'recentLevels'
 
   const limit = 10
+  const levelLimit = 6
 
   const { user } = defineProps<{
     user: User
   }>()
+
+  const formattedUser = formatUser(user.steamName)
 
   const getPaginatedRecords = async (type: RecordType, page = 1) => {
     switch (type) {
@@ -57,7 +62,19 @@
     }
   }
 
-  const handlePageChanged = async (type: RecordType, page: number) => {
+  const getPaginatedLevels = async (type: LevelType, page = 1) => {
+    return await searchLevels({
+      Query: formattedUser.username,
+      Sort: type === 'recentLevels' ? '-id' : '-points',
+      Limit: levelLimit,
+      Offset: (page - 1) * levelLimit
+    })
+  }
+
+  const handlePageChanged = async (
+    type: RecordType | LevelType,
+    page: number
+  ) => {
     switch (type) {
       case 'best': {
         bestRecords.value = await getPaginatedRecords('best', page)
@@ -79,6 +96,16 @@
         pages.value.recent = page
         break
       }
+      case 'popularLevels': {
+        popularLevels.value = await getPaginatedLevels('popularLevels', page)
+        pages.value.popularLevels = page
+        break
+      }
+      case 'recentLevels': {
+        recentLevels.value = await getPaginatedLevels('recentLevels', page)
+        pages.value.recentLevels = page
+        break
+      }
     }
   }
 
@@ -88,7 +115,7 @@
       UserSteamId: user.steamId,
       BestOnly: false,
       ValidOnly: true,
-      Sort: '-id',
+      Sort: '-id,-points',
       Limit: 0
     })
   )
@@ -96,11 +123,16 @@
   const recentRecords = ref(await getPaginatedRecords('recent'))
   const invalidRecords = ref(await getPaginatedRecords('invalid'))
 
+  const popularLevels = ref(await getPaginatedLevels('popularLevels'))
+  const recentLevels = ref(await getPaginatedLevels('recentLevels'))
+
   const pages = ref({
     best: 1,
     worldRecord: 1,
     invalid: 1,
-    recent: 1
+    recent: 1,
+    popularLevels: 1,
+    recentLevels: 1
   })
 </script>
 
@@ -108,7 +140,7 @@
   <!-- eslint-disable-next-line vuejs-accessibility/heading-has-content -->
   <h1><user-badge :username="user.steamName" /></h1>
   <p>
-    {{ formatUser(user.steamName).username }} has set times on
+    {{ formattedUser.username }} has set times on
     {{ bestRecords.totalAmount }} levels over
     {{ validRecords.totalAmount }} valid runs with
     {{ invalidRecords.totalAmount }} any% attempts.
@@ -118,6 +150,24 @@
     <span :title="`${user.score} points`"> {{ user.score }} ➤ </span>
     and hold {{ worldRecords.totalAmount }} world records
   </p>
+  <paginated-component
+    :current-page="pages.popularLevels"
+    :items-per-page="levelLimit"
+    :total-items="popularLevels.totalAmount"
+    @page-changed="page => handlePageChanged('popularLevels', page)">
+    <level-list
+      :header="`Popular Levels by ${formattedUser.username}`"
+      :levels="popularLevels.levels" />
+  </paginated-component>
+  <paginated-component
+    :current-page="pages.recentLevels"
+    :items-per-page="levelLimit"
+    :total-items="recentLevels.totalAmount"
+    @page-changed="page => handlePageChanged('recentLevels', page)">
+    <level-list
+      :header="`Recent Levels by ${formattedUser.username}`"
+      :levels="recentLevels.levels" />
+  </paginated-component>
   <column-layout>
     <template #left>
       <paginated-component
