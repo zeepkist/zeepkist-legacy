@@ -42,7 +42,7 @@
     "@rushstack/eslint-patch": "1.3.2",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/commit-analyzer": "10.0.1",
-    "@semantic-release/github": "9.0.3",
+    "@semantic-release/github": "9.0.4",
     "@semantic-release/release-notes-generator": "11.0.4",
     "@tsconfig/cypress": "1.0.1",
     "@tsconfig/node20": "20.1.0",
