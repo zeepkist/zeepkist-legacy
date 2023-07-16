@@ -27,7 +27,7 @@
     "@unhead/vue": "1.1.30",
     "@vueuse/components": "10.2.1",
     "@vueuse/schema-org": "2.2.0",
-    "@zeepkist/gtr-api": "3.8.0",
+    "@zeepkist/gtr-api": "3.10.3",
     "color-hash": "2.0.2",
     "date-fns": "2.30.0",
     "date-fns-tz": "2.0.0",
