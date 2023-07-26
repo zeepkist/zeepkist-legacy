@@ -76,7 +76,7 @@
       </div>
     </div>
     <div>
-      <div class="right">{{ formatResultTime(record.time) }}</div>
+      <div class="right" :title="`${record.time} seconds`">{{ formatResultTime(record.time) }}</div>
       <div
         v-if="
           showBadges &&
