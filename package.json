@@ -45,7 +45,7 @@
     "@semantic-release/github": "9.0.4",
     "@semantic-release/release-notes-generator": "11.0.4",
     "@tsconfig/cypress": "1.0.1",
-    "@tsconfig/node20": "20.1.0",
+    "@tsconfig/node20": "20.1.1",
     "@types/color-hash": "1.0.2",
     "@types/node": "20.4.8",
     "@types/three": "0.155.0",
