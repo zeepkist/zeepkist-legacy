@@ -21,9 +21,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arco-design/web-vue@npm:2.50.1":
-  version: 2.50.1
-  resolution: "@arco-design/web-vue@npm:2.50.1"
+"@arco-design/web-vue@npm:2.50.2":
+  version: 2.50.2
+  resolution: "@arco-design/web-vue@npm:2.50.2"
   dependencies:
     "@arco-design/color": ^0.4.0
     b-tween: ^0.3.3
@@ -35,7 +35,7 @@ __metadata:
     scroll-into-view-if-needed: ^2.2.28
   peerDependencies:
     vue: ^3.1.0
-  checksum: 7a203e112d3d8822bdea075d5ac29e3508cc105d24e338633ef9b5c7445102f24e58221419752ee0d04f12f258e2f6bf43881fcc97192c4a6ccf69ec00e73237
+  checksum: 71811e87e0d11a47d8ba09952043e8792024c3bb4c20722af54bc9c50f0caf650a75921abcb19c88814b43434d5922f4f2b50b0936aed1f5454086f7b4b82b3b
   languageName: node
   linkType: hard
 
@@ -9352,7 +9352,7 @@ __metadata:
   resolution: "zeepkist-records@workspace:."
   dependencies:
     "@arco-design/color": 0.4.0
-    "@arco-design/web-vue": 2.50.1
+    "@arco-design/web-vue": 2.50.2
     "@rushstack/eslint-patch": 1.3.3
     "@semantic-release/changelog": 6.0.3
     "@semantic-release/commit-analyzer": 10.0.1
