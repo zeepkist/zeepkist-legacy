@@ -1656,17 +1656,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zeepkist/gtr-api@npm:3.10.3":
-  version: 3.10.3
-  resolution: "@zeepkist/gtr-api@npm:3.10.3"
+"@zeepkist/gtr-api@npm:3.11.0":
+  version: 3.11.0
+  resolution: "@zeepkist/gtr-api@npm:3.11.0"
   dependencies:
     ky: ~0.33.2
-    ky-universal: ~0.11.0
+    ky-universal: ~0.12.0
     pako: ~2.1.0
   dependenciesMeta:
     esbuild:
       built: true
-  checksum: 44fef489810c56c7debb922175c9bf8e5921accf07f311c0593d6b2c5a95fb93ad70a97fe2c34aa15b8a65054c6ffdae97d99422dc9d03bb504ad9cd386917c7
+  checksum: f582aa48ed444a3ff8d0ccf3f99043e8660e7315f0eb752e18a96615c52f2a59146d32bc863bad30bbca37b51cfa6387874101f9fc217ff9e46e6752c5f7ea55
   languageName: node
   linkType: hard
 
@@ -5391,19 +5391,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ky-universal@npm:~0.11.0":
-  version: 0.11.0
-  resolution: "ky-universal@npm:0.11.0"
+"ky-universal@npm:~0.12.0":
+  version: 0.12.0
+  resolution: "ky-universal@npm:0.12.0"
   dependencies:
-    abort-controller: ^3.0.0
-    node-fetch: ^3.2.10
+    node-fetch: ^3.3.2
   peerDependencies:
-    ky: ">=0.31.4"
+    ky: ">=0.33.0"
     web-streams-polyfill: ">=3.2.1"
   peerDependenciesMeta:
     web-streams-polyfill:
       optional: true
-  checksum: 42e4c91551a0d17465d6a117de2d1fa4efdf38c4e29dbd70af0c5b7ac0ee13994bceca9af2a0ac21a943d1cd22557ea664abe79f25e096d30a6baca0a0265a12
+  checksum: b1d7ba2bdfd0da1481c67f423edcf7cfa093927d62052a423382099d6c14acebfc96e13947f3e1d2fd8505bcdaa4c680a2964b53cfc5ac5aa43fdf3cf2267d1f
   languageName: node
   linkType: hard
 
@@ -6261,7 +6260,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^3.2.10":
+"node-fetch@npm:^3.3.2":
   version: 3.3.2
   resolution: "node-fetch@npm:3.3.2"
   dependencies:
@@ -9374,7 +9373,7 @@ __metadata:
     "@vue/tsconfig": 0.4.0
     "@vueuse/components": 10.4.0
     "@vueuse/schema-org": 2.2.0
-    "@zeepkist/gtr-api": 3.10.3
+    "@zeepkist/gtr-api": 3.11.0
     color-hash: 2.0.2
     cypress: 12.17.4
     date-fns: 2.30.0
