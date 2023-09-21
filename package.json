@@ -31,7 +31,7 @@
     "color-hash": "2.0.2",
     "date-fns": "2.30.0",
     "date-fns-tz": "2.0.0",
-    "ky": "0.33.3",
+    "ky": "1.0.1",
     "pinia": "2.1.6",
     "pinia-shared-state": "0.4.5",
     "three": "0.156.1",
