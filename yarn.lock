@@ -21,9 +21,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arco-design/web-vue@npm:2.51.1":
-  version: 2.51.1
-  resolution: "@arco-design/web-vue@npm:2.51.1"
+"@arco-design/web-vue@npm:2.51.2":
+  version: 2.51.2
+  resolution: "@arco-design/web-vue@npm:2.51.2"
   dependencies:
     "@arco-design/color": ^0.4.0
     b-tween: ^0.3.3
@@ -35,7 +35,7 @@ __metadata:
     scroll-into-view-if-needed: ^2.2.28
   peerDependencies:
     vue: ^3.1.0
-  checksum: af3571a2bc16019c1e72420193843899ac31fd2cd6b70fb387c6bc36a6fe5e9a8820148fff00e77263ed59438a3eb9239c02f129248d5040d6020a144caeebfc
+  checksum: 2dc9599d3ec34104752875801c5ef5dc2044c47c11aad6a7273264f2fe3c43a9d61278d206797fbc3a00f211016fa5d3ec5ec433296b3a509efddbb3d666baeb
   languageName: node
   linkType: hard
 
@@ -1816,7 +1816,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aggregate-error@npm:^4.0.0, aggregate-error@npm:^4.0.1":
+"aggregate-error@npm:^4.0.0":
   version: 4.0.1
   resolution: "aggregate-error@npm:4.0.1"
   dependencies:
@@ -9531,7 +9531,7 @@ __metadata:
   resolution: "zeepkist-records@workspace:."
   dependencies:
     "@arco-design/color": 0.4.0
-    "@arco-design/web-vue": 2.51.1
+    "@arco-design/web-vue": 2.51.2
     "@rushstack/eslint-patch": 1.4.0
     "@semantic-release/changelog": 6.0.3
     "@semantic-release/commit-analyzer": 10.0.4
