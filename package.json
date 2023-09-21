@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@arco-design/color": "0.4.0",
-    "@arco-design/web-vue": "2.51.1",
+    "@arco-design/web-vue": "2.51.2",
     "@tabler/icons-vue": "2.34.0",
     "@tanstack/query-persist-client-core": "4.35.3",
     "@tanstack/query-sync-storage-persister": "4.35.3",
