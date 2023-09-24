@@ -47,7 +47,7 @@
     "@tsconfig/cypress": "1.0.1",
     "@tsconfig/node20": "20.1.2",
     "@types/color-hash": "1.0.2",
-    "@types/node": "20.6.4",
+    "@types/node": "20.6.5",
     "@types/three": "0.156.0",
     "@vitejs/plugin-vue": "4.3.4",
     "@vue/eslint-config-prettier": "7.1.0",
