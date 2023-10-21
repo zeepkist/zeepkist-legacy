@@ -23,7 +23,7 @@
     "@tabler/icons-vue": "2.39.0",
     "@tanstack/query-persist-client-core": "5.0.0",
     "@tanstack/query-sync-storage-persister": "5.0.0",
-    "@tanstack/vue-query": "5.0.0",
+    "@tanstack/vue-query": "5.0.4",
     "@unhead/vue": "1.7.4",
     "@vueuse/components": "10.5.0",
     "@vueuse/schema-org": "2.2.0",
