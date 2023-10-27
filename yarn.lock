@@ -1179,15 +1179,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/three@npm:0.157.2":
-  version: 0.157.2
-  resolution: "@types/three@npm:0.157.2"
+"@types/three@npm:0.158.0":
+  version: 0.158.0
+  resolution: "@types/three@npm:0.158.0"
   dependencies:
     "@types/stats.js": "*"
     "@types/webxr": "*"
     fflate: ~0.6.10
     meshoptimizer: ~0.18.1
-  checksum: c839492a2c09f73877fc53ffc5d1860762921bee608fdb742a5be59077d4300685346ac9ea7ac3070e41900a0a9c96dc74a452c4ad7f1eac1dcdc935abb09444
+  checksum: 605f34c13d93060e65ae0b7755b6d202b97d62024b67f2253cf35f90ac7f8b66f8bab81d032c4901a34a43b035b8e3242f30564d54ebd221622344db2fd24007
   languageName: node
   linkType: hard
 
@@ -9256,7 +9256,7 @@ __metadata:
     "@tsconfig/node20": 20.1.2
     "@types/color-hash": 1.0.3
     "@types/node": 20.8.9
-    "@types/three": 0.157.2
+    "@types/three": 0.158.0
     "@unhead/vue": 1.7.4
     "@vitejs/plugin-vue": 4.4.0
     "@vue/eslint-config-prettier": 7.1.0
