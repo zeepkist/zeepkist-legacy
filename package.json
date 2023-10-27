@@ -48,7 +48,7 @@
     "@tsconfig/node20": "20.1.2",
     "@types/color-hash": "1.0.3",
     "@types/node": "20.8.9",
-    "@types/three": "0.157.2",
+    "@types/three": "0.158.0",
     "@vitejs/plugin-vue": "4.4.0",
     "@vue/eslint-config-prettier": "7.1.0",
     "@vue/eslint-config-typescript": "11.0.3",
