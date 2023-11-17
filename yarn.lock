@@ -4601,12 +4601,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"import-from-esm@npm:^1.0.3":
-  version: 1.2.1
-  resolution: "import-from-esm@npm:1.2.1"
+"import-from-esm@npm:^1.0.3, import-from-esm@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "import-from-esm@npm:1.3.1"
   dependencies:
+    debug: ^4.3.4
     import-meta-resolve: ^4.0.0
-  checksum: 17275e7d512f379bd2e1969171cb88d7da257e12708ed9522296a668559d329559f6798864e5eff5fda297782234387ca3f902a166bcfde7f566a35457a41d83
+  checksum: fccad38095dcbad4c19d976fac44fdb870f88638deb499524338df715af00910bbb602a2d35fb926eaa3bcd0b194c08250cc42805ea9ecfb2930151af2efd1ee
   languageName: node
   linkType: hard
 
@@ -7529,9 +7530,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semantic-release@npm:22.0.7":
-  version: 22.0.7
-  resolution: "semantic-release@npm:22.0.7"
+"semantic-release@npm:22.0.8":
+  version: 22.0.8
+  resolution: "semantic-release@npm:22.0.8"
   dependencies:
     "@semantic-release/commit-analyzer": ^11.0.0
     "@semantic-release/error": ^4.0.0
@@ -7549,6 +7550,7 @@ __metadata:
     git-log-parser: ^1.2.0
     hook-std: ^3.0.0
     hosted-git-info: ^7.0.0
+    import-from-esm: ^1.3.1
     lodash-es: ^4.17.21
     marked: ^9.0.0
     marked-terminal: ^6.0.0
@@ -7563,7 +7565,7 @@ __metadata:
     yargs: ^17.5.1
   bin:
     semantic-release: bin/semantic-release.js
-  checksum: ee41ea5ebed72654e5bb92a4e411eef57d579f9465aff0abfeae1645793fcd4904bcc373fe339911adb0968d5d1d252c306f9bd4368369236ebd473827c6bdb9
+  checksum: 5e82076661dd74924721300b9518f9788b36343637e9de161d1614fbed3c94cb7cef5eed6df01740b87a1e0f0a7b9c09388b9ee17c4afde66109235d75f1e529
   languageName: node
   linkType: hard
 
@@ -9095,7 +9097,7 @@ __metadata:
     pinia: 2.1.7
     pinia-shared-state: 0.4.5
     prettier: 2.8.8
-    semantic-release: 22.0.7
+    semantic-release: 22.0.8
     sitemap: 7.1.1
     start-server-and-test: 2.0.3
     stream-to-array: 2.3.0
