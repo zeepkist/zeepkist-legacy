@@ -1091,10 +1091,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/color-hash@npm:1.0.4":
-  version: 1.0.4
-  resolution: "@types/color-hash@npm:1.0.4"
-  checksum: 3b47ace65ad30fa8458ba4ab5aa56a9af689d513869f987f18c1d536123c50baa46fa5674b422e38dfba4b9af9fe53e22c7b57620a796ed5546888c4185e5901
+"@types/color-hash@npm:1.0.5":
+  version: 1.0.5
+  resolution: "@types/color-hash@npm:1.0.5"
+  checksum: 312d42d84808d304e174863c290cbe07e7f2b1512d9f3f328c399d78d9dd6cd897aea5d43fd6c6e959567b029268102d4ea7d2e9b4d07ff22df654972cc54255
   languageName: node
   linkType: hard
 
@@ -1112,12 +1112,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:20.9.2":
-  version: 20.9.2
-  resolution: "@types/node@npm:20.9.2"
+"@types/node@npm:*, @types/node@npm:20.9.3":
+  version: 20.9.3
+  resolution: "@types/node@npm:20.9.3"
   dependencies:
     undici-types: ~5.26.4
-  checksum: 5bbb8fb2248fc5c5c4071d9809fb9af85997677c07124d65665202b53283a3b7bdff26fb844e9ee407e3847dfce6399c2b01e3329ea44a4b720647b1b987c678
+  checksum: 0cfbfd2a8bd18acc75aa4d7685c7dcf56344f48addd4041d306dc194f3132f8014d56fd49fcb26bcdf400b883f9527e5e2beaf52dfce029cef15c69b8ed2e72a
   languageName: node
   linkType: hard
 
@@ -1181,15 +1181,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/three@npm:0.158.2":
-  version: 0.158.2
-  resolution: "@types/three@npm:0.158.2"
+"@types/three@npm:0.158.3":
+  version: 0.158.3
+  resolution: "@types/three@npm:0.158.3"
   dependencies:
     "@types/stats.js": "*"
     "@types/webxr": "*"
     fflate: ~0.6.10
     meshoptimizer: ~0.18.1
-  checksum: 043accb8067ef6adba283c07fa87025fe5718943c6048c170368c2582d82a8fb454d3ad75b9d26a386410c57b6ec1a309804f9f698f4554eb1df45b999d6cb26
+  checksum: 85e6a7b587d4989ca435fd16484a65c639a8cab3c2404869948802d28a47133ef93d3847c28956fea23e728d299ace671620d9b97e6143905de45a9d406bf0ee
   languageName: node
   linkType: hard
 
@@ -9075,9 +9075,9 @@ __metadata:
     "@tanstack/vue-query": 5.8.4
     "@tsconfig/cypress": 1.0.1
     "@tsconfig/node20": 20.1.2
-    "@types/color-hash": 1.0.4
-    "@types/node": 20.9.2
-    "@types/three": 0.158.2
+    "@types/color-hash": 1.0.5
+    "@types/node": 20.9.3
+    "@types/three": 0.158.3
     "@unhead/vue": 1.8.4
     "@vitejs/plugin-vue": 4.4.1
     "@vue/eslint-config-prettier": 7.1.0
