@@ -33,7 +33,7 @@
     "date-fns-tz": "2.0.0",
     "ky": "1.1.3",
     "pinia": "2.1.7",
-    "pinia-shared-state": "0.4.5",
+    "pinia-shared-state": "0.5.1",
     "three": "0.159.0",
     "vue": "3.3.12",
     "vue-router": "4.2.5"

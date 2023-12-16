@@ -83,12 +83,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:7.23.2":
-  version: 7.23.2
-  resolution: "@babel/runtime@npm:7.23.2"
+"@babel/runtime@npm:7.23.4":
+  version: 7.23.4
+  resolution: "@babel/runtime@npm:7.23.4"
   dependencies:
     regenerator-runtime: ^0.14.0
-  checksum: 6c4df4839ec75ca10175f636d6362f91df8a3137f86b38f6cd3a4c90668a0fe8e9281d320958f4fbd43b394988958585a17c3aab2a4ea6bf7316b22916a371fb
+  checksum: 8eb6a6b2367f7d60e7f7dd83f477cc2e2fdb169e5460694d7614ce5c730e83324bcf29251b70940068e757ad1ee56ff8073a372260d90cad55f18a825caf97cd
   languageName: node
   linkType: hard
 
@@ -2303,15 +2303,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"broadcast-channel@npm:^5.1.0":
-  version: 5.5.1
-  resolution: "broadcast-channel@npm:5.5.1"
+"broadcast-channel@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "broadcast-channel@npm:7.0.0"
   dependencies:
-    "@babel/runtime": 7.23.2
-    oblivious-set: 1.1.1
+    "@babel/runtime": 7.23.4
+    oblivious-set: 1.4.0
     p-queue: 6.6.2
     unload: 2.4.1
-  checksum: 8738af528c86a7ade5b532789a8c9eec38ea255880842b3ae31ef769323408f9640cd30730cbd7f933a5ce9c8d20bc26e77cbb854e7c3a93f3d2322575145d56
+  checksum: 6285d0796d01541f36a845dcea828f6eabd67a3bca0995c48d8bea35bc583abe23db609284a5f990fad4394c695587e6cb9c9e25afbbc82444b9f2b74a88ff7d
   languageName: node
   linkType: hard
 
@@ -3071,13 +3071,6 @@ __metadata:
   version: 2.0.3
   resolution: "dequal@npm:2.0.3"
   checksum: 8679b850e1a3d0ebbc46ee780d5df7b478c23f335887464023a631d1b9af051ad4a6595a44220f9ff8ff95a8ddccf019b5ad778a976fd7bbf77383d36f412f90
-  languageName: node
-  linkType: hard
-
-"devalue@npm:^4.3.2":
-  version: 4.3.2
-  resolution: "devalue@npm:4.3.2"
-  checksum: 034530e3910a096e528ca6481cd80ab2a21f4a5b813fb896d421eadf52dc969dfbbd5677aa06d28a6448a0f2f7e7d91d9ed88cd9aaa497f4b34e427d80c2a8a5
   languageName: node
   linkType: hard
 
@@ -6512,10 +6505,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"oblivious-set@npm:1.1.1":
-  version: 1.1.1
-  resolution: "oblivious-set@npm:1.1.1"
-  checksum: ea1830c38ad5b8b71e6573d0dda3ecaf01e7e0c25c5d612d6f2915e8568c2148a5e0aab31a7d4155db96e6623a123cce57d9b4929947d2ab4c040505947674c6
+"oblivious-set@npm:1.4.0":
+  version: 1.4.0
+  resolution: "oblivious-set@npm:1.4.0"
+  checksum: 4503772b19eda65d18afca528a35f73b68956833f88b64c528516159a190f61c5c0c5f7f33a7882aad267ecec67097c11729e497b0bbb34e093a3aa84679cc33
   languageName: node
   linkType: hard
 
@@ -6953,16 +6946,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pinia-shared-state@npm:0.4.5":
-  version: 0.4.5
-  resolution: "pinia-shared-state@npm:0.4.5"
+"pinia-shared-state@npm:0.5.1":
+  version: 0.5.1
+  resolution: "pinia-shared-state@npm:0.5.1"
   dependencies:
-    broadcast-channel: ^5.1.0
-    devalue: ^4.3.2
-    vue-demi: ^0.14.5
+    broadcast-channel: ^7.0.0
+    vue-demi: ^0.14.6
   peerDependencies:
     pinia: ^2
-  checksum: 9cabc1ceb983b29772e8e9902d2e884018ff774691aa6b0b607bcc24b94eb702145f47ff0b9d4f140d143cbca997a68818fcd358cdecd252c4b88dbc1a8c76a7
+  checksum: 37fa25fa8cab1cb5a4cd410cfd4571f9197d1792312ca2a924877cdc9806c314130bbe3aaab53041619d202a4556431c9eb3fc992d35586c97db28c37fa7cdda
   languageName: node
   linkType: hard
 
@@ -8876,7 +8868,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-demi@npm:>=0.14.5, vue-demi@npm:>=0.14.6, vue-demi@npm:^0.14.5, vue-demi@npm:^0.14.6":
+"vue-demi@npm:>=0.14.5, vue-demi@npm:>=0.14.6, vue-demi@npm:^0.14.6":
   version: 0.14.6
   resolution: "vue-demi@npm:0.14.6"
   peerDependencies:
@@ -9229,7 +9221,7 @@ __metadata:
     less: 4.2.0
     npm-run-all: 4.1.5
     pinia: 2.1.7
-    pinia-shared-state: 0.4.5
+    pinia-shared-state: 0.5.1
     prettier: 2.8.8
     semantic-release: 22.0.12
     sitemap: 7.1.1
