@@ -35,7 +35,7 @@
     "pinia": "2.1.7",
     "pinia-shared-state": "0.5.1",
     "three": "0.160.0",
-    "vue": "3.4.12",
+    "vue": "3.4.13",
     "vue-router": "4.2.5"
   },
   "devDependencies": {
