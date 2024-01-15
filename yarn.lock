@@ -3537,20 +3537,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vue@npm:9.19.2":
-  version: 9.19.2
-  resolution: "eslint-plugin-vue@npm:9.19.2"
+"eslint-plugin-vue@npm:9.20.1":
+  version: 9.20.1
+  resolution: "eslint-plugin-vue@npm:9.20.1"
   dependencies:
     "@eslint-community/eslint-utils": ^4.4.0
     natural-compare: ^1.4.0
     nth-check: ^2.1.1
     postcss-selector-parser: ^6.0.13
     semver: ^7.5.4
-    vue-eslint-parser: ^9.3.1
+    vue-eslint-parser: ^9.4.0
     xml-name-validator: ^4.0.0
   peerDependencies:
     eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
-  checksum: d1ebdafa833e236e8be7478f1db80d73bf3dd5a20090cbd2f3f618dd64ddd3d87a1e99043b119bd35eb98cc1f2643f358fb7da01dabd5ca9cf9a24682dbeb68d
+  checksum: fe50f4b842469297c6bd272a489f4c7aff72926d3e91b702bb72d2c8698932910e398a5ff74b2419c04fa32a179f6ce78140010bdf977d5c9f02a568a5675c74
   languageName: node
   linkType: hard
 
@@ -8832,7 +8832,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-eslint-parser@npm:^9.0.1, vue-eslint-parser@npm:^9.1.1, vue-eslint-parser@npm:^9.3.1":
+"vue-eslint-parser@npm:^9.0.1, vue-eslint-parser@npm:^9.1.1, vue-eslint-parser@npm:^9.4.0":
   version: 9.4.0
   resolution: "vue-eslint-parser@npm:9.4.0"
   dependencies:
@@ -9163,7 +9163,7 @@ __metadata:
     eslint-plugin-import: 2.29.1
     eslint-plugin-simple-import-sort: 10.0.0
     eslint-plugin-unicorn: 47.0.0
-    eslint-plugin-vue: 9.19.2
+    eslint-plugin-vue: 9.20.1
     eslint-plugin-vuejs-accessibility: 2.2.0
     ky: 1.2.0
     less: 4.2.0
