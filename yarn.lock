@@ -5370,10 +5370,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ky@npm:1.2.1":
-  version: 1.2.1
-  resolution: "ky@npm:1.2.1"
-  checksum: c55f6f6cd54685964cf0619ed6876f03f7b4eeeba3f836574ebf19dd6d7d707ed6ee9602df0aab2c47a248d8b316ca2dd8ab903dff26d47074f4636cb1319caa
+"ky@npm:1.2.2":
+  version: 1.2.2
+  resolution: "ky@npm:1.2.2"
+  checksum: dd35c2303e58c148f686094bd87bc605e4d7f114534f3cf202fe9de844a4df336e3227f8bff685af91a8c3fc3407d30dd0cb058d2071691d1ca585d4cdb05244
   languageName: node
   linkType: hard
 
@@ -9223,7 +9223,7 @@ __metadata:
     eslint-plugin-unicorn: 47.0.0
     eslint-plugin-vue: 9.22.0
     eslint-plugin-vuejs-accessibility: 2.2.1
-    ky: 1.2.1
+    ky: 1.2.2
     less: 4.2.0
     npm-run-all2: 6.1.2
     pinia: 2.1.7
