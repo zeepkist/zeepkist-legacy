@@ -1348,10 +1348,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsconfig/cypress@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@tsconfig/cypress@npm:1.0.1"
-  checksum: 67974241de587d5d7f13f30caeec53427f37b6890a75e8b55f2ffb8989263b2fc07ed83eb1267f5e8e4a807791a5de752f796ccfdeff9d1027ea00f5bcd4b2e7
+"@tsconfig/cypress@npm:1.0.2":
+  version: 1.0.2
+  resolution: "@tsconfig/cypress@npm:1.0.2"
+  checksum: aa45030c51cccfcfa006a1f091e0e140e9da91a9f288b4d5a36b83c24dd2f717fd327e4826160965488a787b967f67c1030db55cbf9a7c2d878842f3b254e907
   languageName: node
   linkType: hard
 
@@ -9435,7 +9435,7 @@ __metadata:
     "@tanstack/query-persist-client-core": 5.28.8
     "@tanstack/query-sync-storage-persister": 5.28.8
     "@tanstack/vue-query": 5.28.8
-    "@tsconfig/cypress": 1.0.1
+    "@tsconfig/cypress": 1.0.2
     "@tsconfig/node20": 20.1.3
     "@types/color-hash": 1.0.5
     "@types/node": 20.11.30
