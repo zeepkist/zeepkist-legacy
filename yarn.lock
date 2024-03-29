@@ -1000,10 +1000,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rushstack/eslint-patch@npm:1.10.0":
-  version: 1.10.0
-  resolution: "@rushstack/eslint-patch@npm:1.10.0"
-  checksum: 507f462af1b029a4429588c6f5a00409eb29f5a609c64e350029c2a80cefdd6a92d894a72883dab8bdc66773d1551953f5d7781f69396c93e0e48a35c0621f44
+"@rushstack/eslint-patch@npm:1.10.1":
+  version: 1.10.1
+  resolution: "@rushstack/eslint-patch@npm:1.10.1"
+  checksum: ea539ec4d44632cc4a57aa12a37c6d79905b90f94f2c37788fcc0048eae542091dd791177a0adcf51a67fd379f954c8754e2e689ff80af460f531e6bdb03d78d
   languageName: node
   linkType: hard
 
@@ -9426,7 +9426,7 @@ __metadata:
   dependencies:
     "@arco-design/color": 0.4.0
     "@arco-design/web-vue": 2.55.1
-    "@rushstack/eslint-patch": 1.10.0
+    "@rushstack/eslint-patch": 1.10.1
     "@semantic-release/changelog": 6.0.3
     "@semantic-release/commit-analyzer": 11.1.0
     "@semantic-release/github": 9.2.6
