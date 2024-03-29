@@ -39,7 +39,7 @@
     "vue-router": "4.3.0"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "1.10.0",
+    "@rushstack/eslint-patch": "1.10.1",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/commit-analyzer": "11.1.0",
     "@semantic-release/github": "9.2.6",
