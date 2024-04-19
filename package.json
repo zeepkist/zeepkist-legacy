@@ -24,7 +24,7 @@
     "@tanstack/query-persist-client-core": "5.29.0",
     "@tanstack/query-sync-storage-persister": "5.29.0",
     "@tanstack/vue-query": "5.29.0",
-    "@unhead/vue": "1.9.5",
+    "@unhead/vue": "1.9.7",
     "@vueuse/components": "10.9.0",
     "@vueuse/schema-org": "2.2.0",
     "@zeepkist/gtr-api": "3.12.1",
