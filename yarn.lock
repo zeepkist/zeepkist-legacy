@@ -8730,10 +8730,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"three@npm:0.163.0":
-  version: 0.163.0
-  resolution: "three@npm:0.163.0"
-  checksum: 572c16264512f8d094929f585de0092cfaebe9306d7ee45acbf6a78e20e142424a4898679a79fbfe6c76cd3ea048b28f3f821e2daaf243a2e8f8a0d8c00c27dd
+"three@npm:0.164.0":
+  version: 0.164.0
+  resolution: "three@npm:0.164.0"
+  checksum: 728549589224498ce70476407d4de5d40e8feff325eb5e87a36c7d543c26832294e6ed9c3b20f950cb9763e3a71d533f5ff3296deb3b40b492a8c6d17f3b7ccf
   languageName: node
   linkType: hard
 
@@ -9643,7 +9643,7 @@ __metadata:
     sitemap: 7.1.1
     start-server-and-test: 2.0.3
     stream-to-array: 2.3.0
-    three: 0.163.0
+    three: 0.164.0
     typescript: 5.4.5
     vite: 5.2.10
     vue: 3.4.25
