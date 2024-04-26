@@ -41,9 +41,9 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "1.10.2",
     "@semantic-release/changelog": "6.0.3",
-    "@semantic-release/commit-analyzer": "11.1.0",
-    "@semantic-release/github": "9.2.6",
-    "@semantic-release/release-notes-generator": "12.1.0",
+    "@semantic-release/commit-analyzer": "12.0.0",
+    "@semantic-release/github": "10.0.3",
+    "@semantic-release/release-notes-generator": "13.0.0",
     "@tsconfig/cypress": "1.0.2",
     "@tsconfig/node20": "20.1.4",
     "@types/color-hash": "1.0.5",
