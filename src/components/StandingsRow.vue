@@ -19,7 +19,7 @@
 
   const steamId = user.steamId
   const points = isSeasonStandings
-    ? Math.trunc(user.totalPoints * 10)
+    ? Math.trunc(user.totalPoints / 10)
     : user.totalPoints
 </script>
 
