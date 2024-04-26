@@ -8,7 +8,7 @@
 </script>
 
 <template>
-  <section v-for="[season, events] in seasons" :key="season">
+  <section v-for="[season, events] in seasons.reverse()" :key="season">
     <h2>{{ formatParamToTitleCase(season) }}</h2>
     <div v-if="events.events" :class="$style.cardContainer">
       <div :class="$style.card">
