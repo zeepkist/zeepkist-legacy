@@ -1341,16 +1341,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/three@npm:0.164.0":
-  version: 0.164.0
-  resolution: "@types/three@npm:0.164.0"
+"@types/three@npm:0.164.1":
+  version: 0.164.1
+  resolution: "@types/three@npm:0.164.1"
   dependencies:
     "@tweenjs/tween.js": ~23.1.1
     "@types/stats.js": "*"
     "@types/webxr": "*"
     fflate: ~0.8.2
     meshoptimizer: ~0.18.1
-  checksum: 7845360f2725d6dc16b8988758ef84a150ceae2f9c93649dcfac9f98b1e1135af5794cf009e0078b831cf041d4b969dcfa3d5c9ba0c609d651186e0d7e6c5b90
+  checksum: f0f51deee6865be1d0e4e1143b26c45c5a7cc5ff82e66c82a76c33022776201734fc989cee15333a5c9c46b56ecde8b642858d07047e224862ed80934062f860
   languageName: node
   linkType: hard
 
@@ -9306,7 +9306,7 @@ __metadata:
     "@tsconfig/node20": 20.1.4
     "@types/color-hash": 1.0.5
     "@types/node": 20.12.12
-    "@types/three": 0.164.0
+    "@types/three": 0.164.1
     "@unhead/vue": 1.9.10
     "@vitejs/plugin-vue": 5.0.4
     "@vue/eslint-config-prettier": 7.1.0
