@@ -1253,10 +1253,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/color-hash@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@types/color-hash@npm:1.0.5"
-  checksum: 312d42d84808d304e174863c290cbe07e7f2b1512d9f3f328c399d78d9dd6cd897aea5d43fd6c6e959567b029268102d4ea7d2e9b4d07ff22df654972cc54255
+"@types/color-hash@npm:2.0.0":
+  version: 2.0.0
+  resolution: "@types/color-hash@npm:2.0.0"
+  checksum: 7eedc8a4e09049a0bd4bbc6159e977c8151f65a63d6ea42651f0326e10cdd02644e93f1c81e2d8a7df87af6054cd0f2d3cd8ee966c18ced0e4de935f6e280d60
   languageName: node
   linkType: hard
 
@@ -9304,7 +9304,7 @@ __metadata:
     "@tanstack/vue-query": 5.40.0
     "@tsconfig/cypress": 1.0.2
     "@tsconfig/node20": 20.1.4
-    "@types/color-hash": 1.0.5
+    "@types/color-hash": 2.0.0
     "@types/node": 20.12.13
     "@types/three": 0.164.1
     "@unhead/vue": 1.9.11
