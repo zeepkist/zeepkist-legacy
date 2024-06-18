@@ -7891,9 +7891,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sitemap@npm:7.1.2":
-  version: 7.1.2
-  resolution: "sitemap@npm:7.1.2"
+"sitemap@npm:8.0.0":
+  version: 8.0.0
+  resolution: "sitemap@npm:8.0.0"
   dependencies:
     "@types/node": ^17.0.5
     "@types/sax": ^1.2.1
@@ -7901,7 +7901,7 @@ __metadata:
     sax: ^1.2.4
   bin:
     sitemap: dist/cli.js
-  checksum: c6d8e1f06091fdc643f6ed3c13e92215ed1dcbc3bdaf42f50f468a6dc4c6080bd25ffb5f59beb12b4b63f590ad63ab6c285e788d0fade4c811e58bb56a10c6cd
+  checksum: 1867d86a8948acdf1ca2ffee06d43eab4317dbfb40f62a7ce122ffa9526fea5adb5ad58d2389e0f6fab24dac65ff7a8136c35a1bbf16a0e161d11e5a58fc280e
   languageName: node
   linkType: hard
 
@@ -9303,7 +9303,7 @@ __metadata:
     pinia-shared-state: 0.5.1
     prettier: 2.8.8
     semantic-release: 24.0.0
-    sitemap: 7.1.2
+    sitemap: 8.0.0
     start-server-and-test: 2.0.4
     stream-to-array: 2.3.0
     three: 0.165.0
