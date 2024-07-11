@@ -34,7 +34,7 @@
     "ky": "1.4.0",
     "pinia": "2.1.7",
     "pinia-shared-state": "0.5.1",
-    "three": "0.165.0",
+    "three": "0.166.1",
     "vue": "3.4.31",
     "vue-router": "4.4.0"
   },
