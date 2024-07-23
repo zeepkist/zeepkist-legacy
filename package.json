@@ -68,7 +68,7 @@
     "sitemap": "8.0.0",
     "start-server-and-test": "2.0.4",
     "stream-to-array": "2.3.0",
-    "typescript": "5.5.3",
+    "typescript": "5.5.4",
     "vite": "5.3.4",
     "vue-tsc": "2.0.28"
   },
