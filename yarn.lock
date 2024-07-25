@@ -1646,6 +1646,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vue/compiler-vue2@npm:^2.7.16":
+  version: 2.7.16
+  resolution: "@vue/compiler-vue2@npm:2.7.16"
+  dependencies:
+    de-indent: ^1.0.2
+    he: ^1.2.0
+  checksum: d6bba6c637838cf515907a7e530ae21d93d6d285c221a991a6b9afd292cc38cd822d043f333883cfe79228c6d150423fdb298df07c202a43a2b49862ecd75bde
+  languageName: node
+  linkType: hard
+
 "@vue/devtools-api@npm:^6.5.0, @vue/devtools-api@npm:^6.5.1":
   version: 6.6.3
   resolution: "@vue/devtools-api@npm:6.6.3"
@@ -1684,24 +1694,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/language-core@npm:2.0.28":
-  version: 2.0.28
-  resolution: "@vue/language-core@npm:2.0.28"
+"@vue/language-core@npm:2.0.29":
+  version: 2.0.29
+  resolution: "@vue/language-core@npm:2.0.29"
   dependencies:
     "@volar/language-core": ~2.4.0-alpha.18
     "@vue/compiler-dom": ^3.4.0
+    "@vue/compiler-vue2": ^2.7.16
     "@vue/shared": ^3.4.0
     computeds: ^0.0.1
     minimatch: ^9.0.3
     muggle-string: ^0.4.1
     path-browserify: ^1.0.1
-    vue-template-compiler: ^2.7.14
   peerDependencies:
     typescript: "*"
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 1fe75bdca791e129da38dfe397bde3638d8f504949d88b233efdb570e06dc341dac3fbd38331346a955c5c16f0fcc1783ce00d2d7aa938df273c3fe528e31326
+  checksum: e0ae125cade21d2d13b8f6540b12613bee696066fa82a5d49e2458a32ee5dcb19fd47d1e89b1e7a2f39b9f01a9e38914e4a04889da99011daf35c0f62eda16f4
   languageName: node
   linkType: hard
 
@@ -8955,28 +8965,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-template-compiler@npm:^2.7.14":
-  version: 2.7.16
-  resolution: "vue-template-compiler@npm:2.7.16"
-  dependencies:
-    de-indent: ^1.0.2
-    he: ^1.2.0
-  checksum: a0d52ecbb99bad37f370341b5c594c5caa1f72b15b3f225148ef378fc06aa25c93185ef061f7e6e5e443c9067e70d8f158742716112acf84088932ebcc49ad10
-  languageName: node
-  linkType: hard
-
-"vue-tsc@npm:2.0.28":
-  version: 2.0.28
-  resolution: "vue-tsc@npm:2.0.28"
+"vue-tsc@npm:2.0.29":
+  version: 2.0.29
+  resolution: "vue-tsc@npm:2.0.29"
   dependencies:
     "@volar/typescript": ~2.4.0-alpha.18
-    "@vue/language-core": 2.0.28
+    "@vue/language-core": 2.0.29
     semver: ^7.5.4
   peerDependencies:
     typescript: ">=5.0.0"
   bin:
     vue-tsc: ./bin/vue-tsc.js
-  checksum: 8bc9653f4b9e340fcc3b2ea4a464075a371f52f4203897904b3313821f311dae1ea4882ae79c5903d413a90d539545783fc2f240fa75c7e496a2dc17bbcaf54e
+  checksum: deabe919d3d3a9c9974791d91c32244c7e831a7d613a281e1e9a9f65bfaa917723883afda79d1d06b67f886dbd23cfdf3ec902a40674f907f0bb792e8eeab088
   languageName: node
   linkType: hard
 
@@ -9282,7 +9282,7 @@ __metadata:
     vite: 5.3.5
     vue: 3.4.34
     vue-router: 4.4.0
-    vue-tsc: 2.0.28
+    vue-tsc: 2.0.29
   dependenciesMeta:
     cypress:
       built: true
