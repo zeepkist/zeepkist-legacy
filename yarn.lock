@@ -1283,12 +1283,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:22.0.1":
-  version: 22.0.1
-  resolution: "@types/node@npm:22.0.1"
+"@types/node@npm:*, @types/node@npm:22.0.2":
+  version: 22.0.2
+  resolution: "@types/node@npm:22.0.2"
   dependencies:
     undici-types: ~6.11.1
-  checksum: 5f1fe6fd8c3d40867da30880d350c827d91a16306b64f792e2edda0c303f88e5fefd13fd9bf016e448e413be5c0d6895f8a109f851d00faaaeb0ba76de367892
+  checksum: a83d7e9c81ddc5e58050b61413e871e68468f127367172fa4c14ba3182f8548be59e045096619a4742d665c38790d9843b71664ec61c0ec4ba59c771a739eded
   languageName: node
   linkType: hard
 
@@ -9246,7 +9246,7 @@ __metadata:
     "@tsconfig/cypress": 1.0.2
     "@tsconfig/node20": 20.1.4
     "@types/color-hash": 2.0.0
-    "@types/node": 22.0.1
+    "@types/node": 22.0.2
     "@types/three": 0.167.1
     "@unhead/vue": 1.9.16
     "@vitejs/plugin-vue": 5.1.1
