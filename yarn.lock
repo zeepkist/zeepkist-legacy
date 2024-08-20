@@ -7551,7 +7551,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.13.0":
+"rollup@npm:^4.20.0":
   version: 4.21.0
   resolution: "rollup@npm:4.21.0"
   dependencies:
@@ -8876,14 +8876,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.4.1":
-  version: 5.4.1
-  resolution: "vite@npm:5.4.1"
+"vite@npm:5.4.2":
+  version: 5.4.2
+  resolution: "vite@npm:5.4.2"
   dependencies:
     esbuild: ^0.21.3
     fsevents: ~2.3.3
     postcss: ^8.4.41
-    rollup: ^4.13.0
+    rollup: ^4.20.0
   peerDependencies:
     "@types/node": ^18.0.0 || >=20.0.0
     less: "*"
@@ -8915,7 +8915,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 5bbb9e855fdbcb170f0d02b78e5c1e8f68e2d2010df6dd74b105bbcef96e91d89871063cb9afafb263e8e0bd69d7b6c4eeadd1abec63bd0938ab7b2b56e7e4dd
+  checksum: 7d25c1b2366ae4d9eb515ba9efc2619c544ec6d806d636977fac93f59cdf63e22ea9b4592c69c496a313cf95c88e374c81870d4bb4b11f401ec003793dfd2830
   languageName: node
   linkType: hard
 
@@ -9284,7 +9284,7 @@ __metadata:
     stream-to-array: 2.3.0
     three: 0.167.1
     typescript: 5.5.4
-    vite: 5.4.1
+    vite: 5.4.2
     vue: 3.4.38
     vue-router: 4.4.3
     vue-tsc: 2.0.29
