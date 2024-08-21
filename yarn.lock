@@ -1285,12 +1285,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:22.4.1":
-  version: 22.4.1
-  resolution: "@types/node@npm:22.4.1"
+"@types/node@npm:*, @types/node@npm:22.4.2":
+  version: 22.4.2
+  resolution: "@types/node@npm:22.4.2"
   dependencies:
     undici-types: ~6.19.2
-  checksum: 341eb54867a3ec8eee7853ff9a9fc92d9f66305b70c9bc5db78492d51f4da3cd81e50c077f5d98eef1835fcbca00c58bb2a229ef56b0e377e48a3284401bf3f6
+  checksum: 4eb577b229789aaea50f1b157f615d6b33564e5e1a0b047d347a4b3cd891f04501ecb409f4622847d8cf4ff67482ec2d9b0391bad327ea73fd353b0da972aa82
   languageName: node
   linkType: hard
 
@@ -1345,16 +1345,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/three@npm:0.167.1":
-  version: 0.167.1
-  resolution: "@types/three@npm:0.167.1"
+"@types/three@npm:0.167.2":
+  version: 0.167.2
+  resolution: "@types/three@npm:0.167.2"
   dependencies:
     "@tweenjs/tween.js": ~23.1.2
     "@types/stats.js": "*"
     "@types/webxr": "*"
     fflate: ~0.8.2
     meshoptimizer: ~0.18.1
-  checksum: e7e60d6ff8d1f82725b1c879feef62171a81ab06955ecf0326452663e897d6902641a21deed10d68d89ecd891efba5fbfabac08ced3d9aca4ac40e6fc6d2898a
+  checksum: d8e13c89b93e63c592ce3adc1bd813f44c399848d1b3e10f7b064c4709a439845182a34c0a63df6a9b9e0e7f2ea9d006ed838536d44b16d374f354b2991668a6
   languageName: node
   linkType: hard
 
@@ -9251,8 +9251,8 @@ __metadata:
     "@tsconfig/cypress": 1.0.2
     "@tsconfig/node20": 20.1.4
     "@types/color-hash": 2.0.0
-    "@types/node": 22.4.1
-    "@types/three": 0.167.1
+    "@types/node": 22.4.2
+    "@types/three": 0.167.2
     "@unhead/vue": 1.10.0
     "@vitejs/plugin-vue": 5.1.2
     "@vue/eslint-config-prettier": 7.1.0
