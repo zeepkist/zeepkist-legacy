@@ -1175,38 +1175,38 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.54.1":
-  version: 5.54.1
-  resolution: "@tanstack/query-core@npm:5.54.1"
-  checksum: 2d097ae20a2e499f1966689e6084cc26da194a56eaa59345af41d3b68e70bff1edd73e8205b7d7cf1da58f74d8f23a1867d67593aae3408f28d9253328d3217e
+"@tanstack/query-core@npm:5.55.2":
+  version: 5.55.2
+  resolution: "@tanstack/query-core@npm:5.55.2"
+  checksum: 2e2b6060d5e69f6f5f4d8a82ecec7b55c8a693880686b964c160fa135513350376bf185b6ea15196128d2ed94e867c95ee9ecfe78c30a74def90b2775f31c7b9
   languageName: node
   linkType: hard
 
-"@tanstack/query-persist-client-core@npm:5.54.1":
-  version: 5.54.1
-  resolution: "@tanstack/query-persist-client-core@npm:5.54.1"
+"@tanstack/query-persist-client-core@npm:5.55.2":
+  version: 5.55.2
+  resolution: "@tanstack/query-persist-client-core@npm:5.55.2"
   dependencies:
-    "@tanstack/query-core": 5.54.1
-  checksum: 824f29c5d78c51579fec85b9360352524b3ffde908787a5c47b2d43ac5f2fba47c03dcef1f6492dcc95bd3bc0e1ebc201087e3184a14c08284059d5423a12c72
+    "@tanstack/query-core": 5.55.2
+  checksum: 9ca04421cd14792a9676690d902d7034cc0308c17d4efbb95cdacff23b7d58b6724416e9ee2858c086591a7d51669a940ef60034e86c980f387600292673a982
   languageName: node
   linkType: hard
 
-"@tanstack/query-sync-storage-persister@npm:5.54.1":
-  version: 5.54.1
-  resolution: "@tanstack/query-sync-storage-persister@npm:5.54.1"
+"@tanstack/query-sync-storage-persister@npm:5.55.2":
+  version: 5.55.2
+  resolution: "@tanstack/query-sync-storage-persister@npm:5.55.2"
   dependencies:
-    "@tanstack/query-core": 5.54.1
-    "@tanstack/query-persist-client-core": 5.54.1
-  checksum: 362c784b85b5ffe57a4ae09e81e40b4f71057e9a9aa5bb7620fda864dc6075547379203f8170a3db334d37859aa126a843662ca21a4a318b707805fb504e47fd
+    "@tanstack/query-core": 5.55.2
+    "@tanstack/query-persist-client-core": 5.55.2
+  checksum: c4e64b3fb65f5fad2f3c3e06ace8694cc04da29d94f646f5ab721772fd7e8cbf245a790f2d9c071f598739808d6bfc875371cc4a65d6b46ccc573c55ce9422af
   languageName: node
   linkType: hard
 
-"@tanstack/vue-query@npm:5.54.2":
-  version: 5.54.2
-  resolution: "@tanstack/vue-query@npm:5.54.2"
+"@tanstack/vue-query@npm:5.55.2":
+  version: 5.55.2
+  resolution: "@tanstack/vue-query@npm:5.55.2"
   dependencies:
     "@tanstack/match-sorter-utils": ^8.15.1
-    "@tanstack/query-core": 5.54.1
+    "@tanstack/query-core": 5.55.2
     "@vue/devtools-api": ^6.6.3
     vue-demi: ^0.14.10
   peerDependencies:
@@ -1215,7 +1215,7 @@ __metadata:
   peerDependenciesMeta:
     "@vue/composition-api":
       optional: true
-  checksum: 2c5ae835032e7733f2da5bbde837b6178eb9f047e6464d6347310dfcee523386881f4cbd83d8c717da6a19cb965b4fbef3bdce6f66e93abb6270732154f6a4ee
+  checksum: 68b54ab1cbb9de54c9bb12fe169f0d98503f1cb70a4446add3a0b8f19e22e9ba391f263ac3f9e0744a5f7d80cc63b8d3cf3def3b83b8a36afad8f378d75db3e7
   languageName: node
   linkType: hard
 
@@ -9254,9 +9254,9 @@ __metadata:
     "@semantic-release/github": 10.3.3
     "@semantic-release/release-notes-generator": 14.0.1
     "@tabler/icons-vue": 3.14.0
-    "@tanstack/query-persist-client-core": 5.54.1
-    "@tanstack/query-sync-storage-persister": 5.54.1
-    "@tanstack/vue-query": 5.54.2
+    "@tanstack/query-persist-client-core": 5.55.2
+    "@tanstack/query-sync-storage-persister": 5.55.2
+    "@tanstack/vue-query": 5.55.2
     "@tsconfig/cypress": 1.0.2
     "@tsconfig/node20": 20.1.4
     "@types/color-hash": 2.0.0
