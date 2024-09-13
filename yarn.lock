@@ -8977,14 +8977,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-router@npm:4.4.4":
-  version: 4.4.4
-  resolution: "vue-router@npm:4.4.4"
+"vue-router@npm:4.4.5":
+  version: 4.4.5
+  resolution: "vue-router@npm:4.4.5"
   dependencies:
     "@vue/devtools-api": ^6.6.4
   peerDependencies:
     vue: ^3.2.0
-  checksum: a1e77080ae0fd0e5914efe914d52c26e40b0b39d60659b9b701487792a6ea5f3999746bde8a345224b5ba6d758d112b4912f615c61377a32bc018a5aa7d26144
+  checksum: 1c3119a4fd192d0220d052b78a46215f9c8666a8088e90aac29f400ea2e13ea3fe0b1079ebf98ebdf667cb17860321e1e2c0ebbe126d85df18d9d97d8e20b87b
   languageName: node
   linkType: hard
 
@@ -9304,7 +9304,7 @@ __metadata:
     typescript: 5.6.2
     vite: 5.4.4
     vue: 3.5.4
-    vue-router: 4.4.4
+    vue-router: 4.4.5
     vue-tsc: 2.1.6
   dependenciesMeta:
     cypress:
