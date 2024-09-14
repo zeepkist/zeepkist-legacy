@@ -6347,9 +6347,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-run-all2@npm:6.2.2":
-  version: 6.2.2
-  resolution: "npm-run-all2@npm:6.2.2"
+"npm-run-all2@npm:6.2.3":
+  version: 6.2.3
+  resolution: "npm-run-all2@npm:6.2.3"
   dependencies:
     ansi-styles: ^6.2.1
     cross-spawn: ^7.0.3
@@ -6363,7 +6363,7 @@ __metadata:
     npm-run-all2: bin/npm-run-all/index.js
     run-p: bin/run-p/index.js
     run-s: bin/run-s/index.js
-  checksum: 8cfbf78590319a9327799c2ea4a346244152f7988f94c7b76b24520fc50f52ccc8340de8d3cadfca00a38d23c411ce85cb99c97225d2cfd19c980f206b0a4651
+  checksum: f4dc367cb43b1a1b8aa074687e598b11c3ffb5a59f50d06e8a8a84b86fc150a6ad080240585fb1a9b0d1517a78a1f791e63b7b9ace9185a26566d1730ef3770e
   languageName: node
   linkType: hard
 
@@ -9292,7 +9292,7 @@ __metadata:
     eslint-plugin-vuejs-accessibility: 2.2.1
     ky: 1.7.2
     less: 4.2.0
-    npm-run-all2: 6.2.2
+    npm-run-all2: 6.2.3
     pinia: 2.2.2
     pinia-shared-state: 0.5.1
     prettier: 2.8.8
