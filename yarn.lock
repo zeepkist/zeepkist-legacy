@@ -977,9 +977,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/github@npm:10.3.4, @semantic-release/github@npm:^10.0.0":
-  version: 10.3.4
-  resolution: "@semantic-release/github@npm:10.3.4"
+"@semantic-release/github@npm:10.3.5, @semantic-release/github@npm:^10.0.0":
+  version: 10.3.5
+  resolution: "@semantic-release/github@npm:10.3.5"
   dependencies:
     "@octokit/core": ^6.0.0
     "@octokit/plugin-paginate-rest": ^11.0.0
@@ -999,7 +999,7 @@ __metadata:
     url-join: ^5.0.0
   peerDependencies:
     semantic-release: ">=20.1.0"
-  checksum: e92c6045cfde2731726254bb4d6ea047c7b9c64a24f7abc0320469f657148a476e2d6b0f366591e4a0eac5cf97debb7e188a7c5619fd0f8688e9ab8ab2773b2a
+  checksum: f9150324da1b8656f4317e0fa4371971975eac159e0c6c49cb15d6326e9c4d63f894a8b5fd57a7fa1f7be726ff5874375b2a71c3d5f8146c75e64f8c1f9081f7
   languageName: node
   linkType: hard
 
@@ -9240,7 +9240,7 @@ __metadata:
     "@rushstack/eslint-patch": 1.10.4
     "@semantic-release/changelog": 6.0.3
     "@semantic-release/commit-analyzer": 13.0.0
-    "@semantic-release/github": 10.3.4
+    "@semantic-release/github": 10.3.5
     "@semantic-release/release-notes-generator": 14.0.1
     "@tabler/icons-vue": 3.17.0
     "@tanstack/query-persist-client-core": 5.56.2
