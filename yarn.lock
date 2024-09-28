@@ -977,7 +977,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/github@npm:10.3.5, @semantic-release/github@npm:^10.0.0":
+"@semantic-release/github@npm:10.3.5":
   version: 10.3.5
   resolution: "@semantic-release/github@npm:10.3.5"
   dependencies:
@@ -1000,6 +1000,32 @@ __metadata:
   peerDependencies:
     semantic-release: ">=20.1.0"
   checksum: f9150324da1b8656f4317e0fa4371971975eac159e0c6c49cb15d6326e9c4d63f894a8b5fd57a7fa1f7be726ff5874375b2a71c3d5f8146c75e64f8c1f9081f7
+  languageName: node
+  linkType: hard
+
+"@semantic-release/github@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "@semantic-release/github@npm:11.0.0"
+  dependencies:
+    "@octokit/core": ^6.0.0
+    "@octokit/plugin-paginate-rest": ^11.0.0
+    "@octokit/plugin-retry": ^7.0.0
+    "@octokit/plugin-throttling": ^9.0.0
+    "@semantic-release/error": ^4.0.0
+    aggregate-error: ^5.0.0
+    debug: ^4.3.4
+    dir-glob: ^3.0.1
+    globby: ^14.0.0
+    http-proxy-agent: ^7.0.0
+    https-proxy-agent: ^7.0.0
+    issue-parser: ^7.0.0
+    lodash-es: ^4.17.21
+    mime: ^4.0.0
+    p-filter: ^4.0.0
+    url-join: ^5.0.0
+  peerDependencies:
+    semantic-release: ">=24.1.0"
+  checksum: 044718a41f9888dd621e89959bb5bad9db772aa317fdc003bbd1b7dad895082c584b3409a7fc8c00071229b272718d303a006e72c7782c5dfb54313515b0b1f4
   languageName: node
   linkType: hard
 
@@ -7709,13 +7735,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semantic-release@npm:24.1.1":
-  version: 24.1.1
-  resolution: "semantic-release@npm:24.1.1"
+"semantic-release@npm:24.1.2":
+  version: 24.1.2
+  resolution: "semantic-release@npm:24.1.2"
   dependencies:
     "@semantic-release/commit-analyzer": ^13.0.0-beta.1
     "@semantic-release/error": ^4.0.0
-    "@semantic-release/github": ^10.0.0
+    "@semantic-release/github": ^11.0.0
     "@semantic-release/npm": ^12.0.0
     "@semantic-release/release-notes-generator": ^14.0.0-beta.1
     aggregate-error: ^5.0.0
@@ -7744,7 +7770,7 @@ __metadata:
     yargs: ^17.5.1
   bin:
     semantic-release: bin/semantic-release.js
-  checksum: f5e508ff01b176bf78f1c0ccb8fb03da44d193bdeb34cf154b3b30522cc5cc433576c35a67e375ea0e0d728879c7786c5b0699653e05750b0fe2d74c3a7d58e4
+  checksum: fdcbb162302d947a9bdeee0b7177882fd27ecb17c3a5307f461c80f48eeb8bbce981ac143df9c6f9e84cdacee18efc06e050a6f20e476d20f2d1e2bcc7a388ad
   languageName: node
   linkType: hard
 
@@ -9293,7 +9319,7 @@ __metadata:
     pinia: 2.2.2
     pinia-shared-state: 0.5.1
     prettier: 2.8.8
-    semantic-release: 24.1.1
+    semantic-release: 24.1.2
     sitemap: 8.0.0
     start-server-and-test: 2.0.8
     stream-to-array: 2.3.0
