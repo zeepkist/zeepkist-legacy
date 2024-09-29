@@ -1536,13 +1536,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unhead/dom@npm:1.11.6":
-  version: 1.11.6
-  resolution: "@unhead/dom@npm:1.11.6"
+"@unhead/dom@npm:1.11.7":
+  version: 1.11.7
+  resolution: "@unhead/dom@npm:1.11.7"
   dependencies:
-    "@unhead/schema": 1.11.6
-    "@unhead/shared": 1.11.6
-  checksum: 209ab01d1d1e37f9049b6891bbbdbb73f98d055c9c5f5fdcd4ac89f1cffe59a570371d9842b797d823364c6143cc86efd37f961ef1a01e2a0b62525c61fe267c
+    "@unhead/schema": 1.11.7
+    "@unhead/shared": 1.11.7
+  checksum: 4e32aac9164b86849e842fbcd7e88a01ac2b106d64586e2fb0f98a2a69b4c342822c80986157678486ad7e27b99b2f66525786c49fa975c53ea172ab4a619545
   languageName: node
   linkType: hard
 
@@ -1555,37 +1555,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unhead/schema@npm:1.11.6":
-  version: 1.11.6
-  resolution: "@unhead/schema@npm:1.11.6"
+"@unhead/schema@npm:1.11.7":
+  version: 1.11.7
+  resolution: "@unhead/schema@npm:1.11.7"
   dependencies:
     hookable: ^5.5.3
     zhead: ^2.2.4
-  checksum: 429c02e98ab85adb2076f069bed6a92496fedf78fa3bf79701282e091290fb243e9ba690535ba3bb28ed8e0bb368bf524fa2fbf4c7a2b1125d44cc89fea257d8
+  checksum: 688acc33a91859f743eb923108b879f31770ff2fba89123960e55df091809e46c452cefa84e3349e5d17d98a35803fc5a8a95360d48c06029cdf588128fc3880
   languageName: node
   linkType: hard
 
-"@unhead/shared@npm:1.11.6":
-  version: 1.11.6
-  resolution: "@unhead/shared@npm:1.11.6"
+"@unhead/shared@npm:1.11.7":
+  version: 1.11.7
+  resolution: "@unhead/shared@npm:1.11.7"
   dependencies:
-    "@unhead/schema": 1.11.6
-  checksum: 1825769e911c1662722223fa343843f24eac234b2b584bb3bed8284979a2c2f8960145d54e9bbf6961feb3a6593bd6c08e1a2a3e4cba1480ba3284ac840b1a4a
+    "@unhead/schema": 1.11.7
+  checksum: daad96eab31b8eb29a505b8a95d52c67948c6464aa208aaed14eb4f3368c65b0775c89409eaa226b3d91a2217e818cb06d0a3dc70ddd5792374f377398d9b2c7
   languageName: node
   linkType: hard
 
-"@unhead/vue@npm:1.11.6":
-  version: 1.11.6
-  resolution: "@unhead/vue@npm:1.11.6"
+"@unhead/vue@npm:1.11.7":
+  version: 1.11.7
+  resolution: "@unhead/vue@npm:1.11.7"
   dependencies:
-    "@unhead/schema": 1.11.6
-    "@unhead/shared": 1.11.6
+    "@unhead/schema": 1.11.7
+    "@unhead/shared": 1.11.7
     defu: ^6.1.4
     hookable: ^5.5.3
-    unhead: 1.11.6
+    unhead: 1.11.7
   peerDependencies:
     vue: ">=2.7 || >=3"
-  checksum: bc35f081dbc814bd976bb9fd771f88d27d7d6ce4e1c0f3c3a4806488efd04244d8752179a52bd8c7f6c13511ceb22f86ee67578550ffa6d1d0778fe79eb86c90
+  checksum: 36ece7a4c3380fffa13052abf7e0bb5a5b3aae4bf6caa1c36558d1a758684e65c5a2e05972a43a8d70e092e138be3c81ff09ed572ad8876f6ea2a09176e316c7
   languageName: node
   linkType: hard
 
@@ -8752,15 +8752,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unhead@npm:1.11.6":
-  version: 1.11.6
-  resolution: "unhead@npm:1.11.6"
+"unhead@npm:1.11.7":
+  version: 1.11.7
+  resolution: "unhead@npm:1.11.7"
   dependencies:
-    "@unhead/dom": 1.11.6
-    "@unhead/schema": 1.11.6
-    "@unhead/shared": 1.11.6
+    "@unhead/dom": 1.11.7
+    "@unhead/schema": 1.11.7
+    "@unhead/shared": 1.11.7
     hookable: ^5.5.3
-  checksum: 6a831092bbd5ba381126cb0fb331f7572076df3a08da03786339316a67d519cdabd69097f5606cc6a4b0bd4b0edd5471fa07bf7f86400c0afd50827f568d5624
+  checksum: e387353e90c0f0c1b44f743d71491e31076d4ef9bc9c6c4ebd6ace432b211e3293b64984454c5250336610b77743909f9796bbc695984e9ed4174d3d5e7d61d5
   languageName: node
   linkType: hard
 
@@ -9294,7 +9294,7 @@ __metadata:
     "@types/color-hash": 2.0.0
     "@types/node": 22.7.4
     "@types/three": 0.169.0
-    "@unhead/vue": 1.11.6
+    "@unhead/vue": 1.11.7
     "@vitejs/plugin-vue": 5.1.4
     "@vue/eslint-config-prettier": 7.1.0
     "@vue/eslint-config-typescript": 11.0.3
