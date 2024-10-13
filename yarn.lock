@@ -69,13 +69,13 @@ __metadata:
   linkType: hard
 
 "@babel/parser@npm:^7.25.3":
-  version: 7.25.7
-  resolution: "@babel/parser@npm:7.25.7"
+  version: 7.25.8
+  resolution: "@babel/parser@npm:7.25.8"
   dependencies:
-    "@babel/types": ^7.25.7
+    "@babel/types": ^7.25.8
   bin:
     parser: ./bin/babel-parser.js
-  checksum: 7c40c2881e92415f5f2a88ac1078a8fea7f2b10097e76116ce40bfe01443d3a842c704bdb64d7b54c9e9dbbf49a60a0e1cf79ff35bcd02c52ff424179acd4259
+  checksum: c33f6d26542f156927c5dbe131265c791177d271e582338e960f803903086ec5c152bf25deae5f4c061b7bee14dc0b5fd2882ccb5a21c16ee0738d24fcc0406e
   languageName: node
   linkType: hard
 
@@ -97,14 +97,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/types@npm:^7.25.7":
-  version: 7.25.7
-  resolution: "@babel/types@npm:7.25.7"
+"@babel/types@npm:^7.25.8":
+  version: 7.25.8
+  resolution: "@babel/types@npm:7.25.8"
   dependencies:
     "@babel/helper-string-parser": ^7.25.7
     "@babel/helper-validator-identifier": ^7.25.7
     to-fast-properties: ^2.0.0
-  checksum: a63a3ecdac5eb2fa10a75d50ec23d1560beed6c4037ccf478a430cc221ba9b8b3a55cfbaaefb6e997051728f3c02b44dcddb06de9a0132f164a0a597dd825731
+  checksum: 93d84858e820dbfa0fc4882b3ba6a421544d224ee61455a58eed0af9fc3518b30dc2166b8ba48cdd2e91083c5885ed773c36acf46d177b7b1fad9c35b6eb7639
   languageName: node
   linkType: hard
 
@@ -1630,30 +1630,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@volar/language-core@npm:2.4.5, @volar/language-core@npm:~2.4.1":
-  version: 2.4.5
-  resolution: "@volar/language-core@npm:2.4.5"
+"@volar/language-core@npm:2.4.6, @volar/language-core@npm:~2.4.1":
+  version: 2.4.6
+  resolution: "@volar/language-core@npm:2.4.6"
   dependencies:
-    "@volar/source-map": 2.4.5
-  checksum: 51e34e2885d0a9d7df9b267c75c51e89aeab1981ef450ff2cf7b8dbac50c388b5e47e781c74a2cfc77c5af1dee30820918a1a62735442b40453101dc9a0e18c5
+    "@volar/source-map": 2.4.6
+  checksum: c63081314834ce6279b81c3c79d2b18e239190ab351018f60971452be67a5f86c90ad82038c120dddfa56d2c8a5e884e6370fbf3a55db1571193bebb8d4f7315
   languageName: node
   linkType: hard
 
-"@volar/source-map@npm:2.4.5":
-  version: 2.4.5
-  resolution: "@volar/source-map@npm:2.4.5"
-  checksum: 7e0af15a38920c06241db11a5ce7a005d53af45e212a5012f509d9d3549f3c35e278da4abd8e46345c0e33e1725716720874e50bd85f5764596e04da172f3890
+"@volar/source-map@npm:2.4.6":
+  version: 2.4.6
+  resolution: "@volar/source-map@npm:2.4.6"
+  checksum: a8398e445aaa0a32e750332c6844f34a7205766d1c41e225ee92159564edfc3ad7ce57c183cbf370f42a984e8e7a669321ba9b220152d3b1be1bdb10f3ee9ab4
   languageName: node
   linkType: hard
 
 "@volar/typescript@npm:~2.4.1":
-  version: 2.4.5
-  resolution: "@volar/typescript@npm:2.4.5"
+  version: 2.4.6
+  resolution: "@volar/typescript@npm:2.4.6"
   dependencies:
-    "@volar/language-core": 2.4.5
+    "@volar/language-core": 2.4.6
     path-browserify: ^1.0.1
     vscode-uri: ^3.0.8
-  checksum: f12a195811b59f2c6811e21962c3ab54afa8f5d7fe54e007ee121719eec46056f593576662625cd5612f13a24988bd7921b68b111daf922429f8624ed7628f93
+  checksum: 418e1b9d0b228f9f448b68a83b5cf69eed22d7c83c559fe6d0d9331f4ade52908328776858cdad349d08d9aa7b948400c8f842ee2f11043fda87b93b5cea937a
   languageName: node
   linkType: hard
 
@@ -4213,13 +4213,13 @@ __metadata:
   linkType: hard
 
 "form-data@npm:^4.0.0, form-data@npm:~4.0.0":
-  version: 4.0.0
-  resolution: "form-data@npm:4.0.0"
+  version: 4.0.1
+  resolution: "form-data@npm:4.0.1"
   dependencies:
     asynckit: ^0.4.0
     combined-stream: ^1.0.8
     mime-types: ^2.1.12
-  checksum: 01135bf8675f9d5c61ff18e2e2932f719ca4de964e3be90ef4c36aacfc7b9cb2fceb5eca0b7e0190e3383fe51c5b37f4cb80b62ca06a99aaabfcfd6ac7c9328c
+  checksum: ccee458cd5baf234d6b57f349fe9cc5f9a2ea8fd1af5ecda501a18fd1572a6dd3bf08a49f00568afd995b6a65af34cb8dec083cf9d582c4e621836499498dd84
   languageName: node
   linkType: hard
 
@@ -5886,11 +5886,11 @@ __metadata:
   linkType: hard
 
 "magic-string@npm:^0.30.11":
-  version: 0.30.11
-  resolution: "magic-string@npm:0.30.11"
+  version: 0.30.12
+  resolution: "magic-string@npm:0.30.12"
   dependencies:
     "@jridgewell/sourcemap-codec": ^1.5.0
-  checksum: e041649453c9a3f31d2e731fc10e38604d50e20d3585cd48bc7713a6e2e1a3ad3012105929ca15750d59d0a3f1904405e4b95a23b7e69dc256db3c277a73a3ca
+  checksum: 3f0d23b74371765f0e6cad4284eebba0ac029c7a55e39292de5aa92281afb827138cb2323d24d2924f6b31f138c3783596c5ccaa98653fe9cf122e1f81325b59
   languageName: node
   linkType: hard
 
