@@ -6103,15 +6103,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^10.0.1":
-  version: 10.0.1
-  resolution: "minimatch@npm:10.0.1"
-  dependencies:
-    brace-expansion: ^2.0.1
-  checksum: f5b63c2f30606091a057c5f679b067f84a2cd0ffbd2dbc9143bda850afd353c7be81949ff11ae0c86988f07390eeca64efd7143ee05a0dab37f6c6b38a2ebb6c
-  languageName: node
-  linkType: hard
-
 "minimatch@npm:^3.0.5, minimatch@npm:^3.1.1, minimatch@npm:^3.1.2":
   version: 3.1.2
   resolution: "minimatch@npm:3.1.2"
@@ -6538,14 +6529,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-run-all2@npm:7.0.0":
-  version: 7.0.0
-  resolution: "npm-run-all2@npm:7.0.0"
+"npm-run-all2@npm:7.0.1":
+  version: 7.0.1
+  resolution: "npm-run-all2@npm:7.0.1"
   dependencies:
     ansi-styles: ^6.2.1
     cross-spawn: ^7.0.3
     memorystream: ^0.3.1
-    minimatch: ^10.0.1
+    minimatch: ^9.0.0
     pidtree: ^0.6.0
     read-package-json-fast: ^4.0.0
     shell-quote: ^1.7.3
@@ -6555,7 +6546,7 @@ __metadata:
     npm-run-all2: bin/npm-run-all/index.js
     run-p: bin/run-p/index.js
     run-s: bin/run-s/index.js
-  checksum: 089b9e59f7848761a3e84bd15f774d72744a564132aa6e246758e089a2a9dc59f1bbee6e80549846022b82632694e4f2dd7d4ad6d66d91b129fa41a1c375f192
+  checksum: 3879513c7cc7b3ae164e969931563a3699406fd2a909c30d2c95d8d106bf1e0d1a5c807885c2880d7f0c9e96d3a95d5c56166623dc928e26e28bd87839aa7785
   languageName: node
   linkType: hard
 
@@ -9630,7 +9621,7 @@ __metadata:
     eslint-plugin-vuejs-accessibility: 2.2.1
     ky: 1.7.2
     less: 4.2.0
-    npm-run-all2: 7.0.0
+    npm-run-all2: 7.0.1
     pinia: 2.2.4
     pinia-shared-state: 0.5.1
     prettier: 2.8.8
